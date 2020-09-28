@@ -19,10 +19,9 @@ jobs:
           git clone -b 6.5.2 https://github.com/fletcher/MultiMarkdown-6 multimarkdown
           cd multimarkdown
           make
-          ls
           cd build
           make
-          ls
+          mv multimarkdown /usr/local/bin/multimarkdown
 
       - name: Build 🔧
         run: make
