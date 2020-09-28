@@ -18,7 +18,7 @@ jobs:
         run: make dependencies
       - uses: docker://pandoc/core:2.9
         with:
-          args: "-o dst/index.html -s --bibliography=src/references.bib src/index.md
+          args: "-o dst/index.html -s --bibliography=src/references.bib src/index.md"
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
