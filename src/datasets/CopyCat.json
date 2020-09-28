@@ -1,0 +1,23 @@
+{
+  "pub": {
+    "name": "CopyCat",
+    "year": 2010,
+    "publication": "",
+    "url": "https://www.researchgate.net/profile/Helene_Brashear/publication/224165252_A_novel_approach_to_American_Sign_Language_ASL_phrase_verification_using_reversed_signing/links/568bff3908ae153299b6351d.pdf"
+  },
+  "data": {
+    "video": true,
+    "depth": null,
+    "pose": false,
+    "writing": null,
+    "gloss": null,
+    "text": true
+  },
+  "language": "American",
+  "#items": 22,
+  "#samples": "420 Phrases",
+  "#signers": 5,
+  "notes": "",
+  "license": null,
+  "licenseUrl": null
+}

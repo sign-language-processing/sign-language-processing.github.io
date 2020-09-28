@@ -1,0 +1,23 @@
+{
+  "pub": {
+    "name": "AUSLAN",
+    "year": 2010,
+    "publication": "",
+    "url": null
+  },
+  "data": {
+    "video": true,
+    "depth": null,
+    "pose": false,
+    "writing": null,
+    "gloss": null,
+    "text": true
+  },
+  "language": "Australian",
+  "#items": null,
+  "#samples": "1100 Videos",
+  "#signers": 100,
+  "notes": "",
+  "license": null,
+  "licenseUrl": null
+}

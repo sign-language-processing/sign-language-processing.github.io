@@ -1,0 +1,23 @@
+{
+  "pub": {
+    "name": "RWTH-BOSTON",
+    "year": 2008,
+    "publication": "",
+    "url": "http://www.cs.bu.edu/groups/ivc/pubs/DreuwLREC08.pdf"
+  },
+  "data": {
+    "video": true,
+    "depth": null,
+    "pose": false,
+    "writing": null,
+    "gloss": null,
+    "text": true
+  },
+  "language": "American",
+  "#items": 483,
+  "#samples": "843 Sentences",
+  "#signers": 4,
+  "notes": "",
+  "license": null,
+  "licenseUrl": null
+}

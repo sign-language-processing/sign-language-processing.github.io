@@ -1,0 +1,23 @@
+{
+  "pub": {
+    "name": "ATIS",
+    "year": 2008,
+    "publication": "",
+    "url": "http://www.lrec-conf.org/proceedings/lrec2008/pdf/748_paper.pdf"
+  },
+  "data": {
+    "video": true,
+    "depth": null,
+    "pose": false,
+    "writing": null,
+    "gloss": null,
+    "text": true
+  },
+  "language": "Multilingual",
+  "#items": 292,
+  "#samples": "595 Sentences ",
+  "#signers": null,
+  "notes": "",
+  "license": null,
+  "licenseUrl": null
+}

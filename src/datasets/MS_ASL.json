@@ -1,0 +1,23 @@
+{
+  "pub": {
+    "name": "MS-ASL",
+    "year": 2019,
+    "publication": "",
+    "url": "https://arxiv.org/abs/1812.01053.pdf"
+  },
+  "data": {
+    "video": true,
+    "depth": false,
+    "pose": false,
+    "writing": false,
+    "gloss": false,
+    "text": true
+  },
+  "language": "American",
+  "#items": 1000,
+  "#samples": "25000 (25 hours)",
+  "#signers": 200,
+  "notes": "",
+  "license": null,
+  "licenseUrl": null
+}

@@ -1,0 +1,23 @@
+{
+  "pub": {
+    "name": "ASSLVD",
+    "year": 2008,
+    "publication": "",
+    "url": "http://vlm1.uta.edu/~athitsos/asl_lexicon/"
+  },
+  "data": {
+    "video": true,
+    "depth": null,
+    "pose": false,
+    "writing": null,
+    "gloss": null,
+    "text": true
+  },
+  "language": "American",
+  "#items": 3000,
+  "#samples": "12000 Samples",
+  "#signers": 4,
+  "notes": "",
+  "license": null,
+  "licenseUrl": null
+}

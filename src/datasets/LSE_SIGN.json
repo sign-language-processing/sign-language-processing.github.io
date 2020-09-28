@@ -1,0 +1,23 @@
+{
+  "pub": {
+    "name": "LSE-SIGN",
+    "year": 2015,
+    "publication": "",
+    "url": "https://link.springer.com/content/pdf/10.3758/s13428-014-0560-1.pdf"
+  },
+  "data": {
+    "video": true,
+    "depth": null,
+    "pose": false,
+    "writing": null,
+    "gloss": null,
+    "text": true
+  },
+  "language": "Spanish",
+  "#items": 2400,
+  "#samples": "2400 Samples",
+  "#signers": 2,
+  "notes": "",
+  "license": null,
+  "licenseUrl": null
+}

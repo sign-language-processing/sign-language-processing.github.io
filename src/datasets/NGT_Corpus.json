@@ -1,0 +1,23 @@
+{
+  "pub": {
+    "name": "The NGT Corpus",
+    "year": 2008,
+    "publication": "",
+    "url": "https://pdfs.semanticscholar.org/1a9e/263920532e96f956c11aa70605e4488c9c6e.pdf"
+  },
+  "data": {
+    "video": true,
+    "depth": null,
+    "pose": false,
+    "writing": null,
+    "gloss": null,
+    "text": true
+  },
+  "language": "Netherlands",
+  "#items": null,
+  "#samples": "15 Hours",
+  "#signers": 92,
+  "notes": "",
+  "license": "CC BY 3.0 NL",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0/nl/deed.en_GB"
+}

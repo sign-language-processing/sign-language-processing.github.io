@@ -1,0 +1,23 @@
+{
+  "pub": {
+    "name": "RWTH-PHOENIX-Weather",
+    "year": 2014,
+    "publication": "",
+    "url": "http://www.lrec-conf.org/proceedings/lrec2014/pdf/585_Paper.pdf"
+  },
+  "data": {
+    "video": true,
+    "depth": null,
+    "pose": false,
+    "writing": null,
+    "gloss": null,
+    "text": true
+  },
+  "language": "German",
+  "#items": 1231,
+  "#samples": "6931 Sentences",
+  "#signers": 9,
+  "notes": "Accelerometer",
+  "license": "CC BY-NC-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/"
+}

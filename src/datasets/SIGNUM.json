@@ -1,0 +1,23 @@
+{
+  "pub": {
+    "name": "SIGNUM",
+    "year": 2010,
+    "publication": "",
+    "url": "https://www.phonetik.uni-muenchen.de/forschung/Bas/SIGNUM/"
+  },
+  "data": {
+    "video": true,
+    "depth": null,
+    "pose": false,
+    "writing": null,
+    "gloss": null,
+    "text": true
+  },
+  "language": "German",
+  "#items": 450,
+  "#samples": "33210 Sequences",
+  "#signers": 25,
+  "notes": "",
+  "license": null,
+  "licenseUrl": null
+}

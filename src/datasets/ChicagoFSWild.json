@@ -1,0 +1,23 @@
+{
+  "pub": {
+    "name": "ChicagoFSWild",
+    "year": 2018,
+    "publication": "fs18slt",
+    "url": "https://ttic.uchicago.edu/~klivescu/ChicagoFSWild.htm"
+  },
+  "data": {
+    "video": true,
+    "depth": false,
+    "pose": false,
+    "writing": false,
+    "gloss": false,
+    "text": true
+  },
+  "language": "American",
+  "#items": 26,
+  "#samples": "5,455 Words",
+  "#signers": null,
+  "notes": "Real World Fingerspelling",
+  "license": "Public",
+  "licenseUrl": null
+}

@@ -1,0 +1,35 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+        with:
+          persist-credentials: false
+
+      - name: Install Dependencies 🔧
+        run: |
+          git clone https://github.com/fletcher/MultiMarkdown-6 multimarkdown
+          cd multimarkdown
+          make
+          cd build
+          make
+          ls bin
+
+      - name: Build 🔧
+        run: make
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: dst # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch

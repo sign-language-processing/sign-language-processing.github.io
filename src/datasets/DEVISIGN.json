@@ -1,0 +1,23 @@
+{
+  "pub": {
+    "name": "DEVISIGN",
+    "year": 2014,
+    "publication": "",
+    "url": "http://vipl.ict.ac.cn/homepage/ksl/data.html"
+  },
+  "data": {
+    "video": true,
+    "depth": null,
+    "pose": false,
+    "writing": null,
+    "gloss": null,
+    "text": true
+  },
+  "language": "Chinese",
+  "#items": 2000,
+  "#samples": "24000 Samples",
+  "#signers": 8,
+  "notes": "Kinect v1",
+  "license": "Research purpose on request",
+  "licenseUrl": null
+}
