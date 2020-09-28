@@ -1,5 +1,17 @@
 const fs = require('fs');
 
+function link(title, href) {
+    if (!title) {
+        return "";
+    }
+
+    if (href) {
+        return `<a href="${href}" title="${title}">${title}</a>`;
+    }
+    return title;
+}
+
+
 const PATH = "src/datasets/";
 
 const datasets = fs.readdirSync(PATH)
@@ -7,31 +19,32 @@ const datasets = fs.readdirSync(PATH)
     .map(d => JSON.parse(d))
     .sort((a, b) => a.pub.name > b.pub.name ? 1 : -1);
 
-console.log("```")
-console.log(datasets.map(d => JSON.stringify(d)).join("\n"))
-console.log("```")
 
-//
-// import json
-//     from
-//
-// os
-// import listdir,
-//
-// path
-//
-// DATASETS_PATH = "src/datasets"
-//
-// datasets = []
-// for file in listdir(DATASETS_PATH):
-// f = open(path.join(DATASETS_PATH, file), "r")
-// datasets.append(json.load(f))
-// f.close()
-//
-// datasets = sorted(datasets, key = lambda
-// d: d["pub"]["year"], reversed = True
-// )
-//
-// print('```')
-// print(datasets)
-// print('```')
+console.log('<table cellspacing="0" border="1">')
+console.log(`<thead>
+<tr>
+<th>Dataset</th>
+<th>Year</th>
+<th>Language</th>
+<th># Items</th>
+<th># Samples</th>
+<th># Signers</th>
+<th>Notes</th>
+<th>License</th>
+</tr>
+</thead><tbody>`)
+
+for (const dataset of datasets) {
+    console.log("<tr>")
+    console.log("<td>", link(dataset.pub.name, dataset.pub.url), "</td>");
+    console.log("<td>", dataset.language, "</td>");
+    console.log("<td>", dataset.pub.year, "</td>");
+    console.log("<td>", dataset["#items"] || "", "</td>");
+    console.log("<td>", dataset["#samples"] || "", "</td>");
+    console.log("<td>", dataset["#signers"] || "", "</td>");
+    console.log("<td>", dataset["notes"] || "", "</td>");
+    console.log("<td>", link(dataset.license, dataset.licenseUrl), "</td>");
+    console.log("</tr>")
+}
+
+console.log("</tbody></table>")

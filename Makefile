@@ -1,5 +1,6 @@
 dst/index.html: src/index.md src/formats.html datasets assets dst
-	multimarkdown src/index.md > dst/index.html
+	pandoc -o dst/index.html -s --bibliography=src/references.bib  src/index.md
+
 
 datasets: dst
 	node src/datasets.js > dst/datasets.html

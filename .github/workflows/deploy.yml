@@ -14,14 +14,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install Multimarkdown 🔧
+      - name: Install Pandoc 🔧
         run: |
-          git clone -b 6.5.2 https://github.com/fletcher/MultiMarkdown-6 multimarkdown
-          cd multimarkdown
-          make
-          cd build
-          make
-          sudo mv multimarkdown /usr/local/bin/multimarkdown
+          apt-get install -y cabal-install-1.22 ghc-7.10.3
+          cabal update
+          cabal install pandoc pandoc-include
 
       - name: Build 🔧
         run: make

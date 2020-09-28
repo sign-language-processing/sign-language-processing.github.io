@@ -4,7 +4,7 @@ The goal of this project is to contain and organize the sign language processing
 
 Once organized, this information could be incorporated in Wikipedia.
 
-This project is hosted in: 
+This project is hosted in: [https://amitmy.github.io/sign-language-processing/](https://amitmy.github.io/sign-language-processing/)
 
 All contributions are welcomed!
 
