@@ -16,12 +16,13 @@ jobs:
 
       - name: Install Dependencies 🔧
         run: |
-          git clone https://github.com/fletcher/MultiMarkdown-6 multimarkdown
+          git clone -b 6.5.0 https://github.com/fletcher/MultiMarkdown-6 multimarkdown
           cd multimarkdown
           make
+          ls
           cd build
           make
-          ls bin
+          ls
 
       - name: Build 🔧
         run: make
