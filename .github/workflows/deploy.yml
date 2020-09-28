@@ -14,14 +14,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install Pandoc 🔧
-        run: |
-          apt-get install -y cabal-install-1.22 ghc-7.10.3
-          cabal update
-          cabal install pandoc pandoc-include
-
-      - name: Build 🔧
-        run: make
+      - name: Build document 🔧
+        run: make dependencies
+      - uses: docker://pandoc/core:2.9
+        with:
+          args: "-o dst/index.html -s --bibliography=src/references.bib src/index.md
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
