@@ -14,14 +14,14 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install Dependencies 🔧
+      - name: Install Multimarkdown 🔧
         run: |
           git clone -b 6.5.2 https://github.com/fletcher/MultiMarkdown-6 multimarkdown
           cd multimarkdown
           make
           cd build
           make
-          mv multimarkdown /usr/local/bin/multimarkdown
+          sudo mv multimarkdown /usr/local/bin/multimarkdown
 
       - name: Build 🔧
         run: make
