@@ -95,8 +95,8 @@ We split the graph in 2:
 - Every edge on both backgrounds represents a task requiring a combination of computer vision and natural language processing.
 
 <p>
-<span>Computer Vision</span>
-<span style="float:right">Natural Language Processing</span>
+<span style="font-weight: bold;">Computer Vision</span>
+<span style="font-weight: bold;float:right">Natural Language Processing</span>
 <object type="image/svg+xml" data="assets/tasks.svg" class="logo"></object>
 </p>
 

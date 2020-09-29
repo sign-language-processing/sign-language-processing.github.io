@@ -163,7 +163,7 @@ body {
 
 p,
 *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) {
-    margin: 1rem auto 1rem;
+    margin: .5rem auto .5rem;
     max-width: 36rem;
     padding: .25rem;
 }
