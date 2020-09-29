@@ -1,5 +1,5 @@
 dst/index.html: processed_index src/references.bib
-	pandoc -o dst/index.html -s --bibliography=src/references.bib src/processed_index.md
+	pandoc -o dst/index.html -s --table-of-contents --bibliography=src/references.bib src/processed_index.md
 
 processed_index: src/index.md src/formats.html dependencies
 	cat src/index.md > src/processed_index.md
