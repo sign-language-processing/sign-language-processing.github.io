@@ -1,0 +1,8 @@
+p, *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) {
+    max-width: 1000px;
+}
+
+a, span, video {
+    margin: 0 !important;
+    padding: 0 !important;
+}

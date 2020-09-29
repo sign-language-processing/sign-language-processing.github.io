@@ -2,7 +2,7 @@
   "pub": {
     "name": "ChicagoFSWild+",
     "year": 2019,
-    "publication": "fs18iccv",
+    "publication": "dataset:fs18iccv",
     "url": "https://ttic.uchicago.edu/~klivescu/ChicagoFSWild.htm"
   },
   "data": {

@@ -2,8 +2,8 @@
   "pub": {
     "name": "RWTH-BOSTON",
     "year": 2008,
-    "publication": "",
-    "url": "http://www.cs.bu.edu/groups/ivc/pubs/DreuwLREC08.pdf"
+    "publication": "dataset:dreuw2008benchmark",
+    "url": "https://www-i6.informatik.rwth-aachen.de/aslr/database-rwth-boston-104.php"
   },
   "data": {
     "video": true,

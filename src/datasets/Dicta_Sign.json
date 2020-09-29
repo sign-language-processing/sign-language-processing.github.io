@@ -2,7 +2,7 @@
   "pub": {
     "name": "Dicta-Sign",
     "year": 2012,
-    "publication": "",
+    "publication": "dataset:matthes2012dicta",
     "url": "https://www.sign-lang.uni-hamburg.de/dicta-sign/portal/"
   },
   "data": {

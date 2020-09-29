@@ -2,8 +2,8 @@
   "pub": {
     "name": "SMILE",
     "year": 2018,
-    "publication": "fs18iccv",
-    "url": "https://ttic.uchicago.edu/~klivescu/ChicagoFSWild.htm"
+    "publication": "dataset:ebling2018smile",
+    "url": "https://www.aclweb.org/anthology/L18-1666/"
   },
   "data": {
     "video": true,

@@ -2,8 +2,8 @@
   "pub": {
     "name": "The NGT Corpus",
     "year": 2008,
-    "publication": "",
-    "url": "https://pdfs.semanticscholar.org/1a9e/263920532e96f956c11aa70605e4488c9c6e.pdf"
+    "publication": "dataset:Crasborn2008TheCN",
+    "url": "https://www.ru.nl/corpusngtuk/"
   },
   "data": {
     "video": true,

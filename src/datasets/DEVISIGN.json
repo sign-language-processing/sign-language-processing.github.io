@@ -2,7 +2,7 @@
   "pub": {
     "name": "DEVISIGN",
     "year": 2014,
-    "publication": "",
+    "publication": "dataset:chai2014devisign",
     "url": "http://vipl.ict.ac.cn/homepage/ksl/data.html"
   },
   "data": {

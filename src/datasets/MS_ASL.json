@@ -2,8 +2,8 @@
   "pub": {
     "name": "MS-ASL",
     "year": 2019,
-    "publication": "",
-    "url": "https://arxiv.org/abs/1812.01053.pdf"
+    "publication": "dataset:joze2018ms",
+    "url": "https://www.microsoft.com/en-us/research/publication/ms-asl-a-large-scale-data-set-and-benchmark-for-understanding-american-sign-language/"
   },
   "data": {
     "video": true,

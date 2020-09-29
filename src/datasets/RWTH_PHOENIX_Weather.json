@@ -2,8 +2,8 @@
   "pub": {
     "name": "RWTH-PHOENIX-Weather",
     "year": 2014,
-    "publication": "",
-    "url": "http://www.lrec-conf.org/proceedings/lrec2014/pdf/585_Paper.pdf"
+    "publication": "dataset:forster2014extensions",
+    "url": "https://www-i6.informatik.rwth-aachen.de/~koller/RWTH-PHOENIX/"
   },
   "data": {
     "video": true,

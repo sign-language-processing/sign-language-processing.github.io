@@ -5,10 +5,13 @@ function link(title, href) {
         return "";
     }
 
+    let s = title;
+
     if (href) {
-        return `<a href="${href}" title="${title}">${title}</a>`;
+        s = `<a href="${href}" title="${title}">${s}</a>`;
     }
-    return title;
+
+    return s;
 }
 
 
@@ -20,15 +23,15 @@ const datasets = fs.readdirSync(PATH)
     .sort((a, b) => a.pub.name > b.pub.name ? 1 : -1);
 
 
-console.log('<table cellspacing="0" border="1">')
+console.log('<table cellspacing="0" border="1" style="max-width: 1800px;">')
 console.log(`<thead>
 <tr>
 <th>Dataset</th>
-<th>Year</th>
+<th>Publication</th>
 <th>Language</th>
-<th># Items</th>
-<th># Samples</th>
-<th># Signers</th>
+<th>#Items</th>
+<th>#Samples</th>
+<th>#Signers</th>
 <th>Notes</th>
 <th>License</th>
 </tr>
@@ -37,8 +40,8 @@ console.log(`<thead>
 for (const dataset of datasets) {
     console.log("<tr>")
     console.log("<td>", link(dataset.pub.name, dataset.pub.url), "</td>");
+    console.log("<td>", dataset.pub.publication ? `@${dataset.pub.publication}` : dataset.pub.year || "", "</td>");
     console.log("<td>", dataset.language, "</td>");
-    console.log("<td>", dataset.pub.year, "</td>");
     console.log("<td>", dataset["#items"] || "", "</td>");
     console.log("<td>", dataset["#samples"] || "", "</td>");
     console.log("<td>", dataset["#signers"] || "", "</td>");

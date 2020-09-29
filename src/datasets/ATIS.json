@@ -2,8 +2,8 @@
   "pub": {
     "name": "ATIS",
     "year": 2008,
-    "publication": "",
-    "url": "http://www.lrec-conf.org/proceedings/lrec2008/pdf/748_paper.pdf"
+    "publication": "dataset:bungeroth2008atis",
+    "url": "https://www.aclweb.org/anthology/L08-1470/"
   },
   "data": {
     "video": true,

@@ -1,8 +1,4 @@
-<link rel="stylesheet" href="http://markdowncss.github.io/splendor/css/splendor.css" />
-<style>
-p, *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) {max-width: 1000px;}
-a {padding: 0 !important;}
-</style>
+<link rel="stylesheet" href="style.css" />
 
 ---
 title: "Sign Language Processing"
@@ -31,7 +27,8 @@ and either a [gloss](https://en.wikipedia.org/wiki/Gloss_(annotation)) or a writ
 Sign language videos may include a "depth" channel produced by a [time-of-flight camera](https://en.wikipedia.org/wiki/Time-of-flight_camera).
 
 Sign languages have no formal written format. 
-There are various notations systems but no writing system has been adopted widely enough, 
+There are various language specific notations systems ([si5s](https://en.wikipedia.org/wiki/Si5s), [Stokoe notation](https://en.wikipedia.org/wiki/Stokoe_notation) [@writing:stokoe2005sign])
+and various universal notations systems ([SignWriting](https://en.wikipedia.org/wiki/SignWriting), [HamNoSys](https://en.wikipedia.org/wiki/Hamburg_Notation_System) [@writing:prillwitz1990hamburg]) but no writing system has been adopted widely enough, 
 by the international Deaf community, that it could be considered the "written form" of a given sign language.
 
 Additionally, sign language corpora may include human [poses](https://en.wikipedia.org/wiki/Pose_(computer_vision)), either recorded with [motion capture](https://en.wikipedia.org/wiki/Motion_capture) technologies,
@@ -39,22 +36,16 @@ or estimated from videos using [pose estimation](https://en.wikipedia.org/wiki/P
 Full body human poses include all the relevant information for sign language processing (manual or non-manual), except for visual cues such as props.
 
 The following table exemplifies the various data formats.
-For this example we use "SignWriting" as the writing system.
+For this example we use [SignWriting](https://en.wikipedia.org/wiki/SignWriting) as the writing system.
 Note that the same sign might have two unrelated glosses and the same gloss might have multiple valid texts.
 
-```include
 formats.html
-```
-!include formats.html
 
 ### Available Datasets
 
 The following table contains a curated list of datasets including various sign languages and data formats:
 
-
-```include
-../dst/datasets.html
-```
+datasets.html
 
 Currently, there is no easy way or agreed upon format to download all datasets, and as such, evaluation on these datasets is scarce.
 
@@ -63,16 +54,16 @@ Currently, there is no easy way or agreed upon format to download all datasets, 
 
 ### Sign Language Detection
 
-Sign language detection [@borg2019sign,@moryossef2020real] is defined as the binary-classification for any
+Sign language detection [@detection:borg2019sign;@detection:moryossef2020real] is defined as the binary-classification for any
 given frame of a video weather a person is using sign-language or not.
 
-@borg2019sign introduced the classification of frames taken from YouTube videos as either signing or not. 
+@detection:borg2019sign introduced the classification of frames taken from YouTube videos as either signing or not. 
 They take a spatial and temporal approach based on <ref name="simonyan2014very">VGG-16</ref> CNN to encode each frame 
 and use a [GRU](https://en.wikipedia.org/wiki/Gated_recurrent_unit) [@cho2014learning] 
 to encode the sequence of frames, in a window of 20 frames at 5fps.
 In addition to the raw frame, they also either encode optical flow history, aggregated motion history, or frame difference.
 
-@moryossef2020real improved upon their method by performing the sign language detection in real-time.
+@detection:moryossef2020real improved upon their method by performing the sign language detection in real-time.
 They identified that sign language use involves movement of the body, and such designed a model that works on top of 
 human poses rather than directly on the video signal.
 They calculate the optical flow norm of every joint detected on the body, and apply a small yet effective contextualized model
@@ -82,16 +73,113 @@ to predict for every frame weather the person is signing or not.
 
 Sign language identification <ref names="gebre2013automatic,monteiro2016detecting" /> is defined as the classification between two or more sign languages.
 
-@gebre2013automatic found that a simple random-forest classifier can distinguish between 
+@identification:gebre2013automatic found that a simple random-forest classifier can distinguish between 
 British Sign Language (BSL) and Greek Sign Language (ENN) with a 95\% F1 score.
-This finding is further supported by @monteiro2016detecting which manages to differentiate between 
+This finding is further supported by @identification:monteiro2016detecting which manages to differentiate between 
 British Sign Language and French Sign Language (Langue des Signes Française, LSF) with 98\% F1 score in videos with static backgrounds,
 and between American Sign Language and British Sign Language with 70\% F1 score for videos mined from popular video sharing sites. 
 The authors attribute their success mainly to the different fingerspelling systems, which is two-handed in the case of BSL and one-handed in the case of ASL and LSF.
 
 ### Sign Language Recognition, Translation and Production
-While seemingly straightforward, sign language 
 
-<p><object type="image/svg+xml" data="assets/tasks.svg" class="logo"></object></p>
+Sign language translation is generally considered the task of translating between a video in sign language to text in a written language.
+Sign language production is the reverse process, of producing a sign language video from text in a written language.
+Sign language recognition is the task of recognizing the signs themselves in the sign language, but not necessarily the written language text.
+
+
+In the following graph we can see a fully connected pentagon where each node is a single data representation, 
+and each directed edge represents the task of converting between one data representation to another.
+
+We split the graph in 2: 
+
+- Every edge to the left, on the orange background represents a task in computer vision. These tasks are inherently multilingual, thus generalize over all sign languages.
+- Every edge to the right, on the blue background represents a task in natural language processing. These tasks are sign language specific, requiring a specific sign language lexicon or written language tokens.
+- Every edge on both backgrounds represents a task requiring a combination of computer vision and natural language processing.
+
+<p>
+<span>Computer Vision</span>
+<span style="float:right">Natural Language Processing</span>
+<object type="image/svg+xml" data="assets/tasks.svg" class="logo"></object>
+</p>
+
+In total, there are 20 tasks defined by this graph, with varying amount of previous research.
+Every path between two nodes might or might not be valid, depending on how lossy the tasks in the path are.
+
+#### Sign Language Translation
+
+Trivially, this is the task of translating between videos directly to text.
+However, doing so is computationally expensive in memory, and so videos are capped at being very short.
+Moreover, this direct pipeline does not take advantage of the universalities between sign languages,
+and requires large amounts of data to cover the various signing styles and diverse population.
+
+
+##### Video-to-Text
+TODO Text
+
+##### Video-to-Pose
+TODO Text
+
+##### Video-to-Writing
+TODO Text
+
+##### Video-to-Gloss
+TODO Text
+
+##### Pose-to-Writing
+TODO Text
+
+##### Pose-to-Gloss
+TODO Text
+
+##### Pose-to-Text
+TODO Text
+
+##### Writing-to-Gloss
+TODO Text
+
+##### Writing-to-Text
+TODO Text
+
+##### Gloss-to-Text
+TODO Text
+
+#### Sign Language Production
+TODO Text
+
+##### Text-to-Video
+TODO Text
+
+##### Text-to-Gloss
+TODO Text
+
+##### Text-to-Writing
+TODO Text
+
+##### Text-to-Pose
+TODO Text
+
+##### Gloss-to-Writing
+TODO Text
+
+##### Gloss-to-Pose
+TODO Text
+
+##### Gloss-to-Video
+TODO Text
+
+##### Writing-to-Pose
+TODO Text
+
+##### Writing-to-Video
+TODO Text
+
+##### Pose-to-Text
+TODO Text
+
+##### Writing-to-Gloss
+TODO Text
+
+##### Pose-to-Video
+TODO Text
 
 ## References

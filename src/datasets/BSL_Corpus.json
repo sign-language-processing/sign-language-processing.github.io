@@ -2,8 +2,8 @@
   "pub": {
     "name": "BSL Corpus",
     "year": 2013,
-    "publication": "",
-    "url": "https://pdfs.semanticscholar.org/1a9e/263920532e96f956c11aa70605e4488c9c6e.pdf"
+    "publication": "dataset:schembri2013building",
+    "url": "https://bslcorpusproject.org/"
   },
   "data": {
     "video": true,
