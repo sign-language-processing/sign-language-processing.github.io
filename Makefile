@@ -12,7 +12,8 @@ datasets: dst
 	node src/datasets.js > dst/datasets.html
 
 assets: dst
-	cp -r src/assets dst/assets
+	mkdir -p dst/assets
+	cp -r src/assets/* dst/assets/
 
 style: dst src/styles/splendor.css src/styles/custom.css
 	cat src/styles/splendor.css src/styles/custom.css > dst/style.css
