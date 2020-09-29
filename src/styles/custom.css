@@ -3,7 +3,7 @@ p, *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) {
 }
 
 a, span, video, ul {
-    margin: 0 !important;
+    margin: 0 auto !important;
     padding: 0 !important;
 }
 
