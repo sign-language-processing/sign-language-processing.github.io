@@ -3,8 +3,6 @@
 ---
 title: "Sign Language Processing"
 link-citations: true
-pandoc-options:
-  - --filter=pandoc-include
 ...
 
 Sign Language Processing (SLP) is a field of [artificial intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence) 

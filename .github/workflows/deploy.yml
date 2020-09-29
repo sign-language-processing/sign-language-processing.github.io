@@ -15,7 +15,7 @@ jobs:
           persist-credentials: false
 
       - name: Build document 🔧
-        run: make dependencies
+        run: make processed_index
       - uses: docker://pandoc/core:2.9
         with:
           args: "-o dst/index.html -s --bibliography=src/references.bib src/index.md"
