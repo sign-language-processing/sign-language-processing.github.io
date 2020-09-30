@@ -53,10 +53,10 @@ Currently, there is no easy way or agreed upon format to download all datasets, 
 ### Sign Language Detection
 
 Sign language detection [@detection:borg2019sign;@detection:moryossef2020real] is defined as the binary-classification for any
-given frame of a video weather a person is using sign-language or not.
+given frame of a video whether a person is using sign-language or not.
 
 @detection:borg2019sign introduced the classification of frames taken from YouTube videos as either signing or not. 
-They take a spatial and temporal approach based on <ref name="simonyan2014very">VGG-16</ref> CNN to encode each frame 
+They take a spatial and temporal approach based on VGG-16 [@simonyan2014very] CNN to encode each frame 
 and use a [GRU](https://en.wikipedia.org/wiki/Gated_recurrent_unit) [@cho2014learning] 
 to encode the sequence of frames, in a window of 20 frames at 5fps.
 In addition to the raw frame, they also either encode optical flow history, aggregated motion history, or frame difference.
@@ -65,12 +65,12 @@ In addition to the raw frame, they also either encode optical flow history, aggr
 They identified that sign language use involves movement of the body, and such designed a model that works on top of 
 human poses rather than directly on the video signal.
 They calculate the optical flow norm of every joint detected on the body, and apply a small yet effective contextualized model
-to predict for every frame weather the person is signing or not.
+to predict for every frame whether the person is signing or not.
 
 ### Sign Language Identification
 
-Sign language identification <ref names="gebre2013automatic,monteiro2016detecting" /> is defined as the classification between two or more sign languages.
-
+Sign language identification [@identification:gebre2013automatic;@identification:monteiro2016detecting] is defined as the classification between two or more sign languages.
+ 
 @identification:gebre2013automatic found that a simple random-forest classifier can distinguish between 
 British Sign Language (BSL) and Greek Sign Language (ENN) with a 95\% F1 score.
 This finding is further supported by @identification:monteiro2016detecting which manages to differentiate between 
