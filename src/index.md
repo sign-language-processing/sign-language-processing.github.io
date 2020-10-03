@@ -39,7 +39,7 @@ Note that the same sign might have two unrelated glosses and the same gloss migh
 
 formats.html
 
-### Available Datasets
+### Existing Datasets
 
 The following table contains a curated list of datasets including various sign languages and data formats:
 
@@ -103,22 +103,88 @@ We split the graph in 2:
 In total, there are 20 tasks defined by this graph, with varying amount of previous research.
 Every path between two nodes might or might not be valid, depending on how lossy the tasks in the path are.
 
-#### Sign Language Translation
+---
 
+##### Video-to-Pose
+
+Video-to-Pose---commonly known as pose estimation---is the task to detect human figures in images and videos, 
+so that one could determine, for example, where someone’s elbow shows up in an image.
+
+This area has been thoroughly researched [@pose:pishchulin2012articulated;@pose:chen2017adversarial;@pose:cao2018openpose;@pose:alp2018densepose]
+with objectives varying from predicting 2D / 3D poses, to a selection of a small specific set of landmarks, or a dense mesh of a person.
+
+OpenPose [@pose:cao2018openpose;@pose:simon2017hand;@pose:cao2017realtime;@pose:wei2016cpm] is the first real-time multi-person system to 
+jointly detect human body, hand, facial, and foot keypoints (in total 135 keypoints) in 2D on single images.
+While their model can estimate the full pose directly from an image in a single inference,
+they also suggest a pipeline approach where first they estimate the body pose, and then independently estimate 
+the hands and face poses by acquiring higher resolution crops around those areas.
+With multiple angles of recording, OpenPose also offers keypoint triangulation in order to reconstruct the pose in 3D.
+
+@pose:alp2018densepose takes a different approach with DensePose. 
+Instead of classifying for every keypoint which pixel is most likely, they suggest similarly to semantic segmentation ,
+for each pixel to classify which body part it belongs to.
+Then, for each pixel, knowing the bodypart, they predict where that pixel is on the body part, relative to a 2D projection of a representative body model.
+This approach results in reconstruction of the full body mesh, and allows sampling to find specific keypoints similar to OpenPose.
+
+However, 2D human poses might not be sufficient to fully understand the position and orientation of landmarks in space,
+and applying pose estimation per-frame does not take the video temporal movement information into account, 
+especially in cases of rapid movement which contain motion blur.
+
+@pose:pavllo20193d developed two methods to convert between 2D poses to 3D poses. 
+The first, a supervised method, was trained to use the temporal information between frames to predict the missing Z axis.
+The second, an unsupervised method, leveraged the fact that the 2D poses are meerly a projection of an unknown 3D pose, 
+and train a model to estimate the 3D pose and back-project to the input 2D poses. This back-projection is a deterministic process, 
+and as such it applies constraints on the 3D pose encoder. 
+
+@pose:panteleris2018using suggests converting the 2D poses to 3D using inverse kinematics (IK), 
+a process taken from computer animation and robotics to calculate the variable joint parameters needed to place the end of a kinematic chain, 
+such as a robot manipulator or animation character's skeleton, in a given position and orientation relative to the start of the chain.
+Demonstrating their approach on hand pose estimation, they manually explicitly encode the constraints and limits of each joint, resulting in 26 degrees of freedom.
+Then, non-linear least-squares minimization fits a 3D model of the hand to the estimated 2D joint positions, recovering the 3D hand pose.
+This is similar to the back-projection used by @pose:pavllo20193d, except here no temporal information is being used.
+
+##### Pose-to-Video
+
+Pose-to-Video, also known as motion-transfer or skeletal animation in the field of robotics and animation is the
+conversion of a sequence of poses to a realistic looking video.
+For sign language production, this is the final "rendering" to make the produced sign language looks human.
+
+@pose:chan2019everybody demonstrates a semi-supervised approach where they take a set of videos, 
+run pose-estimation with OpenPose [@pose:cao2018openpose], and learn an image-to-image translation [@isola2017image]
+between the rendered skeleton and the original video.
+They demonstrate their approach on human dancing, where they can extract poses from a choreography, 
+and render any person as if they were dancing that dance.
+They predict two consecutive frames for temporally coherent video results and 
+introduce a separate pipeline for a more realistic face synthesis, although still flawed.
+
+Using the same method by @pose:chan2019everybody on "Everybody Dance Now", @girocan2020slrtp asks "Can Everybody Sign Now"?
+They evaluate the generated videos by asking signers various tasks after watching them, and comparing the signers ability to
+perform these tasks on the original videos, rendered pose videos, and reconstructed videos.
+They show that subjects prefer synthesized realistic videos over skeleton visualizations, 
+and that out-of-the-box synthesis methods are not really effective enough, 
+as subjects struggled to understand the reconstructed videos.
+
+[Deepfakes](https://en.wikipedia.org/wiki/Deepfake) is a technique to replace a person in an 
+existing image or video with someone else's likeness [@nguyen2019deep]. 
+This technique can be used to improve the unrealistic face synthesis, resulting from not face-specialized models,
+or even replace cartoon faces from animated 3D models. 
+
+
+---
+
+
+##### Video-to-Text
 Trivially, this is the task of translating between videos directly to text.
 However, doing so is computationally expensive in memory, and so videos are capped at being very short.
 Moreover, this direct pipeline does not take advantage of the universalities between sign languages,
 and requires large amounts of data to cover the various signing styles and diverse population.
 
-
-##### Video-to-Text
 TODO Text
 
-##### Video-to-Pose
-TODO Text
 
 ##### Video-to-Writing
 TODO Text
+
 
 ##### Video-to-Gloss
 TODO Text
@@ -177,7 +243,5 @@ TODO Text
 ##### Writing-to-Gloss
 TODO Text
 
-##### Pose-to-Video
-TODO Text
 
 ## References
