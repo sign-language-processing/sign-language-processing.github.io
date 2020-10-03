@@ -2,7 +2,7 @@
   "pub": {
     "name": "Public DGS Corpus",
     "year": null,
-    "publication": "",
+    "publication": "dataset:hanke-etal-2020-extending",
     "url": "https://www.sign-lang.uni-hamburg.de/dgs-korpus/index.php/welcome.html"
   },
   "data": {

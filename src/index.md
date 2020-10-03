@@ -157,7 +157,12 @@ and render any person as if they were dancing that dance.
 They predict two consecutive frames for temporally coherent video results and 
 introduce a separate pipeline for a more realistic face synthesis, although still flawed.
 
-Using the same method by @pose:chan2019everybody on "Everybody Dance Now", @girocan2020slrtp asks "Can Everybody Sign Now"?
+@pose:wang2018vid2vid suggest a similar method using DensePose [@pose:alp2018densepose] representations 
+in addition to the OpenPose [@pose:cao2018openpose] ones. 
+They formalize a different model, with various objectives to optimize for such as background-foreground separation and
+temporal coherence by using the previous two timestamps in the input.
+
+Using the same method by @pose:chan2019everybody on "Everybody Dance Now", @pose:girocan2020slrtp asks "Can Everybody Sign Now"?
 They evaluate the generated videos by asking signers various tasks after watching them, and comparing the signers ability to
 perform these tasks on the original videos, rendered pose videos, and reconstructed videos.
 They show that subjects prefer synthesized realistic videos over skeleton visualizations, 
@@ -169,9 +174,23 @@ existing image or video with someone else's likeness [@nguyen2019deep].
 This technique can be used to improve the unrealistic face synthesis, resulting from not face-specialized models,
 or even replace cartoon faces from animated 3D models. 
 
+---
+
+##### Pose-to-Writing
+TODO Text
+
+##### Writing-to-Pose
+TODO Text
 
 ---
 
+##### Gloss-to-Text
+TODO Text
+
+##### Text-to-Gloss
+TODO Text
+
+---
 
 ##### Video-to-Text
 Trivially, this is the task of translating between videos directly to text.
@@ -182,65 +201,55 @@ and requires large amounts of data to cover the various signing styles and diver
 TODO Text
 
 
-##### Video-to-Writing
-TODO Text
-
-
-##### Video-to-Gloss
-TODO Text
-
-##### Pose-to-Writing
-TODO Text
-
-##### Pose-to-Gloss
-TODO Text
-
-##### Pose-to-Text
-TODO Text
-
-##### Writing-to-Gloss
-TODO Text
-
-##### Writing-to-Text
-TODO Text
-
-##### Gloss-to-Text
-TODO Text
-
-#### Sign Language Production
-TODO Text
-
 ##### Text-to-Video
 TODO Text
 
-##### Text-to-Gloss
-TODO Text
+---
 
-##### Text-to-Writing
-TODO Text
-
-##### Text-to-Pose
-TODO Text
-
-##### Gloss-to-Writing
-TODO Text
-
-##### Gloss-to-Pose
+##### Video-to-Gloss
 TODO Text
 
 ##### Gloss-to-Video
 TODO Text
 
-##### Writing-to-Pose
+---
+
+##### Video-to-Writing
 TODO Text
 
 ##### Writing-to-Video
 TODO Text
 
+---
+
+##### Pose-to-Gloss
+TODO Text
+
+##### Gloss-to-Pose
+TODO Text
+
+---
+
 ##### Pose-to-Text
 TODO Text
 
+##### Text-to-Pose
+TODO Text
+
+---
+
+##### Writing-to-Text
+TODO Text
+
+##### Text-to-Writing
+TODO Text
+
+---
+
 ##### Writing-to-Gloss
+TODO Text
+
+##### Gloss-to-Writing
 TODO Text
 
 
