@@ -226,7 +226,16 @@ TODO Text
 TODO Text
 
 ##### Gloss-to-Pose
-TODO Text
+
+To produce a sign language video, @stoll2018sign constructs a lookup-table between glosses and sequences of 2D poses.
+They align all pose sequences at the neck joint of a reference skeleton, and group all sequences belonging to the same gloss.
+Then, for each group they apply dynamic time warping and average out all sequences in the group to construct the mean pose sequence.
+This approach suffers from not having an accurate set of poses aligned to the gloss, and from unnatural motion transitions between glosses.
+
+To alleviate the downsides of the previous work, @stoll2020text2sign constructs a lookup-table of gloss to group of sequences of poses rather than creating a mean pose sequence.
+They build a Motion Graph [@min2012motion] - which is a Markov process that can be used to generate new motion sequences that are representative of real motion,
+and select the motion primitives (sequence of poses) per gloss with the highest transition probability.
+To smooth that sequence and reduce unnatural motion, they use Savitzky–Golay motion transition smoothing filter [@savitzky1964smoothing].
 
 ---
 

@@ -5,6 +5,7 @@ processed_index: src/index.md src/formats.html dependencies
 	cat src/index.md > src/processed_index.md
 	sed -i -e '/formats.html/{r src/formats.html' -e 'd}' src/processed_index.md
 	sed -i -e '/datasets.html/{r dst/datasets.html' -e 'd}' src/processed_index.md
+	sed -i 's/TODO/\<span style=\"background-color: red; color: white; padding: 0 2px !important;\"\>TODO\<\/span\>/g' src/processed_index.md
 
 dependencies: datasets assets dst style
 

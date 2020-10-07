@@ -1,10 +1,6 @@
 const fs = require('fs');
 
 function link(title, href) {
-    if (!title) {
-        return "";
-    }
-
     let s = title;
 
     if (href) {
@@ -46,7 +42,7 @@ for (const dataset of datasets) {
     console.log("<td>", dataset["#samples"] || "", "</td>");
     console.log("<td>", dataset["#signers"] || "", "</td>");
     console.log("<td>", dataset["notes"] || "", "</td>");
-    console.log("<td>", link(dataset.license, dataset.licenseUrl), "</td>");
+    console.log("<td>", link(dataset.license, dataset.licenseUrl) || "TODO", "</td>");
     console.log("</tr>")
 }
 
