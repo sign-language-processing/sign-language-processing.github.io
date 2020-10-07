@@ -177,18 +177,18 @@ or even replace cartoon faces from animated 3D models.
 ---
 
 ##### Pose-to-Writing
-TODO Text
+TODO
 
 ##### Writing-to-Pose
-TODO Text
+TODO
 
 ---
 
 ##### Gloss-to-Text
-TODO Text
+TODO
 
 ##### Text-to-Gloss
-TODO Text
+TODO
 
 ---
 
@@ -198,32 +198,32 @@ However, doing so is computationally expensive in memory, and so videos are capp
 Moreover, this direct pipeline does not take advantage of the universalities between sign languages,
 and requires large amounts of data to cover the various signing styles and diverse population.
 
-TODO Text
+TODO
 
 
 ##### Text-to-Video
-TODO Text
+TODO
 
 ---
 
 ##### Video-to-Gloss
-TODO Text
+TODO
 
 ##### Gloss-to-Video
-TODO Text
+TODO
 
 ---
 
 ##### Video-to-Writing
-TODO Text
+TODO
 
 ##### Writing-to-Video
-TODO Text
+TODO
 
 ---
 
 ##### Pose-to-Gloss
-TODO Text
+TODO
 
 ##### Gloss-to-Pose
 
@@ -240,26 +240,26 @@ To smooth that sequence and reduce unnatural motion, they use Savitzky–Golay m
 ---
 
 ##### Pose-to-Text
-TODO Text
+TODO
 
 ##### Text-to-Pose
-TODO Text
+TODO
 
 ---
 
 ##### Writing-to-Text
-TODO Text
+TODO
 
 ##### Text-to-Writing
-TODO Text
+TODO
 
 ---
 
 ##### Writing-to-Gloss
-TODO Text
+TODO
 
 ##### Gloss-to-Writing
-TODO Text
+TODO
 
 
 ## References
