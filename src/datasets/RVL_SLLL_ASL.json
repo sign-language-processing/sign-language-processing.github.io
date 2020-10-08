@@ -1,0 +1,23 @@
+{
+  "pub": {
+    "name": "RVL-SLLL ASL",
+    "year": 2006,
+    "publication": "dataset:wilbur2006purdue",
+    "url": "https://engineering.purdue.edu/RVL/Database/ASL/asl-database-front.htm"
+  },
+  "data": {
+    "video": true,
+    "depth": null,
+    "pose": false,
+    "writing": null,
+    "gloss": null,
+    "text": true
+  },
+  "language": "American",
+  "#items": 104,
+  "#samples": "2,576 Videos",
+  "#signers": 14,
+  "notes": "",
+  "license": "Research Attribution",
+  "licenseUrl": "https://engineering.purdue.edu/RVL/Database/ASL/Agreement.pdf"
+}

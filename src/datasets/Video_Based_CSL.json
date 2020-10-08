@@ -1,0 +1,23 @@
+{
+  "pub": {
+    "name": "Video-Based CSL",
+    "year": 2018,
+    "publication": "dataset:huang2018video",
+    "url": "http://home.ustc.edu.cn/~pjh/openresources/cslr-dataset-2015/index.html"
+  },
+  "data": {
+    "video": true,
+    "depth": null,
+    "pose": false,
+    "writing": null,
+    "gloss": null,
+    "text": true
+  },
+  "language": "Chinese",
+  "#items": 178,
+  "#samples": "25,000 Videos",
+  "#signers": 50,
+  "notes": "",
+  "license": "Research Attribution",
+  "licenseUrl": "https://rec.ustc.edu.cn/share/475ac440-dab7-11ea-963e-ebae3cfe5012"
+}

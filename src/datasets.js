@@ -38,7 +38,7 @@ for (const dataset of datasets) {
     console.log("<td>", link(dataset.pub.name, dataset.pub.url), "</td>");
     console.log("<td>", dataset.pub.publication ? `@${dataset.pub.publication}` : dataset.pub.year || "", "</td>");
     console.log("<td>", dataset.language, "</td>");
-    console.log("<td>", dataset["#items"] || "", "</td>");
+    console.log("<td>", dataset["#items"] ? dataset["#items"].toLocaleString('en-US') : "", "</td>");
     console.log("<td>", dataset["#samples"] || "", "</td>");
     console.log("<td>", dataset["#signers"] || "", "</td>");
     console.log("<td>", dataset["notes"] || "", "</td>");

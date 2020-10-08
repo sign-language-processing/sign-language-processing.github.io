@@ -12,7 +12,7 @@ It is a subfield of both [natural language processing](https://en.wikipedia.org/
 
 Challenges in sign language processing frequently involve 
 [machine translation of sign languages](https://en.wikipedia.org/wiki/Machine_translation_of_sign_languages)
-to written languages (sign language translation) or from written languages (sign language production),
+to spoken language text (sign language translation), from spoken language text (sign language production),
 or sign language recognition for sign language understanding.
 
 
@@ -21,7 +21,7 @@ or sign language recognition for sign language understanding.
 ### Data Formats
 
 The only widely accepted format for sign language data is including videos of the signing, 
-and either a [gloss](https://en.wikipedia.org/wiki/Gloss_(annotation)) or a written language translation.
+and either a [gloss](https://en.wikipedia.org/wiki/Gloss_(annotation)) or a spoken language text translation.
 Sign language videos may include a "depth" channel produced by a [time-of-flight camera](https://en.wikipedia.org/wiki/Time-of-flight_camera).
 
 Sign languages have no formal written format. 
@@ -80,9 +80,9 @@ The authors attribute their success mainly to the different fingerspelling syste
 
 ### Sign Language Recognition, Translation and Production
 
-Sign language translation is generally considered the task of translating between a video in sign language to text in a written language.
-Sign language production is the reverse process, of producing a sign language video from text in a written language.
-Sign language recognition is the task of recognizing the signs themselves in the sign language, but not necessarily the written language text.
+Sign language translation is generally considered the task of translating between a video in sign language to spoken language text.
+Sign language production is the reverse process, of producing a sign language video from spoken language text.
+Sign language recognition is the task of recognizing the signs themselves in the sign language.
 
 
 In the following graph we can see a fully connected pentagon where each node is a single data representation, 
@@ -91,7 +91,7 @@ and each directed edge represents the task of converting between one data repres
 We split the graph in 2: 
 
 - Every edge to the left, on the orange background represents a task in computer vision. These tasks are inherently multilingual, thus generalize over all sign languages.
-- Every edge to the right, on the blue background represents a task in natural language processing. These tasks are sign language specific, requiring a specific sign language lexicon or written language tokens.
+- Every edge to the right, on the blue background represents a task in natural language processing. These tasks are sign language specific, requiring a specific sign language lexicon or spoken language tokens.
 - Every edge on both backgrounds represents a task requiring a combination of computer vision and natural language processing.
 
 <p>
@@ -147,7 +147,7 @@ This is similar to the back-projection used by @pose:pavllo20193d, except here n
 
 Pose-to-Video, also known as motion-transfer or skeletal animation in the field of robotics and animation is the
 conversion of a sequence of poses to a realistic looking video.
-For sign language production, this is the final "rendering" to make the produced sign language looks human.
+For sign language production, this is the final "rendering" to make the produced sign language look human.
 
 @pose:chan2019everybody demonstrates a semi-supervised approach where they take a set of videos, 
 run pose-estimation with OpenPose [@pose:cao2018openpose], and learn an image-to-image translation [@isola2017image]
@@ -176,56 +176,15 @@ or even replace cartoon faces from animated 3D models.
 
 ---
 
-##### Pose-to-Writing
-TODO
-
-##### Writing-to-Pose
-TODO
-
----
-
-##### Gloss-to-Text
-TODO
-
-##### Text-to-Gloss
-TODO
-
----
-
-##### Video-to-Text
-Trivially, this is the task of translating between videos directly to text.
-However, doing so is computationally expensive in memory, and so videos are capped at being very short.
-Moreover, this direct pipeline does not take advantage of the universalities between sign languages,
-and requires large amounts of data to cover the various signing styles and diverse population.
-
-TODO
-
-
-##### Text-to-Video
-TODO
-
----
-
-##### Video-to-Gloss
-TODO
-
-##### Gloss-to-Video
-TODO
-
----
-
-##### Video-to-Writing
-TODO
-
-##### Writing-to-Video
-TODO
-
----
-
 ##### Pose-to-Gloss
+Pose-to-Gloss---also known as sign language recognition---is the task to recognize a sequence of signs from a sequence of poses.
+
 TODO
 
 ##### Gloss-to-Pose
+
+Gloss-to-Pose---also known as sign language production---is the task to produce a sequence of poses that adequately represent
+a sequence of signs written as gloss.
 
 To produce a sign language video, @stoll2018sign constructs a lookup-table between glosses and sequences of 2D poses.
 They align all pose sequences at the neck joint of a reference skeleton, and group all sequences belonging to the same gloss.
@@ -236,6 +195,77 @@ To alleviate the downsides of the previous work, @stoll2020text2sign constructs 
 They build a Motion Graph [@min2012motion] - which is a Markov process that can be used to generate new motion sequences that are representative of real motion,
 and select the motion primitives (sequence of poses) per gloss with the highest transition probability.
 To smooth that sequence and reduce unnatural motion, they use Savitzky–Golay motion transition smoothing filter [@savitzky1964smoothing].
+
+
+---
+
+##### Video-to-Gloss
+Video-to-Gloss---also known as sign language recognition---is the task to recognize a sequence of signs from a video.
+
+For this recognition @cui2017recurrent constructs a three-steps optimization model.
+First they train a video-to-gloss end-to-end model, where they encode the video using a spatio-temporal CNN encoder, 
+and predict the gloss using a Connectionist Temporal Classification (CTC) [@graves2006connectionist].
+Then, from the CTC alignment and category proposal, they encode each gloss-level segment independently, trained to predict the gloss category,
+and use this gloss video segments encoding to optimize the sequence learning model. 
+
+@cihan2018neural fundamentally differ from that approach and opt to formulate this problem as if it is a natural-language translation problem.
+They encode each video frame using AlexNet [@krizhevsky2012imagenet], initialized using weights that were trained on ImageNet [@deng2009imagenet].
+Then they apply a GRU encoder-decoder architecture with Luong attention [@luong2015effective] to generate the gloss.
+In a followup work, @camgoz2020sign use a transformer encoder [@vaswani2017attention] to replace the GRU, 
+and use a CTC to decode the gloss. They show a slight improvement with this approach on the video-to-gloss task.
+
+##### Gloss-to-Video
+TODO
+
+---
+
+##### Gloss-to-Text
+Gloss-to-Text---also known as sign language translation---is the natural language processing task of translating
+between gloss text representing sign-language signs and spoken language text. 
+These texts commonly differ by terminology, capitalization, and sentence structure.
+
+@cihan2018neural experimented with various machine-translation architectures and compared between using an LSTM vs GRU for the recurrent model,
+as well as Luong attention [@luong2015effective] vs Bahdanau attention [@bahdanau2014neural], and various batch-sizes. 
+They concluded that on the RWTH-PHOENIX-Weather-2014T dataset, which was also presented by this work, 
+using GRUs, Luong attention, and a batch size of 1 outperforms all other configurations.
+
+TODO Kayo's Coling work
+
+
+##### Text-to-Gloss
+TODO
+
+---
+
+##### Video-to-Text
+Video-to-text---also knows as sign language translation---is the entire task of translating a raw video to spoken language text.
+
+Recently, @camgoz2020sign proposed a single architecture to perform this task, that can use both the sign language gloss and 
+the spoken language text in joint supervision.
+They use the pretrained spatial embeddings from @koller2019weakly to encode each frame independently, and encode the frames with a transformer.
+On this encoding they use a Connectionist Temporal Classification (CTC) [@graves2006connectionist] to classify the sign language gloss.
+Using the same encoding, they also use a transformer decoder to decode the spoken language text one token at a time.
+They show that adding the gloss supervision improves the model over not using it, and that it outperforms previous video-to-gloss-to-text pipeline approaches [@cihan2018neural].
+
+
+##### Text-to-Video
+TODO
+
+---
+
+##### Pose-to-Writing
+TODO
+
+##### Writing-to-Pose
+TODO
+
+---
+
+##### Video-to-Writing
+TODO
+
+##### Writing-to-Video
+TODO
 
 ---
 
