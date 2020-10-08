@@ -3,7 +3,7 @@
     "name": "ATIS",
     "year": 2008,
     "publication": "dataset:bungeroth2008atis",
-    "url": "https://www.aclweb.org/anthology/L08-1470/"
+    "url": null
   },
   "data": {
     "video": true,

@@ -3,7 +3,7 @@
     "name": "MS-ASL",
     "year": 2019,
     "publication": "dataset:joze2018ms",
-    "url": "https://www.microsoft.com/en-us/research/publication/ms-asl-a-large-scale-data-set-and-benchmark-for-understanding-american-sign-language/"
+    "url": "https://www.microsoft.com/en-us/download/details.aspx?id=100121"
   },
   "data": {
     "video": true,
@@ -18,6 +18,6 @@
   "#samples": "25,000 (25 hours)",
   "#signers": 200,
   "notes": "",
-  "license": null,
+  "license": "Public",
   "licenseUrl": null
 }

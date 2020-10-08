@@ -18,6 +18,6 @@
   "#samples": "40,000 Lexical Items",
   "#signers": 249,
   "notes": "",
-  "license": null,
-  "licenseUrl": null
+  "license": "Partially Restricted",
+  "licenseUrl": "https://bslcorpusproject.org/cava/restricted-access-data/"
 }

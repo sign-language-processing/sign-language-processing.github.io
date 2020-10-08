@@ -16,7 +16,7 @@ const PATH = "src/datasets/";
 const datasets = fs.readdirSync(PATH)
     .map(fName => String(fs.readFileSync(PATH + fName)))
     .map(d => JSON.parse(d))
-    .sort((a, b) => a.pub.name > b.pub.name ? 1 : -1);
+    .sort((a, b) => a.pub.name.toLowerCase() > b.pub.name.toLowerCase() ? 1 : -1);
 
 
 console.log('<table cellspacing="0" border="1" style="max-width: 100%;">')
