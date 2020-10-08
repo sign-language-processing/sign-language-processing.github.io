@@ -1,8 +1,7 @@
-<link rel="stylesheet" href="style.css" />
-
 ---
 title: "Sign Language Processing"
-link-citations: true
+link-citations: truec
+css: style.css
 ...
 
 Sign Language Processing (SLP) is a field of [artificial intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence) 
@@ -88,7 +87,7 @@ Sign language recognition is the task of recognizing the signs themselves in the
 In the following graph we can see a fully connected pentagon where each node is a single data representation, 
 and each directed edge represents the task of converting between one data representation to another.
 
-We split the graph in 2: 
+We split the graph in two: 
 
 - Every edge to the left, on the orange background represents a task in computer vision. These tasks are inherently multilingual, thus generalize over all sign languages.
 - Every edge to the right, on the blue background represents a task in natural language processing. These tasks are sign language specific, requiring a specific sign language lexicon or spoken language tokens.
