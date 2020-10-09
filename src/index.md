@@ -1,6 +1,6 @@
 ---
 title: "Sign Language Processing"
-link-citations: truec
+link-citations: true
 css: style.css
 ...
 
