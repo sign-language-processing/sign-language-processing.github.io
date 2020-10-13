@@ -5,14 +5,7 @@
     "publication": "dataset:bungeroth2008atis",
     "url": null
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [],
   "language": "Multilingual",
   "#items": 292,
   "#samples": "595 Sentences ",

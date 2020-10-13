@@ -5,14 +5,11 @@
     "publication": "dataset:forster2014extensions",
     "url": "https://www-i6.informatik.rwth-aachen.de/~koller/RWTH-PHOENIX/"
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [
+    "video",
+    "gloss:german",
+    "text:german"
+  ],
   "language": "German",
   "#items": 1231,
   "#samples": "6,931 Sentences",

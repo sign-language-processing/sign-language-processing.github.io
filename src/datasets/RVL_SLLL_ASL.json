@@ -5,14 +5,7 @@
     "publication": "dataset:wilbur2006purdue",
     "url": "https://engineering.purdue.edu/RVL/Database/ASL/asl-database-front.htm"
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [],
   "language": "American",
   "#items": 104,
   "#samples": "2,576 Videos",

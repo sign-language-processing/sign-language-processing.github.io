@@ -5,14 +5,7 @@
     "publication": "dataset:dreuw2008benchmark",
     "url": "https://www-i6.informatik.rwth-aachen.de/aslr/database-rwth-boston-104.php"
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [],
   "language": "American",
   "#items": 483,
   "#samples": "843 Sentences",

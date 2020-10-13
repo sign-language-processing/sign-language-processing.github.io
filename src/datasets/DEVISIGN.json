@@ -5,14 +5,7 @@
     "publication": "dataset:chai2014devisign",
     "url": "http://vipl.ict.ac.cn/homepage/ksl/data.html"
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [],
   "language": "Chinese",
   "#items": 2000,
   "#samples": "24,000 Samples",

@@ -5,14 +5,7 @@
     "publication": "dataset:matthes2012dicta",
     "url": "https://www.sign-lang.uni-hamburg.de/dicta-sign/portal/"
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [],
   "language": "Multilingual",
   "#items": null,
   "#samples": "6-8 Hours (/Participant)",

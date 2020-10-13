@@ -5,19 +5,13 @@
     "publication": "dataset:schembri2013building",
     "url": "https://bslcorpusproject.org/"
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [],
   "language": "British",
   "#items": null,
   "#samples": "40,000 Lexical Items",
   "#signers": 249,
   "notes": "",
   "license": "Partially Restricted",
-  "licenseUrl": "https://bslcorpusproject.org/cava/restricted-access-data/"
+  "licenseUrl": "https://bslcorpusproject.org/cava/restricted-access-data/",
+  "contact": "Kearsy Cormier (k.cormier@ucl.ac.uk)"
 }

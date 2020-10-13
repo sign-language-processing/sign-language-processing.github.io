@@ -5,14 +5,7 @@
     "publication": "dataset:joze2018ms",
     "url": "https://www.microsoft.com/en-us/download/details.aspx?id=100121"
   },
-  "data": {
-    "video": true,
-    "depth": false,
-    "pose": false,
-    "writing": false,
-    "gloss": false,
-    "text": true
-  },
+  "features": [],
   "language": "American",
   "#items": 1000,
   "#samples": "25,000 (25 hours)",

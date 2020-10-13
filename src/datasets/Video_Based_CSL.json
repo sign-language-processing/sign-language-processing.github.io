@@ -5,14 +5,7 @@
     "publication": "dataset:huang2018video",
     "url": "http://home.ustc.edu.cn/~pjh/openresources/cslr-dataset-2015/index.html"
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [],
   "language": "Chinese",
   "#items": 178,
   "#samples": "25,000 Videos",

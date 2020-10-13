@@ -5,14 +5,7 @@
     "publication": "dataset:ebling2018smile",
     "url": null
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [],
   "language": "Swiss-German",
   "#items": 100,
   "#samples": null,

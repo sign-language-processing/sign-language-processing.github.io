@@ -5,19 +5,13 @@
     "publication": "dataset:athitsos2008american",
     "url": "http://vlm1.uta.edu/~athitsos/asl_lexicon/"
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [],
   "language": "American",
   "#items": 3000,
   "#samples": "12,000 Samples",
   "#signers": 4,
   "notes": "",
   "license": "Attribution",
-  "licenseUrl": null
+  "licenseUrl": null,
+  "contact": "Data capture and file formats (athitsos@uta.edu, sclaroff@cs.bu.edu), Sign language and linguistic annotations (carol@bu.edu)"
 }

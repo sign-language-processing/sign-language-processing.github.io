@@ -5,14 +5,7 @@
     "publication": "dataset:fs18iccv",
     "url": "https://ttic.uchicago.edu/~klivescu/ChicagoFSWild.htm"
   },
-  "data": {
-    "video": true,
-    "depth": false,
-    "pose": false,
-    "writing": false,
-    "gloss": false,
-    "text": true
-  },
+  "features": [],
   "language": "American",
   "#items": 26,
   "#samples": "55,856 Words",

@@ -5,14 +5,7 @@
     "publication": "dataset:camgoz-etal-2016-bosphorussign",
     "url": "https://www.cmpe.boun.edu.tr/pilab/BosphorusSign/bosphorusSign_en.html"
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [],
   "language": "Turkish",
   "#items": 636,
   "#samples": "24,161 Samples",

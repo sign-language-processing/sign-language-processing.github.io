@@ -5,14 +5,7 @@
     "publication": "dataset:hanke-etal-2020-extending",
     "url": "https://www.sign-lang.uni-hamburg.de/dgs-korpus/index.php/welcome.html"
   },
-  "data": {
-    "video": true,
-    "depth": false,
-    "pose": "OpenPose",
-    "writing": false,
-    "gloss": true,
-    "text": true
-  },
+  "features": [],
   "language": "German",
   "#items": null,
   "#samples": "50 Hours",

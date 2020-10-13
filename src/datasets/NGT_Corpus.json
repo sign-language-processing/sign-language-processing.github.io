@@ -5,14 +5,7 @@
     "publication": "dataset:Crasborn2008TheCN",
     "url": "https://www.ru.nl/corpusngtuk/"
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [],
   "language": "Netherlands",
   "#items": null,
   "#samples": "15 Hours",

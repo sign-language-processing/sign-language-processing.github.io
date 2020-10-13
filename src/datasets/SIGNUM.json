@@ -5,14 +5,7 @@
     "publication": "dataset:von2007towards",
     "url": "https://www.phonetik.uni-muenchen.de/forschung/Bas/SIGNUM/"
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [],
   "language": "German",
   "#items": 450,
   "#samples": "33,210 Sequences",

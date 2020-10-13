@@ -5,14 +5,7 @@
     "publication": "dataset:zafrulla2010novel",
     "url": "http://wearables.cc.gatech.edu/projects/copycat/"
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [],
   "language": "American",
   "#items": 22,
   "#samples": "420 Phrases",
