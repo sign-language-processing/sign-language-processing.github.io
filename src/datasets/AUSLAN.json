@@ -3,16 +3,9 @@
     "name": "AUSLAN",
     "year": 2010,
     "publication": "dataset:johnston2010archive",
-    "url": null
+    "url": "https://elar.soas.ac.uk/Collection/MPI55247"
   },
-  "data": {
-    "video": true,
-    "depth": null,
-    "pose": false,
-    "writing": null,
-    "gloss": null,
-    "text": true
-  },
+  "features": [],
   "language": "Australian",
   "#items": null,
   "#samples": "1,100 Videos",

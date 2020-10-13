@@ -1,0 +1,21 @@
+{
+  "pub": {
+    "name": "SSL Corpus",
+    "year": 2020,
+    "publication": "dataset:oqvist-etal-2020-sts",
+    "url": "https://teckensprakskorpus.su.se"
+  },
+  "features": [
+    "video",
+    "writing:swl",
+    "gloss:ssl",
+    "text:swedish"
+  ],
+  "language": "Swedish",
+  "#items": null,
+  "#samples": null,
+  "#signers": null,
+  "notes": "Conversational",
+  "license": null,
+  "licenseUrl": null
+}

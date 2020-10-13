@@ -1,0 +1,20 @@
+{
+  "pub": {
+    "name": "CDPSL",
+    "year": 2016,
+    "publication": "dataset:acheta2014ACD",
+    "url": "https://www.slownikpjm.uw.edu.pl/en"
+  },
+  "features": [
+    "video",
+    "writing:hamnosys",
+    "text:polish"
+  ],
+  "language": "Polish",
+  "#items": null,
+  "#samples": "300 hours",
+  "#signers": null,
+  "notes": null,
+  "license": null,
+  "licenseUrl": null
+}

@@ -25,7 +25,7 @@ Sign language videos may include a "depth" channel produced by a [time-of-flight
 
 Sign languages have no formal written format. 
 There are various language specific notations systems ([si5s](https://en.wikipedia.org/wiki/Si5s), [Stokoe notation](https://en.wikipedia.org/wiki/Stokoe_notation) [@writing:stokoe2005sign])
-and various universal notations systems ([SignWriting](https://en.wikipedia.org/wiki/SignWriting), [HamNoSys](https://en.wikipedia.org/wiki/Hamburg_Notation_System) [@writing:prillwitz1990hamburg]) but no writing system has been adopted widely enough, 
+and various universal notations systems ([SignWriting](https://en.wikipedia.org/wiki/SignWriting)^[http://www.signwriting.org], [HamNoSys](https://en.wikipedia.org/wiki/Hamburg_Notation_System) [@writing:prillwitz1990hamburg]) but no writing system has been adopted widely enough, 
 by the international Deaf community, that it could be considered the "written form" of a given sign language.
 
 Additionally, sign language corpora may include human [poses](https://en.wikipedia.org/wiki/Pose_(computer_vision)), either recorded with [motion capture](https://en.wikipedia.org/wiki/Motion_capture) technologies,
@@ -45,6 +45,8 @@ The following table contains a curated list of datasets including various sign l
 datasets.html
 
 Currently, there is no easy way or agreed upon format to download all datasets, and as such, evaluation on these datasets is scarce.
+
+
 
 ## Tasks
 
