@@ -8,6 +8,7 @@ dst/index.html: tmp/processed_index.md src/references.bib
 tmp/processed_index.md: src/index.md src/formats.html tmp tmp/datasets.html dst/assets
 	cat src/index.md > $@
 	sed -i -e '/formats.html/{r src/formats.html' -e 'd}' $@
+	sed -i -e '/gtag.html/{r src/gtag.html' -e 'd}' $@
 	sed -i -e '/datasets.html/{r tmp/datasets.html' -e 'd}' $@
 	sed -i 's/TODO/\<span style=\"background-color: red; color: white; padding: 0 2px !important;\"\>TODO\<\/span\>/g' $@
 
