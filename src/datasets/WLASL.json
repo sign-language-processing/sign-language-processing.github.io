@@ -1,0 +1,21 @@
+{
+  "pub": {
+    "name": "WLASL",
+    "year": 2020,
+    "publication": "dataset:li2020word",
+    "url": "https://dxli94.github.io/WLASL/"
+  },
+  "description": "A large-scale dataset for Word-Level American Sign Language",
+  "huggingface": "wlasl",
+  "features": [
+    "video",
+    "gloss:asl"
+  ],
+  "language": "American",
+  "#items": 2000,
+  "#samples": null,
+  "#signers": 100,
+  "notes": null,
+  "license": "C-UDA 1.0",
+  "licenseUrl": "https://github.com/microsoft/Computational-Use-of-Data-Agreement"
+}

@@ -1,10 +1,11 @@
 {
   "pub": {
-    "name": "RWTH-PHOENIX-Weather",
-    "year": 2014,
-    "publication": "dataset:forster2014extensions",
-    "url": "https://www-i6.informatik.rwth-aachen.de/~koller/RWTH-PHOENIX/"
+    "name": "RWTH-PHOENIX-Weather T",
+    "year": 2018,
+    "publication": "cihan2018neural",
+    "url": "https://www-i6.informatik.rwth-aachen.de/~koller/RWTH-PHOENIX-2014-T/"
   },
+  "huggingface": "rwth_phoenix_weather_2014_t",
   "features": [
     "video",
     "gloss:dgs",

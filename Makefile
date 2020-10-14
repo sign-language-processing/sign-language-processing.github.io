@@ -28,6 +28,6 @@ tmp:
 	mkdir $@
 
 # TODO make this depend on all dataset json files
-tmp/datasets.html:
+tmp/datasets.html: src/datasets.js
 	node src/datasets.js > $@
 

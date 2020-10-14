@@ -1,0 +1,21 @@
+{
+  "pub": {
+    "name": "ASLG-PC12",
+    "year": 2012,
+    "publication": "dataset:othman2012english",
+    "url": "https://achrafothman.net/site/asl-smt/"
+  },
+  "huggingface": "aslg_pc12",
+  "description": "Synthetic dataset",
+  "features": [
+    "gloss:asl",
+    "text:english"
+  ],
+  "language": "American",
+  "#items": null,
+  "#samples": "> 100,000,000 Sentences",
+  "#signers": "N/A",
+  "notes": null,
+  "license": null,
+  "licenseUrl": null
+}

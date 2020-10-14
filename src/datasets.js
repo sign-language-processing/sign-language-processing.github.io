@@ -10,6 +10,13 @@ function link(title, href) {
     return s;
 }
 
+function sanitize(text) {
+    if (!text) {
+        return text;
+    }
+    return text.replace(/>/, "\\>")
+}
+
 
 const PATH = "src/datasets/";
 
@@ -25,7 +32,7 @@ console.log(`<thead>
 <th>Dataset</th>
 <th>Publication</th>
 <th>Language</th>
-<th>#Items</th>
+<th>#Signs</th>
 <th>#Samples</th>
 <th>#Signers</th>
 <th>Notes</th>
@@ -39,7 +46,7 @@ for (const dataset of datasets) {
     console.log("<td>", dataset.pub.publication ? `@${dataset.pub.publication}` : dataset.pub.year || "", "</td>");
     console.log("<td>", dataset.language, "</td>");
     console.log("<td>", dataset["#items"] ? dataset["#items"].toLocaleString('en-US') : "", "</td>");
-    console.log("<td>", dataset["#samples"] || "", "</td>");
+    console.log("<td>", sanitize(dataset["#samples"]) || "", "</td>");
     console.log("<td>", dataset["#signers"] || "", "</td>");
     console.log("<td>", dataset["notes"] || "", "</td>");
     console.log("<td>", link(dataset.license, dataset.licenseUrl) || "TODO", "</td>");
