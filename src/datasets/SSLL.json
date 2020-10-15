@@ -7,15 +7,14 @@
   },
   "features": [
     "video",
-    "gloss:ssl",
-    "text:swedish",
-    "text:english"
+    "gloss:SSL",
+    "text:Swedish",
+    "text:English"
   ],
   "language": "Swedish",
   "#items": 20000,
   "#samples": null,
   "#signers": null,
-  "notes": null,
   "license": "CC BY-NC-SA 2.5 SE",
   "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/2.5/se/",
   "contact": "teckenlexikon@ling.su.se"

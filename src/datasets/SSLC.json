@@ -7,15 +7,14 @@
   },
   "features": [
     "video",
-    "writing:swl",
-    "gloss:ssl",
-    "text:swedish"
+    "writing:SWL",
+    "gloss:SSL",
+    "text:Swedish"
   ],
   "language": "Swedish",
   "#items": null,
   "#samples": null,
   "#signers": null,
-  "notes": "Conversational",
   "license": null,
   "licenseUrl": null,
   "contact": "teckenlexikon@ling.su.se"

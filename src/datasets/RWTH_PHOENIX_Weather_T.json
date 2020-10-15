@@ -8,14 +8,13 @@
   "huggingface": "rwth_phoenix_weather_2014_t",
   "features": [
     "video",
-    "gloss:dgs",
-    "text:german"
+    "gloss:DGS",
+    "text:German"
   ],
   "language": "German",
   "#items": 1231,
   "#samples": "6,931 Sentences",
   "#signers": 9,
-  "notes": null,
   "license": "CC BY-NC-SA 3.0",
   "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/"
 }

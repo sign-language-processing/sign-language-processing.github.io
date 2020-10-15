@@ -6,11 +6,11 @@
     "url": "http://vipl.ict.ac.cn/homepage/ksl/data.html"
   },
   "features": [],
+  "notes": "Kinect v1",
   "language": "Chinese",
   "#items": 2000,
   "#samples": "24,000 Samples",
   "#signers": 8,
-  "notes": "Kinect v1",
   "license": "Research purpose on request",
   "licenseUrl": "http://vipl.ict.ac.cn/homepage/ksl/document/Agreement.pdf"
 }

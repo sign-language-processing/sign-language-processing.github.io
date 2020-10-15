@@ -5,12 +5,12 @@
     "publication": "dataset:fs18slt",
     "url": "https://ttic.uchicago.edu/~klivescu/ChicagoFSWild.htm"
   },
+  "description": "Real World Fingerspelling",
   "features": [],
   "language": "American",
   "#items": 26,
   "#samples": "5,455 Words",
   "#signers": null,
-  "notes": "Real World Fingerspelling",
   "license": "Public",
   "licenseUrl": null
 }

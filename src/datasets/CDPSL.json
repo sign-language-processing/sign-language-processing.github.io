@@ -7,14 +7,13 @@
   },
   "features": [
     "video",
-    "writing:hamnosys",
-    "text:polish"
+    "writing:HamNoSys",
+    "text:Polish"
   ],
   "language": "Polish",
   "#items": null,
   "#samples": "300 hours",
   "#signers": null,
-  "notes": null,
   "license": null,
   "licenseUrl": null
 }

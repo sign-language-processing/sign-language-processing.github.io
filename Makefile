@@ -15,6 +15,7 @@ tmp/processed_index.md: src/index.md src/formats.html tmp tmp/datasets.html dst/
 dst/style.css: dst src/styles/splendor.css src/styles/custom.css
 	cat src/styles/splendor.css src/styles/custom.css > $@
 
+# TODO make this depend on all asset files
 dst/assets: src/assets/tasks.svg
 	mkdir -p $@
 	cp -r src/assets/* $@

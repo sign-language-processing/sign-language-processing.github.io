@@ -10,7 +10,6 @@
   "#items": 1000,
   "#samples": "25,000 (25 hours)",
   "#signers": 200,
-  "notes": "",
   "license": "Public",
   "licenseUrl": null
 }

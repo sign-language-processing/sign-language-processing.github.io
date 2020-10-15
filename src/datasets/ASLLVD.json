@@ -10,7 +10,6 @@
   "#items": 3000,
   "#samples": "12,000 Samples",
   "#signers": 4,
-  "notes": "",
   "license": "Attribution",
   "licenseUrl": null,
   "contact": "Data capture and file formats (athitsos@uta.edu, sclaroff@cs.bu.edu), Sign language and linguistic annotations (carol@bu.edu)"

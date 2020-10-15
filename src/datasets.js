@@ -17,6 +17,11 @@ function sanitize(text) {
     return text.replace(/>/, "\\>")
 }
 
+function getIcon(feature) {
+    const [type, specificity] = feature.split(":");
+    return `<img alt="${type}"title="${specificity || ""}" class="data-feature" src="assets/icons/${type}.png" />`;
+}
+
 
 const PATH = "src/datasets/";
 
@@ -32,10 +37,10 @@ console.log(`<thead>
 <th>Dataset</th>
 <th>Publication</th>
 <th>Language</th>
+<th>Features</th>
 <th>#Signs</th>
 <th>#Samples</th>
 <th>#Signers</th>
-<th>Notes</th>
 <th>License</th>
 </tr>
 </thead><tbody>`)
@@ -45,10 +50,10 @@ for (const dataset of datasets) {
     console.log("<td>", link(dataset.pub.name, dataset.pub.url), "</td>");
     console.log("<td>", dataset.pub.publication ? `@${dataset.pub.publication}` : dataset.pub.year || "", "</td>");
     console.log("<td>", dataset.language, "</td>");
+    console.log("<td>", dataset["features"].length ? dataset["features"].map(getIcon).join("") : "TODO", "</td>");
     console.log("<td>", dataset["#items"] ? dataset["#items"].toLocaleString('en-US') : "", "</td>");
     console.log("<td>", sanitize(dataset["#samples"]) || "", "</td>");
     console.log("<td>", dataset["#signers"] || "", "</td>");
-    console.log("<td>", dataset["notes"] || "", "</td>");
     console.log("<td>", link(dataset.license, dataset.licenseUrl) || "TODO", "</td>");
     console.log("</tr>")
 }

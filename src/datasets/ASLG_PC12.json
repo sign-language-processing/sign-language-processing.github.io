@@ -8,14 +8,13 @@
   "huggingface": "aslg_pc12",
   "description": "Synthetic dataset",
   "features": [
-    "gloss:asl",
-    "text:english"
+    "gloss:ASL",
+    "text:English"
   ],
   "language": "American",
   "#items": null,
   "#samples": "> 100,000,000 Sentences",
   "#signers": "N/A",
-  "notes": null,
   "license": null,
   "licenseUrl": null
 }

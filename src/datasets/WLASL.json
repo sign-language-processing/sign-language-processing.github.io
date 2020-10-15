@@ -9,13 +9,12 @@
   "huggingface": "wlasl",
   "features": [
     "video",
-    "gloss:asl"
+    "gloss:ASL"
   ],
   "language": "American",
   "#items": 2000,
   "#samples": null,
   "#signers": 100,
-  "notes": null,
   "license": "C-UDA 1.0",
   "licenseUrl": "https://github.com/microsoft/Computational-Use-of-Data-Agreement"
 }

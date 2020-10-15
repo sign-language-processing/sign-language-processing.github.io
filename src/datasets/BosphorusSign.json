@@ -6,11 +6,11 @@
     "url": "https://www.cmpe.boun.edu.tr/pilab/BosphorusSign/bosphorusSign_en.html"
   },
   "features": [],
+  "notes": "Kinect v2",
   "language": "Turkish",
   "#items": 636,
   "#samples": "24,161 Samples",
   "#signers": 6,
-  "notes": "Kinect v2",
   "license": "NOT PUBLISHED",
   "licenseUrl": null
 }
