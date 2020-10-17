@@ -11,8 +11,39 @@ h1 {
     padding-bottom: 0 !important;
 }
 
-.data-feature {
+
+/* Tables */
+.table {
+    display: block;
+    margin: auto;
+}
+
+.table table {
+    border-collapse: collapse;
+}
+
+.table table, .table th, .table td {
+    border: 1px solid black;
+}
+
+/* Dataset Table */
+#datasets-table table {
+    max-width: 100%;
+}
+
+#datasets-table img {
     width: 32px;
     height: 32px;
     margin: 0 4px;
+}
+
+/* Formats Table */
+#formats-table {
+    width: 850px;
+    text-align: center;
+}
+
+#formats-table video {
+    width: 200px;
+    height: 150px;
 }

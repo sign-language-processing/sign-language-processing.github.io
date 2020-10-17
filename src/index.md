@@ -2,6 +2,12 @@
 title: "Sign Language Processing"
 link-citations: true
 css: style.css
+author:
+- Amit Moryossef | amitmoryossef@gmail.com
+abstract: |
+    This is a long TODO  abstract.
+
+    It consists of two paragraphs
 ...
 
 Sign Language Processing (SLP) is a field of [artificial intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence) 
@@ -24,7 +30,7 @@ and either a [gloss](https://en.wikipedia.org/wiki/Gloss_(annotation)) or a spok
 Sign language videos may include a "depth" channel produced by a [time-of-flight camera](https://en.wikipedia.org/wiki/Time-of-flight_camera).
 
 Sign languages have no formal written format. 
-There are various language specific notations systems ([si5s](https://en.wikipedia.org/wiki/Si5s), [Stokoe notation](https://en.wikipedia.org/wiki/Stokoe_notation) [@writing:stokoe2005sign])
+There are various language specific notations systems ([Stokoe notation](https://en.wikipedia.org/wiki/Stokoe_notation) [@writing:stokoe2005sign], [si5s](https://en.wikipedia.org/wiki/Si5s))
 and various universal notations systems ([SignWriting](https://en.wikipedia.org/wiki/SignWriting)^[http://www.signwriting.org], [HamNoSys](https://en.wikipedia.org/wiki/Hamburg_Notation_System) [@writing:prillwitz1990hamburg]) but no writing system has been adopted widely enough, 
 by the international Deaf community, that it could be considered the "written form" of a given sign language.
 
@@ -36,15 +42,31 @@ The following table exemplifies the various data formats.
 For this example we use [SignWriting](https://en.wikipedia.org/wiki/SignWriting) as the writing system.
 Note that the same sign might have two unrelated glosses and the same gloss might have multiple valid texts.
 
-formats.html
+<div id="formats-table" class="table">
+formats.md
+</div>
 
 ### Existing Datasets
 
 The following table contains a curated list of datasets including various sign languages and data formats:
 
-datasets.html
+🎥 = video | 👋 = pose | ✍🏻 = writing | 📋 = gloss | 📜 = text
+
+<div id="datasets-table" class="table">
+datasets.md
+</div>
 
 Currently, there is no easy way or agreed upon format to download all datasets, and as such, evaluation on these datasets is scarce.
+
+### TODO Datasets
+
+- Slovenian Sign Language: Spela Vintar, Bostjan Jerko, Marjetka Kulovec ({spela.vintar, bostjan.jerko, marjetka.kulovec}@ff.uni-lj.si)
+- Spanish Sign Language: María del Carmen Cabeza-Pereiro (cabeza@uvigo.es)
+- Estonian Sign Language: ?
+- Finnish Sign Language: Juhana Salonen, Antti Kronqvist (juhana.salonen@jyu.fi, antti.r.kronqvist@jyu.fi)
+- Danish Sign  Language: Jette H. Kristoffersen, Thomas Troelsgård (jehk@ucc.dk, ttro@ucc.dk)
+
+TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6477&context=etd) page 26 has more datasets.
 
 
 ## Tasks
@@ -77,6 +99,14 @@ This finding is further supported by @identification:monteiro2016detecting which
 British Sign Language and French Sign Language (Langue des Signes Française, LSF) with 98\% F1 score in videos with static backgrounds,
 and between American Sign Language and British Sign Language with 70\% F1 score for videos mined from popular video sharing sites. 
 The authors attribute their success mainly to the different fingerspelling systems, which is two-handed in the case of BSL and one-handed in the case of ASL and LSF.
+
+### Fingerspelling Recognition
+
+TODO
+
+### Fingerspelling Generation
+
+TODO
 
 ### Sign Language Recognition, Translation and Production
 

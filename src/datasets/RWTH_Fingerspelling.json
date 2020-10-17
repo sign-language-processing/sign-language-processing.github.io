@@ -1,0 +1,18 @@
+{
+  "pub": {
+    "name": "RWTH Fingerspelling",
+    "year": 2006,
+    "publication": "dataset:dreuw2006modeling",
+    "url": "https://www-i6.informatik.rwth-aachen.de/aslr/fingerspelling.php"
+  },
+  "features": [
+    "video",
+    "text:German"
+  ],
+  "language": "German",
+  "#items": 35,
+  "#samples": "1,400 single-char videos",
+  "#signers": 20,
+  "license": null,
+  "licenseUrl": null
+}

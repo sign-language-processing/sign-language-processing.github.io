@@ -1,0 +1,5 @@
+| Video                                                        | Pose Estimation                                          | Writing                                      | Gloss            | Text                                |
+|--------------------------------------------------------------|----------------------------------------------------------|----------------------------------------------|------------------|-------------------------------------|
+| ![ASL HOUSE](assets/videos/original/asl_house.mp4)           | ![ASL HOUSE](assets/videos/pose/asl_house.mp4)           | ![HOUSE](assets/writing/house.png)           | HOUSE            | House                               |
+| ![ASL WRONG-WHAT](assets/videos/original/asl_wrong_what.mp4) | ![ASL WRONG-WHAT](assets/videos/pose/asl_wrong_what.mp4) | ![WRONG-WHAT](assets/writing/wrong_what.png) | WRONG-WHAT       | What's the matter?\\\\What's wrong? |
+| ![ASL DIFFERENT](assets/videos/original/asl_different.mp4)   | ![ASL DIFFERENT](assets/videos/pose/asl_different.mp4)   | ![DIFFERENT](assets/writing/different.png)   | DIFFERENT\\\\BUT | Different\\\\But                    |

@@ -6,7 +6,10 @@
     "url": "https://ttic.uchicago.edu/~klivescu/ChicagoFSWild.htm"
   },
   "description": "Real World Fingerspelling",
-  "features": [],
+  "features": [
+    "video",
+    "text:Fingerspelling"
+  ],
   "language": "American",
   "#items": 26,
   "#samples": "5,455 Words",
