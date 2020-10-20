@@ -12,8 +12,17 @@
   ],
   "language": "American",
   "#items": 26,
-  "#samples": "55,856 Words",
-  "#signers": null,
+  "#samples": "55,232 Sequences",
+  "#signers": 260,
   "license": "Public",
-  "licenseUrl": null
+  "licenseUrl": null,
+  "tasks": {
+    "ChicagoFSWild+": {
+      "dataset:fs18iccv": {
+        "default": {
+          "accuracy": 62.3
+        }
+      }
+    }
+  }
 }

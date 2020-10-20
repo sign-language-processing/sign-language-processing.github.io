@@ -8,14 +8,14 @@
   "features": [
     "video",
     "writing:SWL",
-    "gloss:SSL",
+    "gloss:STS",
     "text:Swedish"
   ],
   "language": "Swedish",
   "#items": null,
   "#samples": null,
   "#signers": null,
-  "license": null,
+  "license": "TODO In January",
   "licenseUrl": null,
   "contact": "teckenlexikon@ling.su.se"
 }

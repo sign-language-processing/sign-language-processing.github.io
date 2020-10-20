@@ -11,6 +11,9 @@ h1 {
     padding-bottom: 0 !important;
 }
 
+pre {
+    overflow: auto;
+}
 
 /* Tables */
 .table {
@@ -18,11 +21,11 @@ h1 {
     margin: auto;
 }
 
-.table table {
+table {
     border-collapse: collapse;
 }
 
-.table table, .table th, .table td {
+table, th, td {
     border: 1px solid black;
 }
 
@@ -43,7 +46,12 @@ h1 {
     text-align: center;
 }
 
-#formats-table video {
+#formats-table img {
+    width: initial !important;
+}
+
+#formats-table img[src*=".gif"] {
     width: 200px;
     height: 150px;
 }
+

@@ -1,0 +1,22 @@
+{
+  "pub": {
+    "name": "SIGNOR",
+    "year": 2012,
+    "publication": "dataset:vintar2012compiling",
+    "url": "http://lojze.lugos.si/signor/"
+  },
+  "features": [
+    "video",
+    "mouthing",
+    "writing:HamNoSys",
+    "gloss:SZJ",
+    "text:Slovene"
+  ],
+  "language": "Slovene",
+  "#items": null,
+  "#samples": null,
+  "#signers": 80,
+  "license": "TODO emailed Špela",
+  "licenseUrl": null,
+  "contact": "izr. prof. dr. Špela Vintar (spela.vintar@ff.uni-lj.si)"
+}

@@ -7,7 +7,7 @@
   },
   "features": [
     "video",
-    "gloss:SSL",
+    "gloss:STS",
     "text:Swedish",
     "text:English"
   ],

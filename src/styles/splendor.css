@@ -203,6 +203,7 @@ pre {
     font-size: .8rem;
     overflow-x: scroll;
     padding: 1.125em;
+    margin: auto !important;
 }
 
 a,
