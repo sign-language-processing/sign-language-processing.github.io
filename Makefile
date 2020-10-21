@@ -6,7 +6,7 @@ dst/index.html: dst/index.md src/references.bib
 	pandoc dst/index.md -s --table-of-contents --bibliography=src/references.bib --columns 1000  -o $@
 
 dst/index.pdf: dst/index.md src/references.bib
-	cd dst && pandoc index.md -s -N --pdf-engine=xelatex --bibliography=../src/references.bib -o index.pdf
+	cd dst && pandoc index.md -s -N --pdf-engine=xelatex --shift-heading-level-by=-1 --bibliography=../src/references.bib -o index.pdf
 
 
 dst/index.md: src/index.md src/formats.md src/gtag.html dst tmp/datasets.md dst/assets
@@ -20,7 +20,7 @@ dst/style.css: dst src/styles/splendor.css src/styles/custom.css
 	cat src/styles/splendor.css src/styles/custom.css > $@
 
 # TODO make this depend on all asset files
-dst/assets: src/assets/tasks.svg
+dst/assets: src/assets/tasks/tasks.svg
 	mkdir -p $@
 	cp -r src/assets/* $@
 

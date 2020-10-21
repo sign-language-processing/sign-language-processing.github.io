@@ -3,20 +3,24 @@ title: "Sign Language Processing"
 link-citations: true
 geometry: margin=3cm
 css: style.css
+linkcolor: #000
+secnumdepth: 3
 author:
-- Amit Moryossef | amitmoryossef@gmail.com
+- Amit Moryossef | Bar-Ilan University | amitmoryossef@gmail.com
 abstract: |
-    This project aims to contain and organize the sign language processing literature, datasets, and tasks.
+    This project aims to organize the sign language processing literature, datasets, and tasks.
     Sign Language Processing (SLP) is a field of artificial intelligence
     concerned with automatic processing and analysis of sign language content.
     This is a work in progress. The contents of this document will be refined over the course of 2020-2022.
 ...
 
+
+## Introduction
+
 Sign Language Processing (SLP) is a field of [artificial intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence) 
 concerned with automatic processing and analysis of [sign language](https://en.wikipedia.org/wiki/Sign_language) content.
 It is a subfield of both [natural language processing](https://en.wikipedia.org/wiki/Natural_language_processing) and 
 [computer vision](https://en.wikipedia.org/wiki/Computer_vision).
-
 Challenges in sign language processing frequently involve 
 [machine translation of sign languages](https://en.wikipedia.org/wiki/Machine_translation_of_sign_languages)
 to spoken language text (sign language translation), from spoken language text (sign language production),
@@ -120,10 +124,11 @@ We split the graph into two:
 <p>
 <span style="font-weight: bold;">Computer Vision</span>
 <span style="font-weight: bold;float:right">Natural Language Processing</span>
-<object type="image/svg+xml" data="assets/tasks.svg" class="logo"></object>
+<object type="image/svg+xml" data="assets/tasks/tasks.svg" class="logo"></object>
 </p>
 
-In total, there are 20 tasks defined by this graph, with varying amounts of previous research.
+
+In total, there are 20 tasks conceptually defined by this graph, with varying amounts of previous research.
 Every path between two nodes might or might not be valid, depending on how lossy the tasks in the path are.
 
 ---
