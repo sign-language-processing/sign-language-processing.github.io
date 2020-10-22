@@ -56,15 +56,11 @@ formats.md
 
 ### Existing Datasets
 
+Currently, there is no easy way or agreed upon format to download and load sign language datasets, and as such, evaluation on these datasets is scarce.
+
 The following table contains a curated list of datasets including various sign languages and data formats:
 
 🎥 = video | 👄 = mouthing | 👋 = pose | ✍🏻 = writing | 📋 = gloss | 📜 = text
-
-<div id="datasets-table" class="table">
-datasets.md
-</div>
-
-Currently, there is no easy way or agreed upon format to download all datasets, and as such, evaluation on these datasets is scarce.
 
 TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6477&context=etd) page 26 has more datasets.
 
@@ -72,6 +68,18 @@ TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6
 - Estonian Sign Language: ?
 - Finnish Sign Language: Juhana Salonen, Antti Kronqvist (juhana.salonen@jyu.fi, antti.r.kronqvist@jyu.fi)
 - Danish Sign  Language: Jette H. Kristoffersen, Thomas Troelsgård (jehk@ucc.dk, ttro@ucc.dk)
+
+```{=latex}
+\newgeometry{left=0cm,right=0cm,top=0.1cm,bottom=0.1cm}
+```
+
+<div id="datasets-table" class="table">
+datasets.md
+</div>
+
+```{=latex}
+\restoregeometry
+```
 
 
 ## Tasks
@@ -121,11 +129,17 @@ We split the graph into two:
 - Every edge to the right, on the blue background, represents a task in natural language processing. These tasks are sign language specific, requiring a specific sign language lexicon or spoken language tokens.
 - Every edge on both backgrounds represents a task requiring a combination of computer vision and natural language processing.
 
+```{=html}
 <p>
 <span style="font-weight: bold;">Computer Vision</span>
 <span style="font-weight: bold;float:right">Natural Language Processing</span>
 <object type="image/svg+xml" data="assets/tasks/tasks.svg" class="logo"></object>
 </p>
+```
+
+```{=latex}
+\includegraphics[width=\linewidth]{assets/tasks/tasks.pdf}
+```
 
 
 In total, there are 20 tasks conceptually defined by this graph, with varying amounts of previous research.
@@ -261,7 +275,17 @@ TODO Kayo's Coling work
 
 
 ##### Text-to-Gloss
-TODO
+Text-to-gloss---also knows as sign language translation---is the task to translate between a spoken language text and sign language gloss.
+
+@zhao2000machine used a Tree Adjoining Grammar (TAG) based system for translating between English sentences and American Sign Language glosses.
+They parse the English text, and simultaneously assemble an American Sign Language gloss tree, using Synchronous TAGs [@shieber1990synchronous;@shieber1994restricting], 
+by associating the ASL elementary trees with the English elementary trees, and associating the nodes at which subsequent substitutions or adjunctions can take place.
+Synchronous TAGs have been used for machine translation between spoken languages [@abeille1991using] but this is the first application to a signed language.
+
+For the automatic translation of gloss-to-text, @dataset:othman2012english identified the need for a large parallel sign language gloss and spoken language text corpus.
+They develop a part-of-speech based grammar to transform English sentences taken from the Gutenberg Project ebooks collection [@lebert2008project] into American Sign Language gloss.
+Their final corpus contains over 100 million sentences, and 800 million words, and is the largest English-ASL gloss corpus that we know of.
+Unfortunately, only a small sample of this corpus is available online.
 
 ---
 

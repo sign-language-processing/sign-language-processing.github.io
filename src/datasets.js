@@ -45,7 +45,7 @@ const datasets = fs.readdirSync(PATH)
 
 
 const columns = ['Dataset', 'Publication', 'Language', 'Features', '#Signs', '#Samples', '#Signers', 'License'];
-const lengths = [6, 6, 3, 3, 3, 3, 3, 3]
+const lengths = [5, 6, 3, 3, 2, 5, 3, 5]
 // console.log('<table cellspacing="0" border="1" style="max-width: 100%;">')
 printRow(columns); // Header row
 console.log('|' + lengths.map((l) => new Array(l).fill('-').join('')).join(' | ') + '|'); // Divider row

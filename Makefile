@@ -6,6 +6,8 @@ dst/index.html: dst/index.md src/references.bib
 	pandoc dst/index.md -s --table-of-contents --bibliography=src/references.bib --columns 1000  -o $@
 
 dst/index.pdf: dst/index.md src/references.bib
+	# TODO gif support
+	# TODO emoji support
 	cd dst && pandoc index.md -s -N --pdf-engine=xelatex --shift-heading-level-by=-1 --bibliography=../src/references.bib -o index.pdf
 
 
