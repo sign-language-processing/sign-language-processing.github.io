@@ -54,13 +54,34 @@ Note that the same sign might have two unrelated glosses, and the same gloss mig
 formats.md
 </div>
 
+### Annotation Tools
+
+##### ELAN - EUDICO Linguistic Annotator
+[ELAN](https://archive.mpi.nl/tla/elan) [@wittenburg2006elan] is an annotation tool for audio and video recordings.
+With ELAN a user can add an unlimited number of textual annotations to audio and/or video recordings. 
+An annotation can be a sentence, word or gloss, a comment, translation or a description of any feature observed in the media. 
+Annotations can be created on multiple layers, called tiers, which can be hierarchically interconnected. 
+An annotation can either be time-aligned to the media, or it can refer to other existing annotations. 
+The content of annotations consists of Unicode text and annotation documents are stored in an XML format (EAF).
+ELAN is open source ([GPLv3](https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3)), and binaries are [available](https://archive.mpi.nl/tla/elan/download) for Windows, macOS, and Linux.
+
+##### iLex
+
+[iLex](https://www.sign-lang.uni-hamburg.de/ilex/) [@hanke2002ilex] is a tool for sign language lexicography and corpus analysis, 
+that combines features found in empirical sign language lexicography and in sign language discourse transcription. 
+It supports the user in lexicon building while working on the transcription of a corpus and 
+offers a number of unique features considered essential due to the specific nature of sign languages.
+iLex binaries are [available](https://www.sign-lang.uni-hamburg.de/ilex/ilex.xml) for macOS.
+
+
+
 ### Existing Datasets
 
 Currently, there is no easy way or agreed upon format to download and load sign language datasets, and as such, evaluation on these datasets is scarce.
 
 The following table contains a curated list of datasets including various sign languages and data formats:
 
-🎥 = video | 👄 = mouthing | 👋 = pose | ✍🏻 = writing | 📋 = gloss | 📜 = text
+🎥 = video | 👄 = mouthing | 👋 = pose | ✍🏻 = writing | 📋 = gloss | 📜 = text | 🔊 = speech
 
 TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6477&context=etd) page 26 has more datasets.
 

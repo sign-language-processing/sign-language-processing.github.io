@@ -1,0 +1,20 @@
+{
+  "pub": {
+    "name": "How2Sign",
+    "year": 2020,
+    "publication": "dataset:duarte2020how2sign",
+    "url": null
+  },
+  "features": [
+    "video",
+    "gloss:ASL",
+    "text:English",
+    "speech:English"
+  ],
+  "language": "American",
+  "#items": 16000,
+  "#samples": "79 hours (35,000 sentences)",
+  "#signers": 11,
+  "license": "TODO contacted Amanda",
+  "licenseUrl": null
+}
