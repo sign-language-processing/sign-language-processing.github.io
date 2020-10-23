@@ -83,12 +83,15 @@ The following table contains a curated list of datasets including various sign l
 
 🎥 = video | 👄 = mouthing | 👋 = pose | ✍🏻 = writing | 📋 = gloss | 📜 = text | 🔊 = speech
 
+```{=ignore}
 TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6477&context=etd) page 26 has more datasets.
-
 - Spanish Sign Language: María del Carmen Cabeza-Pereiro (cabeza@uvigo.es)
 - Estonian Sign Language: ?
 - Finnish Sign Language: Juhana Salonen, Antti Kronqvist (juhana.salonen@jyu.fi, antti.r.kronqvist@jyu.fi)
 - Danish Sign  Language: Jette H. Kristoffersen, Thomas Troelsgård (jehk@ucc.dk, ttro@ucc.dk)
+```
+
+
 
 ```{=latex}
 \newgeometry{left=0cm,right=0cm,top=0.1cm,bottom=0.1cm}
@@ -415,7 +418,19 @@ They find that for both forms of fingerspelling, on average, the longer the word
 Furthermore, they find that less time is spent on middle letters on average, and the last letter is held on average longer than the other letters in the word.
 Finally, they use this information to construct an animation system using letter pose interpolation and control the timing using a data-driven statistical model.
 
+```{=ignore}
+## Citation
 
+While work on this document is still ongoing, if you want to refer to it, please use the following bibtex:
+
+```bibtex
+@misc{moryossef2021slp, 
+    title={Sign Language Processing}, 
+    author={Moryossef, Amit},
+    url={https://amitmy.github.io/sign-language-processing/}, 
+    year={2021}
+}
+```
 
 ## References
 
