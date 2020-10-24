@@ -16,7 +16,7 @@ dst/index.md: src/index.md src/formats.md src/gtag.html dst tmp/datasets.md dst/
 	sed -i -e '/formats.md/{r src/formats.md' -e 'd}' $@
 	sed -i -e '/gtag.html/{r src/gtag.html' -e 'd}' $@
 	sed -i -e '/datasets.md/{r tmp/datasets.md' -e 'd}' $@
-	sed -i 's/TODO/\<span style=\"background-color: red; color: white; padding: 0 2px !important;\"\>TODO\<\/span\>/g' $@
+	sed -i 's/TODO/\<span style=\"background-color: red; color: white; padding: 0 2px !important;\"\>\*\*TODO\*\*\<\/span\>/g' $@
 
 dst/style.css: dst src/styles/splendor.css src/styles/custom.css
 	cat src/styles/splendor.css src/styles/custom.css > $@

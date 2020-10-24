@@ -5,6 +5,8 @@ geometry: margin=3cm
 css: style.css
 linkcolor: #000
 secnumdepth: 3
+header-includes: |
+    \usepackage{pdflscape}
 author:
 - Amit Moryossef | Bar-Ilan University | amitmoryossef@gmail.com
 abstract: |
@@ -25,6 +27,8 @@ Challenges in sign language processing frequently involve
 [machine translation of sign languages](https://en.wikipedia.org/wiki/Machine_translation_of_sign_languages)
 to spoken language text (sign language translation), from spoken language text (sign language production),
 or sign language recognition for sign language understanding.
+
+TODO explain what sign language is
 
 
 ## Corpora
@@ -78,10 +82,11 @@ iLex binaries are [available](https://www.sign-lang.uni-hamburg.de/ilex/ilex.xml
 ### Existing Datasets
 
 Currently, there is no easy way or agreed upon format to download and load sign language datasets, and as such, evaluation on these datasets is scarce.
+As part of this work, we streamlined loading of available datasets using [🤗Datasets](https://github.com/huggingface/datasets).
 
 The following table contains a curated list of datasets including various sign languages and data formats:
 
-🎥 = video | 👄 = mouthing | 👋 = pose | ✍🏻 = writing | 📋 = gloss | 📜 = text | 🔊 = speech
+🎥 Video | 👄 Mouthing | 👋 Pose | ✍🏻 Writing | 📋 Gloss | 📜 Text | 🔊 Speech
 
 ```{=ignore}
 TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6477&context=etd) page 26 has more datasets.
@@ -94,7 +99,8 @@ TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6
 
 
 ```{=latex}
-\newgeometry{left=0cm,right=0cm,top=0.1cm,bottom=0.1cm}
+\newgeometry{left=0.3cm,right=0.3cm,top=-1.5cm,bottom=-1.5cm}
+\begin{landscape}
 ```
 
 <div id="datasets-table" class="table">
@@ -102,6 +108,7 @@ datasets.md
 </div>
 
 ```{=latex}
+\end{landscape}
 \restoregeometry
 ```
 
@@ -149,7 +156,7 @@ and each directed edge represents the task of converting between one data repres
 
 We split the graph into two: 
 
-- Every edge to the left, on the orange background, represents a task in computer vision. These tasks are inherently multilingual, thus generalize over all sign languages.
+- Every edge to the left, on the orange background, represents a task in computer vision. These tasks are inherently multilingual, thus generalize between sign languages.
 - Every edge to the right, on the blue background, represents a task in natural language processing. These tasks are sign language specific, requiring a specific sign language lexicon or spoken language tokens.
 - Every edge on both backgrounds represents a task requiring a combination of computer vision and natural language processing.
 
@@ -162,6 +169,8 @@ We split the graph into two:
 ```
 
 ```{=latex}
+**TO-DO** add left and right floating headers CV and NLP
+
 \includegraphics[width=\linewidth]{assets/tasks/tasks.pdf}
 ```
 

@@ -46,21 +46,29 @@ const datasets = fs.readdirSync(PATH)
 
 
 const columns = ['Dataset', 'Publication', 'Language', 'Features', '#Signs', '#Samples', '#Signers', 'License'];
-const lengths = [4, 7, 3, 2, 2, 5, 3, 5]
+const lengths = [4, 7, 3, 2, 2, 5, 2, 5]
 // console.log('<table cellspacing="0" border="1" style="max-width: 100%;">')
 printRow(columns); // Header row
 console.log('|' + lengths.map((l) => new Array(l).fill('-').join('')).join(' | ') + '|'); // Divider row
 
+const downloadEmoji = '💾';
+
 for (const dataset of datasets) {
+    let title = link(dataset.pub.name, dataset.pub.url);
+    if (dataset.huggingface) {
+        const hf = 'https://github.com/huggingface/datasets/tree/master/datasets/' + dataset.huggingface;
+        title += ' ' + link(downloadEmoji, hf);
+    }
+
     const row = [
-        link(dataset.pub.name, dataset.pub.url),
+        title,
         dataset.pub.publication ? `@${dataset.pub.publication}` : dataset.pub.year || "",
         dataset.language,
         dataset["features"].length ? dataset["features"].map(getIcon).join("") : "TODO",
         dataset["#items"] ? dataset["#items"].toLocaleString('en-US') : "",
         sanitize(dataset["#samples"]) || "",
         dataset["#signers"] || "",
-        link(dataset.license, dataset.licenseUrl) || "TODO"
+        link(dataset.license, dataset.licenseUrl)
     ];
     printRow(row);
 }
