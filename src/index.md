@@ -19,17 +19,16 @@ abstract: |
 
 ## Introduction
 
-Sign Language Processing (SLP) is a field of [artificial intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence) 
-concerned with automatic processing and analysis of [sign language](https://en.wikipedia.org/wiki/Sign_language) content.
-It is a subfield of both [natural language processing](https://en.wikipedia.org/wiki/Natural_language_processing) and 
-[computer vision](https://en.wikipedia.org/wiki/Computer_vision).
-Challenges in sign language processing frequently involve 
-[machine translation of sign languages](https://en.wikipedia.org/wiki/Machine_translation_of_sign_languages)
-to spoken language text (sign language translation), from spoken language text (sign language production),
-or sign language recognition for sign language understanding.
+Sign languages (also known as signed languages) are languages that use the visual modality to convey meaning through manual articulations in combination with non-manual elements.
+Similar to spoken languages, sign languages are natural languages governed by a set of linguistic rules [@sandler2006sign], 
+both emerging through an abstract, protracted aging process and evolved over time without meticulous planning.
+They are also distinct from spoken languages---i.e., American Sign Language (ASL) is not a visual form of English.
+Sign languages are not universal, and they are not mutually intelligible with each other, although there are also striking similarities among sign languages.
 
-TODO explain what sign language is
-
+Sign Language Processing [@bragg2019sign] is an emerging field of artificial intelligence concerned with automatic processing and analysis of sign language content.
+It is a subfield of both natural language processing and computer vision.
+Challenges in sign language processing frequently involve machine translation of sign languages to spoken language text (sign language translation), 
+from spoken language text (sign language production), or sign language recognition for sign language understanding.
 
 ## Corpora
 
@@ -60,6 +59,13 @@ formats.md
 
 ### Annotation Tools
 
+##### iLex
+[iLex](https://www.sign-lang.uni-hamburg.de/ilex/) [@hanke2002ilex] is a tool for sign language lexicography and corpus analysis, 
+that combines features found in empirical sign language lexicography and in sign language discourse transcription. 
+It supports the user in lexicon building while working on the transcription of a corpus and 
+offers a number of unique features considered essential due to the specific nature of sign languages.
+iLex binaries are [available](https://www.sign-lang.uni-hamburg.de/ilex/ilex.xml) for macOS.
+
 ##### ELAN - EUDICO Linguistic Annotator
 [ELAN](https://archive.mpi.nl/tla/elan) [@wittenburg2006elan] is an annotation tool for audio and video recordings.
 With ELAN a user can add an unlimited number of textual annotations to audio and/or video recordings. 
@@ -67,16 +73,15 @@ An annotation can be a sentence, word or gloss, a comment, translation or a desc
 Annotations can be created on multiple layers, called tiers, which can be hierarchically interconnected. 
 An annotation can either be time-aligned to the media, or it can refer to other existing annotations. 
 The content of annotations consists of Unicode text and annotation documents are stored in an XML format (EAF).
-ELAN is open source ([GPLv3](https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3)), and binaries are [available](https://archive.mpi.nl/tla/elan/download) for Windows, macOS, and Linux.
+ELAN is open source ([GPLv3](https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3)), and installation is [available](https://archive.mpi.nl/tla/elan/download) for Windows, macOS, and Linux.
 
-##### iLex
-
-[iLex](https://www.sign-lang.uni-hamburg.de/ilex/) [@hanke2002ilex] is a tool for sign language lexicography and corpus analysis, 
-that combines features found in empirical sign language lexicography and in sign language discourse transcription. 
-It supports the user in lexicon building while working on the transcription of a corpus and 
-offers a number of unique features considered essential due to the specific nature of sign languages.
-iLex binaries are [available](https://www.sign-lang.uni-hamburg.de/ilex/ilex.xml) for macOS.
-
+##### Anvil - The Video Annotation Research Tool
+[Anvil](https://www.anvil-software.org/) [@kipp2001anvil] is a free video annotation tool,
+offering multi-layered annotation based on a user-defined coding scheme.
+In Anvil, the annotator can see color-coded elements on multiple tracks in time-alignment. 
+Some special features are cross-level links, non-temporal objects, timepoint tracks, coding agreement analysis, 
+3D viewing of motion capture data and a project tool for managing whole corpora of annotation files.
+Anvil installation is [available](https://www.anvil-software.org/download/index.html) for Windows, macOS, and Linux.
 
 
 ### Existing Datasets
@@ -85,8 +90,6 @@ Currently, there is no easy way or agreed upon format to download and load sign 
 As part of this work, we streamlined loading of available datasets using [🤗Datasets](https://github.com/huggingface/datasets).
 
 The following table contains a curated list of datasets including various sign languages and data formats:
-
-🎥 Video | 👄 Mouthing | 👋 Pose | ✍🏻 Writing | 📋 Gloss | 📜 Text | 🔊 Speech
 
 ```{=ignore}
 TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6477&context=etd) page 26 has more datasets.
@@ -97,11 +100,13 @@ TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6
 ```
 
 
-
 ```{=latex}
 \newgeometry{left=0.3cm,right=0.3cm,top=-1.5cm,bottom=-1.5cm}
 \begin{landscape}
+\hspace{1.5cm}
 ```
+
+🎥 Video | 👋 Pose | 👄 Mouthing | ✍🏻 Writing | 📋 Gloss | 📜 Text | 🔊 Speech
 
 <div id="datasets-table" class="table">
 datasets.md
@@ -392,7 +397,7 @@ The relative amount of fingerspelling varies between sign languages, and for Ame
 - **Lexicalized**---a sign produced by often using no more than two letter-hand-shapes [@battison1978lexical].<br>
 For example, lexicalized `ALL` uses `A` and `L`, lexicalized `BUZZ` uses `B` and `Z`, etc...
 
-##### Recognition
+#### Recognition
 Fingerspelling recognition--a sub-task of sign language recognition--is the task to recognize fingerspelled words from a sign language video.
 
 @dataset:fs18slt recently introduced a large dataset available for American Sign Language fingerspelling recognition.
@@ -410,7 +415,7 @@ Looking through this dataset, we note that the videos in the dataset are taken f
 This context relates to language modeling, where at first one fingerspells a word carefully, and when repeating it, might fingerspell it rapidly, 
 but the interlocutors can infer they are fingerspelling the same word.
 
-##### Production
+#### Production
 
 Fingerspelling production--a sub-task of sign language production--is the task to produce a fingerspelling video for words.
 

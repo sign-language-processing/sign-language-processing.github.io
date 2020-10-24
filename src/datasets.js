@@ -21,8 +21,8 @@ function getIcon(feature) {
     const [type, specificity] = feature.split(":");
     const dict = {
         'video': '🎥',
-        'mouthing': '👄',
         'pose': '👋',
+        'mouthing': '👄',
         'writing': '✍🏻',
         'gloss': '📋',
         'text': '📜',
