@@ -30,6 +30,12 @@ It is a subfield of both natural language processing and computer vision.
 Challenges in sign language processing frequently involve machine translation of sign languages to spoken language text (sign language translation), 
 from spoken language text (sign language production), or sign language recognition for sign language understanding.
 
+One of the challenging aspects regarding translation of sign languages is that as they are more disjoint from spoken languages,
+the translation process requires more interpretation, thus different interpreters would translate spoken or sign language differently.
+This is a major challenge in translation evaluation, where for example a sequence of signs could be interpreted into a different sentence in spoken language, or vice versa.
+The challenge exacerbates where a sign does not have a spoken language translation, and thus translation might be impossible, 
+or when trying to translate some content with subtext like humor and puns, it might be impossible to convey the content and subtext together.
+
 ## Corpora
 
 ### Data Formats
@@ -75,6 +81,10 @@ An annotation can either be time-aligned to the media, or it can refer to other 
 The content of annotations consists of Unicode text and annotation documents are stored in an XML format (EAF).
 ELAN is open source ([GPLv3](https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3)), and installation is [available](https://archive.mpi.nl/tla/elan/download) for Windows, macOS, and Linux.
 
+##### SignStream
+TODO
+
+
 ##### Anvil - The Video Annotation Research Tool
 [Anvil](https://www.anvil-software.org/) [@kipp2001anvil] is a free video annotation tool,
 offering multi-layered annotation based on a user-defined coding scheme.
@@ -87,7 +97,18 @@ Anvil installation is [available](https://www.anvil-software.org/download/index.
 ### Existing Datasets
 
 Currently, there is no easy way or agreed upon format to download and load sign language datasets, and as such, evaluation on these datasets is scarce.
-As part of this work, we streamlined loading of available datasets using [🤗Datasets](https://github.com/huggingface/datasets).
+As part of this work, we streamlined loading of available datasets using [🤗Datasets](https://github.com/huggingface/datasets),
+and created standard data splits where they didn't exist before.
+This allows researchers to load large and small datasets alike with a simple command, and be comparable to other works:
+```python
+from datasets import load_dataset
+
+ngt = load_dataset('ngt')
+wlasl = load_dataset('wlasl')
+aslg_pc12 = load_dataset('aslg_pc12')
+...
+```
+
 
 The following table contains a curated list of datasets including various sign languages and data formats:
 
@@ -185,7 +206,7 @@ Every path between two nodes might or might not be valid, depending on how lossy
 
 ---
 
-##### Video-to-Pose
+#### Video-to-Pose
 
 Video-to-Pose---commonly known as pose estimation---is the task to detect human figures in images and videos, 
 so that one could determine, for example, where someone's elbow shows up in an image.
@@ -223,7 +244,7 @@ Demonstrating their approach on hand pose estimation, they manually explicitly e
 Then, non-linear least-squares minimization fits a 3D model of the hand to the estimated 2D joint positions, recovering the 3D hand pose.
 This is similar to the back-projection used by @pose:pavllo20193d, except here no temporal information is being used.
 
-##### Pose-to-Video
+#### Pose-to-Video
 
 Pose-to-Video, also known as motion-transfer or skeletal animation in the field of robotics and animation, is the
 conversion of a sequence of poses to a realistic-looking video.
@@ -256,12 +277,12 @@ or even replace cartoon faces from animated 3D models.
 
 ---
 
-##### Pose-to-Gloss
+#### Pose-to-Gloss
 Pose-to-Gloss---also known as sign language recognition---is the task to recognize a sequence of signs from a sequence of poses.
 
 TODO
 
-##### Gloss-to-Pose
+#### Gloss-to-Pose
 
 Gloss-to-Pose---also known as sign language production---is the task to produce a sequence of poses that adequately represent
 a sequence of signs written as gloss.
@@ -279,7 +300,7 @@ To smooth that sequence and reduce unnatural motion, they use Savitzky–Golay m
 
 ---
 
-##### Video-to-Gloss
+#### Video-to-Gloss
 Video-to-Gloss---also known as sign language recognition---is the task to recognize a sequence of signs from a video.
 
 For this recognition, @cui2017recurrent constructs a three-step optimization model.
@@ -294,12 +315,12 @@ Then they apply a GRU encoder-decoder architecture with Luong attention [@luong2
 In follow-up work, @camgoz2020sign use a transformer encoder [@vaswani2017attention] to replace the GRU 
 and use a CTC to decode the gloss. They show a slight improvement with this approach on the video-to-gloss task.
 
-##### Gloss-to-Video
+#### Gloss-to-Video
 TODO
 
 ---
 
-##### Gloss-to-Text
+#### Gloss-to-Text
 Gloss-to-Text---also known as sign language translation---is the natural language processing task of translating
 between gloss text representing sign-language signs and spoken language text. 
 These texts commonly differ by terminology, capitalization, and sentence structure.
@@ -312,7 +333,7 @@ using GRUs, Luong attention, and a batch size of 1 outperforms all other configu
 TODO Kayo's Coling work
 
 
-##### Text-to-Gloss
+#### Text-to-Gloss
 Text-to-gloss---also knows as sign language translation---is the task to translate between a spoken language text and sign language gloss.
 
 @zhao2000machine used a Tree Adjoining Grammar (TAG) based system for translating between English sentences and American Sign Language glosses.
@@ -327,7 +348,7 @@ Unfortunately, only a small sample of this corpus is available online.
 
 ---
 
-##### Video-to-Text
+#### Video-to-Text
 Video-to-text---also knows as sign language translation---is the entire task of translating a raw video to spoken language text.
 
 Recently, @camgoz2020sign proposed a single architecture to perform this task, that can use both the sign language gloss and 
@@ -338,47 +359,47 @@ Using the same encoding, they also use a transformer decoder to decode the spoke
 They show that adding gloss supervision improves the model over not using it, and that it outperforms previous video-to-gloss-to-text pipeline approaches [@cihan2018neural].
 
 
-##### Text-to-Video
+#### Text-to-Video
 TODO
 
 ---
 
-##### Pose-to-Writing
+#### Pose-to-Writing
 TODO
 
-##### Writing-to-Pose
-TODO
-
----
-
-##### Video-to-Writing
-TODO
-
-##### Writing-to-Video
+#### Writing-to-Pose
 TODO
 
 ---
 
-##### Pose-to-Text
+#### Video-to-Writing
 TODO
 
-##### Text-to-Pose
-TODO
-
----
-
-##### Writing-to-Text
-TODO
-
-##### Text-to-Writing
+#### Writing-to-Video
 TODO
 
 ---
 
-##### Writing-to-Gloss
+#### Pose-to-Text
 TODO
 
-##### Gloss-to-Writing
+#### Text-to-Pose
+TODO
+
+---
+
+#### Writing-to-Text
+TODO
+
+#### Text-to-Writing
+TODO
+
+---
+
+#### Writing-to-Gloss
+TODO
+
+#### Gloss-to-Writing
 TODO
 
 
@@ -445,6 +466,7 @@ While work on this document is still ongoing, if you want to refer to it, please
     year={2021}
 }
 ```
+
 
 ## References
 
