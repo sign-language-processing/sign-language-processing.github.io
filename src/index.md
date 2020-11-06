@@ -65,12 +65,6 @@ formats.md
 
 ### Annotation Tools
 
-##### iLex
-[iLex](https://www.sign-lang.uni-hamburg.de/ilex/) [@hanke2002ilex] is a tool for sign language lexicography and corpus analysis, 
-that combines features found in empirical sign language lexicography and in sign language discourse transcription. 
-It supports the user in lexicon building while working on the transcription of a corpus and 
-offers a number of unique features considered essential due to the specific nature of sign languages.
-iLex binaries are [available](https://www.sign-lang.uni-hamburg.de/ilex/ilex.xml) for macOS.
 
 ##### ELAN - EUDICO Linguistic Annotator
 [ELAN](https://archive.mpi.nl/tla/elan) [@wittenburg2006elan] is an annotation tool for audio and video recordings.
@@ -80,10 +74,19 @@ Annotations can be created on multiple layers, called tiers, which can be hierar
 An annotation can either be time-aligned to the media, or it can refer to other existing annotations. 
 The content of annotations consists of Unicode text and annotation documents are stored in an XML format (EAF).
 ELAN is open source ([GPLv3](https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3)), and installation is [available](https://archive.mpi.nl/tla/elan/download) for Windows, macOS, and Linux.
+PyMPI [@pympi-1.69] allows for simple python interaction with Elan files.
+
+
+##### iLex
+[iLex](https://www.sign-lang.uni-hamburg.de/ilex/) [@hanke2002ilex] is a tool for sign language lexicography and corpus analysis, 
+that combines features found in empirical sign language lexicography and in sign language discourse transcription. 
+It supports the user in integrated lexicon building while working on the transcription of a corpus and 
+offers a number of unique features considered essential due to the specific nature of sign languages.
+iLex binaries are [available](https://www.sign-lang.uni-hamburg.de/ilex/ilex.xml) for macOS.
 
 ##### SignStream
-TODO
-
+[SignStream](http://www.bu.edu/asllrp/SignStream/3/) [@neidle2001signstream] is a tool for linguistic annotations and computer vision research on visual-gestural language data
+SignStream installation is only [available](http://www.bu.edu/asllrp/SignStream/3/download-newSS.html) for old versions of MacOS, and is distributed under MIT license.
 
 ##### Anvil - The Video Annotation Research Tool
 [Anvil](https://www.anvil-software.org/) [@kipp2001anvil] is a free video annotation tool,

@@ -1,0 +1,21 @@
+{
+  "pub": {
+    "name": "NCSLGR",
+    "year": 2007,
+    "publication": "dataset:databases2007volumes",
+    "url": "https://www.bu.edu/asllrp/ncslgr.html"
+  },
+  "huggingface": "ncslgr",
+  "features": [
+    "video",
+    "gloss:ASL",
+    "text:English"
+  ],
+  "language": "American",
+  "#items": "TODO",
+  "#samples": "TODO",
+  "#signers": "TODO",
+  "license": "TODO",
+  "licenseUrl": "TODO",
+  "contact": "carol@bu.edu"
+}
