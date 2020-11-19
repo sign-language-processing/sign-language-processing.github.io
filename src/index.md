@@ -100,8 +100,7 @@ Anvil installation is [available](https://www.anvil-software.org/download/index.
 ### Existing Datasets
 
 Currently, there is no easy way or agreed upon format to download and load sign language datasets, and as such, evaluation on these datasets is scarce.
-As part of this work, we streamlined loading of available datasets using [🤗Datasets](https://github.com/huggingface/datasets),
-and created standard data splits where they didn't exist before.
+As part of this work, we streamlined loading of available datasets using [🤗Datasets](https://github.com/huggingface/datasets).
 This allows researchers to load large and small datasets alike with a simple command, and be comparable to other works:
 ```python
 from datasets import load_dataset
@@ -198,7 +197,9 @@ We split the graph into two:
 ```
 
 ```{=latex}
-**TO-DO** add left and right floating headers CV and NLP
+\begin{minipage}{.5\linewidth}\begin{flushleft}\textbf{Computer Vision}\end{flushleft}\end{minipage}
+\hfill
+\begin{minipage}{.5\linewidth}\begin{flushright}\textbf{Natural Language Processing}\end{flushright}\end{minipage}
 
 \includegraphics[width=\linewidth]{assets/tasks/tasks.pdf}
 ```
@@ -213,6 +214,7 @@ Every path between two nodes might or might not be valid, depending on how lossy
 
 Video-to-Pose---commonly known as pose estimation---is the task to detect human figures in images and videos, 
 so that one could determine, for example, where someone's elbow shows up in an image.
+It was shown [@vogler2005analysis] that the face pose correlates with facial non-manual features like head direction.
 
 This area has been thoroughly researched [@pose:pishchulin2012articulated;@pose:chen2017adversarial;@pose:cao2018openpose;@pose:alp2018densepose]
 with objectives varying from predicting 2D / 3D poses, to a selection of a small specific set of landmarks or a dense mesh of a person.
@@ -367,6 +369,23 @@ TODO
 
 ---
 
+#### Pose-to-Text
+TODO
+
+#### Text-to-Pose
+TODO
+
+---
+
+#### Writing-to-$X$
+As of 2020, there is no research discussing the translation task between a writing system to any other modality. 
+
+#### $X$-to-Writing
+As of 2020, there is no research discussing the translation task between any modality to a writing system.
+
+---
+
+```{=ignore}
 #### Pose-to-Writing
 TODO
 
@@ -379,14 +398,6 @@ TODO
 TODO
 
 #### Writing-to-Video
-TODO
-
----
-
-#### Pose-to-Text
-TODO
-
-#### Text-to-Pose
 TODO
 
 ---
@@ -404,6 +415,8 @@ TODO
 
 #### Gloss-to-Writing
 TODO
+
+```
 
 
 ### Fingerspelling 

@@ -13,9 +13,9 @@
   ],
   "language": "American",
   "#items": "TODO",
-  "#samples": "TODO",
-  "#signers": "TODO",
+  "#samples": "1,875 sentences",
+  "#signers": 4,
   "license": "TODO",
-  "licenseUrl": "TODO",
+  "licenseUrl": null,
   "contact": "carol@bu.edu"
 }
