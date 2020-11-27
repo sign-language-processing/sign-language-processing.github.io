@@ -48,7 +48,7 @@ Sign languages have no formal written format.
 There are various language specific notations systems 
 ([Stokoe notation](https://en.wikipedia.org/wiki/Stokoe_notation) [@writing:stokoe2005sign] and [si5s](https://en.wikipedia.org/wiki/Si5s) for American Sign Language,
 [SWL](https://zrajm.github.io/teckentranskription/freesans-swl.html) [@writing:bergman1977tecknad] for Swedish Sign Language, etc...)
-and various universal notations systems ([SignWriting](https://en.wikipedia.org/wiki/SignWriting)^[http://www.signwriting.org], [HamNoSys](https://en.wikipedia.org/wiki/Hamburg_Notation_System) [@writing:prillwitz1990hamburg]) but no writing system has been adopted widely enough, 
+and various universal notations systems ([SignWriting](https://en.wikipedia.org/wiki/SignWriting) [@writing:sutton1990lessons], [HamNoSys](https://en.wikipedia.org/wiki/Hamburg_Notation_System) [@writing:prillwitz1990hamburg]) but no writing system has been adopted widely enough, 
 by the international Deaf community, that it could be considered the "written form" of a given sign language.
 
 Additionally, sign language corpora may include human [poses](https://en.wikipedia.org/wiki/Pose_(computer_vision)), either recorded with [motion capture](https://en.wikipedia.org/wiki/Motion_capture) technologies,
@@ -120,6 +120,10 @@ TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6
 - Estonian Sign Language: ?
 - Finnish Sign Language: Juhana Salonen, Antti Kronqvist (juhana.salonen@jyu.fi, antti.r.kronqvist@jyu.fi)
 - Danish Sign  Language: Jette H. Kristoffersen, Thomas Troelsgård (jehk@ucc.dk, ttro@ucc.dk)
+
+
+This paper has a few more in page 2
+https://www.aclweb.org/anthology/2020.conll-1.51.pdf
 ```
 
 
@@ -150,7 +154,7 @@ Sign language detection [@detection:borg2019sign;@detection:moryossef2020real] i
 given frame of a video whether a person is using sign-language or not.
 
 @detection:borg2019sign introduced the classification of frames taken from YouTube videos as either signing or not. 
-They take a spatial and temporal approach based on VGG-16 [@simonyan2014very] CNN to encode each frame 
+They take a spatial and temporal approach based on VGG-16 [@simonyan2015very] CNN to encode each frame 
 and use a [GRU](https://en.wikipedia.org/wiki/Gated_recurrent_unit) [@cho2014learning] 
 to encode the sequence of frames in a window of 20 frames at 5fps.
 In addition to the raw frame, they also either encode optical flow history, aggregated motion history, or frame difference.
@@ -249,6 +253,9 @@ Demonstrating their approach on hand pose estimation, they manually explicitly e
 Then, non-linear least-squares minimization fits a 3D model of the hand to the estimated 2D joint positions, recovering the 3D hand pose.
 This is similar to the back-projection used by @pose:pavllo20193d, except here no temporal information is being used.
 
+TODO 3D pose lifting https://openaccess.thecvf.com/content_WACV_2020/papers/Zelinka_Neural_Sign_Language_Synthesis_Words_Are_Our_Glosses_WACV_2020_paper.pdf
+
+
 #### Pose-to-Video
 
 Pose-to-Video, also known as motion-transfer or skeletal animation in the field of robotics and animation, is the
@@ -274,6 +281,8 @@ perform these tasks on the original videos, rendered pose videos, and reconstruc
 They show that subjects prefer synthesized realistic videos over skeleton visualizations, 
 and that out-of-the-box synthesis methods are not really effective enough, 
 as subjects struggled to understand the reconstructed videos.
+
+TODO https://arxiv.org/pdf/2011.09846.pdf
 
 [Deepfakes](https://en.wikipedia.org/wiki/Deepfake) is a technique to replace a person in an 
 existing image or video with someone else's likeness [@nguyen2019deep]. 
@@ -335,7 +344,18 @@ as well as Luong attention [@luong2015effective] vs. Bahdanau attention [@bahdan
 They concluded that on the RWTH-PHOENIX-Weather-2014T dataset, which was also presented by this work, 
 using GRUs, Luong attention, and a batch size of 1 outperforms all other configurations.
 
-TODO Kayo's Coling work
+In parallel with the advancements in spoken language machine translation, 
+@yin2020attention proposed replacing the RNN with a Transformer [@vaswani2017attention] encoder-decoder model, showing improvements on both
+RWTH-PHOENIX-Weather-2014T (DGS) and ASLG-PC12 (ASL) datasets both using a single model, and ensemble of models.
+Interestingly, in gloss-to-text they show that using the sign language recognition (video-to-gloss) system output outperforms using the gold annotated glosses.
+
+Building on the code published by @yin2020attention, @todo TODO show it is beneficial to pre-train these translation models
+using augmented monolingual spoken langaugea corpora. 
+They try three different approaches for data augmentation: 
+(1) Back-translation; 
+(2) General text-to-gloss rules, including lemmatization, word reordering, and dropping of words; 
+(3) Language pair specific rules, that augment the spoken language syntax to its corresponding sign langauge syntax.
+When pretraining, all augmentations show improvements over the baseline for both RWTH-PHOENIX-Weather-2014T (DGS) and NCSLGR (ASL). 
 
 
 #### Text-to-Gloss
@@ -356,12 +376,23 @@ Unfortunately, only a small sample of this corpus is available online.
 #### Video-to-Text
 Video-to-text---also knows as sign language translation---is the entire task of translating a raw video to spoken language text.
 
-Recently, @camgoz2020sign proposed a single architecture to perform this task, that can use both the sign language gloss and 
+@camgoz2020sign proposed a single architecture to perform this task, that can use both the sign language gloss and 
 the spoken language text in joint-supervision.
 They use the pre-trained spatial embeddings from @koller2019weakly to encode each frame independently, and encode the frames with a transformer.
 On this encoding, they use a Connectionist Temporal Classification (CTC) [@graves2006connectionist] to classify the sign language gloss.
 Using the same encoding, they also use a transformer decoder to decode the spoken language text one token at a time.
 They show that adding gloss supervision improves the model over not using it, and that it outperforms previous video-to-gloss-to-text pipeline approaches [@cihan2018neural].
+
+Following up, @camgoz2020multi propose a new architecture that does not require the supervision of glosses, called
+"Multi-channel Transformers for Multi-articulatory Sign Language Translation".
+In this approach they crop the signing hand, the face, and perform 3D pose estimation to obtain three separate data channels.
+They encode each data channel separately using a transformer, then encode all channels together and concatenate the separate channels for each frame.
+Like their previous work, they use a transformer decoder to decode the spoken language text, but unlike their previous work,
+do not use the gloss as an additional supervision. 
+Instead, they add two "anchoring" losses to predict the hand shape and mouth shape from each frame independently, 
+as silver annotations are available to them using the model proposed in @koller2019weakly.
+They conclude that this approach is on-par with previous approaches requiring glosses, 
+and so they have broken the dependency upon costly annotated gloss information in the video-to-text task.
 
 
 #### Text-to-Video
@@ -373,7 +404,8 @@ TODO
 TODO
 
 #### Text-to-Pose
-TODO
+TODO https://arxiv.org/abs/2004.14874
+TODO https://arxiv.org/pdf/2011.09846.pdf
 
 ---
 
@@ -437,7 +469,7 @@ For example, lexicalized `ALL` uses `A` and `L`, lexicalized `BUZZ` uses `B` and
 #### Recognition
 Fingerspelling recognition--a sub-task of sign language recognition--is the task to recognize fingerspelled words from a sign language video.
 
-@dataset:fs18slt recently introduced a large dataset available for American Sign Language fingerspelling recognition.
+@dataset:fs18slt introduced a large dataset available for American Sign Language fingerspelling recognition.
 This dataset includes both the "careful", and "rapid" forms of fingerspelling, collected from naturally occurring videos "in the wild" which are more challenging than studio scenario.
 They train a baseline model to take a sequence of images cropped around the signing hand, and either use an autoregressive decoder, or a CTC.
 They found that the CTC outperforms the autoregressive decoder model, but both achieve very low recognition rate (35-41% character level accuracy) compared to human performance (around 82%).
