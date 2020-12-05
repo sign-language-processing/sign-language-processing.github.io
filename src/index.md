@@ -245,6 +245,7 @@ The first, a supervised method, was trained to use the temporal information betw
 The second, an unsupervised method, leveraging the fact that the 2D poses are merely a projection of an unknown 3D pose, 
 and train a model to estimate the 3D pose and back-project to the input 2D poses. This back-projection is a deterministic process, 
 and as such, it applies constraints on the 3D pose encoder. 
+@pose:zelinka2020neural follows a similar process, and adds a constraint for bones to stay of a fixed length between frames.
 
 @pose:panteleris2018using suggests converting the 2D poses to 3D using inverse kinematics (IK), 
 a process taken from computer animation and robotics to calculate the variable joint parameters needed to place the end of a kinematic chain, 
@@ -253,7 +254,6 @@ Demonstrating their approach on hand pose estimation, they manually explicitly e
 Then, non-linear least-squares minimization fits a 3D model of the hand to the estimated 2D joint positions, recovering the 3D hand pose.
 This is similar to the back-projection used by @pose:pavllo20193d, except here no temporal information is being used.
 
-TODO 3D pose lifting https://openaccess.thecvf.com/content_WACV_2020/papers/Zelinka_Neural_Sign_Language_Synthesis_Words_Are_Our_Glosses_WACV_2020_paper.pdf
 
 
 #### Pose-to-Video
@@ -282,7 +282,9 @@ They show that subjects prefer synthesized realistic videos over skeleton visual
 and that out-of-the-box synthesis methods are not really effective enough, 
 as subjects struggled to understand the reconstructed videos.
 
-TODO https://arxiv.org/pdf/2011.09846.pdf
+As a direct response, @saunders2020everybody shows that like in @pose:chan2019everybody, 
+where an adversarial loss is added to specifically generate the face, adding a similar loss to the hand generation process
+yields high resolution, more photo-realistic continuous sign language videos.
 
 [Deepfakes](https://en.wikipedia.org/wiki/Deepfake) is a technique to replace a person in an 
 existing image or video with someone else's likeness [@nguyen2019deep]. 
