@@ -1,15 +1,18 @@
 {
   "pub": {
-    "name": "RWTH-BOSTON",
+    "name": "RWTH-BOSTON-104",
     "year": 2008,
     "publication": "dataset:dreuw2008benchmark",
     "url": "https://www-i6.informatik.rwth-aachen.de/aslr/database-rwth-boston-104.php"
   },
-  "features": [],
+  "features": [
+    "video",
+    "text:English"
+  ],
   "language": "American",
-  "#items": 483,
-  "#samples": "843 Sentences",
-  "#signers": 4,
+  "#items": 104,
+  "#samples": "201 Sentences",
+  "#signers": 3,
   "license": null,
   "licenseUrl": null
 }

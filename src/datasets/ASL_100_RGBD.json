@@ -1,0 +1,20 @@
+{
+  "pub": {
+    "name": "ASL-100-RGBD",
+    "year": 2020,
+    "publication": "dataset:hassan-etal-2020-isolated",
+    "url": "http://media-lab.ccny.cuny.edu/wordpress/datecode/#Dataset"
+  },
+  "features": [
+    "video:RGBD",
+    "pose:Kinect",
+    "gloss:ASL"
+  ],
+  "language": "American",
+  "#items": 100,
+  "#samples": "4,150 Tokens",
+  "#signers": 22,
+  "license": "TODO (Emailed Saad)",
+  "licenseUrl": null,
+  "contact": "Saad Hassan (sh2513@rit.edu)"
+}

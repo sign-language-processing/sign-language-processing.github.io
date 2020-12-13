@@ -1,0 +1,16 @@
+{
+  "pub": {
+    "name": "S-pot",
+    "year": 2014,
+    "publication": "dataset:viitaniemi-etal-2014-pot",
+    "url": "https://research.cs.aalto.fi/cbir/data/s-pot/"
+  },
+  "features": [],
+  "language": "Finnish",
+  "#items": 1211,
+  "#samples": "5,539 Videos",
+  "#signers": 5,
+  "license": "Permission",
+  "licenseUrl": "mailto:leena.savolainen@kuurojenliitto.fi",
+  "contact": "leena.savolainen@kuurojenliitto.fi"
+}

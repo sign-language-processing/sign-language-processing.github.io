@@ -1,15 +1,15 @@
 {
   "pub": {
     "name": "SIGNUM",
-    "year": 2010,
+    "year": 2007,
     "publication": "dataset:von2007towards",
     "url": "https://www.phonetik.uni-muenchen.de/forschung/Bas/SIGNUM/"
   },
   "features": [],
   "language": "German",
   "#items": 450,
-  "#samples": "33,210 Sequences",
-  "#signers": 25,
+  "#samples": "15,600 Sequences",
+  "#signers": 20,
   "license": null,
   "licenseUrl": null
 }

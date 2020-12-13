@@ -1,8 +1,8 @@
 {
   "pub": {
     "name": "RVL-SLLL ASL",
-    "year": 2006,
-    "publication": "dataset:wilbur2006purdue",
+    "year": 2002,
+    "publication": "dataset:martinez2002purdue",
     "url": "https://engineering.purdue.edu/RVL/Database/ASL/asl-database-front.htm"
   },
   "features": [],

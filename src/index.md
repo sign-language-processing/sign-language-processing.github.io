@@ -122,8 +122,9 @@ TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6
 - Danish Sign  Language: Jette H. Kristoffersen, Thomas Troelsgård (jehk@ucc.dk, ttro@ucc.dk)
 
 
-This paper has a few more in page 2
-https://www.aclweb.org/anthology/2020.conll-1.51.pdf
+GSLC - https://www.academia.edu/1990408/GSLC_creation_and_annotation_of_a_Greek_sign_language_corpus_for_HCI
+Emailed Eleni and Evita, need to make sure data is available
+
 ```
 
 
@@ -347,12 +348,12 @@ They concluded that on the RWTH-PHOENIX-Weather-2014T dataset, which was also pr
 using GRUs, Luong attention, and a batch size of 1 outperforms all other configurations.
 
 In parallel with the advancements in spoken language machine translation, 
-@yin2020attention proposed replacing the RNN with a Transformer [@vaswani2017attention] encoder-decoder model, showing improvements on both
+@yin2020better proposed replacing the RNN with a Transformer [@vaswani2017attention] encoder-decoder model, showing improvements on both
 RWTH-PHOENIX-Weather-2014T (DGS) and ASLG-PC12 (ASL) datasets both using a single model, and ensemble of models.
 Interestingly, in gloss-to-text they show that using the sign language recognition (video-to-gloss) system output outperforms using the gold annotated glosses.
 
-Building on the code published by @yin2020attention, @todo TODO show it is beneficial to pre-train these translation models
-using augmented monolingual spoken langaugea corpora. 
+Building on the code published by @yin2020better, @todo TODO show it is beneficial to pre-train these translation models
+using augmented monolingual spoken langaugea corpora.  
 They try three different approaches for data augmentation: 
 (1) Back-translation; 
 (2) General text-to-gloss rules, including lemmatization, word reordering, and dropping of words; 
@@ -403,7 +404,14 @@ TODO
 ---
 
 #### Pose-to-Text
-TODO
+Pose-to-text---also knows as sign language translation---is the task of translating a captured or estimated pose sequence to spoken language text.
+
+@dataset:ko2019neural demonstrate impressive performance on the pose-to-text task by inputting the pose sequence into a
+standard encoder-decoder translation network. 
+They experiment both with GRU and various types of attention [@luong2015effective;@bahdanau2014neural], and with a Transformer [@vaswani2017attention],
+and show similar performance, with the transformer underperforming on the validation set and overperforming on the test set which consists of unseen signers.
+They experiment with various normalization scheme, mainly, subtracting the mean and dividing by the standard deviation of every individual keypoint
+either with respect to the entire frame, or to the relevant "object" (Body, Face, and Hand).
 
 #### Text-to-Pose
 TODO https://arxiv.org/abs/2004.14874

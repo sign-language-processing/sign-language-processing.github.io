@@ -1,0 +1,21 @@
+{
+  "pub": {
+    "name": "K-RSL",
+    "year": 2020,
+    "publication": "dataset:imashev2020dataset",
+    "url": "https://krslproject.github.io/krsl20/"
+  },
+  "features": [
+    "video",
+    "pose:OpenPose",
+    "text:Russian"
+  ],
+  "language": "Kazakh-Russian",
+  "#items": 600,
+  "#samples": "28,250 Videos",
+  "#signers": 10,
+  "license": "Attribution",
+  "licenseUrl": null,
+  "contact": "mmukushev@nu.edu.kz",
+  "todo": "Full sentence videos 'will be uploaded soon', add to Huggingface"
+}

@@ -1,0 +1,21 @@
+{
+  "pub": {
+    "name": "KETI",
+    "year": 2019,
+    "publication": "dataset:ko2019neural",
+    "url": null
+  },
+  "features": [
+    "video",
+    "pose:OpenPose",
+    "gloss:KSL",
+    "text:Korean"
+  ],
+  "language": "Korean",
+  "#items": 524,
+  "#samples": "14,672 Videos",
+  "#signers": 14,
+  "license": "TODO (emailed Sang-Ki Ko)",
+  "licenseUrl": null,
+  "contact": "Sang-Ki Ko (sangkiko@keti.re.kr)"
+}
