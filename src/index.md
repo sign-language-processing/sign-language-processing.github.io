@@ -60,9 +60,14 @@ The following table exemplifies the various data formats.
 For this example we use [SignWriting](https://en.wikipedia.org/wiki/SignWriting) as the writing system.
 Note that the same sign might have two unrelated glosses, and the same gloss might have multiple valid texts.
 
+```{=html}
 <div id="formats-table" class="table">
+```
 formats.md
+```{=html}
 </div>
+```
+
 
 ### Annotation Tools
 
