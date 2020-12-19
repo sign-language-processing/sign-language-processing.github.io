@@ -3,10 +3,11 @@ title: "Sign Language Processing"
 link-citations: true
 geometry: margin=3cm
 css: style.css
-linkcolor: #000
+linkcolor: Black
 secnumdepth: 3
-header-includes: |
-    \usepackage{pdflscape}
+header-includes:
+- |
+  \usepackage{pdflscape}
 author:
 - Amit Moryossef | Bar-Ilan University | amitmoryossef@gmail.com
 abstract: |
@@ -100,7 +101,7 @@ Anvil installation is [available](https://www.anvil-software.org/download/index.
 ### Existing Datasets
 
 Currently, there is no easy way or agreed upon format to download and load sign language datasets, and as such, evaluation on these datasets is scarce.
-As part of this work, we streamlined loading of available datasets using [🤗Datasets](https://github.com/huggingface/datasets).
+As part of this work, we streamlined loading of available datasets using [🤗 Datasets](https://github.com/huggingface/datasets).
 This allows researchers to load large and small datasets alike with a simple command, and be comparable to other works:
 ```python
 from datasets import load_dataset
@@ -134,7 +135,7 @@ Emailed Eleni and Evita, need to make sure data is available
 \hspace{1.5cm}
 ```
 
-🎥 Video | 👋 Pose | 👄 Mouthing | ✍🏻 Writing | 📋 Gloss | 📜 Text | 🔊 Speech
+🎥 Video | 👋 Pose | 👄 Mouthing | ✍ Writing | 📋 Gloss | 📜 Text | 🔊 Speech
 
 <div id="datasets-table" class="table">
 datasets.md

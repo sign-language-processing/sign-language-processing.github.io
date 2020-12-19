@@ -23,7 +23,7 @@ function getIcon(feature) {
         'video': '🎥',
         'pose': '👋',
         'mouthing': '👄',
-        'writing': '✍🏻',
+        'writing': '✍',
         'gloss': '📋',
         'text': '📜',
         'speech': '🔊',

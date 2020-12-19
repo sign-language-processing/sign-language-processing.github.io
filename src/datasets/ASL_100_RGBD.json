@@ -3,7 +3,7 @@
     "name": "ASL-100-RGBD",
     "year": 2020,
     "publication": "dataset:hassan-etal-2020-isolated",
-    "url": "http://media-lab.ccny.cuny.edu/wordpress/datecode/#Dataset"
+    "url": "https://nyu.databrary.org/volume/1062"
   },
   "features": [
     "video:RGBD",
