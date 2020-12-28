@@ -1285,7 +1285,7 @@
 		{"emoji": "🕵", "name": "detective", "shortname": ":detective:", "unicode": "1F575", "html": "&#128373;", "category": "People & Body (person-role)", "order": ""},
 		{"emoji": "☹", "name": "frowning face", "shortname": ":frowning_face:", "unicode": "2639", "html": "&#9785;", "category": "Smileys & Emotion (face-concerned)", "order": ""},
 		{"emoji": "☠", "name": "skull and crossbones", "shortname": ":skull_crossbones:", "unicode": "2620", "html": "&#9760;", "category": "Smileys & Emotion (face-negative)", "order": "81"},
-		{"emoji": "🤗", "name": "hugging face", "shortname": ":hugging:", "unicode": "1f917", "html": "&#129303;", "category": "Smileys & Emotion (face-hand)", "order": "20"},
+		{"emoji": "🤗", "name": "hugging face", "shortname": ":hugs:", "unicode": "1f917", "html": "&#129303;", "category": "Smileys & Emotion (face-hand)", "order": "20"},
 		{"emoji": "🤖", "name": "robot", "shortname": ":robot:", "unicode": "1F916", "html": "&#129302;", "category": "Smileys & Emotion (face-costume)", "order": ""},
 		{"emoji": "🤕", "name": "face with head-bandage", "shortname": ":face_with_headbandage:", "unicode": "1F915", "html": "&#129301;", "category": "Smileys & Emotion (face-unwell)", "order": ""},
 		{"emoji": "🤔", "name": "thinking face", "shortname": ":thinking:", "unicode": "1f914", "html": "&#129300;", "category": "Smileys & Emotion (face-hand)", "order": "21"},

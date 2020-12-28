@@ -1,0 +1,18 @@
+{
+  "pub": {
+    "name": "AUSTL",
+    "year": 2020,
+    "publication": "dataset:sincan2020autsl",
+    "url": "http://chalearnlap.cvc.uab.es/dataset/40/description/"
+  },
+  "features": [
+    "video:RGBD",
+    "gloss:TİD"
+  ],
+  "language": "Turkish",
+  "#items": 226,
+  "#samples": "36,302 Samples",
+  "#signers": 43,
+  "license": "Codalab",
+  "licenseUrl": "https://competitions.codalab.org/competitions/27901#participate"
+}
