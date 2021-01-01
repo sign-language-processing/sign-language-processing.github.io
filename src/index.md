@@ -115,7 +115,7 @@ from datasets import load_dataset
 ngt = load_dataset('ngt')
 wlasl = load_dataset('wlasl')
 aslg_pc12 = load_dataset('aslg_pc12')
-autsl = load_dataset('autsl', decryption_key='***')
+autsl = load_dataset('autsl', train_decryption_key='***')
 ...
 ```
 
