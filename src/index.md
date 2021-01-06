@@ -341,7 +341,13 @@ In follow-up work, @camgoz2020sign use a transformer encoder [@vaswani2017attent
 and use a CTC to decode the gloss. They show a slight improvement with this approach on the video-to-gloss task.
 
 #### Gloss-to-Video
-TODO
+Gloss-to-Video---also known as sign language production---is the task to produce a video that adequately represent
+a sequence of signs written as gloss.
+
+As of 2020, there is no research discussing the direct translation task between a gloss to video.
+We believe this is a result of the computational impracticality of the desired model, 
+which led researchers to avoid performing this task directly, and instead rely on pipeline approaches using intermediate pose representations.
+
 
 ---
 
@@ -407,7 +413,12 @@ and so they have broken the dependency upon costly annotated gloss information i
 
 
 #### Text-to-Video
-TODO
+Text-to-Video---also known as sign language production---is the task to produce a video that adequately represent
+a spoken language text.
+
+As of 2020, there is no research discussing the direct translation task between text to video.
+We believe this is a result of the computational impracticality of the desired model,
+which led researchers to avoid performing this task directly, and instead rely on pipeline approaches using intermediate pose representations.
 
 ---
 
