@@ -31,27 +31,27 @@ It is a subfield of both natural language processing and computer vision.
 Challenges in sign language processing frequently involve machine translation of sign languages to spoken language text (sign language translation), 
 from spoken language text (sign language production), or sign language recognition for sign language understanding.
 
-One of the challenging aspects regarding translation of sign languages is that as they are more disjoint from spoken languages,
-the translation process requires more interpretation, thus different interpreters would translate spoken or sign language differently.
-This is a major challenge in translation evaluation, where for example a sequence of signs could be interpreted into a different sentence in spoken language, or vice versa.
+One of the challenging aspects regarding translation of sign languages compared to spoken language, is that the
+translation process requires more interpretation, thus different interpreters would translate spoken or sign language differently.
+This is a major challenge in translation evaluation, where for example a sequence of signs could be interpreted into different sentences in spoken language, or vice versa.
 The challenge exacerbates where a sign does not have a spoken language translation, and thus translation might be impossible, 
 or when trying to translate some content with subtext like humor and puns, it might be impossible to convey the content and subtext together.
 
-## Corpora
-
-### Data Formats
+## Data Formats
 
 The only widely accepted format for sign language data includes videos of the signing, 
 and either a [gloss](https://en.wikipedia.org/wiki/Gloss_(annotation)) or a spoken language text translation.
 Sign language videos may include a "depth" channel produced by a [time-of-flight camera](https://en.wikipedia.org/wiki/Time-of-flight_camera).
 
+#### Notation Systems
 Sign languages have no formal written format. 
-There are various language specific notations systems 
-([Stokoe notation](https://en.wikipedia.org/wiki/Stokoe_notation) [@writing:stokoe2005sign] and [si5s](https://en.wikipedia.org/wiki/Si5s) for American Sign Language,
-[SWL](https://zrajm.github.io/teckentranskription/freesans-swl.html) [@writing:bergman1977tecknad] for Swedish Sign Language, etc...)
-and various universal notations systems ([SignWriting](https://en.wikipedia.org/wiki/SignWriting) [@writing:sutton1990lessons], [HamNoSys](https://en.wikipedia.org/wiki/Hamburg_Notation_System) [@writing:prillwitz1990hamburg]) but no writing system has been adopted widely enough, 
+There are various universal notations systems---[SignWriting](https://en.wikipedia.org/wiki/SignWriting) [@writing:sutton1990lessons], 
+[HamNoSys](https://en.wikipedia.org/wiki/Hamburg_Notation_System) [@writing:prillwitz1990hamburg]---and various language specific notations systems---[Stokoe notation](https://en.wikipedia.org/wiki/Stokoe_notation) 
+[@writing:stokoe2005sign] and [si5s](https://en.wikipedia.org/wiki/Si5s) for American Sign Language, [SWL](https://zrajm.github.io/teckentranskription/freesans-swl.html) [@writing:bergman1977tecknad] 
+for Swedish Sign Language, etc---but no writing system has been adopted widely enough, 
 by the international Deaf community, that it could be considered the "written form" of a given sign language.
 
+#### Human Body Representation
 Additionally, sign language corpora may include human [poses](https://en.wikipedia.org/wiki/Pose_(computer_vision)), either recorded with [motion capture](https://en.wikipedia.org/wiki/Motion_capture) technologies,
 or estimated from videos using [pose estimation](https://en.wikipedia.org/wiki/Pose_(computer_vision)#Pose_estimation) techniques.
 Full body human poses include all the relevant information for sign language processing (manual or non-manual), except for visual cues such as props.
@@ -66,91 +66,6 @@ Note that the same sign might have two unrelated glosses, and the same gloss mig
 formats.md
 ```{=html}
 </div>
-```
-
-
-### Annotation Tools
-
-
-##### ELAN - EUDICO Linguistic Annotator
-[ELAN](https://archive.mpi.nl/tla/elan) [@wittenburg2006elan] is an annotation tool for audio and video recordings.
-With ELAN a user can add an unlimited number of textual annotations to audio and/or video recordings. 
-An annotation can be a sentence, word or gloss, a comment, translation or a description of any feature observed in the media. 
-Annotations can be created on multiple layers, called tiers, which can be hierarchically interconnected. 
-An annotation can either be time-aligned to the media, or it can refer to other existing annotations. 
-The content of annotations consists of Unicode text and annotation documents are stored in an XML format (EAF).
-ELAN is open source ([GPLv3](https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3)), and installation is [available](https://archive.mpi.nl/tla/elan/download) for Windows, macOS, and Linux.
-PyMPI [@pympi-1.69] allows for simple python interaction with Elan files.
-
-
-##### iLex
-[iLex](https://www.sign-lang.uni-hamburg.de/ilex/) [@hanke2002ilex] is a tool for sign language lexicography and corpus analysis, 
-that combines features found in empirical sign language lexicography and in sign language discourse transcription. 
-It supports the user in integrated lexicon building while working on the transcription of a corpus and 
-offers a number of unique features considered essential due to the specific nature of sign languages.
-iLex binaries are [available](https://www.sign-lang.uni-hamburg.de/ilex/ilex.xml) for macOS.
-
-##### SignStream
-[SignStream](http://www.bu.edu/asllrp/SignStream/3/) [@neidle2001signstream] is a tool for linguistic annotations and computer vision research on visual-gestural language data
-SignStream installation is only [available](http://www.bu.edu/asllrp/SignStream/3/download-newSS.html) for old versions of MacOS, and is distributed under MIT license.
-
-##### Anvil - The Video Annotation Research Tool
-[Anvil](https://www.anvil-software.org/) [@kipp2001anvil] is a free video annotation tool,
-offering multi-layered annotation based on a user-defined coding scheme.
-In Anvil, the annotator can see color-coded elements on multiple tracks in time-alignment. 
-Some special features are cross-level links, non-temporal objects, timepoint tracks, coding agreement analysis, 
-3D viewing of motion capture data and a project tool for managing whole corpora of annotation files.
-Anvil installation is [available](https://www.anvil-software.org/download/index.html) for Windows, macOS, and Linux.
-
-
-### Existing Datasets
-
-Currently, there is no easy way or agreed upon format to download and load sign language datasets, and as such, evaluation on these datasets is scarce.
-As part of this work, we streamlined loading of available datasets using [🤗Datasets](https://github.com/huggingface/datasets).
-This allows researchers to load large and small datasets alike with a simple command, and be comparable to other works:
-
-```python
-from datasets import load_dataset
- 
-ngt = load_dataset('ngt')
-wlasl = load_dataset('wlasl')
-aslg_pc12 = load_dataset('aslg_pc12')
-autsl = load_dataset('autsl', train_decryption_key='***')
-...
-```
-
-
-The following table contains a curated list of datasets including various sign languages and data formats:
-
-```{=ignore}
-TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6477&context=etd) page 26 has more datasets.
-- Spanish Sign Language: María del Carmen Cabeza-Pereiro (cabeza@uvigo.es)
-- Estonian Sign Language: ?
-- Finnish Sign Language: Juhana Salonen, Antti Kronqvist (juhana.salonen@jyu.fi, antti.r.kronqvist@jyu.fi)
-- Danish Sign  Language: Jette H. Kristoffersen, Thomas Troelsgård (jehk@ucc.dk, ttro@ucc.dk)
-
-
-GSLC - https://www.academia.edu/1990408/GSLC_creation_and_annotation_of_a_Greek_sign_language_corpus_for_HCI
-Emailed Eleni and Evita, need to make sure data is available
-
-```
-
-
-```{=latex}
-\newgeometry{left=0.3cm,right=0.3cm,top=-1.5cm,bottom=-1.5cm}
-\begin{landscape}
-\hspace{1.5cm}
-```
-
-🎥 Video | 👋 Pose | 👄 Mouthing | ✍ Writing | 📋 Gloss | 📜 Text | 🔊 Speech
-
-<div id="datasets-table" class="table">
-datasets.md
-</div>
-
-```{=latex}
-\end{landscape}
-\restoregeometry
 ```
 
 
@@ -189,7 +104,7 @@ The authors attribute their success mainly to the different fingerspelling syste
 
 Sign language translation is generally considered the task of translating between a video in sign language to spoken language text.
 Sign language production is the reverse process, of producing a sign language video from spoken language text.
-Sign language recognition is the task of recognizing the signs themselves in sign language.
+Sign language recognition is the task of recognizing the discrete signs themselves in sign language (glosses).
 
 
 In the following graph, we can see a fully connected pentagon where each node is a single data representation, 
@@ -203,16 +118,16 @@ We split the graph into two:
 
 ```{=html}
 <p>
-<span style="font-weight: bold;">Computer Vision</span>
-<span style="font-weight: bold;float:right">Natural Language Processing</span>
+<span style="font-weight: bold;">Language Agnostic Tasks</span>
+<span style="font-weight: bold;float:right">Language Specific Tasks</span>
 <object type="image/svg+xml" data="assets/tasks/tasks.svg" class="logo"></object>
 </p>
 ```
 
 ```{=latex}
-\begin{minipage}{.5\linewidth}\begin{flushleft}\textbf{Computer Vision}\end{flushleft}\end{minipage}
+\begin{minipage}{.5\linewidth}\begin{flushleft}\textbf{Language Agnostic Tasks}\end{flushleft}\end{minipage}
 \hfill
-\begin{minipage}{.5\linewidth}\begin{flushright}\textbf{Natural Language Processing}\end{flushright}\end{minipage}
+\begin{minipage}{.5\linewidth}\begin{flushright}\textbf{Language Specific Tasks}\end{flushright}\end{minipage}
 
 \includegraphics[width=\linewidth]{assets/tasks/tasks.pdf}
 ```
@@ -232,7 +147,7 @@ It was shown [@vogler2005analysis] that the face pose correlates with facial non
 This area has been thoroughly researched [@pose:pishchulin2012articulated;@pose:chen2017adversarial;@pose:cao2018openpose;@pose:alp2018densepose]
 with objectives varying from predicting 2D / 3D poses, to a selection of a small specific set of landmarks or a dense mesh of a person.
 
-OpenPose [@pose:cao2018openpose;@pose:simon2017hand;@pose:cao2017realtime;@pose:wei2016cpm] is the first real-time multi-person system to 
+OpenPose [@pose:cao2018openpose;@pose:simon2017hand;@pose:cao2017realtime;@pose:wei2016cpm] is the first multi-person system to 
 jointly detect human body, hand, facial, and foot keypoints (in total 135 keypoints) in 2D on single images.
 While their model can estimate the full pose directly from an image in a single inference,
 they also suggest a pipeline approach where first they estimate the body pose, and then independently estimate 
@@ -263,6 +178,10 @@ Demonstrating their approach on hand pose estimation, they manually explicitly e
 Then, non-linear least-squares minimization fits a 3D model of the hand to the estimated 2D joint positions, recovering the 3D hand pose.
 This is similar to the back-projection used by @pose:pavllo20193d, except here no temporal information is being used.
 
+MediaPipe Holistic [@mediapipe2020holistic] attempts to solve the 3D pose estimation problem directly by taking a similar approach to OpenPose,
+having a pipeline system to estimate the body, and then the face and hands. Unlike OpenPose, the estimated poses are in 3D,
+and the pose estimator runs in real-time on CPU, allowing for pose-based sign language models on low powered mobile devices.
+This pose estimation tool is widely available and built for Android, iOS, C++, Python, and the Web using Javascript.
 
 
 #### Pose-to-Video
@@ -367,11 +286,11 @@ RWTH-PHOENIX-Weather-2014T (DGS) and ASLG-PC12 (ASL) datasets both using a singl
 Interestingly, in gloss-to-text they show that using the sign language recognition (video-to-gloss) system output outperforms using the gold annotated glosses.
 
 Building on the code published by @yin2020better, @todo TODO show it is beneficial to pre-train these translation models
-using augmented monolingual spoken langaugea corpora.  
+using augmented monolingual spoken langaugea corpora.
 They try three different approaches for data augmentation: 
 (1) Back-translation; 
 (2) General text-to-gloss rules, including lemmatization, word reordering, and dropping of words; 
-(3) Language pair specific rules, that augment the spoken language syntax to its corresponding sign langauge syntax.
+(3) Language pair specific rules, that augment the spoken language syntax to its corresponding sign language syntax.
 When pretraining, all augmentations show improvements over the baseline for both RWTH-PHOENIX-Weather-2014T (DGS) and NCSLGR (ASL). 
 
 
@@ -438,11 +357,11 @@ TODO https://arxiv.org/pdf/2011.09846.pdf
 
 ---
 
-#### Writing-to-$X$
-As of 2020, there is no research discussing the translation task between a writing system to any other modality. 
+#### Notation-to-$X$
+As of 2020, there is no research discussing the translation task between a writing notation system to any other modality. 
 
-#### $X$-to-Writing
-As of 2020, there is no research discussing the translation task between any modality to a writing system.
+#### $X$-to-Notation
+As of 2020, there is no research discussing the translation task between any modality to a writing notation system.
 
 ---
 
@@ -543,6 +462,107 @@ While work on this document is still ongoing, if you want to refer to it, please
     year={2021}
 }
 ```
+
+
+## Annotation Tools
+
+##### ELAN - EUDICO Linguistic Annotator
+[ELAN](https://archive.mpi.nl/tla/elan) [@wittenburg2006elan] is an annotation tool for audio and video recordings.
+With ELAN a user can add an unlimited number of textual annotations to audio and/or video recordings. 
+An annotation can be a sentence, word or gloss, a comment, translation or a description of any feature observed in the media. 
+Annotations can be created on multiple layers, called tiers, which can be hierarchically interconnected. 
+An annotation can either be time-aligned to the media, or it can refer to other existing annotations. 
+The content of annotations consists of Unicode text and annotation documents are stored in an XML format (EAF).
+ELAN is open source ([GPLv3](https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3)), and installation is [available](https://archive.mpi.nl/tla/elan/download) for Windows, macOS, and Linux.
+PyMPI [@pympi-1.69] allows for simple python interaction with Elan files.
+
+##### iLex
+[iLex](https://www.sign-lang.uni-hamburg.de/ilex/) [@hanke2002ilex] is a tool for sign language lexicography and corpus analysis, 
+that combines features found in empirical sign language lexicography and in sign language discourse transcription. 
+It supports the user in integrated lexicon building while working on the transcription of a corpus and 
+offers a number of unique features considered essential due to the specific nature of sign languages.
+iLex binaries are [available](https://www.sign-lang.uni-hamburg.de/ilex/ilex.xml) for macOS.
+
+##### SignStream
+[SignStream](http://www.bu.edu/asllrp/SignStream/3/) [@neidle2001signstream] is a tool for linguistic annotations and computer vision research on visual-gestural language data
+SignStream installation is only [available](http://www.bu.edu/asllrp/SignStream/3/download-newSS.html) for old versions of MacOS, and is distributed under MIT license.
+
+##### Anvil - The Video Annotation Research Tool
+[Anvil](https://www.anvil-software.org/) [@kipp2001anvil] is a free video annotation tool,
+offering multi-layered annotation based on a user-defined coding scheme.
+In Anvil, the annotator can see color-coded elements on multiple tracks in time-alignment. 
+Some special features are cross-level links, non-temporal objects, timepoint tracks, coding agreement analysis, 
+3D viewing of motion capture data and a project tool for managing whole corpora of annotation files.
+Anvil installation is [available](https://www.anvil-software.org/download/index.html) for Windows, macOS, and Linux.
+
+```{=latex}
+\clearpage
+```
+
+## Existing Datasets
+
+Currently, there is no easy way or agreed upon format to download and load sign language datasets, and as such, evaluation on these datasets is scarce.
+As part of this work, we streamlined loading of available datasets using [Tensorflow Datasets](https://github.com/tensorflow/datasets) [@TFDS].
+This allows researchers to load large and small datasets alike with a simple command, and be comparable to other works:
+
+```python
+aslg_pc12 = tfds.load('aslg_pc12')
+
+config = SignDatasetConfig(name="256x256:12", include_video=True, fps=12, resolution=(256, 256))
+rwth_phoenix2014_t = tfds.load('rwth_phoenix2014_t', builder_kwargs=dict(config=config))
+```
+
+Furthermore, we follow a unified interface for all datasets, making attributes the same, and comparable between datasets:
+```python
+{
+    'id': tfds.features.Text(),
+    'signer': tfds.features.Text() | tf.int32,
+    'video': tfds.features.Video(shape=(None, HEIGHT, WIDTH, 3)),
+    'depth_video': tfds.features.Video(shape=(None, HEIGHT, WIDTH, 1)),
+    'fps': tf.int32,
+    'pose': {
+        'data': tfds.features.Tensor(shape=(None, 1, POINTS, CHANNELS), dtype=tf.float32),
+        'conf': tfds.features.Tensor(shape=(None, 1, POINTS), dtype=tf.float32)
+    },
+    'gloss': tfds.features.Text(),
+    'text': tfds.features.Text()
+}
+```
+
+
+The following table contains a curated list of datasets including various sign languages and data formats:
+
+```{=ignore}
+TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6477&context=etd) page 26 has more datasets.
+- Spanish Sign Language: María del Carmen Cabeza-Pereiro (cabeza@uvigo.es)
+- Estonian Sign Language: ?
+- Finnish Sign Language: Juhana Salonen, Antti Kronqvist (juhana.salonen@jyu.fi, antti.r.kronqvist@jyu.fi)
+- Danish Sign  Language: Jette H. Kristoffersen, Thomas Troelsgård (jehk@ucc.dk, ttro@ucc.dk)
+
+
+GSLC - https://www.academia.edu/1990408/GSLC_creation_and_annotation_of_a_Greek_sign_language_corpus_for_HCI
+Emailed Eleni and Evita, need to make sure data is available
+
+```
+
+
+```{=latex}
+\newgeometry{left=0.3cm,right=0.3cm,top=-1.5cm,bottom=-1.5cm}
+\begin{landscape}
+\hspace{1.5cm}
+```
+
+🎥 Video | 👋 Pose | 👄 Mouthing | ✍ Notation | 📋 Gloss | 📜 Text | 🔊 Speech
+
+<div id="datasets-table" class="table">
+datasets.md
+</div>
+
+```{=latex}
+\end{landscape}
+\restoregeometry
+```
+
 
 
 ## References

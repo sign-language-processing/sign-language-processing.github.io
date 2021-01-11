@@ -5,7 +5,7 @@
     "publication": "dataset:othman2012english",
     "url": "https://achrafothman.net/site/asl-smt/"
   },
-  "huggingface": "aslg_pc12",
+  "loader": "aslg_pc12",
   "description": "Synthetic dataset",
   "features": [
     "gloss:ASL",

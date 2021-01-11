@@ -1,4 +1,4 @@
-| Video       | Pose Estimation | Writing | Gloss     | Text             |
+| Video       | Pose Estimation | Notation | Gloss     | Text             |
 |-----------|------------|--------|------------|-----------------|
 | ![ASL HOUSE](assets/videos/original/asl_house.gif){ width=2.5cm }           | ![ASL HOUSE](assets/videos/pose/asl_house.gif){ width=2.5cm }           | ![HOUSE](assets/writing/house.png){ width=1cm }           | HOUSE            | House                               |
 | ![ASL WRONG-WHAT](assets/videos/original/asl_wrong_what.gif){ width=2.5cm } | ![ASL WRONG-WHAT](assets/videos/pose/asl_wrong_what.gif){ width=2.5cm } | ![WRONG-WHAT](assets/writing/wrong_what.png){ width=0.7cm } | WRONG-WHAT       | What's the matter?<br> What's wrong? |

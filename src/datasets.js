@@ -55,8 +55,8 @@ const downloadEmoji = '💾';
 
 for (const dataset of datasets) {
     let title = link(dataset.pub.name, dataset.pub.url);
-    if (dataset.huggingface) {
-        const hf = 'https://github.com/huggingface/datasets/tree/master/datasets/' + dataset.huggingface;
+    if (dataset.loader) {
+        const hf = 'https://github.com/huggingface/datasets/tree/master/datasets/' + dataset.loader;
         title += ' ' + link(downloadEmoji, hf);
     }
 

@@ -17,5 +17,5 @@
   "license": "Attribution",
   "licenseUrl": null,
   "contact": "mmukushev@nu.edu.kz",
-  "todo": "Full sentence videos 'will be uploaded soon', add to Huggingface"
+  "todo": "Full sentence videos 'will be uploaded soon', add to tfds"
 }

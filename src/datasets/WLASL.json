@@ -6,7 +6,7 @@
     "url": "https://dxli94.github.io/WLASL/"
   },
   "description": "A large-scale dataset for Word-Level American Sign Language",
-  "huggingface": "wlasl",
+  "loader": "wlasl",
   "features": [
     "video",
     "gloss:ASL"

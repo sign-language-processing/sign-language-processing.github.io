@@ -9,7 +9,7 @@
     "video:RGBD",
     "gloss:TİD"
   ],
-  "huggingface": "autsl",
+  "loader": "autsl",
   "language": "Turkish",
   "#items": 226,
   "#samples": "36,302 Samples",

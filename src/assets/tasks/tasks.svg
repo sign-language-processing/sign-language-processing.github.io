@@ -15,10 +15,10 @@
 		<text x="275" y="250" dominant-baseline="middle" font-size="20"  text-anchor="middle">Pose</text>
 
 		<rect x="650" y="212.5" width="150" height="75" rx="6" stroke="#5e5e5e" stroke-width="3" fill="white" /><!-- Gloss -->
-		<text x="725" y="250" dominant-baseline="middle" font-size="20"  text-anchor="middle">Gloss</text>
+		<text x="725" y="250" dominant-baseline="middle" font-size="20"  text-anchor="middle">Glosses</text>
 
 		<rect x="425" y="375" width="150" height="75" rx="6" stroke="#5e5e5e" stroke-width="3" fill="white" /><!-- Writing -->
-		<text x="500" y="412.5" dominant-baseline="middle" font-size="20"  text-anchor="middle">Writing</text>
+		<text x="500" y="412.5" dominant-baseline="middle" font-size="20"  text-anchor="middle">Notation</text>
 
 		<!-- Arrows -->
 		<defs>

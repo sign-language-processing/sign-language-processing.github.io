@@ -5,7 +5,7 @@
     "publication": "dataset:databases2007volumes",
     "url": "https://www.bu.edu/asllrp/ncslgr.html"
   },
-  "huggingface": "ncslgr",
+  "loader": "ncslgr",
   "features": [
     "video",
     "gloss:ASL",
