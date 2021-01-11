@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Amit Moryossef | Bar-Ilan University | amitmoryossef@gmail.com" />
+  <title>Sign Language Processing</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Sign Language Processing</h1>
+<p class="author">Amit Moryossef | Bar-Ilan University | amitmoryossef@gmail.com</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#data-formats">Data Formats</a></li>
+<li><a href="#tasks">Tasks</a>
+<ul>
+<li><a href="#sign-language-detection">Sign Language Detection</a></li>
+<li><a href="#sign-language-identification">Sign Language Identification</a></li>
+<li><a href="#sign-language-recognition-translation-and-production">Sign Language Recognition, Translation, and Production</a></li>
+<li><a href="#fingerspelling">Fingerspelling</a></li>
+</ul></li>
+<li><a href="#annotation-tools">Annotation Tools</a></li>
+<li><a href="#existing-datasets">Existing Datasets</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</nav>
+<h2 id="introduction">Introduction</h2>
+<p>Sign languages (also known as signed languages) are languages that use the visual modality to convey meaning through manual articulations in combination with non-manual elements. Similar to spoken languages, sign languages are natural languages governed by a set of linguistic rules <span class="citation" data-cites="sandler2006sign">(Sandler and Lillo-Martin <a href="#ref-sandler2006sign" role="doc-biblioref">2006</a>)</span>, both emerging through an abstract, protracted aging process and evolved over time without meticulous planning. They are also distinct from spoken languages—i.e., American Sign Language (ASL) is not a visual form of English. Sign languages are not universal, and they are not mutually intelligible with each other, although there are also striking similarities among sign languages.</p>
+<p>Sign Language Processing <span class="citation" data-cites="bragg2019sign">(Bragg et al. <a href="#ref-bragg2019sign" role="doc-biblioref">2019</a>)</span> is an emerging field of artificial intelligence concerned with automatic processing and analysis of sign language content. It is a subfield of both natural language processing and computer vision. Challenges in sign language processing frequently involve machine translation of sign languages to spoken language text (sign language translation), from spoken language text (sign language production), or sign language recognition for sign language understanding.</p>
+<p>One of the challenging aspects regarding translation of sign languages compared to spoken language, is that the translation process requires more interpretation, thus different interpreters would translate spoken or sign language differently. This is a major challenge in translation evaluation, where for example a sequence of signs could be interpreted into different sentences in spoken language, or vice versa. The challenge exacerbates where a sign does not have a spoken language translation, and thus translation might be impossible, or when trying to translate some content with subtext like humor and puns, it might be impossible to convey the content and subtext together.</p>
+<h2 id="data-formats">Data Formats</h2>
+<p>The only widely accepted format for sign language data includes videos of the signing, and either a <a href="https://en.wikipedia.org/wiki/Gloss_(annotation)">gloss</a> or a spoken language text translation. Sign language videos may include a “depth” channel produced by a <a href="https://en.wikipedia.org/wiki/Time-of-flight_camera">time-of-flight camera</a>.</p>
+<h4 id="notation-systems">Notation Systems</h4>
+<p>Sign languages have no formal written format. There are various universal notations systems—<a href="https://en.wikipedia.org/wiki/SignWriting">SignWriting</a> <span class="citation" data-cites="writing:sutton1990lessons">(Sutton <a href="#ref-writing:sutton1990lessons" role="doc-biblioref">1990</a>)</span>, <a href="https://en.wikipedia.org/wiki/Hamburg_Notation_System">HamNoSys</a> <span class="citation" data-cites="writing:prillwitz1990hamburg">(Prillwitz and Zienert <a href="#ref-writing:prillwitz1990hamburg" role="doc-biblioref">1990</a>)</span>—and various language specific notations systems—<a href="https://en.wikipedia.org/wiki/Stokoe_notation">Stokoe notation</a> <span class="citation" data-cites="writing:stokoe2005sign">(Stokoe Jr <a href="#ref-writing:stokoe2005sign" role="doc-biblioref">2005</a>)</span> and <a href="https://en.wikipedia.org/wiki/Si5s">si5s</a> for American Sign Language, <a href="https://zrajm.github.io/teckentranskription/freesans-swl.html">SWL</a> <span class="citation" data-cites="writing:bergman1977tecknad">(Bergman <a href="#ref-writing:bergman1977tecknad" role="doc-biblioref">1977</a>)</span> for Swedish Sign Language, etc—but no writing system has been adopted widely enough, by the international Deaf community, that it could be considered the “written form” of a given sign language.</p>
+<h4 id="human-body-representation">Human Body Representation</h4>
+<p>Additionally, sign language corpora may include human <a href="https://en.wikipedia.org/wiki/Pose_(computer_vision)">poses</a>, either recorded with <a href="https://en.wikipedia.org/wiki/Motion_capture">motion capture</a> technologies, or estimated from videos using <a href="https://en.wikipedia.org/wiki/Pose_(computer_vision)#Pose_estimation">pose estimation</a> techniques. Full body human poses include all the relevant information for sign language processing (manual or non-manual), except for visual cues such as props.</p>
+<p>The following table exemplifies the various data formats. For this example we use <a href="https://en.wikipedia.org/wiki/SignWriting">SignWriting</a> as the writing system. Note that the same sign might have two unrelated glosses, and the same gloss might have multiple valid texts.</p>
+<div id="formats-table" class="table">
+<table>
+<thead>
+<tr class="header">
+<th>Video</th>
+<th>Pose Estimation</th>
+<th>Notation</th>
+<th>Gloss</th>
+<th>Text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="assets/videos/original/asl_house.gif" style="width:2.5cm" alt="ASL HOUSE" /></td>
+<td><img src="assets/videos/pose/asl_house.gif" style="width:2.5cm" alt="ASL HOUSE" /></td>
+<td><img src="assets/writing/house.png" style="width:1cm" alt="HOUSE" /></td>
+<td>HOUSE</td>
+<td>House</td>
+</tr>
+<tr class="even">
+<td><img src="assets/videos/original/asl_wrong_what.gif" style="width:2.5cm" alt="ASL WRONG-WHAT" /></td>
+<td><img src="assets/videos/pose/asl_wrong_what.gif" style="width:2.5cm" alt="ASL WRONG-WHAT" /></td>
+<td><img src="assets/writing/wrong_what.png" style="width:0.7cm" alt="WRONG-WHAT" /></td>
+<td>WRONG-WHAT</td>
+<td>What’s the matter?<br> What’s wrong?</td>
+</tr>
+<tr class="odd">
+<td><img src="assets/videos/original/asl_different.gif" style="width:2.5cm" alt="ASL DIFFERENT" /></td>
+<td><img src="assets/videos/pose/asl_different.gif" style="width:2.5cm" alt="ASL DIFFERENT" /></td>
+<td><img src="assets/writing/different.png" style="width:1cm" alt="DIFFERENT" /></td>
+<td>DIFFERENT<br> BUT</td>
+<td>Different<br> But</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="tasks">Tasks</h2>
+<h3 id="sign-language-detection">Sign Language Detection</h3>
+<p>Sign language detection <span class="citation" data-cites="detection:borg2019sign detection:moryossef2020real">(Borg and Camilleri <a href="#ref-detection:borg2019sign" role="doc-biblioref">2019</a>; Moryossef et al. <a href="#ref-detection:moryossef2020real" role="doc-biblioref">2020</a>)</span> is defined as the binary-classification for any given frame of a video whether a person is using sign-language or not.</p>
+<p><span class="citation" data-cites="detection:borg2019sign">Borg and Camilleri (<a href="#ref-detection:borg2019sign" role="doc-biblioref">2019</a>)</span> introduced the classification of frames taken from YouTube videos as either signing or not. They take a spatial and temporal approach based on VGG-16 <span class="citation" data-cites="simonyan2015very">(Simonyan and Zisserman <a href="#ref-simonyan2015very" role="doc-biblioref">2015</a>)</span> CNN to encode each frame and use a <a href="https://en.wikipedia.org/wiki/Gated_recurrent_unit">GRU</a> <span class="citation" data-cites="cho2014learning">(Cho et al. <a href="#ref-cho2014learning" role="doc-biblioref">2014</a>)</span> to encode the sequence of frames in a window of 20 frames at 5fps. In addition to the raw frame, they also either encode optical flow history, aggregated motion history, or frame difference.</p>
+<p><span class="citation" data-cites="detection:moryossef2020real">Moryossef et al. (<a href="#ref-detection:moryossef2020real" role="doc-biblioref">2020</a>)</span> improved upon their method by performing sign language detection in real-time. They identified that sign language use involves movement of the body, and as such, designed a model that works on top of human poses rather than directly on the video signal. They calculate the optical flow norm of every joint detected on the body, and apply a small yet effective contextualized model to predict for every frame whether the person is signing or not.</p>
+<h3 id="sign-language-identification">Sign Language Identification</h3>
+<p>Sign language identification <span class="citation" data-cites="identification:gebre2013automatic identification:monteiro2016detecting">(Gebre, Wittenburg, and Heskes <a href="#ref-identification:gebre2013automatic" role="doc-biblioref">2013</a>; Monteiro et al. <a href="#ref-identification:monteiro2016detecting" role="doc-biblioref">2016</a>)</span> is defined as the classification between two or more sign languages.</p>
+<p><span class="citation" data-cites="identification:gebre2013automatic">Gebre, Wittenburg, and Heskes (<a href="#ref-identification:gebre2013automatic" role="doc-biblioref">2013</a>)</span> found that a simple random-forest classifier can distinguish between British Sign Language (BSL) and Greek Sign Language (ENN) with a 95% F1 score. This finding is further supported by <span class="citation" data-cites="identification:monteiro2016detecting">Monteiro et al. (<a href="#ref-identification:monteiro2016detecting" role="doc-biblioref">2016</a>)</span>, which manages to differentiate between British Sign Language and French Sign Language (Langue des Signes Française, LSF) with 98% F1 score in videos with static backgrounds, and between American Sign Language and British Sign Language with 70% F1 score for videos mined from popular video sharing sites. The authors attribute their success mainly to the different fingerspelling systems, which is two-handed in the case of BSL and one-handed in the case of ASL and LSF.</p>
+<h3 id="sign-language-recognition-translation-and-production">Sign Language Recognition, Translation, and Production</h3>
+<p>Sign language translation is generally considered the task of translating between a video in sign language to spoken language text. Sign language production is the reverse process, of producing a sign language video from spoken language text. Sign language recognition is the task of recognizing the discrete signs themselves in sign language (glosses).</p>
+<p>In the following graph, we can see a fully connected pentagon where each node is a single data representation, and each directed edge represents the task of converting between one data representation to another.</p>
+<p>We split the graph into two:</p>
+<ul>
+<li>Every edge to the left, on the orange background, represents a task in computer vision. These tasks are inherently multilingual, thus generalize between sign languages.</li>
+<li>Every edge to the right, on the blue background, represents a task in natural language processing. These tasks are sign language specific, requiring a specific sign language lexicon or spoken language tokens.</li>
+<li>Every edge on both backgrounds represents a task requiring a combination of computer vision and natural language processing.</li>
+</ul>
+<p>
+<span style="font-weight: bold;">Language Agnostic Tasks</span>
+<span style="font-weight: bold;float:right">Language Specific Tasks</span>
+<object type="image/svg+xml" data="assets/tasks/tasks.svg" class="logo"></object>
+</p>
+<p>In total, there are 20 tasks conceptually defined by this graph, with varying amounts of previous research. Every path between two nodes might or might not be valid, depending on how lossy the tasks in the path are.</p>
+<hr />
+<h4 id="video-to-pose">Video-to-Pose</h4>
+<p>Video-to-Pose—commonly known as pose estimation—is the task to detect human figures in images and videos, so that one could determine, for example, where someone’s elbow shows up in an image. It was shown <span class="citation" data-cites="vogler2005analysis">(Vogler and Goldenstein <a href="#ref-vogler2005analysis" role="doc-biblioref">2005</a>)</span> that the face pose correlates with facial non-manual features like head direction.</p>
+<p>This area has been thoroughly researched <span class="citation" data-cites="pose:pishchulin2012articulated pose:chen2017adversarial pose:cao2018openpose pose:alp2018densepose">(Pishchulin et al. <a href="#ref-pose:pishchulin2012articulated" role="doc-biblioref">2012</a>; Chen et al. <a href="#ref-pose:chen2017adversarial" role="doc-biblioref">2017</a>; Cao et al. <a href="#ref-pose:cao2018openpose" role="doc-biblioref">2019</a>; Güler, Neverova, and Kokkinos <a href="#ref-pose:alp2018densepose" role="doc-biblioref">2018</a>)</span> with objectives varying from predicting 2D / 3D poses, to a selection of a small specific set of landmarks or a dense mesh of a person.</p>
+<p>OpenPose <span class="citation" data-cites="pose:cao2018openpose pose:simon2017hand pose:cao2017realtime pose:wei2016cpm">(Cao et al. <a href="#ref-pose:cao2018openpose" role="doc-biblioref">2019</a>; Simon et al. <a href="#ref-pose:simon2017hand" role="doc-biblioref">2017</a>; Cao et al. <a href="#ref-pose:cao2017realtime" role="doc-biblioref">2017</a>; Wei et al. <a href="#ref-pose:wei2016cpm" role="doc-biblioref">2016</a>)</span> is the first multi-person system to jointly detect human body, hand, facial, and foot keypoints (in total 135 keypoints) in 2D on single images. While their model can estimate the full pose directly from an image in a single inference, they also suggest a pipeline approach where first they estimate the body pose, and then independently estimate the hands and face poses by acquiring higher resolution crops around those areas. With multiple angles of recording, OpenPose also offers keypoint triangulation in order to reconstruct the pose in 3D.</p>
+<p><span class="citation" data-cites="pose:alp2018densepose">Güler, Neverova, and Kokkinos (<a href="#ref-pose:alp2018densepose" role="doc-biblioref">2018</a>)</span> takes a different approach with DensePose. Instead of classifying for every keypoint which pixel is most likely, they suggest similarly to semantic segmentation, for each pixel to classify which body part it belongs to. Then, for each pixel, knowing the body part, they predict where that pixel is on the body part, relative to a 2D projection of a representative body model. This approach results in reconstruction of the full-body mesh, and allows sampling to find specific keypoints similar to OpenPose.</p>
+<p>However, 2D human poses might not be sufficient to fully understand the position and orientation of landmarks in space, and applying pose estimation per-frame does not take the video temporal movement information into account, especially in cases of rapid movement which contain motion blur.</p>
+<p><span class="citation" data-cites="pose:pavllo20193d">Pavllo et al. (<a href="#ref-pose:pavllo20193d" role="doc-biblioref">2019</a>)</span> developed two methods to convert between 2D poses to 3D poses. The first, a supervised method, was trained to use the temporal information between frames to predict the missing Z-axis. The second, an unsupervised method, leveraging the fact that the 2D poses are merely a projection of an unknown 3D pose, and train a model to estimate the 3D pose and back-project to the input 2D poses. This back-projection is a deterministic process, and as such, it applies constraints on the 3D pose encoder. <span class="citation" data-cites="pose:zelinka2020neural">Zelinka and Kanis (<a href="#ref-pose:zelinka2020neural" role="doc-biblioref">2020</a>)</span> follows a similar process, and adds a constraint for bones to stay of a fixed length between frames.</p>
+<p><span class="citation" data-cites="pose:panteleris2018using">Panteleris, Oikonomidis, and Argyros (<a href="#ref-pose:panteleris2018using" role="doc-biblioref">2018</a>)</span> suggests converting the 2D poses to 3D using inverse kinematics (IK), a process taken from computer animation and robotics to calculate the variable joint parameters needed to place the end of a kinematic chain, such as a robot manipulator or animation character’s skeleton, in a given position and orientation relative to the start of the chain. Demonstrating their approach on hand pose estimation, they manually explicitly encode the constraints and limits of each joint, resulting in 26 degrees of freedom. Then, non-linear least-squares minimization fits a 3D model of the hand to the estimated 2D joint positions, recovering the 3D hand pose. This is similar to the back-projection used by <span class="citation" data-cites="pose:pavllo20193d">Pavllo et al. (<a href="#ref-pose:pavllo20193d" role="doc-biblioref">2019</a>)</span>, except here no temporal information is being used.</p>
+<p>MediaPipe Holistic <span class="citation" data-cites="mediapipe2020holistic">(Grishchenko and Bazarevsky <a href="#ref-mediapipe2020holistic" role="doc-biblioref">2020</a>)</span> attempts to solve the 3D pose estimation problem directly by taking a similar approach to OpenPose, having a pipeline system to estimate the body, and then the face and hands. Unlike OpenPose, the estimated poses are in 3D, and the pose estimator runs in real-time on CPU, allowing for pose-based sign language models on low powered mobile devices. This pose estimation tool is widely available and built for Android, iOS, C++, Python, and the Web using Javascript.</p>
+<h4 id="pose-to-video">Pose-to-Video</h4>
+<p>Pose-to-Video, also known as motion-transfer or skeletal animation in the field of robotics and animation, is the conversion of a sequence of poses to a realistic-looking video. For sign language production, this is the final “rendering” to make the produced sign language look human.</p>
+<p><span class="citation" data-cites="pose:chan2019everybody">Chan et al. (<a href="#ref-pose:chan2019everybody" role="doc-biblioref">2019</a>)</span> demonstrates a semi-supervised approach where they take a set of videos, run pose-estimation with OpenPose <span class="citation" data-cites="pose:cao2018openpose">(Cao et al. <a href="#ref-pose:cao2018openpose" role="doc-biblioref">2019</a>)</span>, and learn an image-to-image translation <span class="citation" data-cites="isola2017image">(Isola et al. <a href="#ref-isola2017image" role="doc-biblioref">2017</a>)</span> between the rendered skeleton and the original video. They demonstrate their approach on human dancing, where they can extract poses from a choreography, and render any person as if they were dancing that dance. They predict two consecutive frames for temporally coherent video results and introduce a separate pipeline for a more realistic face synthesis, although still flawed.</p>
+<p><span class="citation" data-cites="pose:wang2018vid2vid">Wang et al. (<a href="#ref-pose:wang2018vid2vid" role="doc-biblioref">2018</a>)</span> suggest a similar method using DensePose <span class="citation" data-cites="pose:alp2018densepose">(Güler, Neverova, and Kokkinos <a href="#ref-pose:alp2018densepose" role="doc-biblioref">2018</a>)</span> representations in addition to the OpenPose <span class="citation" data-cites="pose:cao2018openpose">(Cao et al. <a href="#ref-pose:cao2018openpose" role="doc-biblioref">2019</a>)</span> ones. They formalize a different model, with various objectives to optimize for such as background-foreground separation and temporal coherence by using the previous two timestamps in the input.</p>
+<p>Using the same method by <span class="citation" data-cites="pose:chan2019everybody">Chan et al. (<a href="#ref-pose:chan2019everybody" role="doc-biblioref">2019</a>)</span> on “Everybody Dance Now”, <span class="citation" data-cites="pose:girocan2020slrtp">Giró-i-Nieto (<a href="#ref-pose:girocan2020slrtp" role="doc-biblioref">2020</a>)</span> asks, “Can Everybody Sign Now”? They evaluate the generated videos by asking signers various tasks after watching them, and comparing the signers’ ability to perform these tasks on the original videos, rendered pose videos, and reconstructed videos. They show that subjects prefer synthesized realistic videos over skeleton visualizations, and that out-of-the-box synthesis methods are not really effective enough, as subjects struggled to understand the reconstructed videos.</p>
+<p>As a direct response, <span class="citation" data-cites="saunders2020everybody">Saunders, Camgöz, and Bowden (<a href="#ref-saunders2020everybody" role="doc-biblioref">2020</a>)</span> shows that like in <span class="citation" data-cites="pose:chan2019everybody">Chan et al. (<a href="#ref-pose:chan2019everybody" role="doc-biblioref">2019</a>)</span>, where an adversarial loss is added to specifically generate the face, adding a similar loss to the hand generation process yields high resolution, more photo-realistic continuous sign language videos.</p>
+<p><a href="https://en.wikipedia.org/wiki/Deepfake">Deepfakes</a> is a technique to replace a person in an existing image or video with someone else’s likeness <span class="citation" data-cites="nguyen2019deep">(Nguyen et al. <a href="#ref-nguyen2019deep" role="doc-biblioref">2019</a>)</span>. This technique can be used to improve the unrealistic face synthesis, resulting from not face-specialized models, or even replace cartoon faces from animated 3D models.</p>
+<hr />
+<h4 id="pose-to-gloss">Pose-to-Gloss</h4>
+<p>Pose-to-Gloss—also known as sign language recognition—is the task to recognize a sequence of signs from a sequence of poses.</p>
+<p><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></p>
+<h4 id="gloss-to-pose">Gloss-to-Pose</h4>
+<p>Gloss-to-Pose—also known as sign language production—is the task to produce a sequence of poses that adequately represent a sequence of signs written as gloss.</p>
+<p>To produce a sign language video, <span class="citation" data-cites="stoll2018sign">Stoll et al. (<a href="#ref-stoll2018sign" role="doc-biblioref">2018</a>)</span> constructs a lookup-table between glosses and sequences of 2D poses. They align all pose sequences at the neck joint of a reference skeleton, and group all sequences belonging to the same gloss. Then, for each group, they apply dynamic time warping and average out all sequences in the group to construct the mean pose sequence. This approach suffers from not having an accurate set of poses aligned to the gloss, and from unnatural motion transitions between glosses.</p>
+<p>To alleviate the downsides of the previous work, <span class="citation" data-cites="stoll2020text2sign">Stoll et al. (<a href="#ref-stoll2020text2sign" role="doc-biblioref">2020</a>)</span> constructs a lookup-table of gloss to a group of sequences of poses rather than creating a mean pose sequence. They build a Motion Graph <span class="citation" data-cites="min2012motion">(Min and Chai <a href="#ref-min2012motion" role="doc-biblioref">2012</a>)</span> - which is a Markov process that can be used to generate new motion sequences that are representative of real motion, and select the motion primitives (sequence of poses) per gloss with the highest transition probability. To smooth that sequence and reduce unnatural motion, they use Savitzky–Golay motion transition smoothing filter <span class="citation" data-cites="savitzky1964smoothing">(Savitzky and Golay <a href="#ref-savitzky1964smoothing" role="doc-biblioref">1964</a>)</span>.</p>
+<hr />
+<h4 id="video-to-gloss">Video-to-Gloss</h4>
+<p>Video-to-Gloss—also known as sign language recognition—is the task to recognize a sequence of signs from a video.</p>
+<p>For this recognition, <span class="citation" data-cites="cui2017recurrent">Cui, Liu, and Zhang (<a href="#ref-cui2017recurrent" role="doc-biblioref">2017</a>)</span> constructs a three-step optimization model. First, they train a video-to-gloss end-to-end model, where they encode the video using a spatio-temporal CNN encoder, and predict the gloss using a Connectionist Temporal Classification (CTC) <span class="citation" data-cites="graves2006connectionist">(Graves et al. <a href="#ref-graves2006connectionist" role="doc-biblioref">2006</a>)</span>. Then, from the CTC alignment and category proposal, they encode each gloss-level segment independently, trained to predict the gloss category, and use this gloss video segments encoding to optimize the sequence learning model.</p>
+<p><span class="citation" data-cites="cihan2018neural">Cihan Camgöz et al. (<a href="#ref-cihan2018neural" role="doc-biblioref">2018</a>)</span> fundamentally differ from that approach and opt to formulate this problem as if it is a natural-language translation problem. They encode each video frame using AlexNet <span class="citation" data-cites="krizhevsky2012imagenet">(Krizhevsky, Sutskever, and Hinton <a href="#ref-krizhevsky2012imagenet" role="doc-biblioref">2012</a>)</span>, initialized using weights that were trained on ImageNet <span class="citation" data-cites="deng2009imagenet">(Deng et al. <a href="#ref-deng2009imagenet" role="doc-biblioref">2009</a>)</span>. Then they apply a GRU encoder-decoder architecture with Luong attention <span class="citation" data-cites="luong2015effective">(Luong, Pham, and Manning <a href="#ref-luong2015effective" role="doc-biblioref">2015</a>)</span> to generate the gloss. In follow-up work, <span class="citation" data-cites="camgoz2020sign">Cihan Camgöz et al. (<a href="#ref-camgoz2020sign" role="doc-biblioref">2020</a>)</span> use a transformer encoder <span class="citation" data-cites="vaswani2017attention">(Vaswani et al. <a href="#ref-vaswani2017attention" role="doc-biblioref">2017</a>)</span> to replace the GRU and use a CTC to decode the gloss. They show a slight improvement with this approach on the video-to-gloss task.</p>
+<h4 id="gloss-to-video">Gloss-to-Video</h4>
+<p>Gloss-to-Video—also known as sign language production—is the task to produce a video that adequately represent a sequence of signs written as gloss.</p>
+<p>As of 2020, there is no research discussing the direct translation task between a gloss to video. We believe this is a result of the computational impracticality of the desired model, which led researchers to avoid performing this task directly, and instead rely on pipeline approaches using intermediate pose representations.</p>
+<hr />
+<h4 id="gloss-to-text">Gloss-to-Text</h4>
+<p>Gloss-to-Text—also known as sign language translation—is the natural language processing task of translating between gloss text representing sign-language signs and spoken language text. These texts commonly differ by terminology, capitalization, and sentence structure.</p>
+<p><span class="citation" data-cites="cihan2018neural">Cihan Camgöz et al. (<a href="#ref-cihan2018neural" role="doc-biblioref">2018</a>)</span> experimented with various machine-translation architectures and compared between using an LSTM vs. GRU for the recurrent model, as well as Luong attention <span class="citation" data-cites="luong2015effective">(Luong, Pham, and Manning <a href="#ref-luong2015effective" role="doc-biblioref">2015</a>)</span> vs. Bahdanau attention <span class="citation" data-cites="bahdanau2014neural">(Bahdanau, Cho, and Bengio <a href="#ref-bahdanau2014neural" role="doc-biblioref">2015</a>)</span>, and various batch-sizes. They concluded that on the RWTH-PHOENIX-Weather-2014T dataset, which was also presented by this work, using GRUs, Luong attention, and a batch size of 1 outperforms all other configurations.</p>
+<p>In parallel with the advancements in spoken language machine translation, <span class="citation" data-cites="yin2020better">Yin and Read (<a href="#ref-yin2020better" role="doc-biblioref">2020</a>)</span> proposed replacing the RNN with a Transformer <span class="citation" data-cites="vaswani2017attention">(Vaswani et al. <a href="#ref-vaswani2017attention" role="doc-biblioref">2017</a>)</span> encoder-decoder model, showing improvements on both RWTH-PHOENIX-Weather-2014T (DGS) and ASLG-PC12 (ASL) datasets both using a single model, and ensemble of models. Interestingly, in gloss-to-text they show that using the sign language recognition (video-to-gloss) system output outperforms using the gold annotated glosses.</p>
+<p>Building on the code published by <span class="citation" data-cites="yin2020better">Yin and Read (<a href="#ref-yin2020better" role="doc-biblioref">2020</a>)</span>, <span class="citation" data-cites="todo">(<span class="citeproc-not-found" data-reference-id="todo"><strong>???</strong></span>)</span> <span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span> show it is beneficial to pre-train these translation models using augmented monolingual spoken langaugea corpora. They try three different approaches for data augmentation: (1) Back-translation; (2) General text-to-gloss rules, including lemmatization, word reordering, and dropping of words; (3) Language pair specific rules, that augment the spoken language syntax to its corresponding sign language syntax. When pretraining, all augmentations show improvements over the baseline for both RWTH-PHOENIX-Weather-2014T (DGS) and NCSLGR (ASL).</p>
+<h4 id="text-to-gloss">Text-to-Gloss</h4>
+<p>Text-to-gloss—also knows as sign language translation—is the task to translate between a spoken language text and sign language gloss.</p>
+<p><span class="citation" data-cites="zhao2000machine">Zhao et al. (<a href="#ref-zhao2000machine" role="doc-biblioref">2000</a>)</span> used a Tree Adjoining Grammar (TAG) based system for translating between English sentences and American Sign Language glosses. They parse the English text, and simultaneously assemble an American Sign Language gloss tree, using Synchronous TAGs <span class="citation" data-cites="shieber1990synchronous shieber1994restricting">(Shieber and Schabes <a href="#ref-shieber1990synchronous" role="doc-biblioref">1990</a>; Shieber <a href="#ref-shieber1994restricting" role="doc-biblioref">1994</a>)</span>, by associating the ASL elementary trees with the English elementary trees, and associating the nodes at which subsequent substitutions or adjunctions can take place. Synchronous TAGs have been used for machine translation between spoken languages <span class="citation" data-cites="abeille1991using">(Abeillé, Schabes, and Joshi <a href="#ref-abeille1991using" role="doc-biblioref">1991</a>)</span> but this is the first application to a signed language.</p>
+<p>For the automatic translation of gloss-to-text, <span class="citation" data-cites="dataset:othman2012english">Othman and Jemni (<a href="#ref-dataset:othman2012english" role="doc-biblioref">2012</a>)</span> identified the need for a large parallel sign language gloss and spoken language text corpus. They develop a part-of-speech based grammar to transform English sentences taken from the Gutenberg Project ebooks collection <span class="citation" data-cites="lebert2008project">(Lebert <a href="#ref-lebert2008project" role="doc-biblioref">2008</a>)</span> into American Sign Language gloss. Their final corpus contains over 100 million sentences, and 800 million words, and is the largest English-ASL gloss corpus that we know of. Unfortunately, only a small sample of this corpus is available online.</p>
+<hr />
+<h4 id="video-to-text">Video-to-Text</h4>
+<p>Video-to-text—also knows as sign language translation—is the entire task of translating a raw video to spoken language text.</p>
+<p><span class="citation" data-cites="camgoz2020sign">Cihan Camgöz et al. (<a href="#ref-camgoz2020sign" role="doc-biblioref">2020</a>)</span> proposed a single architecture to perform this task, that can use both the sign language gloss and the spoken language text in joint-supervision. They use the pre-trained spatial embeddings from <span class="citation" data-cites="koller2019weakly">Koller et al. (<a href="#ref-koller2019weakly" role="doc-biblioref">2019</a>)</span> to encode each frame independently, and encode the frames with a transformer. On this encoding, they use a Connectionist Temporal Classification (CTC) <span class="citation" data-cites="graves2006connectionist">(Graves et al. <a href="#ref-graves2006connectionist" role="doc-biblioref">2006</a>)</span> to classify the sign language gloss. Using the same encoding, they also use a transformer decoder to decode the spoken language text one token at a time. They show that adding gloss supervision improves the model over not using it, and that it outperforms previous video-to-gloss-to-text pipeline approaches <span class="citation" data-cites="cihan2018neural">(Cihan Camgöz et al. <a href="#ref-cihan2018neural" role="doc-biblioref">2018</a>)</span>.</p>
+<p>Following up, <span class="citation" data-cites="camgoz2020multi">Camgöz et al. (<a href="#ref-camgoz2020multi" role="doc-biblioref">2020</a>)</span> propose a new architecture that does not require the supervision of glosses, called “Multi-channel Transformers for Multi-articulatory Sign Language Translation”. In this approach they crop the signing hand, the face, and perform 3D pose estimation to obtain three separate data channels. They encode each data channel separately using a transformer, then encode all channels together and concatenate the separate channels for each frame. Like their previous work, they use a transformer decoder to decode the spoken language text, but unlike their previous work, do not use the gloss as an additional supervision. Instead, they add two “anchoring” losses to predict the hand shape and mouth shape from each frame independently, as silver annotations are available to them using the model proposed in <span class="citation" data-cites="koller2019weakly">Koller et al. (<a href="#ref-koller2019weakly" role="doc-biblioref">2019</a>)</span>. They conclude that this approach is on-par with previous approaches requiring glosses, and so they have broken the dependency upon costly annotated gloss information in the video-to-text task.</p>
+<h4 id="text-to-video">Text-to-Video</h4>
+<p>Text-to-Video—also known as sign language production—is the task to produce a video that adequately represent a spoken language text.</p>
+<p>As of 2020, there is no research discussing the direct translation task between text to video. We believe this is a result of the computational impracticality of the desired model, which led researchers to avoid performing this task directly, and instead rely on pipeline approaches using intermediate pose representations.</p>
+<hr />
+<h4 id="pose-to-text">Pose-to-Text</h4>
+<p>Pose-to-text—also knows as sign language translation—is the task of translating a captured or estimated pose sequence to spoken language text.</p>
+<p><span class="citation" data-cites="dataset:ko2019neural">Ko et al. (<a href="#ref-dataset:ko2019neural" role="doc-biblioref">2019</a>)</span> demonstrate impressive performance on the pose-to-text task by inputting the pose sequence into a standard encoder-decoder translation network. They experiment both with GRU and various types of attention <span class="citation" data-cites="luong2015effective bahdanau2014neural">(Luong, Pham, and Manning <a href="#ref-luong2015effective" role="doc-biblioref">2015</a>; Bahdanau, Cho, and Bengio <a href="#ref-bahdanau2014neural" role="doc-biblioref">2015</a>)</span>, and with a Transformer <span class="citation" data-cites="vaswani2017attention">(Vaswani et al. <a href="#ref-vaswani2017attention" role="doc-biblioref">2017</a>)</span>, and show similar performance, with the transformer underperforming on the validation set and overperforming on the test set which consists of unseen signers. They experiment with various normalization scheme, mainly, subtracting the mean and dividing by the standard deviation of every individual keypoint either with respect to the entire frame, or to the relevant “object” (Body, Face, and Hand).</p>
+<h4 id="text-to-pose">Text-to-Pose</h4>
+<p><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span> https://arxiv.org/abs/2004.14874 <span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span> https://arxiv.org/pdf/2011.09846.pdf</p>
+<hr />
+<h4 id="notation-to-x">Notation-to-<span class="math inline"><em>X</em></span></h4>
+<p>As of 2020, there is no research discussing the translation task between a writing notation system to any other modality.</p>
+<h4 id="x-to-notation"><span class="math inline"><em>X</em></span>-to-Notation</h4>
+<p>As of 2020, there is no research discussing the translation task between any modality to a writing notation system.</p>
+<hr />
+<h3 id="fingerspelling">Fingerspelling</h3>
+<p>Fingerspelling is the act of spelling a word letter-by-letter, borrowing from the spoken language alphabet <span class="citation" data-cites="battison1978lexical wilcox1992phonetics brentari2001language">(Battison <a href="#ref-battison1978lexical" role="doc-biblioref">1978</a>; Wilcox <a href="#ref-wilcox1992phonetics" role="doc-biblioref">1992</a>; Brentari and Padden <a href="#ref-brentari2001language" role="doc-biblioref">2001</a>)</span>. This phenomenon, found in most sign languages, often occurs when there is no previously agreed upon sign for a concept, like in technical language, colloquial conversations involving names, conversations involving current events, emphatic forms, and the context of code switching between the sign language and corresponding spoken language <span class="citation" data-cites="padden1998asl montemurro2018emphatic">(Padden <a href="#ref-padden1998asl" role="doc-biblioref">1998</a>; Montemurro and Brentari <a href="#ref-montemurro2018emphatic" role="doc-biblioref">2018</a>)</span>. The relative amount of fingerspelling varies between sign languages, and for American Sign Language (ASL) accounts for 12–35% of the signed content <span class="citation" data-cites="padden2003alphabet">(Padden and Gunsauls <a href="#ref-padden2003alphabet" role="doc-biblioref">2003</a>)</span>.</p>
+<p><span class="citation" data-cites="patrie2011fingerspelled">Patrie and Johnson (<a href="#ref-patrie2011fingerspelled" role="doc-biblioref">2011</a>)</span> describe the following terminology to describe three different forms of fingerspelling:</p>
+<ul>
+<li><strong>Careful</strong>—slower spelling where each letter pose is clearly formed.</li>
+<li><strong>Rapid</strong>—quick spelling where letters are often not completed and contain remnants of other letters in the word.</li>
+<li><strong>Lexicalized</strong>—a sign produced by often using no more than two letter-hand-shapes <span class="citation" data-cites="battison1978lexical">(Battison <a href="#ref-battison1978lexical" role="doc-biblioref">1978</a>)</span>.<br> For example, lexicalized <code>ALL</code> uses <code>A</code> and <code>L</code>, lexicalized <code>BUZZ</code> uses <code>B</code> and <code>Z</code>, etc…</li>
+</ul>
+<h4 id="recognition">Recognition</h4>
+<p>Fingerspelling recognition–a sub-task of sign language recognition–is the task to recognize fingerspelled words from a sign language video.</p>
+<p><span class="citation" data-cites="dataset:fs18slt">B. Shi et al. (<a href="#ref-dataset:fs18slt" role="doc-biblioref">2018</a>)</span> introduced a large dataset available for American Sign Language fingerspelling recognition. This dataset includes both the “careful”, and “rapid” forms of fingerspelling, collected from naturally occurring videos “in the wild” which are more challenging than studio scenario. They train a baseline model to take a sequence of images cropped around the signing hand, and either use an autoregressive decoder, or a CTC. They found that the CTC outperforms the autoregressive decoder model, but both achieve very low recognition rate (35-41% character level accuracy) compared to human performance (around 82%).</p>
+<p>In a followup work, <span class="citation" data-cites="dataset:fs18iccv">B. Shi et al. (<a href="#ref-dataset:fs18iccv" role="doc-biblioref">2019</a>)</span> collected nearly an order-of-magnitude larger dataset, and designed a new recognition model. Instead of detecting the signing hand they detect the face, and crop a large area around it. Then, they perform an iterative process of zooming in to the hand using visual attention, in order to retain sufficient information in high resolution of the hand. Finally, like their previous work, they encode the image hand crops sequence, and use a CTC to obtain the frame labels. They show that this method outperforms their original “hand crop” method by 4%, and that using the additional data collected they can achieve up-to 62.3% character level accuracy. Looking through this dataset, we note that the videos in the dataset are taken from longer videos, and as they are cut, they do not retain the signing before the fingerspelling. This context relates to language modeling, where at first one fingerspells a word carefully, and when repeating it, might fingerspell it rapidly, but the interlocutors can infer they are fingerspelling the same word.</p>
+<h4 id="production">Production</h4>
+<p>Fingerspelling production–a sub-task of sign language production–is the task to produce a fingerspelling video for words.</p>
+<p>In its most basic form, “Careful” fingerspelling production can be trivially solved using pre-defined letter handshapes interpolation. <span class="citation" data-cites="adeline2013fingerspell">Adeline (<a href="#ref-adeline2013fingerspell" role="doc-biblioref">2013</a>)</span> demonstrates this approach for American Sign Language and English fingerspelling. They rig a hand armature for each letter in the English alphabet (<span class="math inline"><em>N</em> = 26</span>) and generate all (<span class="math inline"><em>N</em><sup>2</sup> = 676</span>) transitions between every two letters using interpolation or manual animation. Then, to fingerspell full words, they chain pairs of letter transitions. For example, for the word “CHLOE”, they would chain the following transitions sequentially: <code>#C</code> <code>CH</code> <code>HL</code> <code>LO</code> <code>OE</code> <code>E#</code>.</p>
+<p>However, to produce life-like animations, one must also consider the rhythm and speed of holding letters, and transitioning between letters, as those can affect how intelligible fingerspelling motions are to an interlocutor (<span class="citation" data-cites="wilcox1992phonetics">Wilcox (<a href="#ref-wilcox1992phonetics" role="doc-biblioref">1992</a>)</span>). <span class="citation" data-cites="wheatland2016analysis">Wheatland et al. (<a href="#ref-wheatland2016analysis" role="doc-biblioref">2016</a>)</span> analyzes both “careful” and “rapid” fingerspelling videos for these features. They find that for both forms of fingerspelling, on average, the longer the word, the shorter the transition and hold time. Furthermore, they find that less time is spent on middle letters on average, and the last letter is held on average longer than the other letters in the word. Finally, they use this information to construct an animation system using letter pose interpolation and control the timing using a data-driven statistical model.</p>
+<h2 id="annotation-tools">Annotation Tools</h2>
+<h5 id="elan---eudico-linguistic-annotator">ELAN - EUDICO Linguistic Annotator</h5>
+<p><a href="https://archive.mpi.nl/tla/elan">ELAN</a> <span class="citation" data-cites="wittenburg2006elan">(Wittenburg et al. <a href="#ref-wittenburg2006elan" role="doc-biblioref">2006</a>)</span> is an annotation tool for audio and video recordings. With ELAN a user can add an unlimited number of textual annotations to audio and/or video recordings. An annotation can be a sentence, word or gloss, a comment, translation or a description of any feature observed in the media. Annotations can be created on multiple layers, called tiers, which can be hierarchically interconnected. An annotation can either be time-aligned to the media, or it can refer to other existing annotations. The content of annotations consists of Unicode text and annotation documents are stored in an XML format (EAF). ELAN is open source (<a href="https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3">GPLv3</a>), and installation is <a href="https://archive.mpi.nl/tla/elan/download">available</a> for Windows, macOS, and Linux. PyMPI <span class="citation" data-cites="pympi-1.69">(Lubbers and Torreira <a href="#ref-pympi-1.69" role="doc-biblioref">2013</a>)</span> allows for simple python interaction with Elan files.</p>
+<h5 id="ilex">iLex</h5>
+<p><a href="https://www.sign-lang.uni-hamburg.de/ilex/">iLex</a> <span class="citation" data-cites="hanke2002ilex">(Hanke <a href="#ref-hanke2002ilex" role="doc-biblioref">2002</a>)</span> is a tool for sign language lexicography and corpus analysis, that combines features found in empirical sign language lexicography and in sign language discourse transcription. It supports the user in integrated lexicon building while working on the transcription of a corpus and offers a number of unique features considered essential due to the specific nature of sign languages. iLex binaries are <a href="https://www.sign-lang.uni-hamburg.de/ilex/ilex.xml">available</a> for macOS.</p>
+<h5 id="signstream">SignStream</h5>
+<p><a href="http://www.bu.edu/asllrp/SignStream/3/">SignStream</a> <span class="citation" data-cites="neidle2001signstream">(Neidle, Sclaroff, and Athitsos <a href="#ref-neidle2001signstream" role="doc-biblioref">2001</a>)</span> is a tool for linguistic annotations and computer vision research on visual-gestural language data SignStream installation is only <a href="http://www.bu.edu/asllrp/SignStream/3/download-newSS.html">available</a> for old versions of MacOS, and is distributed under MIT license.</p>
+<h5 id="anvil---the-video-annotation-research-tool">Anvil - The Video Annotation Research Tool</h5>
+<p><a href="https://www.anvil-software.org/">Anvil</a> <span class="citation" data-cites="kipp2001anvil">(Kipp <a href="#ref-kipp2001anvil" role="doc-biblioref">2001</a>)</span> is a free video annotation tool, offering multi-layered annotation based on a user-defined coding scheme. In Anvil, the annotator can see color-coded elements on multiple tracks in time-alignment. Some special features are cross-level links, non-temporal objects, timepoint tracks, coding agreement analysis, 3D viewing of motion capture data and a project tool for managing whole corpora of annotation files. Anvil installation is <a href="https://www.anvil-software.org/download/index.html">available</a> for Windows, macOS, and Linux.</p>
+<h2 id="existing-datasets">Existing Datasets</h2>
+<p>Currently, there is no easy way or agreed upon format to download and load sign language datasets, and as such, evaluation on these datasets is scarce. As part of this work, we streamlined loading of available datasets using <a href="https://github.com/tensorflow/datasets">Tensorflow Datasets</a> <span class="citation" data-cites="TFDS">(“TensorFlow Datasets, a Collection of Ready-to-Use Datasets,” <a href="#ref-TFDS" role="doc-biblioref">n.d.</a>)</span>. This allows researchers to load large and small datasets alike with a simple command, and be comparable to other works:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>aslg_pc12 <span class="op">=</span> tfds.load(<span class="st">&#39;aslg_pc12&#39;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>config <span class="op">=</span> SignDatasetConfig(name<span class="op">=</span><span class="st">&quot;256x256:12&quot;</span>, include_video<span class="op">=</span><span class="va">True</span>, fps<span class="op">=</span><span class="dv">12</span>, resolution<span class="op">=</span>(<span class="dv">256</span>, <span class="dv">256</span>))</span>
+<span id="cb1-4"><a href="#cb1-4"></a>rwth_phoenix2014_t <span class="op">=</span> tfds.load(<span class="st">&#39;rwth_phoenix2014_t&#39;</span>, builder_kwargs<span class="op">=</span><span class="bu">dict</span>(config<span class="op">=</span>config))</span></code></pre></div>
+<p>Furthermore, we follow a unified interface for all datasets, making attributes the same, and comparable between datasets:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>{</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="st">&#39;id&#39;</span>: tfds.features.Text(),</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="st">&#39;signer&#39;</span>: tfds.features.Text() <span class="op">|</span> tf.int32,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="st">&#39;video&#39;</span>: tfds.features.Video(shape<span class="op">=</span>(<span class="va">None</span>, HEIGHT, WIDTH, <span class="dv">3</span>)),</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="st">&#39;depth_video&#39;</span>: tfds.features.Video(shape<span class="op">=</span>(<span class="va">None</span>, HEIGHT, WIDTH, <span class="dv">1</span>)),</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="st">&#39;fps&#39;</span>: tf.int32,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="st">&#39;pose&#39;</span>: {</span>
+<span id="cb2-8"><a href="#cb2-8"></a>        <span class="st">&#39;data&#39;</span>: tfds.features.Tensor(shape<span class="op">=</span>(<span class="va">None</span>, <span class="dv">1</span>, POINTS, CHANNELS), dtype<span class="op">=</span>tf.float32),</span>
+<span id="cb2-9"><a href="#cb2-9"></a>        <span class="st">&#39;conf&#39;</span>: tfds.features.Tensor(shape<span class="op">=</span>(<span class="va">None</span>, <span class="dv">1</span>, POINTS), dtype<span class="op">=</span>tf.float32)</span>
+<span id="cb2-10"><a href="#cb2-10"></a>    },</span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="st">&#39;gloss&#39;</span>: tfds.features.Text(),</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="st">&#39;text&#39;</span>: tfds.features.Text()</span>
+<span id="cb2-13"><a href="#cb2-13"></a>}</span></code></pre></div>
+<p>The following table contains a curated list of datasets including various sign languages and data formats:</p>
+<p>🎥 Video | 👋 Pose | 👄 Mouthing | ✍ Notation | 📋 Gloss | 📜 Text | 🔊 Speech</p>
+<div id="datasets-table" class="table">
+<table>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Publication</th>
+<th>Language</th>
+<th>Features</th>
+<th>#Signs</th>
+<th>#Samples</th>
+<th>#Signers</th>
+<th>License</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://nyu.databrary.org/volume/1062">ASL-100-RGBD</a></td>
+<td><span class="citation" data-cites="dataset:hassan-etal-2020-isolated">Hassan et al. (<a href="#ref-dataset:hassan-etal-2020-isolated" role="doc-biblioref">2020</a>)</span></td>
+<td>American</td>
+<td>🎥👋📋</td>
+<td>100</td>
+<td>4,150 Tokens</td>
+<td>22</td>
+<td><a href="https://nyu.databrary.org/volume/1062">Authorized Academics</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://achrafothman.net/site/asl-smt/">ASLG-PC12</a> <a href="https://github.com/huggingface/datasets/tree/master/datasets/aslg_pc12">💾</a></td>
+<td><span class="citation" data-cites="dataset:othman2012english">Othman and Jemni (<a href="#ref-dataset:othman2012english" role="doc-biblioref">2012</a>)</span></td>
+<td>American</td>
+<td>📋📜</td>
+<td></td>
+<td>&gt; 100,000,000 Sentences</td>
+<td>N/A</td>
+<td>Sample Available</td>
+</tr>
+<tr class="odd">
+<td><a href="http://vlm1.uta.edu/~athitsos/asl_lexicon/">ASLLVD</a></td>
+<td><span class="citation" data-cites="dataset:athitsos2008american">Athitsos et al. (<a href="#ref-dataset:athitsos2008american" role="doc-biblioref">2008</a>)</span></td>
+<td>American</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td>3,000</td>
+<td>12,000 Samples</td>
+<td>4</td>
+<td>Attribution</td>
+</tr>
+<tr class="even">
+<td>ATIS</td>
+<td><span class="citation" data-cites="dataset:bungeroth2008atis">Bungeroth et al. (<a href="#ref-dataset:bungeroth2008atis" role="doc-biblioref">2008</a>)</span></td>
+<td>Multilingual</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td>292</td>
+<td>595 Sentences</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="https://elar.soas.ac.uk/Collection/MPI55247">AUSLAN</a></td>
+<td><span class="citation" data-cites="dataset:johnston2010archive">Johnston (<a href="#ref-dataset:johnston2010archive" role="doc-biblioref">2010</a>)</span></td>
+<td>Australian</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td></td>
+<td>1,100 Videos</td>
+<td>100</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="http://chalearnlap.cvc.uab.es/dataset/40/description/">AUTSL</a> <a href="https://github.com/huggingface/datasets/tree/master/datasets/autsl">💾</a></td>
+<td><span class="citation" data-cites="dataset:sincan2020autsl">Sincan and Keles (<a href="#ref-dataset:sincan2020autsl" role="doc-biblioref">2020</a>)</span></td>
+<td>Turkish</td>
+<td>🎥📋</td>
+<td>226</td>
+<td>36,302 Samples</td>
+<td>43</td>
+<td><a href="https://competitions.codalab.org/competitions/27901#participate">Codalab</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.cmpe.boun.edu.tr/pilab/BosphorusSign/bosphorusSign_en.html">BosphorusSign</a></td>
+<td><span class="citation" data-cites="dataset:camgoz-etal-2016-bosphorussign">Camgöz et al. (<a href="#ref-dataset:camgoz-etal-2016-bosphorussign" role="doc-biblioref">2016</a>)</span></td>
+<td>Turkish</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td>636</td>
+<td>24,161 Samples</td>
+<td>6</td>
+<td>Not Published</td>
+</tr>
+<tr class="even">
+<td><a href="https://bslcorpusproject.org/">BSL Corpus</a></td>
+<td><span class="citation" data-cites="dataset:schembri2013building">Schembri et al. (<a href="#ref-dataset:schembri2013building" role="doc-biblioref">2013</a>)</span></td>
+<td>British</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td></td>
+<td>40,000 Lexical Items</td>
+<td>249</td>
+<td><a href="https://bslcorpusproject.org/cava/restricted-access-data/">Partially Restricted</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.slownikpjm.uw.edu.pl/en">CDPSL</a></td>
+<td><span class="citation" data-cites="dataset:acheta2014ACD">Łacheta and Rutkowski (<a href="#ref-dataset:acheta2014ACD" role="doc-biblioref">2014</a>)</span></td>
+<td>Polish</td>
+<td>🎥✍📜</td>
+<td></td>
+<td>300 hours</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="https://ttic.uchicago.edu/~klivescu/ChicagoFSWild.htm">ChicagoFSWild</a></td>
+<td><span class="citation" data-cites="dataset:fs18slt">B. Shi et al. (<a href="#ref-dataset:fs18slt" role="doc-biblioref">2018</a>)</span></td>
+<td>American</td>
+<td>🎥📜</td>
+<td>26</td>
+<td>7,304 Sequences</td>
+<td>160</td>
+<td>Public</td>
+</tr>
+<tr class="odd">
+<td><a href="https://ttic.uchicago.edu/~klivescu/ChicagoFSWild.htm">ChicagoFSWild+</a></td>
+<td><span class="citation" data-cites="dataset:fs18iccv">B. Shi et al. (<a href="#ref-dataset:fs18iccv" role="doc-biblioref">2019</a>)</span></td>
+<td>American</td>
+<td>🎥📜</td>
+<td>26</td>
+<td>55,232 Sequences</td>
+<td>260</td>
+<td>Public</td>
+</tr>
+<tr class="even">
+<td><a href="http://wearables.cc.gatech.edu/projects/copycat/">CopyCat</a></td>
+<td><span class="citation" data-cites="dataset:zafrulla2010novel">Zafrulla et al. (<a href="#ref-dataset:zafrulla2010novel" role="doc-biblioref">2010</a>)</span></td>
+<td>American</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td>22</td>
+<td>420 Phrases</td>
+<td>5</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.ru.nl/corpusngtuk/">Corpus NGT</a> <a href="https://github.com/huggingface/datasets/tree/master/datasets/ngt">💾</a></td>
+<td><span class="citation" data-cites="dataset:Crasborn2008TheCN">Crasborn and Zwitserlood (<a href="#ref-dataset:Crasborn2008TheCN" role="doc-biblioref">2008</a>)</span></td>
+<td>Netherlands</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td></td>
+<td>15 Hours</td>
+<td>92</td>
+<td><a href="https://creativecommons.org/licenses/by/3.0/nl/deed.en_GB">CC BY 3.0 NL</a></td>
+</tr>
+<tr class="even">
+<td><a href="http://vipl.ict.ac.cn/homepage/ksl/data.html">DEVISIGN</a></td>
+<td><span class="citation" data-cites="dataset:chai2014devisign">Chai, Wang, and Chen (<a href="#ref-dataset:chai2014devisign" role="doc-biblioref">2014</a>)</span></td>
+<td>Chinese</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td>2,000</td>
+<td>24,000 Samples</td>
+<td>8</td>
+<td><a href="http://vipl.ict.ac.cn/homepage/ksl/document/Agreement.pdf">Research purpose on request</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.sign-lang.uni-hamburg.de/dicta-sign/portal/">Dicta-Sign</a></td>
+<td><span class="citation" data-cites="dataset:matthes2012dicta">Matthes et al. (<a href="#ref-dataset:matthes2012dicta" role="doc-biblioref">2012</a>)</span></td>
+<td>Multilingual</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td></td>
+<td>6-8 Hours (/Participant)</td>
+<td>16-18 /Language</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>How2Sign</td>
+<td><span class="citation" data-cites="dataset:duarte2020how2sign">Duarte et al. (<a href="#ref-dataset:duarte2020how2sign" role="doc-biblioref">2020</a>)</span></td>
+<td>American</td>
+<td>🎥👋📋📜🔊</td>
+<td>16,000</td>
+<td>79 hours (35,000 sentences)</td>
+<td>11</td>
+<td>Not Published</td>
+</tr>
+<tr class="odd">
+<td><a href="https://krslproject.github.io/krsl20/">K-RSL</a></td>
+<td><span class="citation" data-cites="dataset:imashev2020dataset">Imashev et al. (<a href="#ref-dataset:imashev2020dataset" role="doc-biblioref">2020</a>)</span></td>
+<td>Kazakh-Russian</td>
+<td>🎥👋📜</td>
+<td>600</td>
+<td>28,250 Videos</td>
+<td>10</td>
+<td>Attribution</td>
+</tr>
+<tr class="even">
+<td>KETI</td>
+<td><span class="citation" data-cites="dataset:ko2019neural">Ko et al. (<a href="#ref-dataset:ko2019neural" role="doc-biblioref">2019</a>)</span></td>
+<td>Korean</td>
+<td>🎥👋📋📜</td>
+<td>524</td>
+<td>14,672 Videos</td>
+<td>14</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span> (emailed Sang-Ki Ko)</td>
+</tr>
+<tr class="odd">
+<td><a href="https://link.springer.com/content/pdf/10.3758/s13428-014-0560-1.pdf">LSE-SIGN</a></td>
+<td><span class="citation" data-cites="dataset:gutierrez2016lse">Gutierrez-Sigut et al. (<a href="#ref-dataset:gutierrez2016lse" role="doc-biblioref">2016</a>)</span></td>
+<td>Spanish</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td>2,400</td>
+<td>2,400 Samples</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="https://www.microsoft.com/en-us/download/details.aspx?id=100121">MS-ASL</a></td>
+<td><span class="citation" data-cites="dataset:joze2018ms">Joze and Koller (<a href="#ref-dataset:joze2018ms" role="doc-biblioref">2018</a>)</span></td>
+<td>American</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td>1,000</td>
+<td>25,000 (25 hours)</td>
+<td>200</td>
+<td>Public</td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.bu.edu/asllrp/ncslgr.html">NCSLGR</a> <a href="https://github.com/huggingface/datasets/tree/master/datasets/ncslgr">💾</a></td>
+<td><span class="citation" data-cites="dataset:databases2007volumes">Databases (<a href="#ref-dataset:databases2007volumes" role="doc-biblioref">2007</a>)</span></td>
+<td>American</td>
+<td>🎥📋📜</td>
+<td></td>
+<td>1,875 sentences</td>
+<td>4</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+</tr>
+<tr class="even">
+<td><a href="https://www.sign-lang.uni-hamburg.de/dgs-korpus/index.php/welcome.html">Public DGS Corpus</a></td>
+<td><span class="citation" data-cites="dataset:hanke-etal-2020-extending">Hanke et al. (<a href="#ref-dataset:hanke-etal-2020-extending" role="doc-biblioref">2020</a>)</span></td>
+<td>German</td>
+<td>🎥🎥👋👄✍📋📜📜</td>
+<td></td>
+<td>50 Hours</td>
+<td>330</td>
+<td><a href="https://www.sign-lang.uni-hamburg.de/meinedgs/ling/license_en.html">Custom</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://engineering.purdue.edu/RVL/Database/ASL/asl-database-front.htm">RVL-SLLL ASL</a></td>
+<td><span class="citation" data-cites="dataset:martinez2002purdue">Martínez et al. (<a href="#ref-dataset:martinez2002purdue" role="doc-biblioref">2002</a>)</span></td>
+<td>American</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td>104</td>
+<td>2,576 Videos</td>
+<td>14</td>
+<td><a href="https://engineering.purdue.edu/RVL/Database/ASL/Agreement.pdf">Research Attribution</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://www-i6.informatik.rwth-aachen.de/aslr/fingerspelling.php">RWTH Fingerspelling</a></td>
+<td><span class="citation" data-cites="dataset:dreuw2006modeling">Dreuw et al. (<a href="#ref-dataset:dreuw2006modeling" role="doc-biblioref">2006</a>)</span></td>
+<td>German</td>
+<td>🎥📜</td>
+<td>35</td>
+<td>1,400 single-char videos</td>
+<td>20</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="https://www-i6.informatik.rwth-aachen.de/aslr/database-rwth-boston-104.php">RWTH-BOSTON-104</a></td>
+<td><span class="citation" data-cites="dataset:dreuw2008benchmark">Dreuw et al. (<a href="#ref-dataset:dreuw2008benchmark" role="doc-biblioref">2008</a>)</span></td>
+<td>American</td>
+<td>🎥📜</td>
+<td>104</td>
+<td>201 Sentences</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="https://www-i6.informatik.rwth-aachen.de/~koller/RWTH-PHOENIX-2014-T/">RWTH-PHOENIX-Weather T</a> <a href="https://github.com/huggingface/datasets/tree/master/datasets/rwth_phoenix_weather_2014_t">💾</a></td>
+<td><span class="citation" data-cites="dataset:forster2014extensions">Forster et al. (<a href="#ref-dataset:forster2014extensions" role="doc-biblioref">2014</a>)</span>;<span class="citation" data-cites="cihan2018neural">Cihan Camgöz et al. (<a href="#ref-cihan2018neural" role="doc-biblioref">2018</a>)</span></td>
+<td>German</td>
+<td>🎥📋📜</td>
+<td>1,231</td>
+<td>8,257 Sentences</td>
+<td>9</td>
+<td><a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://research.cs.aalto.fi/cbir/data/s-pot/">S-pot</a></td>
+<td><span class="citation" data-cites="dataset:viitaniemi-etal-2014-pot">Viitaniemi et al. (<a href="#ref-dataset:viitaniemi-etal-2014-pot" role="doc-biblioref">2014</a>)</span></td>
+<td>Finnish</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td>1,211</td>
+<td>5,539 Videos</td>
+<td>5</td>
+<td><a href="mailto:leena.savolainen@kuurojenliitto.fi">Permission</a></td>
+</tr>
+<tr class="even">
+<td><a href="http://lojze.lugos.si/signor/">SIGNOR</a></td>
+<td><span class="citation" data-cites="dataset:vintar2012compiling">Vintar, Jerko, and Kulovec (<a href="#ref-dataset:vintar2012compiling" role="doc-biblioref">2012</a>)</span></td>
+<td>Slovene</td>
+<td>🎥👄✍📋📜</td>
+<td></td>
+<td></td>
+<td>80</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span> emailed Špela</td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.phonetik.uni-muenchen.de/forschung/Bas/SIGNUM/">SIGNUM</a></td>
+<td><span class="citation" data-cites="dataset:von2007towards">Von Agris and Kraiss (<a href="#ref-dataset:von2007towards" role="doc-biblioref">2007</a>)</span></td>
+<td>German</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td>450</td>
+<td>15,600 Sequences</td>
+<td>20</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>SMILE</td>
+<td><span class="citation" data-cites="dataset:ebling2018smile">Ebling et al. (<a href="#ref-dataset:ebling2018smile" role="doc-biblioref">2018</a>)</span></td>
+<td>Swiss-German</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td>100</td>
+<td>9,000 Samples</td>
+<td>30</td>
+<td>Not Published</td>
+</tr>
+<tr class="odd">
+<td><a href="https://teckensprakskorpus.su.se">SSL Corpus</a></td>
+<td><span class="citation" data-cites="dataset:oqvist-etal-2020-sts">Öqvist, Riemer Kankkonen, and Mesch (<a href="#ref-dataset:oqvist-etal-2020-sts" role="doc-biblioref">2020</a>)</span></td>
+<td>Swedish</td>
+<td>🎥✍📋📜</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span> In January</td>
+</tr>
+<tr class="even">
+<td><a href="https://teckensprakslexikon.su.se/">SSL Lexicon</a></td>
+<td><span class="citation" data-cites="dataset:mesch2012meaning">Mesch and Wallin (<a href="#ref-dataset:mesch2012meaning" role="doc-biblioref">2012</a>)</span></td>
+<td>Swedish</td>
+<td>🎥📋📜📜</td>
+<td>20,000</td>
+<td></td>
+<td></td>
+<td><a href="https://creativecommons.org/licenses/by-nc-sa/2.5/se/">CC BY-NC-SA 2.5 SE</a></td>
+</tr>
+<tr class="odd">
+<td><a href="http://home.ustc.edu.cn/~pjh/openresources/cslr-dataset-2015/index.html">Video-Based CSL</a></td>
+<td><span class="citation" data-cites="dataset:huang2018video">Huang et al. (<a href="#ref-dataset:huang2018video" role="doc-biblioref">2018</a>)</span></td>
+<td>Chinese</td>
+<td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
+<td>178</td>
+<td>25,000 Videos</td>
+<td>50</td>
+<td><a href="https://rec.ustc.edu.cn/share/475ac440-dab7-11ea-963e-ebae3cfe5012">Research Attribution</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://dxli94.github.io/WLASL/">WLASL</a> <a href="https://github.com/huggingface/datasets/tree/master/datasets/wlasl">💾</a></td>
+<td><span class="citation" data-cites="dataset:li2020word">Li et al. (<a href="#ref-dataset:li2020word" role="doc-biblioref">2020</a>)</span></td>
+<td>American</td>
+<td>🎥📋</td>
+<td>2,000</td>
+<td></td>
+<td>100</td>
+<td><a href="https://github.com/microsoft/Computational-Use-of-Data-Agreement">C-UDA 1.0</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="references">References</h2>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-31378662-10"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'UA-31378662-10');
+</script>
+<div id="refs" class="references hanging-indent" role="doc-bibliography">
+<div id="ref-abeille1991using">
+<p>Abeillé, Anne, Yves Schabes, and Aravind K Joshi. 1991. “Using Lexicalized Tags for Machine Translation.”</p>
+</div>
+<div id="ref-adeline2013fingerspell">
+<p>Adeline, Chloe. 2013. “Fingerspell.net.” <a href="http://fingerspell.net/">http://fingerspell.net/</a>.</p>
+</div>
+<div id="ref-dataset:athitsos2008american">
+<p>Athitsos, Vassilis, Carol Neidle, Stan Sclaroff, Joan Nash, Alexandra Stefan, Quan Yuan, and Ashwin Thangali. 2008. “The American Sign Language Lexicon Video Dataset.” In <em>2008 Ieee Computer Society Conference on Computer Vision and Pattern Recognition Workshops</em>, 1–8. IEEE.</p>
+</div>
+<div id="ref-bahdanau2014neural">
+<p>Bahdanau, Dzmitry, Kyunghyun Cho, and Yoshua Bengio. 2015. “Neural Machine Translation by Jointly Learning to Align and Translate.” Edited by Yoshua Bengio and Yann LeCun. <a href="http://arxiv.org/abs/1409.0473">http://arxiv.org/abs/1409.0473</a>.</p>
+</div>
+<div id="ref-battison1978lexical">
+<p>Battison, Robbin. 1978. “Lexical Borrowing in American Sign Language.”</p>
+</div>
+<div id="ref-writing:bergman1977tecknad">
+<p>Bergman, Brita. 1977. <em>Tecknad Svenska:[Signed Swedish]</em>. LiberLäromedel/Utbildningsförl.:</p>
+</div>
+<div id="ref-detection:borg2019sign">
+<p>Borg, Mark, and Kenneth P Camilleri. 2019. “Sign Language Detection "in the Wild" with Recurrent Neural Networks.” In <em>ICASSP 2019-2019 Ieee International Conference on Acoustics, Speech and Signal Processing (Icassp)</em>, 1637–41. IEEE.</p>
+</div>
+<div id="ref-bragg2019sign">
+<p>Bragg, Danielle, Oscar Koller, Mary Bellard, Larwan Berke, Patrick Boudreault, Annelies Braffort, Naomi Caselli, et al. 2019. “Sign Language Recognition, Generation, and Translation: An Interdisciplinary Perspective.” In <em>The 21st International Acm Sigaccess Conference on Computers and Accessibility</em>, 16–31.</p>
+</div>
+<div id="ref-brentari2001language">
+<p>Brentari, Diane, and Carol Padden. 2001. “A Language with Multiple Origins: Native and Foreign Vocabulary in American Sign Language.” <em>Foreign Vocabulary in Sign Language: A Cross-Linguistic Investigation of Word Formation</em>, 87–119.</p>
+</div>
+<div id="ref-dataset:fs18iccv">
+<p>B. Shi, A. Martinez Del Rio, J. Keane, D. Brentari, G. Shakhnarovich, and K. Livescu. 2019. “Fingerspelling Recognition in the Wild with Iterative Visual Attention.” <em>ICCV</em>.</p>
+</div>
+<div id="ref-dataset:fs18slt">
+<p>B. Shi, A. Martinez Del Rio, J. Keane, J. Michaux, D. Brentari G. Shakhnarovich, and K. Livescu. 2018. “American Sign Language Fingerspelling Recognition in the Wild.” <em>SLT</em>.</p>
+</div>
+<div id="ref-dataset:bungeroth2008atis">
+<p>Bungeroth, Jan, Daniel Stein, Philippe Dreuw, Hermann Ney, Sara Morrissey, Andy Way, and Lynette van Zijl. 2008. “The ATIS Sign Language Corpus.” In <em>Proceedings of the Sixth International Conference on Language Resources and Evaluation (LREC’08)</em>. Marrakech, Morocco: European Language Resources Association (ELRA). <a href="http://www.lrec-conf.org/proceedings/lrec2008/pdf/748_paper.pdf">http://www.lrec-conf.org/proceedings/lrec2008/pdf/748_paper.pdf</a>.</p>
+</div>
+<div id="ref-dataset:camgoz-etal-2016-bosphorussign">
+<p>Camgöz, Necati Cihan, Ahmet Alp Kındıroğ lu, Serpil Karabüklü, Meltem Kelepir, Ayş e Sumru Özsoy, and Lale Akarun. 2016. “BosphorusSign: A Turkish Sign Language Recognition Corpus in Health and Finance Domains.” In <em>Proceedings of the Tenth International Conference on Language Resources and Evaluation (LREC’16)</em>, 1383–8. Portorož, Slovenia: European Language Resources Association (ELRA). <a href="https://www.aclweb.org/anthology/L16-1220">https://www.aclweb.org/anthology/L16-1220</a>.</p>
+</div>
+<div id="ref-camgoz2020multi">
+<p>Camgöz, Necati Cihan, Oscar Koller, Simon Hadfield, and Richard Bowden. 2020. “Multi-Channel Transformers for Multi-Articulatory Sign Language Translation.” <em>arXiv Preprint arXiv:2009.00299</em>.</p>
+</div>
+<div id="ref-pose:cao2017realtime">
+<p>Cao, Zhe, Tomas Simon, Shih-En Wei, and Yaser Sheikh. 2017. “Realtime Multi-Person 2D Pose Estimation Using Part Affinity Fields.” In <em>CVPR</em>.</p>
+</div>
+<div id="ref-pose:cao2018openpose">
+<p>Cao, Z., G. Hidalgo Martinez, T. Simon, S. Wei, and Y. A. Sheikh. 2019. “OpenPose: Realtime Multi-Person 2D Pose Estimation Using Part Affinity Fields.” <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em>.</p>
+</div>
+<div id="ref-dataset:chai2014devisign">
+<p>Chai, Xiujuan, Hanjie Wang, and Xilin Chen. 2014. “The Devisign Large Vocabulary of Chinese Sign Language Database and Baseline Evaluations.” <em>Technical Report VIPL-TR-14-SLR-001. Key Lab of Intelligent Information Processing of Chinese Academy of Sciences (CAS), Institute of Computing Technology, CAS</em>.</p>
+</div>
+<div id="ref-pose:chan2019everybody">
+<p>Chan, Caroline, Shiry Ginosar, Tinghui Zhou, and Alexei A Efros. 2019. “Everybody Dance Now.” In <em>Proceedings of the Ieee International Conference on Computer Vision</em>, 5933–42.</p>
+</div>
+<div id="ref-pose:chen2017adversarial">
+<p>Chen, Yu, Chunhua Shen, Xiu-Shen Wei, Lingqiao Liu, and Jian Yang. 2017. “Adversarial Posenet: A Structure-Aware Convolutional Network for Human Pose Estimation.” In <em>Proceedings of the Ieee International Conference on Computer Vision</em>, 1212–21.</p>
+</div>
+<div id="ref-cho2014learning">
+<p>Cho, Kyunghyun, Bart Van Merriënboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, and Yoshua Bengio. 2014. “Learning Phrase Representations Using Rnn Encoder-Decoder for Statistical Machine Translation.” <em>arXiv Preprint arXiv:1406.1078</em>.</p>
+</div>
+<div id="ref-cihan2018neural">
+<p>Cihan Camgöz, Necati, Simon Hadfield, Oscar Koller, Hermann Ney, and Richard Bowden. 2018. “Neural Sign Language Translation.” In <em>Proceedings of the Ieee Conference on Computer Vision and Pattern Recognition</em>, 7784–93.</p>
+</div>
+<div id="ref-camgoz2020sign">
+<p>Cihan Camgöz, Necati, Oscar Koller, Simon Hadfield, and Richard Bowden. 2020. “Sign Language Transformers: Joint End-to-End Sign Language Recognition and Translation.” In <em>Proceedings of the Ieee/Cvf Conference on Computer Vision and Pattern Recognition</em>, 10023–33.</p>
+</div>
+<div id="ref-dataset:Crasborn2008TheCN">
+<p>Crasborn, O., and I. Zwitserlood. 2008. “The Corpus Ngt: An Online Corpus for Professionals and Laymen.” In.</p>
+</div>
+<div id="ref-cui2017recurrent">
+<p>Cui, Runpeng, Hu Liu, and Changshui Zhang. 2017. “Recurrent Convolutional Neural Networks for Continuous Sign Language Recognition by Staged Optimization.” In <em>Proceedings of the Ieee Conference on Computer Vision and Pattern Recognition</em>, 7361–9.</p>
+</div>
+<div id="ref-dataset:databases2007volumes">
+<p>Databases, NCSLGR. 2007. “Volumes 2–7.” American Sign Language Linguistic Research Project (Distributed on CD-ROM ….</p>
+</div>
+<div id="ref-deng2009imagenet">
+<p>Deng, Jia, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li Fei-Fei. 2009. “Imagenet: A Large-Scale Hierarchical Image Database.” In <em>2009 Ieee Conference on Computer Vision and Pattern Recognition</em>, 248–55. Ieee.</p>
+</div>
+<div id="ref-dataset:dreuw2006modeling">
+<p>Dreuw, Philippe, Thomas Deselaers, Daniel Keysers, and Hermann Ney. 2006. “Modeling Image Variability in Appearance-Based Gesture Recognition.” In <em>ECCV Workshop on Statistical Methods in Multi-Image and Video Processing</em>, 7–18.</p>
+</div>
+<div id="ref-dataset:dreuw2008benchmark">
+<p>Dreuw, Philippe, Carol Neidle, Vassilis Athitsos, Stan Sclaroff, and Hermann Ney. 2008. “Benchmark Databases for Video-Based Automatic Sign Language Recognition.” In <em>LREC</em>.</p>
+</div>
+<div id="ref-dataset:duarte2020how2sign">
+<p>Duarte, Amanda, Shruti Palaskar, Deepti Ghadiyaram, Kenneth DeHaan, Florian Metze, Jordi Torres, and Xavier Giro-i-Nieto. 2020. “How2Sign: A Large-Scale Multimodal Dataset for Continuous American Sign Language.” <em>arXiv Preprint arXiv:2008.08143</em>.</p>
+</div>
+<div id="ref-dataset:ebling2018smile">
+<p>Ebling, Sarah, Necati Cihan Camg ö z, Penny Boyes Braem, Katja Tissi, Sandra Sidler-Miserez, Stephanie Stoll, Simon Hadfield, et al. 2018. “SMILE Swiss German Sign Language Dataset.” In <em>Proceedings of the Eleventh International Conference on Language Resources and Evaluation (LREC 2018)</em>. Miyazaki, Japan: European Language Resources Association (ELRA). <a href="https://www.aclweb.org/anthology/L18-1666">https://www.aclweb.org/anthology/L18-1666</a>.</p>
+</div>
+<div id="ref-dataset:forster2014extensions">
+<p>Forster, Jens, Christoph Schmidt, Oscar Koller, Martin Bellgardt, and Hermann Ney. 2014. “Extensions of the Sign Language Recognition and Translation Corpus Rwth-Phoenix-Weather.” In <em>LREC</em>, 1911–6.</p>
+</div>
+<div id="ref-identification:gebre2013automatic">
+<p>Gebre, Binyam Gebrekidan, Peter Wittenburg, and Tom Heskes. 2013. “Automatic Sign Language Identification.” In <em>2013 Ieee International Conference on Image Processing</em>, 2626–30. IEEE.</p>
+</div>
+<div id="ref-pose:girocan2020slrtp">
+<p>Giró-i-Nieto, Xavier. 2020. “Can Everybody Sign Now? Exploring Sign Language Video Generation from 2D Poses.”</p>
+</div>
+<div id="ref-graves2006connectionist">
+<p>Graves, Alex, Santiago Fernández, Faustino Gomez, and Jürgen Schmidhuber. 2006. “Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks.” In <em>Proceedings of the 23rd International Conference on Machine Learning</em>, 369–76.</p>
+</div>
+<div id="ref-mediapipe2020holistic">
+<p>Grishchenko, Ivan, and Valentin Bazarevsky. 2020. “MediaPipe Holistic.” <a href="https://google.github.io/mediapipe/solutions/holistic.html">https://google.github.io/mediapipe/solutions/holistic.html</a>.</p>
+</div>
+<div id="ref-dataset:gutierrez2016lse">
+<p>Gutierrez-Sigut, Eva, Brendan Costello, Cristina Baus, and Manuel Carreiras. 2016. “LSE-Sign: A Lexical Database for Spanish Sign Language.” <em>Behavior Research Methods</em> 48 (1): 123–37.</p>
+</div>
+<div id="ref-pose:alp2018densepose">
+<p>Güler, Rıza Alp, Natalia Neverova, and Iasonas Kokkinos. 2018. “Densepose: Dense Human Pose Estimation in the Wild.” In <em>Proceedings of the Ieee Conference on Computer Vision and Pattern Recognition</em>, 7297–7306.</p>
+</div>
+<div id="ref-hanke2002ilex">
+<p>Hanke, Thomas. 2002. “ILex-a Tool for Sign Language Lexicography and Corpus Analysis.” In <em>LREC</em>.</p>
+</div>
+<div id="ref-dataset:hanke-etal-2020-extending">
+<p>Hanke, Thomas, Marc Schulder, Reiner Konrad, and Elena Jahn. 2020. “Extending the Public DGS Corpus in Size and Depth.” In <em>Proceedings of the Lrec2020 9th Workshop on the Representation and Processing of Sign Languages: Sign Language Resources in the Service of the Language Community, Technological Challenges and Application Perspectives</em>, 75–82. Marseille, France: European Language Resources Association (ELRA). <a href="https://www.aclweb.org/anthology/2020.signlang-1.12">https://www.aclweb.org/anthology/2020.signlang-1.12</a>.</p>
+</div>
+<div id="ref-dataset:hassan-etal-2020-isolated">
+<p>Hassan, Saad, Larwan Berke, Elahe Vahdani, Longlong Jing, Yingli Tian, and Matt Huenerfauth. 2020. “An Isolated-Signing RGBD Dataset of 100 American Sign Language Signs Produced by Fluent ASL Signers.” In <em>Proceedings of the Lrec2020 9th Workshop on the Representation and Processing of Sign Languages: Sign Language Resources in the Service of the Language Community, Technological Challenges and Application Perspectives</em>, 89–94. Marseille, France: European Language Resources Association (ELRA). <a href="https://www.aclweb.org/anthology/2020.signlang-1.14">https://www.aclweb.org/anthology/2020.signlang-1.14</a>.</p>
+</div>
+<div id="ref-dataset:huang2018video">
+<p>Huang, Jie, Wengang Zhou, Qilin Zhang, Houqiang Li, and Weiping Li. 2018. “Video-Based Sign Language Recognition Without Temporal Segmentation.” <em>arXiv Preprint arXiv:1801.10111</em>.</p>
+</div>
+<div id="ref-dataset:imashev2020dataset">
+<p>Imashev, Alfarabi, Medet Mukushev, Vadim Kimmelman, and Anara Sandygulova. 2020. “A Dataset for Linguistic Understanding, Visual Evaluation, and Recognition of Sign Languages: The K-Rsl.” In <em>Proceedings of the 24th Conference on Computational Natural Language Learning</em>, 631–40.</p>
+</div>
+<div id="ref-isola2017image">
+<p>Isola, Phillip, Jun-Yan Zhu, Tinghui Zhou, and Alexei A Efros. 2017. “Image-to-Image Translation with Conditional Adversarial Networks.” In <em>Proceedings of the Ieee Conference on Computer Vision and Pattern Recognition</em>, 1125–34.</p>
+</div>
+<div id="ref-dataset:johnston2010archive">
+<p>Johnston, Trevor. 2010. “From Archive to Corpus: Transcription and Annotation in the Creation of Signed Language Corpora.” <em>International Journal of Corpus Linguistics</em> 15 (1): 106–31.</p>
+</div>
+<div id="ref-dataset:joze2018ms">
+<p>Joze, Hamid Reza Vaezi, and Oscar Koller. 2018. “Ms-Asl: A Large-Scale Data Set and Benchmark for Understanding American Sign Language.” <em>arXiv Preprint arXiv:1812.01053</em>.</p>
+</div>
+<div id="ref-kipp2001anvil">
+<p>Kipp, Michael. 2001. “Anvil-a Generic Annotation Tool for Multimodal Dialogue.” In <em>Seventh European Conference on Speech Communication and Technology</em>.</p>
+</div>
+<div id="ref-dataset:ko2019neural">
+<p>Ko, Sang-Ki, Chang Jo Kim, Hyedong Jung, and Choongsang Cho. 2019. “Neural Sign Language Translation Based on Human Keypoint Estimation.” <em>Applied Sciences</em> 9 (13): 2683.</p>
+</div>
+<div id="ref-koller2019weakly">
+<p>Koller, Oscar, Cihan Camgöz, Hermann Ney, and Richard Bowden. 2019. “Weakly Supervised Learning with Multi-Stream Cnn-Lstm-Hmms to Discover Sequential Parallelism in Sign Language Videos.” <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em>.</p>
+</div>
+<div id="ref-krizhevsky2012imagenet">
+<p>Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E Hinton. 2012. “Imagenet Classification with Deep Convolutional Neural Networks.” In <em>Advances in Neural Information Processing Systems</em>, 1097–1105.</p>
+</div>
+<div id="ref-lebert2008project">
+<p>Lebert, Marie. 2008. “Project Gutenberg (1971-2008).” Project Gutenberg.</p>
+</div>
+<div id="ref-dataset:li2020word">
+<p>Li, Dongxu, Cristian Rodriguez, Xin Yu, and Hongdong Li. 2020. “Word-Level Deep Sign Language Recognition from Video: A New Large-Scale Dataset and Methods Comparison.” In <em>The Ieee Winter Conference on Applications of Computer Vision</em>, 1459–69.</p>
+</div>
+<div id="ref-pympi-1.69">
+<p>Lubbers, Mart, and Francisco Torreira. 2013. “Pympi-Ling: A Python Module for Processing ELANs EAF and Praats TextGrid Annotation Files.” <a href="https://pypi.python.org/pypi/pympi-ling">https://pypi.python.org/pypi/pympi-ling</a>.</p>
+</div>
+<div id="ref-luong2015effective">
+<p>Luong, Minh-Thang, Hieu Pham, and Christopher D Manning. 2015. “Effective Approaches to Attention-Based Neural Machine Translation.” <em>arXiv Preprint arXiv:1508.04025</em>.</p>
+</div>
+<div id="ref-dataset:martinez2002purdue">
+<p>Martínez, Aleix M, Ronnie B Wilbur, Robin Shay, and Avinash C Kak. 2002. “Purdue Rvl-Slll Asl Database for Automatic Recognition of American Sign Language.” In <em>Proceedings. Fourth Ieee International Conference on Multimodal Interfaces</em>, 167–72. IEEE.</p>
+</div>
+<div id="ref-dataset:matthes2012dicta">
+<p>Matthes, Silke, Thomas Hanke, Anja Regen, Jakob Storz, Satu Worseck, Eleni Efthimiou, Athanasia-Lida Dimou, Annelies Braffort, John Glauert, and Eva Safar. 2012. “Dicta-Sign–Building a Multilingual Sign Language Corpus.” In <em>Proceedings of the 5th Workshop on the Representation and Processing of Sign Languages: Interactions Between Corpus and Lexicon (Lrec 2012)</em>.</p>
+</div>
+<div id="ref-dataset:mesch2012meaning">
+<p>Mesch, Johanna, and Lars Wallin. 2012. “From Meaning to Signs and Back: Lexicography and the Swedish Sign Language Corpus.” In <em>Proceedings of the 5th Workshop on the Representation and Processing of Sign Languages: Interactions Between Corpus and Lexicon [Language Resources and Evaluation Conference (Lrec)]</em>, 123–26.</p>
+</div>
+<div id="ref-min2012motion">
+<p>Min, Jianyuan, and Jinxiang Chai. 2012. “Motion Graphs++ a Compact Generative Model for Semantic Motion Analysis and Synthesis.” <em>ACM Transactions on Graphics (TOG)</em> 31 (6): 1–12.</p>
+</div>
+<div id="ref-identification:monteiro2016detecting">
+<p>Monteiro, Caio DD, Christy Maria Mathew, Ricardo Gutierrez-Osuna, and Frank Shipman. 2016. “Detecting and Identifying Sign Languages Through Visual Features.” In <em>2016 Ieee International Symposium on Multimedia (Ism)</em>, 287–90. IEEE.</p>
+</div>
+<div id="ref-montemurro2018emphatic">
+<p>Montemurro, Kathryn, and Diane Brentari. 2018. “Emphatic Fingerspelling as Code-Mixing in American Sign Language.” <em>Proceedings of the Linguistic Society of America</em> 3 (1): 61–61.</p>
+</div>
+<div id="ref-detection:moryossef2020real">
+<p>Moryossef, Amit, Ioannis Tsochantaridis, Roee Yosef Aharoni, Sarah Ebling, and Srini Narayanan. 2020. “Real-Time Sign-Language Detection Using Human Pose Estimation.”</p>
+</div>
+<div id="ref-neidle2001signstream">
+<p>Neidle, Carol, Stan Sclaroff, and Vassilis Athitsos. 2001. “SignStream: A Tool for Linguistic and Computer Vision Research on Visual-Gestural Language Data.” <em>Behavior Research Methods, Instruments, &amp; Computers</em> 33 (3): 311–20.</p>
+</div>
+<div id="ref-nguyen2019deep">
+<p>Nguyen, Thanh Thi, Cuong M Nguyen, Dung Tien Nguyen, Duc Thanh Nguyen, and Saeid Nahavandi. 2019. “Deep Learning for Deepfakes Creation and Detection.” <em>arXiv Preprint arXiv:1909.11573</em> 1.</p>
+</div>
+<div id="ref-dataset:othman2012english">
+<p>Othman, Achraf, and Mohamed Jemni. 2012. “English-Asl Gloss Parallel Corpus 2012: Aslg-Pc12.” In <em>5th Workshop on the Representation and Processing of Sign Languages: Interactions Between Corpus and Lexicon Lrec</em>.</p>
+</div>
+<div id="ref-dataset:oqvist-etal-2020-sts">
+<p>Öqvist, Zrajm, Nikolaus Riemer Kankkonen, and Johanna Mesch. 2020. “STS-Korpus: A Sign Language Web Corpus Tool for Teaching and Public Use.” In <em>Proceedings of the Lrec2020 9th Workshop on the Representation and Processing of Sign Languages: Sign Language Resources in the Service of the Language Community, Technological Challenges and Application Perspectives</em>, 177–80. Marseille, France: European Language Resources Association (ELRA). <a href="https://www.aclweb.org/anthology/2020.signlang-1.29">https://www.aclweb.org/anthology/2020.signlang-1.29</a>.</p>
+</div>
+<div id="ref-padden1998asl">
+<p>Padden, Carol A. 1998. “The Asl Lexicon.” <em>Sign Language &amp; Linguistics</em> 1 (1): 39–60.</p>
+</div>
+<div id="ref-padden2003alphabet">
+<p>Padden, Carol A, and Darline Clark Gunsauls. 2003. “How the Alphabet Came to Be Used in a Sign Language.” <em>Sign Language Studies</em>, 10–33.</p>
+</div>
+<div id="ref-pose:panteleris2018using">
+<p>Panteleris, Paschalis, Iason Oikonomidis, and Antonis Argyros. 2018. “Using a Single Rgb Frame for Real Time 3d Hand Pose Estimation in the Wild.” In <em>2018 Ieee Winter Conference on Applications of Computer Vision (Wacv)</em>, 436–45. IEEE.</p>
+</div>
+<div id="ref-patrie2011fingerspelled">
+<p>Patrie, Carol J, and Robert E Johnson. 2011. <em>Fingerspelled Word Recognition Through Rapid Serial Visual Presentation: RSVP</em>. DawnSignPress.</p>
+</div>
+<div id="ref-pose:pavllo20193d">
+<p>Pavllo, Dario, Christoph Feichtenhofer, David Grangier, and Michael Auli. 2019. “3d Human Pose Estimation in Video with Temporal Convolutions and Semi-Supervised Training.” In <em>Proceedings of the Ieee Conference on Computer Vision and Pattern Recognition</em>, 7753–62.</p>
+</div>
+<div id="ref-pose:pishchulin2012articulated">
+<p>Pishchulin, Leonid, Arjun Jain, Mykhaylo Andriluka, Thorsten Thorm ä hlen, and Bernt Schiele. 2012. “Articulated People Detection and Pose Estimation: Reshaping the Future.” In <em>2012 Ieee Conference on Computer Vision and Pattern Recognition</em>, 3178–85. IEEE.</p>
+</div>
+<div id="ref-writing:prillwitz1990hamburg">
+<p>Prillwitz, Siegmund, and Heiko Zienert. 1990. “Hamburg Notation System for Sign Language: Development of a Sign Writing with Computer Application.” In <em>Current Trends in European Sign Language Research. Proceedings of the 3rd European Congress on Sign Language Research</em>, 355–79.</p>
+</div>
+<div id="ref-sandler2006sign">
+<p>Sandler, Wendy, and Diane Lillo-Martin. 2006. <em>Sign Language and Linguistic Universals</em>. Cambridge University Press.</p>
+</div>
+<div id="ref-saunders2020everybody">
+<p>Saunders, Ben, Necati Cihan Camgöz, and Richard Bowden. 2020. “Everybody Sign Now: Translating Spoken Language to Photo Realistic Sign Language Video.” <em>arXiv Preprint arXiv:2011.09846</em>.</p>
+</div>
+<div id="ref-savitzky1964smoothing">
+<p>Savitzky, Abraham, and Marcel JE Golay. 1964. “Smoothing and Differentiation of Data by Simplified Least Squares Procedures.” <em>Analytical Chemistry</em> 36 (8): 1627–39.</p>
+</div>
+<div id="ref-dataset:schembri2013building">
+<p>Schembri, Adam, Jordan Fenlon, Ramas Rentelis, Sally Reynolds, and Kearsy Cormier. 2013. “Building the British Sign Language Corpus.” <em>Language Documentation &amp; Conservation</em> 7: 136–54.</p>
+</div>
+<div id="ref-shieber1994restricting">
+<p>Shieber, Stuart M. 1994. “RESTRICTING the Weak-Generative Capacity of Synchronous Tree-Adjoining Grammars.” <em>Computational Intelligence</em> 10 (4): 371–85.</p>
+</div>
+<div id="ref-shieber1990synchronous">
+<p>Shieber, Stuart, and Yves Schabes. 1990. “Synchronous Tree-Adjoining Grammars.” In <em>Proceedings of the 13th International Conference on Computational Linguistics</em>. Association for Computational Linguistics.</p>
+</div>
+<div id="ref-pose:simon2017hand">
+<p>Simon, Tomas, Hanbyul Joo, Iain Matthews, and Yaser Sheikh. 2017. “Hand Keypoint Detection in Single Images Using Multiview Bootstrapping.” In <em>CVPR</em>.</p>
+</div>
+<div id="ref-simonyan2015very">
+<p>Simonyan, Karen, and Andrew Zisserman. 2015. “Very Deep Convolutional Networks for Large-Scale Image Recognition.” <em>CoRR</em>.</p>
+</div>
+<div id="ref-dataset:sincan2020autsl">
+<p>Sincan, Ozge Mercanoglu, and Hacer Yalim Keles. 2020. “AUTSL: A Large Scale Multi-Modal Turkish Sign Language Dataset and Baseline Methods.” <em>IEEE Access</em> 8: 181340–55.</p>
+</div>
+<div id="ref-writing:stokoe2005sign">
+<p>Stokoe Jr, William C. 2005. “Sign Language Structure: An Outline of the Visual Communication Systems of the American Deaf.” <em>Journal of Deaf Studies and Deaf Education</em> 10 (1): 3–37.</p>
+</div>
+<div id="ref-stoll2018sign">
+<p>Stoll, Stephanie, Necati Cihan Camgöz, Simon Hadfield, and Richard Bowden. 2018. “Sign Language Production Using Neural Machine Translation and Generative Adversarial Networks.” In <em>Proceedings of the 29th British Machine Vision Conference (Bmvc 2018)</em>. British Machine Vision Association.</p>
+</div>
+<div id="ref-stoll2020text2sign">
+<p>———. 2020. “Text2Sign: Towards Sign Language Production Using Neural Machine Translation and Generative Adversarial Networks.” <em>International Journal of Computer Vision</em>, 1–18.</p>
+</div>
+<div id="ref-writing:sutton1990lessons">
+<p>Sutton, Valerie. 1990. <em>Lessons in Sign Writing</em>. SignWriting.</p>
+</div>
+<div id="ref-TFDS">
+<p>“TensorFlow Datasets, a Collection of Ready-to-Use Datasets.” n.d. <a href="https://www.tensorflow.org/datasets">https://www.tensorflow.org/datasets</a>.</p>
+</div>
+<div id="ref-vaswani2017attention">
+<p>Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. “Attention Is All You Need.” In <em>Advances in Neural Information Processing Systems</em>, 5998–6008.</p>
+</div>
+<div id="ref-dataset:viitaniemi-etal-2014-pot">
+<p>Viitaniemi, Ville, Tommi Jantunen, Leena Savolainen, Matti Karppa, and Jorma Laaksonen. 2014. “S-Pot - a Benchmark in Spotting Signs Within Continuous Signing.” In <em>Proceedings of the Ninth International Conference on Language Resources and Evaluation (LREC’14)</em>, 1892–7. Reykjavik, Iceland: European Language Resources Association (ELRA). <a href="http://www.lrec-conf.org/proceedings/lrec2014/pdf/440_Paper.pdf">http://www.lrec-conf.org/proceedings/lrec2014/pdf/440_Paper.pdf</a>.</p>
+</div>
+<div id="ref-dataset:vintar2012compiling">
+<p>Vintar, Špela, Boštjan Jerko, and Marjetka Kulovec. 2012. “Compiling the Slovene Sign Language Corpus.” In <em>5th Workshop on the Representation and Processing of Sign Languages: Interactions Between Corpus and Lexicon. Language Resources and Evaluation Conference (Lrec)</em>, 5:159–62.</p>
+</div>
+<div id="ref-vogler2005analysis">
+<p>Vogler, Christian, and Siome Goldenstein. 2005. “Analysis of Facial Expressions in American Sign Language.” In <em>Proc, of the 3rd Int. Conf. On Universal Access in Human-Computer Interaction, Springer</em>.</p>
+</div>
+<div id="ref-dataset:von2007towards">
+<p>Von Agris, Ulrich, and Karl-Friedrich Kraiss. 2007. “Towards a Video Corpus for Signer-Independent Continuous Sign Language Recognition.” <em>Gesture in Human-Computer Interaction and Simulation, Lisbon, Portugal, May</em> 11.</p>
+</div>
+<div id="ref-pose:wang2018vid2vid">
+<p>Wang, Ting-Chun, Ming-Yu Liu, Jun-Yan Zhu, Guilin Liu, Andrew Tao, Jan Kautz, and Bryan Catanzaro. 2018. “Video-to-Video Synthesis.” In <em>Advances in Neural Information Processing Systems (Neurips)</em>.</p>
+</div>
+<div id="ref-pose:wei2016cpm">
+<p>Wei, Shih-En, Varun Ramakrishna, Takeo Kanade, and Yaser Sheikh. 2016. “Convolutional Pose Machines.” In <em>CVPR</em>.</p>
+</div>
+<div id="ref-wheatland2016analysis">
+<p>Wheatland, Nkenge, Ahsan Abdullah, Michael Neff, Sophie Jörg, and Victor Zordan. 2016. “Analysis in Support of Realistic Timing in Animated Fingerspelling.” In <em>2016 Ieee Virtual Reality (Vr)</em>, 309–10. IEEE.</p>
+</div>
+<div id="ref-wilcox1992phonetics">
+<p>Wilcox, Sherman. 1992. <em>The Phonetics of Fingerspelling</em>. Vol. 4. John Benjamins Publishing.</p>
+</div>
+<div id="ref-wittenburg2006elan">
+<p>Wittenburg, Peter, Hennie Brugman, Albert Russel, Alex Klassmann, and Han Sloetjes. 2006. “ELAN: A Professional Framework for Multimodality Research.” In <em>5th International Conference on Language Resources and Evaluation (Lrec 2006)</em>, 1556–9.</p>
+</div>
+<div id="ref-yin2020better">
+<p>Yin, Kayo, and Jesse Read. 2020. “Better Sign Language Translation with Stmc-Transformer.” In <em>Proceedings of the 28th International Conference on Computational Linguistics</em>, 5975–89.</p>
+</div>
+<div id="ref-dataset:zafrulla2010novel">
+<p>Zafrulla, Zahoor, Helene Brashear, Harley Hamilton, and Thad Starner. 2010. “A Novel Approach to American Sign Language (ASL) Phrase Verification Using Reversed Signing.” In <em>2010 Ieee Computer Society Conference on Computer Vision and Pattern Recognition-Workshops</em>, 48–55. IEEE.</p>
+</div>
+<div id="ref-pose:zelinka2020neural">
+<p>Zelinka, Jan, and Jakub Kanis. 2020. “Neural Sign Language Synthesis: Words Are Our Glosses.” In <em>The Ieee Winter Conference on Applications of Computer Vision</em>, 3395–3403.</p>
+</div>
+<div id="ref-zhao2000machine">
+<p>Zhao, Liwei, Karin Kipper, William Schuler, Christian Vogler, Norman Badler, and Martha Palmer. 2000. “A Machine Translation System from English to American Sign Language.” In <em>Conference of the Association for Machine Translation in the Americas</em>, 54–67. Springer.</p>
+</div>
+<div id="ref-dataset:acheta2014ACD">
+<p>Łacheta, Joanna, and Paweł Rutkowski. 2014. “A Corpus-Based Dictionary of Polish Sign Language (Pjm).” In.</p>
+</div>
+</div>
+</body>
+</html>

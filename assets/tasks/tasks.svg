@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="500">
+	<g>
+		<!-- Containers -->
+		<rect width="500" height="500" rx="6" fill="#ffdba9" /><!-- CV -->
+		<rect x="500" width="500" height="500" rx="6" fill="#c1e4f7" /><!-- NLP -->
+
+		<!-- Nodes -->
+		<rect x="50" y="50" width="150" height="75" rx="6" stroke="#5e5e5e" stroke-width="3" fill="white" /><!-- Video -->
+		<text x="125" y="87.5" dominant-baseline="middle" font-size="20"  text-anchor="middle">Video</text>
+
+		<rect x="800" y="50" width="150" height="75" rx="6" stroke="#5e5e5e" stroke-width="3" fill="white" /><!-- Text -->
+		<text x="875" y="87.5" dominant-baseline="middle" font-size="20"  text-anchor="middle">Text</text>
+
+		<rect x="200" y="212.5" width="150" height="75" rx="6" stroke="#5e5e5e" stroke-width="3" fill="white" /><!-- Pose -->
+		<text x="275" y="250" dominant-baseline="middle" font-size="20"  text-anchor="middle">Pose</text>
+
+		<rect x="650" y="212.5" width="150" height="75" rx="6" stroke="#5e5e5e" stroke-width="3" fill="white" /><!-- Gloss -->
+		<text x="725" y="250" dominant-baseline="middle" font-size="20"  text-anchor="middle">Glosses</text>
+
+		<rect x="425" y="375" width="150" height="75" rx="6" stroke="#5e5e5e" stroke-width="3" fill="white" /><!-- Writing -->
+		<text x="500" y="412.5" dominant-baseline="middle" font-size="20"  text-anchor="middle">Notation</text>
+
+		<!-- Arrows -->
+		<defs>
+			<marker id="arrow_before" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+				<polygon points="10 0, 0 3.5, 10 7" fill="#5e5e5e" />
+			</marker>
+
+			<marker id="arrow_after" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+				<polygon points="0 0, 10 3.5, 0 7" fill="#5e5e5e" />
+			</marker>
+		</defs>
+
+		<line x1="200" y1="87.5" x2="800" y2="87.5" stroke="#5e5e5e" stroke-width="2" marker-start="url(#arrow_before)" marker-end="url(#arrow_after)" /><!-- Video2Text -->
+		<line x1="125" y1="125" x2="250" y2="212.5" stroke="#5e5e5e" stroke-width="2" marker-start="url(#arrow_before)" marker-end="url(#arrow_after)" /><!-- Video2Pose -->
+		<line x1="875" y1="125" x2="750" y2="212.5" stroke="#5e5e5e" stroke-width="2" marker-start="url(#arrow_before)" marker-end="url(#arrow_after)" /><!-- Text2Gloss -->
+		<line x1="350" y1="250" x2="650" y2="250" stroke="#5e5e5e" stroke-width="2" marker-start="url(#arrow_before)" marker-end="url(#arrow_after)" /><!-- Pose2Gloss -->
+		<line x1="300" y1="287.5" x2="425" y2="400" stroke="#5e5e5e" stroke-width="2" marker-start="url(#arrow_before)" marker-end="url(#arrow_after)" /><!-- Pose2Writing -->
+		<line x1="700" y1="287.5" x2="575" y2="400" stroke="#5e5e5e" stroke-width="2" marker-start="url(#arrow_before)" marker-end="url(#arrow_after)" /><!-- Gloss2Writing -->
+		<line x1="200" y1="125" x2="650" y2="212.5" stroke="#5e5e5e" stroke-width="2" marker-start="url(#arrow_before)" marker-end="url(#arrow_after)" /><!-- Video2Gloss -->
+		<line x1="800" y1="125" x2="350" y2="212.5" stroke="#5e5e5e" stroke-width="2" marker-start="url(#arrow_before)" marker-end="url(#arrow_after)" /><!-- Text2Pose -->
+		<path d="M 125 125 C 125 300, 150 425, 425 412.5" fill="transparent" stroke="#5e5e5e" stroke-width="2" marker-start="url(#arrow_before)" marker-end="url(#arrow_after)" /><!-- Video2Writing -->
+		<path d="M 875 125 C 875 300, 850 425, 575 412.5" fill="transparent" stroke="#5e5e5e" stroke-width="2" marker-start="url(#arrow_before)" marker-end="url(#arrow_after)" /><!-- Text2Writing -->
+	</g>
+</svg>
