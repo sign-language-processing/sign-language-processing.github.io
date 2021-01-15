@@ -6,7 +6,7 @@ I (AmitMY) intend to use this project as the main source for my thesis backgroun
 
 Once organized, this information could be incorporated in Wikipedia.
 
-This project is hosted in: [https://amitmy.github.io/sign-language-processing/](https://amitmy.github.io/sign-language-processing/)
+This project is hosted in: [sign-language-processing.github.io](https://sign-language-processing.github.io)
 
 All contributions are welcomed!
 
