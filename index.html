@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="Amit Moryossef | Bar-Ilan University | amitmoryossef@gmail.com" />
+  <meta name="author" content="Amit Moryossef (amitmoryossef@gmail.com)" />
+  <meta name="author" content="Yoav Goldberg (yoav.goldberg@biu.ac.il)" />
   <title>Sign Language Processing</title>
   <style>
     code{white-space: pre-wrap;}
@@ -85,7 +86,8 @@
 <body>
 <header id="title-block-header">
 <h1 class="title">Sign Language Processing</h1>
-<p class="author">Amit Moryossef | Bar-Ilan University | amitmoryossef@gmail.com</p>
+<p class="author">Amit Moryossef (<a href="mailto:amitmoryossef@gmail.com">amitmoryossef@gmail.com</a>)</p>
+<p class="author">Yoav Goldberg (<a href="mailto:yoav.goldberg@biu.ac.il">yoav.goldberg@biu.ac.il</a>)</p>
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -222,14 +224,16 @@
 <p><span class="citation" data-cites="camgoz2020sign">Cihan Camgöz et al. (<a href="#ref-camgoz2020sign" role="doc-biblioref">2020</a>)</span> proposed a single architecture to perform this task, that can use both the sign language gloss and the spoken language text in joint-supervision. They use the pre-trained spatial embeddings from <span class="citation" data-cites="koller2019weakly">Koller et al. (<a href="#ref-koller2019weakly" role="doc-biblioref">2019</a>)</span> to encode each frame independently, and encode the frames with a transformer. On this encoding, they use a Connectionist Temporal Classification (CTC) <span class="citation" data-cites="graves2006connectionist">(Graves et al. <a href="#ref-graves2006connectionist" role="doc-biblioref">2006</a>)</span> to classify the sign language gloss. Using the same encoding, they also use a transformer decoder to decode the spoken language text one token at a time. They show that adding gloss supervision improves the model over not using it, and that it outperforms previous video-to-gloss-to-text pipeline approaches <span class="citation" data-cites="cihan2018neural">(Cihan Camgöz et al. <a href="#ref-cihan2018neural" role="doc-biblioref">2018</a>)</span>.</p>
 <p>Following up, <span class="citation" data-cites="camgoz2020multi">Camgöz et al. (<a href="#ref-camgoz2020multi" role="doc-biblioref">2020</a>)</span> propose a new architecture that does not require the supervision of glosses, called “Multi-channel Transformers for Multi-articulatory Sign Language Translation”. In this approach they crop the signing hand, the face, and perform 3D pose estimation to obtain three separate data channels. They encode each data channel separately using a transformer, then encode all channels together and concatenate the separate channels for each frame. Like their previous work, they use a transformer decoder to decode the spoken language text, but unlike their previous work, do not use the gloss as an additional supervision. Instead, they add two “anchoring” losses to predict the hand shape and mouth shape from each frame independently, as silver annotations are available to them using the model proposed in <span class="citation" data-cites="koller2019weakly">Koller et al. (<a href="#ref-koller2019weakly" role="doc-biblioref">2019</a>)</span>. They conclude that this approach is on-par with previous approaches requiring glosses, and so they have broken the dependency upon costly annotated gloss information in the video-to-text task.</p>
 <h4 id="text-to-video">Text-to-Video</h4>
-<p>Text-to-Video—also known as sign language production—is the task to produce a video that adequately represent a spoken language text.</p>
+<p>Text-to-Video—also known as sign language production—is the task to produce a video that adequately represent a spoken language text in sign language.</p>
 <p>As of 2020, there is no research discussing the direct translation task between text to video. We believe this is a result of the computational impracticality of the desired model, which led researchers to avoid performing this task directly, and instead rely on pipeline approaches using intermediate pose representations.</p>
 <hr />
 <h4 id="pose-to-text">Pose-to-Text</h4>
 <p>Pose-to-text—also knows as sign language translation—is the task of translating a captured or estimated pose sequence to spoken language text.</p>
 <p><span class="citation" data-cites="dataset:ko2019neural">Ko et al. (<a href="#ref-dataset:ko2019neural" role="doc-biblioref">2019</a>)</span> demonstrate impressive performance on the pose-to-text task by inputting the pose sequence into a standard encoder-decoder translation network. They experiment both with GRU and various types of attention <span class="citation" data-cites="luong2015effective bahdanau2014neural">(Luong, Pham, and Manning <a href="#ref-luong2015effective" role="doc-biblioref">2015</a>; Bahdanau, Cho, and Bengio <a href="#ref-bahdanau2014neural" role="doc-biblioref">2015</a>)</span>, and with a Transformer <span class="citation" data-cites="vaswani2017attention">(Vaswani et al. <a href="#ref-vaswani2017attention" role="doc-biblioref">2017</a>)</span>, and show similar performance, with the transformer underperforming on the validation set and overperforming on the test set which consists of unseen signers. They experiment with various normalization scheme, mainly, subtracting the mean and dividing by the standard deviation of every individual keypoint either with respect to the entire frame, or to the relevant “object” (Body, Face, and Hand).</p>
 <h4 id="text-to-pose">Text-to-Pose</h4>
-<p><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span> https://arxiv.org/abs/2004.14874 <span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span> https://arxiv.org/pdf/2011.09846.pdf</p>
+<p>Text-to-Pose—also known as sign language production—is the task to produce a sequence of poses that adequately represent a spoken language text in sign language.</p>
+<p><span class="citation" data-cites="saunders2020progressive">Saunders, Camgoz, and Bowden (<a href="#ref-saunders2020progressive" role="doc-biblioref">2020</a><a href="#ref-saunders2020progressive" role="doc-biblioref">b</a>)</span> propose Progressive Transformers, a model to translate from discrete spoken language sentences to continuous 3D sign pose sequences in an autoregressive manner. Unlike symbolic transformers <span class="citation" data-cites="vaswani2017attention">(Vaswani et al. <a href="#ref-vaswani2017attention" role="doc-biblioref">2017</a>)</span>, which can predict an end-of-sequence (<code>EOS</code>) token, in every step the progressive transformer predicts a <span class="math inline"><em>c</em><em>o</em><em>u</em><em>n</em><em>t</em><em>e</em><em>r</em> ∈ [0, 1]</span> in addition to the pose. In inference time, <span class="math inline"><em>c</em><em>o</em><em>u</em><em>n</em><em>t</em><em>e</em><em>r</em> = 1</span> is considered as the end of the sequence. They test their approach of the RWTH-PHOENIX-Weather-2014T dataset using OpenPose pose estimation and show favorable results when evaluating using back-translation from the generated poses to spoken language. They further show <span class="citation" data-cites="saunders2020adversarial">(Saunders, Camgoz, and Bowden <a href="#ref-saunders2020adversarial" role="doc-biblioref">2020</a><a href="#ref-saunders2020adversarial" role="doc-biblioref">a</a>)</span> that using an adversarial discriminator between the ground truth poses, and the generated poses, conditioned on the input spoken language text improves the production quality as measured using back-translation.</p>
+<p>To overcome the issues of under-articulation seen in the above works, <span class="citation" data-cites="saunders2020everybody">Saunders, Camgöz, and Bowden (<a href="#ref-saunders2020everybody" role="doc-biblioref">2020</a>)</span> expands on the progressive transformer model using a Mixture Density Network (MDN) <span class="citation" data-cites="bishop1994mixture">(Bishop <a href="#ref-bishop1994mixture" role="doc-biblioref">1994</a>)</span> to model the variation found in sign language. While this model underperforms on the validation set, compared to previous work, it outperforms on the test set.</p>
 <hr />
 <h4 id="notation-to-x">Notation-to-<span class="math inline"><em>X</em></span></h4>
 <p>As of 2020, there is no research discussing the translation task between a writing notation system to any other modality.</p>
@@ -674,6 +678,9 @@
 <div id="ref-writing:bergman1977tecknad">
 <p>Bergman, Brita. 1977. <em>Tecknad Svenska:[Signed Swedish]</em>. LiberLäromedel/Utbildningsförl.:</p>
 </div>
+<div id="ref-bishop1994mixture">
+<p>Bishop, Christopher M. 1994. “Mixture Density Networks.”</p>
+</div>
 <div id="ref-detection:borg2019sign">
 <p>Borg, Mark, and Kenneth P Camilleri. 2019. “Sign Language Detection "in the Wild" with Recurrent Neural Networks.” In <em>ICASSP 2019-2019 Ieee International Conference on Acoustics, Speech and Signal Processing (Icassp)</em>, 1637–41. IEEE.</p>
 </div>
@@ -871,6 +878,12 @@
 </div>
 <div id="ref-sandler2006sign">
 <p>Sandler, Wendy, and Diane Lillo-Martin. 2006. <em>Sign Language and Linguistic Universals</em>. Cambridge University Press.</p>
+</div>
+<div id="ref-saunders2020adversarial">
+<p>Saunders, Ben, Necati Cihan Camgoz, and Richard Bowden. 2020a. “Adversarial Training for Multi-Channel Sign Language Production.” <em>arXiv Preprint arXiv:2008.12405</em>.</p>
+</div>
+<div id="ref-saunders2020progressive">
+<p>———. 2020b. “Progressive Transformers for End-to-End Sign Language Production.” <em>arXiv Preprint arXiv:2004.14874</em>.</p>
 </div>
 <div id="ref-saunders2020everybody">
 <p>Saunders, Ben, Necati Cihan Camgöz, and Richard Bowden. 2020. “Everybody Sign Now: Translating Spoken Language to Photo Realistic Sign Language Video.” <em>arXiv Preprint arXiv:2011.09846</em>.</p>

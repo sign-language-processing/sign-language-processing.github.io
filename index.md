@@ -9,7 +9,8 @@ header-includes:
 - |
   \usepackage{pdflscape}
 author:
-- Amit Moryossef | Bar-Ilan University | amitmoryossef@gmail.com
+- Amit Moryossef ([amitmoryossef@gmail.com](mailto:amitmoryossef@gmail.com))
+- Yoav Goldberg ([yoav.goldberg@biu.ac.il](mailto:yoav.goldberg@biu.ac.il))
 abstract: |
     This project aims to organize the sign language processing literature, datasets, and tasks.
     Sign Language Processing (SLP) is a field of artificial intelligence
@@ -337,7 +338,7 @@ and so they have broken the dependency upon costly annotated gloss information i
 
 #### Text-to-Video
 Text-to-Video---also known as sign language production---is the task to produce a video that adequately represent
-a spoken language text.
+a spoken language text in sign language.
 
 As of 2020, there is no research discussing the direct translation task between text to video.
 We believe this is a result of the computational impracticality of the desired model,
@@ -356,8 +357,24 @@ They experiment with various normalization scheme, mainly, subtracting the mean 
 either with respect to the entire frame, or to the relevant "object" (Body, Face, and Hand).
 
 #### Text-to-Pose
-<span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> https://arxiv.org/abs/2004.14874
-<span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> https://arxiv.org/pdf/2011.09846.pdf
+Text-to-Pose---also known as sign language production---is the task to produce a sequence of poses that adequately represent
+a spoken language text in sign language.
+
+@saunders2020progressive propose Progressive Transformers, a model to translate from 
+discrete spoken language sentences to continuous 3D sign pose sequences in an autoregressive manner.
+Unlike symbolic transformers [@vaswani2017attention], which can predict an end-of-sequence (`EOS`) token, 
+in every step the progressive transformer predicts a $counter ∈ [0,1]$ in addition to the pose.
+In inference time, $counter=1$ is considered as the end of the sequence.
+They test their approach of the RWTH-PHOENIX-Weather-2014T dataset using OpenPose pose estimation
+and show favorable results when evaluating using back-translation from the generated poses to spoken language.
+They further show [@saunders2020adversarial] that using an adversarial discriminator between 
+the ground truth poses, and the generated poses, conditioned on the input spoken language text 
+improves the production quality as measured using back-translation.
+
+To overcome the issues of under-articulation seen in the above works, 
+@saunders2020everybody expands on the progressive transformer model using a 
+Mixture Density Network (MDN) [@bishop1994mixture] to model the variation found in sign language.
+While this model underperforms on the validation set, compared to previous work, it outperforms on the test set.
 
 ---
 
@@ -461,8 +478,8 @@ While work on this document is still ongoing, if you want to refer to it, please
 ```bibtex
 @misc{moryossef2021slp, 
     title={Sign Language Processing}, 
-    author={Moryossef, Amit},
-    url={https://amitmy.github.io/sign-language-processing/}, 
+    author={Moryossef, Amit and Goldberg, Yoav},
+    url={https://sign-language-processing.github.io/}, 
     year={2021}
 }
 ```
