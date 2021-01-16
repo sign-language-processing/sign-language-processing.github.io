@@ -358,11 +358,13 @@ a spoken language text in sign language.
 
 @saunders2020progressive propose Progressive Transformers, a model to translate from 
 discrete spoken language sentences to continuous 3D sign pose sequences in an autoregressive manner.
-Unlike symbolic transformers [@vaswani2017attention], which can predict an end-of-sequence (`EOS`) token, 
-in every step the progressive transformer predicts a $counter ∈ [0,1]$ in addition to the pose.
+Unlike symbolic transformers [@vaswani2017attention], which use a discrete vocabulary, and thus can 
+predict an end-of-sequence (`EOS`) token, in every step the progressive transformer predicts a 
+$counter ∈ [0,1]$ in addition to the pose.
 In inference time, $counter=1$ is considered as the end of the sequence.
-They test their approach of the RWTH-PHOENIX-Weather-2014T dataset using OpenPose pose estimation
-and show favorable results when evaluating using back-translation from the generated poses to spoken language.
+They test their approach on the RWTH-PHOENIX-Weather-2014T dataset using OpenPose 2D pose estimation,
+uplifted to 3D [@pose:zelinka2020neural], and show favorable results when evaluating using back-translation 
+from the generated poses to spoken language.
 They further show [@saunders2020adversarial] that using an adversarial discriminator between 
 the ground truth poses, and the generated poses, conditioned on the input spoken language text 
 improves the production quality as measured using back-translation.
@@ -371,6 +373,18 @@ To overcome the issues of under-articulation seen in the above works,
 @saunders2020everybody expands on the progressive transformer model using a 
 Mixture Density Network (MDN) [@bishop1994mixture] to model the variation found in sign language.
 While this model underperforms on the validation set, compared to previous work, it outperforms on the test set.
+
+@pose:zelinka2020neural present a similar autoregressive decoder approach, with added dynamic-time-warping (DTW) and soft attention.
+They test their approach on Czech Sign Language weather data extracted from the news, which is not manually annotated,
+or aligned to the spoken language captions, and show their DTW is advantageous for this kind of task.
+
+@xiao2020skeleton close the loop by proposing a text-to-pose-to-text model, for the case of isolated sign language recognition.
+They first train a classifier to take a sequence of poses encoded by a BiLSTM and classify the relevant sign,
+then, propose a production system to take a single sign and sample a constant length sequence of 50 poses from a Gaussian Mixture Model.
+These components are combined such that given a sign class $y$, a pose sequence is generated, then classified back into a sign class $ŷ$,
+and the loss is applied between $y$ and $ŷ$, and not directly on the generated pose sequence.
+They evaluate their approach on the CSL dataset [@dataset:huang2018video] and show that their generated pose sequences 
+almost reach the same classification performance as the real sequences.
 
 ---
 
