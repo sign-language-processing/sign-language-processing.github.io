@@ -7,8 +7,8 @@
   },
   "features": [],
   "language": "Chinese",
-  "#items": 178,
-  "#samples": "25,000 Videos",
+  "#items": 500,
+  "#samples": "125,000 Videos",
   "#signers": 50,
   "license": "Research Attribution",
   "licenseUrl": "https://rec.ustc.edu.cn/share/475ac440-dab7-11ea-963e-ebae3cfe5012"
