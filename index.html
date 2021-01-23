@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
@@ -81,7 +81,10 @@
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
-  
+  <meta name="google-site-verification" content="IEQ1c5BwY2ZQl5N3uQS9xbNv7LX-txlqJCbbPuaz3Qc"/>
+  <meta name="description" content="Sign Language Processing (SLP) is a field of artificial intelligence
+      concerned with automatic processing and analysis of sign language content.
+      This project aims to organize the sign language processing literature, datasets, and tasks."/>
 </head>
 <body>
 <header id="title-block-header">
@@ -112,7 +115,7 @@
 <h2 id="data-formats">Data Formats</h2>
 <p>The only widely accepted format for sign language data includes videos of the signing, and either a <a href="https://en.wikipedia.org/wiki/Gloss_(annotation)">gloss</a> or a spoken language text translation. Sign language videos may include a “depth” channel produced by a <a href="https://en.wikipedia.org/wiki/Time-of-flight_camera">time-of-flight camera</a>.</p>
 <h4 id="notation-systems">Notation Systems</h4>
-<p>Sign languages have no formal written format. There are various universal notations systems—<a href="https://en.wikipedia.org/wiki/SignWriting">SignWriting</a> <span class="citation" data-cites="writing:sutton1990lessons">(Sutton <a href="#ref-writing:sutton1990lessons" role="doc-biblioref">1990</a>)</span>, <a href="https://en.wikipedia.org/wiki/Hamburg_Notation_System">HamNoSys</a> <span class="citation" data-cites="writing:prillwitz1990hamburg">(Prillwitz and Zienert <a href="#ref-writing:prillwitz1990hamburg" role="doc-biblioref">1990</a>)</span>—and various language specific notations systems—<a href="https://en.wikipedia.org/wiki/Stokoe_notation">Stokoe notation</a> <span class="citation" data-cites="writing:stokoe2005sign">(Stokoe Jr <a href="#ref-writing:stokoe2005sign" role="doc-biblioref">2005</a>)</span> and <a href="https://en.wikipedia.org/wiki/Si5s">si5s</a> for American Sign Language, <a href="https://zrajm.github.io/teckentranskription/freesans-swl.html">SWL</a> <span class="citation" data-cites="writing:bergman1977tecknad">(Bergman <a href="#ref-writing:bergman1977tecknad" role="doc-biblioref">1977</a>)</span> for Swedish Sign Language, etc—but no writing system has been adopted widely enough, by the international Deaf community, that it could be considered the “written form” of a given sign language.</p>
+<p>Sign languages have no formal written format. There are various universal notations systems—<a href="https://en.wikipedia.org/wiki/SignWriting">SignWriting</a> <span class="citation" data-cites="writing:sutton1990lessons">(Sutton <a href="#ref-writing:sutton1990lessons" role="doc-biblioref">1990</a>)</span>, <a href="https://en.wikipedia.org/wiki/Hamburg_Notation_System">HamNoSys</a> <span class="citation" data-cites="writing:prillwitz1990hamburg">(Prillwitz and Zienert <a href="#ref-writing:prillwitz1990hamburg" role="doc-biblioref">1990</a>)</span>—and various language specific notation systems—<a href="https://en.wikipedia.org/wiki/Stokoe_notation">Stokoe notation</a> <span class="citation" data-cites="writing:stokoe2005sign">(Stokoe Jr <a href="#ref-writing:stokoe2005sign" role="doc-biblioref">2005</a>)</span> and <a href="https://en.wikipedia.org/wiki/Si5s">si5s</a> for American Sign Language, <a href="https://zrajm.github.io/teckentranskription/freesans-swl.html">SWL</a> <span class="citation" data-cites="writing:bergman1977tecknad">(Bergman <a href="#ref-writing:bergman1977tecknad" role="doc-biblioref">1977</a>)</span> for Swedish Sign Language, etc—but no writing system has been adopted widely enough, by the international Deaf community, that it could be considered the “written form” of a given sign language.</p>
 <h4 id="human-body-representation">Human Body Representation</h4>
 <p>Additionally, sign language corpora may include human <a href="https://en.wikipedia.org/wiki/Pose_(computer_vision)">poses</a>, either recorded with <a href="https://en.wikipedia.org/wiki/Motion_capture">motion capture</a> technologies, or estimated from videos using <a href="https://en.wikipedia.org/wiki/Pose_(computer_vision)#Pose_estimation">pose estimation</a> techniques. Full body human poses include all the relevant information for sign language processing (manual or non-manual), except for visual cues such as props.</p>
 <p>The following table exemplifies the various data formats. For this example we use <a href="https://en.wikipedia.org/wiki/SignWriting">SignWriting</a> as the writing system. Note that the same sign might have two unrelated glosses, and the same gloss might have multiple valid texts.</p>
@@ -161,7 +164,7 @@
 <p>Sign language identification <span class="citation" data-cites="identification:gebre2013automatic identification:monteiro2016detecting">(Gebre, Wittenburg, and Heskes <a href="#ref-identification:gebre2013automatic" role="doc-biblioref">2013</a>; Monteiro et al. <a href="#ref-identification:monteiro2016detecting" role="doc-biblioref">2016</a>)</span> is defined as the classification between two or more sign languages.</p>
 <p><span class="citation" data-cites="identification:gebre2013automatic">Gebre, Wittenburg, and Heskes (<a href="#ref-identification:gebre2013automatic" role="doc-biblioref">2013</a>)</span> found that a simple random-forest classifier can distinguish between British Sign Language (BSL) and Greek Sign Language (ENN) with a 95% F1 score. This finding is further supported by <span class="citation" data-cites="identification:monteiro2016detecting">Monteiro et al. (<a href="#ref-identification:monteiro2016detecting" role="doc-biblioref">2016</a>)</span>, which manages to differentiate between British Sign Language and French Sign Language (Langue des Signes Française, LSF) with 98% F1 score in videos with static backgrounds, and between American Sign Language and British Sign Language with 70% F1 score for videos mined from popular video sharing sites. The authors attribute their success mainly to the different fingerspelling systems, which is two-handed in the case of BSL and one-handed in the case of ASL and LSF.</p>
 <h3 id="sign-language-recognition-translation-and-production">Sign Language Recognition, Translation, and Production</h3>
-<p>Sign language translation is generally considered the task of translating between a video in sign language to spoken language text. Sign language production is the reverse process, of producing a sign language video from spoken language text. Sign language recognition is the task of recognizing the discrete signs themselves in sign language (glosses).</p>
+<p>Sign language translation is generally considered the task of translating between a video in sign language to spoken language text. Sign language production is the reverse process, of producing a sign language video from spoken language text. Sign language recognition <span class="citation" data-cites="adaloglou2020comprehensive">(Adaloglou et al. <a href="#ref-adaloglou2020comprehensive" role="doc-biblioref">2020</a>)</span> is the task of recognizing the discrete signs themselves in sign language (glosses).</p>
 <p>In the following graph, we can see a fully connected pentagon where each node is a single data representation, and each directed edge represents the task of converting between one data representation to another.</p>
 <p>We split the graph into two:</p>
 <ul>
@@ -205,6 +208,7 @@
 <p>Video-to-Gloss—also known as sign language recognition—is the task to recognize a sequence of signs from a video.</p>
 <p>For this recognition, <span class="citation" data-cites="cui2017recurrent">Cui, Liu, and Zhang (<a href="#ref-cui2017recurrent" role="doc-biblioref">2017</a>)</span> constructs a three-step optimization model. First, they train a video-to-gloss end-to-end model, where they encode the video using a spatio-temporal CNN encoder, and predict the gloss using a Connectionist Temporal Classification (CTC) <span class="citation" data-cites="graves2006connectionist">(Graves et al. <a href="#ref-graves2006connectionist" role="doc-biblioref">2006</a>)</span>. Then, from the CTC alignment and category proposal, they encode each gloss-level segment independently, trained to predict the gloss category, and use this gloss video segments encoding to optimize the sequence learning model.</p>
 <p><span class="citation" data-cites="cihan2018neural">Cihan Camgöz et al. (<a href="#ref-cihan2018neural" role="doc-biblioref">2018</a>)</span> fundamentally differ from that approach and opt to formulate this problem as if it is a natural-language translation problem. They encode each video frame using AlexNet <span class="citation" data-cites="krizhevsky2012imagenet">(Krizhevsky, Sutskever, and Hinton <a href="#ref-krizhevsky2012imagenet" role="doc-biblioref">2012</a>)</span>, initialized using weights that were trained on ImageNet <span class="citation" data-cites="deng2009imagenet">(Deng et al. <a href="#ref-deng2009imagenet" role="doc-biblioref">2009</a>)</span>. Then they apply a GRU encoder-decoder architecture with Luong attention <span class="citation" data-cites="luong2015effective">(Luong, Pham, and Manning <a href="#ref-luong2015effective" role="doc-biblioref">2015</a>)</span> to generate the gloss. In follow-up work, <span class="citation" data-cites="camgoz2020sign">Cihan Camgöz et al. (<a href="#ref-camgoz2020sign" role="doc-biblioref">2020</a>)</span> use a transformer encoder <span class="citation" data-cites="vaswani2017attention">(Vaswani et al. <a href="#ref-vaswani2017attention" role="doc-biblioref">2017</a>)</span> to replace the GRU and use a CTC to decode the gloss. They show a slight improvement with this approach on the video-to-gloss task.</p>
+<p><span class="citation" data-cites="adaloglou2020comprehensive">Adaloglou et al. (<a href="#ref-adaloglou2020comprehensive" role="doc-biblioref">2020</a>)</span> perform a comparative experimental assessment of computer vision-based methods for the video-to-gloss task. They implement various approaches from previous research <span class="citation" data-cites="camgoz2017subunets cui2019deep dataset:joze2018ms">(Camgoz et al. <a href="#ref-camgoz2017subunets" role="doc-biblioref">2017</a>; Cui, Liu, and Zhang <a href="#ref-cui2019deep" role="doc-biblioref">2019</a>; Joze and Koller <a href="#ref-dataset:joze2018ms" role="doc-biblioref">2018</a>)</span> and test them on multiple datasets [] either for isolated sign recognition, or continuous sign recognition. They conclude that 3D convolutional models outperform models using only recurrent networks to capture the temporal information, and that these models are more scalable given the restricted receptive field which results from the CNN “sliding window” technique.</p>
 <h4 id="gloss-to-video">Gloss-to-Video</h4>
 <p>Gloss-to-Video—also known as sign language production—is the task to produce a video that adequately represent a sequence of signs written as gloss.</p>
 <p>As of 2020, there is no research discussing the direct translation task between a gloss to video. We believe this is a result of the computational impracticality of the desired model, which led researchers to avoid performing this task directly, and instead rely on pipeline approaches using intermediate pose representations.</p>
@@ -629,8 +633,8 @@
 <td><span class="citation" data-cites="dataset:huang2018video">Huang et al. (<a href="#ref-dataset:huang2018video" role="doc-biblioref">2018</a>)</span></td>
 <td>Chinese</td>
 <td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
-<td>178</td>
-<td>25,000 Videos</td>
+<td>500</td>
+<td>125,000 Videos</td>
 <td>50</td>
 <td><a href="https://rec.ustc.edu.cn/share/475ac440-dab7-11ea-963e-ebae3cfe5012">Research Attribution</a></td>
 </tr>
@@ -664,6 +668,9 @@
 <div id="refs" class="references hanging-indent" role="doc-bibliography">
 <div id="ref-abeille1991using">
 <p>Abeillé, Anne, Yves Schabes, and Aravind K Joshi. 1991. “Using Lexicalized Tags for Machine Translation.”</p>
+</div>
+<div id="ref-adaloglou2020comprehensive">
+<p>Adaloglou, Nikolas, Theocharis Chatzis, Ilias Papastratis, Andreas Stergioulas, Georgios Th Papadopoulos, Vassia Zacharopoulou, George J Xydopoulos, Klimnis Atzakas, Dimitris Papazachariou, and Petros Daras. 2020. “A Comprehensive Study on Sign Language Recognition Methods.” <em>arXiv Preprint arXiv:2007.12530</em>.</p>
 </div>
 <div id="ref-adeline2013fingerspell">
 <p>Adeline, Chloe. 2013. “Fingerspell.net.” <a href="http://fingerspell.net/">http://fingerspell.net/</a>.</p>
@@ -701,6 +708,9 @@
 <div id="ref-dataset:bungeroth2008atis">
 <p>Bungeroth, Jan, Daniel Stein, Philippe Dreuw, Hermann Ney, Sara Morrissey, Andy Way, and Lynette van Zijl. 2008. “The ATIS Sign Language Corpus.” In <em>Proceedings of the Sixth International Conference on Language Resources and Evaluation (LREC’08)</em>. Marrakech, Morocco: European Language Resources Association (ELRA). <a href="http://www.lrec-conf.org/proceedings/lrec2008/pdf/748_paper.pdf">http://www.lrec-conf.org/proceedings/lrec2008/pdf/748_paper.pdf</a>.</p>
 </div>
+<div id="ref-camgoz2017subunets">
+<p>Camgoz, Necati Cihan, Simon Hadfield, Oscar Koller, and Richard Bowden. 2017. “Subunets: End-to-End Hand Shape and Continuous Sign Language Recognition.” In <em>2017 Ieee International Conference on Computer Vision (Iccv)</em>, 3075–84. IEEE.</p>
+</div>
 <div id="ref-dataset:camgoz-etal-2016-bosphorussign">
 <p>Camgöz, Necati Cihan, Ahmet Alp Kındıroğ lu, Serpil Karabüklü, Meltem Kelepir, Ayş e Sumru Özsoy, and Lale Akarun. 2016. “BosphorusSign: A Turkish Sign Language Recognition Corpus in Health and Finance Domains.” In <em>Proceedings of the Tenth International Conference on Language Resources and Evaluation (LREC’16)</em>, 1383–8. Portorož, Slovenia: European Language Resources Association (ELRA). <a href="https://www.aclweb.org/anthology/L16-1220">https://www.aclweb.org/anthology/L16-1220</a>.</p>
 </div>
@@ -736,6 +746,9 @@
 </div>
 <div id="ref-cui2017recurrent">
 <p>Cui, Runpeng, Hu Liu, and Changshui Zhang. 2017. “Recurrent Convolutional Neural Networks for Continuous Sign Language Recognition by Staged Optimization.” In <em>Proceedings of the Ieee Conference on Computer Vision and Pattern Recognition</em>, 7361–9.</p>
+</div>
+<div id="ref-cui2019deep">
+<p>———. 2019. “A Deep Neural Framework for Continuous Sign Language Recognition by Iterative Training.” <em>IEEE Transactions on Multimedia</em> 21 (7): 1880–91.</p>
 </div>
 <div id="ref-dataset:databases2007volumes">
 <p>Databases, NCSLGR. 2007. “Volumes 2–7.” American Sign Language Linguistic Research Project (Distributed on CD-ROM ….</p>

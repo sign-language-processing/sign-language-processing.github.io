@@ -12,9 +12,9 @@ author:
 - Amit Moryossef ([amitmoryossef@gmail.com](mailto:amitmoryossef@gmail.com))
 - Yoav Goldberg ([yoav.goldberg@biu.ac.il](mailto:yoav.goldberg@biu.ac.il))
 abstract: |
-    This project aims to organize the sign language processing literature, datasets, and tasks.
     Sign Language Processing (SLP) is a field of artificial intelligence
     concerned with automatic processing and analysis of sign language content.
+    This project aims to organize the sign language processing literature, datasets, and tasks.
     This is a work in progress. The contents of this document will be refined over the course of 2020-2022.
 ...
 
@@ -47,7 +47,7 @@ Sign language videos may include a "depth" channel produced by a [time-of-flight
 #### Notation Systems
 Sign languages have no formal written format. 
 There are various universal notations systems---[SignWriting](https://en.wikipedia.org/wiki/SignWriting) [@writing:sutton1990lessons], 
-[HamNoSys](https://en.wikipedia.org/wiki/Hamburg_Notation_System) [@writing:prillwitz1990hamburg]---and various language specific notations systems---[Stokoe notation](https://en.wikipedia.org/wiki/Stokoe_notation) 
+[HamNoSys](https://en.wikipedia.org/wiki/Hamburg_Notation_System) [@writing:prillwitz1990hamburg]---and various language specific notation systems---[Stokoe notation](https://en.wikipedia.org/wiki/Stokoe_notation) 
 [@writing:stokoe2005sign] and [si5s](https://en.wikipedia.org/wiki/Si5s) for American Sign Language, [SWL](https://zrajm.github.io/teckentranskription/freesans-swl.html) [@writing:bergman1977tecknad] 
 for Swedish Sign Language, etc---but no writing system has been adopted widely enough, 
 by the international Deaf community, that it could be considered the "written form" of a given sign language.
@@ -105,11 +105,19 @@ British Sign Language and French Sign Language (Langue des Signes Française, LS
 and between American Sign Language and British Sign Language with 70\% F1 score for videos mined from popular video sharing sites. 
 The authors attribute their success mainly to the different fingerspelling systems, which is two-handed in the case of BSL and one-handed in the case of ASL and LSF.
 
+
+```{=ignore}
+
+### Sign Language Segmentation
+
+<span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span>
+```
+
 ### Sign Language Recognition, Translation, and Production
 
 Sign language translation is generally considered the task of translating between a video in sign language to spoken language text.
 Sign language production is the reverse process, of producing a sign language video from spoken language text.
-Sign language recognition is the task of recognizing the discrete signs themselves in sign language (glosses).
+Sign language recognition [@adaloglou2020comprehensive] is the task of recognizing the discrete signs themselves in sign language (glosses).
 
 
 In the following graph, we can see a fully connected pentagon where each node is a single data representation, 
@@ -263,6 +271,62 @@ They encode each video frame using AlexNet [@krizhevsky2012imagenet], initialize
 Then they apply a GRU encoder-decoder architecture with Luong attention [@luong2015effective] to generate the gloss.
 In follow-up work, @camgoz2020sign use a transformer encoder [@vaswani2017attention] to replace the GRU 
 and use a CTC to decode the gloss. They show a slight improvement with this approach on the video-to-gloss task.
+
+```{=ignore}
+<span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> @camgoz2017subunets SubUNets
+Camgoz et. al [26] introduce a DNN-based approach for
+solving the simultaneous alignment and recognition problems,
+typically referred to as “sequence-to-sequence” learning. In
+particular, the overall problem is decomposed of a series
+of specialized systems, termed SubUNets. The overall goal
+is to model the spatio-temporal relationships among these
+SubUNets to solve the task at hand. More specifically, SubUNets allow to inject domain-specific expert knowledge into
+the system regarding suitable intermediate representations.
+Additionally, they also allow to implicitly perform transfer
+learning between different interrelated tasks.
+
+<span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> @cui2019deep GoogLeNet + TConvs
+In contrast to other 2D CNN-based methods that employ
+HMMs, Cui et. al [25] propose a model that includes an
+extra temporal module (TConvs), after the feature extractor
+(GoogLeNet). The TConvs module consists of two 1D CNN
+layers and two max pooling layers. It is designed to capture
+the fine-grained dependencies, which exist inside a gloss
+(intra-gloss dependencies) between consecutive frames, into
+compact per-window feature vectors. Finally, bidirectional
+RNNs are applied in order to capture the long-term temporal
+dependencies of the entire sentence. The total architecture is
+trained iteratively, in order to exploit the expressive capability
+of DNN models with limited data.
+
+<span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> @dataset:joze2018ms I3D
+Inflated 3D ConvNet (I3D) [@carreira2017quo] was originally developed
+for the task of human action recognition; however, its application has demonstrated outstanding performance on isolated SLR [42]. In particular, the I3D architecture is an
+extended version of GoogLeNet, which contains several 3D
+convolutional layers followed by 3D max-pooling layers. The
+key insight of this architecture is the endowing of the 2D
+sub-modules (filters and pooling kernels) with an additional
+temporal dimension. This methodology makes feasible to
+learn spatio-temporal features from videos, while it leverages
+efficient known architecture designs and parameters.
+
+<span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> @pu2019iterative 3D ResNet+LSTM
+Pu et al. [45] propose a framework comprising a 3D CNN
+for feature extraction, a RNN for sequence learning and
+two different decoding strategies, one performed with CTC
+and the other with an attentional decoder RNN. The glosses
+predicted by the attentional decoder are utilised to draw a
+warping path using a soft-DTW [47] alignment constraint.
+The warping paths display the alignments between glosses
+and video segments. The proposed pseudo-alignments are then
+employed for iterative optimization.
+```
+
+@adaloglou2020comprehensive perform a comparative experimental assessment of computer vision-based methods for the video-to-gloss task.
+They implement various approaches from previous research [@camgoz2017subunets;@cui2019deep;@dataset:joze2018ms]
+and test them on multiple datasets [] either for isolated sign recognition, or continuous sign recognition.
+They conclude that 3D convolutional models outperform models using only recurrent networks to capture the temporal information,
+and that these models are more scalable given the restricted receptive field which results from the CNN "sliding window" technique.
 
 #### Gloss-to-Video
 Gloss-to-Video---also known as sign language production---is the task to produce a video that adequately represent
@@ -487,7 +551,7 @@ Finally, they use this information to construct an animation system using letter
 ```{=ignore}
 ## Citation
 
-While work on this document is still ongoing, if you want to refer to it, please use the following bibtex:
+If you want to refer to this work, please use the following bibtex:
 
 ```bibtex
 @misc{moryossef2021slp, 
@@ -624,7 +688,7 @@ Emailed Eleni and Evita, need to make sure data is available
 | SMILE | @dataset:ebling2018smile | Swiss-German | <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> | 100 | 9,000 Samples | 30 | Not Published |
 | [SSL Corpus](https://teckensprakskorpus.su.se) | @dataset:oqvist-etal-2020-sts | Swedish | 🎥✍📋📜 |  |  |  | <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> In January |
 | [SSL Lexicon](https://teckensprakslexikon.su.se/) | @dataset:mesch2012meaning | Swedish | 🎥📋📜📜 | 20,000 |  |  | [CC BY-NC-SA 2.5 SE](https://creativecommons.org/licenses/by-nc-sa/2.5/se/) |
-| [Video-Based CSL](http://home.ustc.edu.cn/~pjh/openresources/cslr-dataset-2015/index.html) | @dataset:huang2018video | Chinese | <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> | 178 | 25,000 Videos | 50 | [Research Attribution](https://rec.ustc.edu.cn/share/475ac440-dab7-11ea-963e-ebae3cfe5012) |
+| [Video-Based CSL](http://home.ustc.edu.cn/~pjh/openresources/cslr-dataset-2015/index.html) | @dataset:huang2018video | Chinese | <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> | 500 | 125,000 Videos | 50 | [Research Attribution](https://rec.ustc.edu.cn/share/475ac440-dab7-11ea-963e-ebae3cfe5012) |
 | [WLASL](https://dxli94.github.io/WLASL/) [💾](https://github.com/huggingface/datasets/tree/master/datasets/wlasl) | @dataset:li2020word | American | 🎥📋 | 2,000 |  | 100 | [C-UDA 1.0](https://github.com/microsoft/Computational-Use-of-Data-Agreement) |
 </div>
 
