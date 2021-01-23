@@ -12,10 +12,9 @@ dst/index.pdf: dst/index_shortcode.md src/references.bib
 	cd dst && pandoc -f markdown+emoji -L../addons/latex-emoji.lua index_shortcode.md -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=../src/references.bib -o index.pdf
 
 
-dst/index.md: src/index.md src/formats.md src/gtag.html dst tmp/datasets.md dst/assets
+dst/index.md: src/index.md src/formats.md dst tmp/datasets.md dst/assets
 	cat src/index.md > $@
 	sed -i -e '/formats.md/{r src/formats.md' -e 'd}' $@
-	sed -i -e '/gtag.html/{r src/gtag.html' -e 'd}' $@
 	sed -i -e '/datasets.md/{r tmp/datasets.md' -e 'd}' $@
 	sed -i 's/TODO/\<span style=\"background-color: red; color: white; padding: 0 2px !important;\"\>\*\*TODO\*\*\<\/span\>/g' $@
 
