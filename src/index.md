@@ -76,7 +76,7 @@ formats.md
 ### Sign Language Detection
 
 Sign language detection [@detection:borg2019sign;@detection:moryossef2020real] is defined as the binary-classification for any
-given frame of a video whether a person is using sign-language or not.
+given frame of a video whether a person is using sign language or not.
 
 @detection:borg2019sign introduced the classification of frames taken from YouTube videos as either signing or not. 
 They take a spatial and temporal approach based on VGG-16 [@simonyan2015very] CNN to encode each frame 
@@ -320,7 +320,8 @@ employed for iterative optimization.
 
 @adaloglou2020comprehensive perform a comparative experimental assessment of computer vision-based methods for the video-to-gloss task.
 They implement various approaches from previous research [@camgoz2017subunets;@cui2019deep;@dataset:joze2018ms]
-and test them on multiple datasets [] either for isolated sign recognition, or continuous sign recognition.
+and test them on multiple datasets [@dataset:huang2018video;@cihan2018neural;@dataset:von2007towards;@dataset:joze2018ms]
+either for isolated sign recognition, or continuous sign recognition.
 They conclude that 3D convolutional models outperform models using only recurrent networks to capture the temporal information,
 and that these models are more scalable given the restricted receptive field which results from the CNN "sliding window" technique.
 
@@ -337,7 +338,7 @@ which led researchers to avoid performing this task directly, and instead rely o
 
 #### Gloss-to-Text
 Gloss-to-Text---also known as sign language translation---is the natural language processing task of translating
-between gloss text representing sign-language signs and spoken language text. 
+between gloss text representing sign language signs and spoken language text. 
 These texts commonly differ by terminology, capitalization, and sentence structure.
 
 @cihan2018neural experimented with various machine-translation architectures and compared between using an LSTM vs. GRU for the recurrent model,
@@ -633,6 +634,9 @@ TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6
 - Estonian Sign Language: ?
 - Finnish Sign Language: Juhana Salonen, Antti Kronqvist (juhana.salonen@jyu.fi, antti.r.kronqvist@jyu.fi)
 - Danish Sign  Language: Jette H. Kristoffersen, Thomas Troelsgård (jehk@ucc.dk, ttro@ucc.dk)
+- GSL - https://arxiv.org/pdf/2007.12530.pdf
+- Phoenix SD / SI - J. Forster, C. Schmidt, O. Koller, M. Bellgardt, and H. Ney, “Extensions
+                    of the sign language recognition and translation corpus rwth-phoenixweather.” in LREC, 2014, pp. 1911–1916.
 
 
 GSLC - https://www.academia.edu/1990408/GSLC_creation_and_annotation_of_a_Greek_sign_language_corpus_for_HCI
