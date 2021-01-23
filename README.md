@@ -4,11 +4,9 @@ The goal of this project is to contain and organize the sign language processing
 
 I (AmitMY) intend to use this project as the main source for my thesis background and related work sections.
 
-Once organized, this information could be incorporated in Wikipedia.
-
 This project is hosted in: [sign-language-processing.github.io](https://sign-language-processing.github.io)
 
-All contributions are welcomed!
+Contributions are welcomed!
 
 ## Building
 
