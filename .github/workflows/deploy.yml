@@ -18,7 +18,7 @@ jobs:
         run: make server
       - uses: docker://pandoc/core:2.9
         with:
-          args: "-o dst/index.html -s --table-of-contents --bibliography=src/references.bib --columns 1000 dst/index.md"
+          args: "-o dst/index.html -H src/header.html -V lang=en -s --table-of-contents --bibliography=src/references.bib --columns 1000 dst/index.md"
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
