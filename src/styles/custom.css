@@ -15,6 +15,11 @@ pre {
     overflow: auto;
 }
 
+/* Hide authors */
+.author {
+    display: none;
+}
+
 /* Tables */
 .table {
     display: block;
@@ -55,3 +60,9 @@ table, th, td {
     height: 150px;
 }
 
+#continuous-rep {
+    display: block;
+    margin: auto;
+    max-width: 95vw;
+    width: 1400px;
+}

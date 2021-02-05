@@ -11,10 +11,10 @@
     "gloss:ASL",
     "text:English"
   ],
-  "language": "American",
+  "language": "American (Synthetic)",
   "#items": null,
   "#samples": "> 100,000,000 Sentences",
   "#signers": "N/A",
-  "license": "Sample Available",
+  "license": "Sample Available ([1](http://www.achrafothman.net/aslsmt/corpus/sample-corpus-asl-en.asl), [2](http://www.achrafothman.net/aslsmt/corpus/sample-corpus-asl-en.en))",
   "licenseUrl": null
 }
