@@ -1,6 +1,6 @@
-markdown: dst dst/index.html dst/style.css dst/sitemap.xml
+markdown: dst dst/index.html dst/style.css
 
-server: dst dst/style.css dst/index.md
+server: dst dst/style.css dst/index.md dst/sitemap.xml
 
 dst/index.html: dst/index.md src/references.bib
 	pandoc dst/index.md -s --table-of-contents --bibliography=src/references.bib --columns 1000  -o $@ -H src/header.html -V lang=en
