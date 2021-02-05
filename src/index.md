@@ -680,10 +680,10 @@ For attribution in academic contexts, please cite this work as:
 
 ```bibtex
 @misc{moryossef2021slp, 
-    title={{S}ign {L}anguage {P}rocessing}, 
-    author={Moryossef, Amit and Goldberg, Yoav},
-    howpublished={\url{https://sign-language-processing.github.io/}},
-    year={2021}
+    title = "{S}ign {L}anguage {P}rocessing", 
+    author = "Moryossef, Amit and Goldberg, Yoav",
+    howpublished = "\url{https://sign-language-processing.github.io/}",
+    year = "2021"
 }
 ```
 
