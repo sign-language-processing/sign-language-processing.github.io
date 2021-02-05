@@ -1,4 +1,4 @@
-markdown: dst dst/index.html dst/style.css
+markdown: dst dst/index.html dst/style.css dst/sitemap.xml
 
 server: dst dst/style.css dst/index.md
 
@@ -20,6 +20,9 @@ dst/index.md: src/index.md src/formats.md dst tmp/datasets.md dst/assets
 
 dst/style.css: dst src/styles/splendor.css src/styles/custom.css
 	cat src/styles/splendor.css src/styles/custom.css > $@
+
+dst/sitemap.xml: dst src/sitemap.js
+	node src/sitemap.js > $@
 
 # TODO make this depend on all asset files
 dst/assets: src/assets/tasks/tasks.svg
