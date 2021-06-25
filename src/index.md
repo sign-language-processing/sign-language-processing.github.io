@@ -21,47 +21,54 @@ abstract: |
 
 ## Introduction
 
-Sign languages (also known as signed languages) are languages that use the visual-gestural modality to convey meaning through manual articulations in combination with non-manual elements.
-Similar to spoken languages, sign languages are natural languages governed by a set of linguistic rules [@sandler2006sign], 
+Signed languages (also known as sign languages) are languages that use the visual-gestural modality to convey meaning through manual articulations in combination with non-manual elements.
+Similar to spoken languages, signed languages are natural languages governed by a set of linguistic rules [@sandler2006sign], 
 both emerging through an abstract, protracted aging process and evolved without meticulous planning.
-Sign languages are not universal, and they are not mutually intelligible, although there are also striking similarities among them.
-They are also distinct from spoken languages---i.e., American Sign Language (ASL) is not a visual form of English.
+Signed languages are not universal, or mutually intelligible, despite often having striking similarities among them.
+They are also distinct from spoken languages---i.e., American Sign Language (ASL) is not a visual form of English, 
+rather its own unique language.
 
-Sign Language Processing [@bragg2019sign] is an emerging field of artificial intelligence concerned with automatic processing and analysis of sign language content.
-It is a subfield of both natural language processing and computer vision.
-Challenges in sign language processing frequently involve machine translation of sign languages to spoken language text (sign language translation), 
+Sign Language Processing [@bragg2019sign] is an emerging field of artificial intelligence concerned with the automatic processing and analysis of sign language content.
+It is a subfield of both natural language processing (NLP) and computer vision (CV).
+Challenges in sign language processing frequently involve machine translation of sign language videos to spoken language text (sign language translation), 
 from spoken language text (sign language production), or sign language recognition for sign language understanding.
 
 Unfortunately, the latest advances in language-based artificial intelligence, like machine translation and personal assistants, 
-expect a spoken language input (speech or text), which excludes around 200 different signed languages and up to 70 million deaf people (According to [World Federation of the Deaf](https://wfdeaf.org/our-work/)). 
+expect a spoken language input (text or transcribed speech), which excludes around 200 different signed languages and up to 70 million deaf people (According to the [World Federation of the Deaf](https://wfdeaf.org/our-work/)). 
 
-One of the challenging aspects regarding the translation of sign languages compared to spoken language is that
-while spoken languages have agreed upon written forms, sign languages do not.
-The lack of a written form makes the spoken language processing pipelines of transcription before processing 
-incompatible with sign languages, forcing researchers to work directly on the raw video signal.
+One of the challenging aspects regarding the translation of signed languages compared to spoken languages is that
+while spoken languages usually have agreed upon written forms, signed languages do not.
+The lack of a written form makes the spoken language processing pipelines - which often start with audio-transcription before processing - 
+incompatible with signed languages, forcing researchers to work directly on the raw video signal.
 
-In this work, we describe the different representations used for sign language processing, as well as survey the various task and recent advances on them. We also make a comprehensive list of existing datasets and make the ones available easy to load using a simple interface and standardized interface.
+In this work, we describe the different representations used for sign language processing, 
+as well as survey the various tasks and recent advances on them.
+We also make a comprehensive list of existing datasets and make the ones available easy to load using a simple and standardized interface.
+
 
 ## Sign Language Representations
 
-As sign languages are conveyed through the visual-gestural modality, the most straightforward way to capture them is via video recording.
-However, as videos include more information than needed for modeling and are expensive to record, store, and transmit, a lower-dimensionality representation has been sought after.
+As signed languages are conveyed through the visual-gestural modality, the most straightforward way to capture them is via video recording.
+However, as videos include more information than needed for modeling, and are expensive to record, store, and transmit, a lower-dimensionality representation has been sought after.
 
 One such representation is human [poses](https://en.wikipedia.org/wiki/Pose_(computer_vision)), either recorded with [motion capture](https://en.wikipedia.org/wiki/Motion_capture) technologies,
 or estimated from videos using [pose estimation](https://en.wikipedia.org/wiki/Pose_(computer_vision)#Pose_estimation) techniques.
-Accurate full-body human poses include all the relevant information for sign language processing (manual or non-manual), except for visual cues such as props.
+Accurate full-body human poses can include all the relevant information for sign language processing (manual or non-manual), except for visual cues such as props.
 
-Another representation system is sign language notation. Despite the fact that several notation systems have been proposed to capture the phonetics of sign languages, no writing system has been adopted widely enough by any sign language community that it could be considered the "written form" of a given sign language. There are various universal notations systems---[SignWriting](https://en.wikipedia.org/wiki/SignWriting) [@writing:sutton1990lessons], 
+Another representation system is sign language notation. Despite the fact that several notation systems have been proposed to capture the phonetics of signed languages, 
+no writing system has been adopted widely enough by any sign language community that it could be considered the "written form" of a given sign language. 
+There are various universal notation systems---[SignWriting](https://en.wikipedia.org/wiki/SignWriting) [@writing:sutton1990lessons], 
 [HamNoSys](https://en.wikipedia.org/wiki/Hamburg_Notation_System) [@writing:prillwitz1990hamburg]---and various language specific notation systems---[Stokoe notation](https://en.wikipedia.org/wiki/Stokoe_notation) 
 [@writing:stokoe2005sign] and [si5s](https://en.wikipedia.org/wiki/Si5s) for American Sign Language, [SWL](https://zrajm.github.io/teckentranskription/freesans-swl.html) [@writing:bergman1977tecknad] 
 for Swedish Sign Language, etc.
 
-Making an abstraction over the phonetics of sign language, glossing is a widely used practice to "transcribe" a video sign-by-sign by assigning a unique identifier for every sign and possibly every variation of that sign. Unlike other representations previously discussed, glosses are language-specific, requiring a new gloss "dictionary" for every sign language.
+Making an abstraction over the phonetics of sign language, glossing is a widely used practice to "transcribe" a video sign-by-sign by assigning a unique identifier for every sign and possibly every variation of it. 
+Unlike other representations previously discussed, as glosses represent the semantics of sign, they are language-specific, requiring a new glossary for every sign language.
 
 
 The following table exemplifies the various representations for isolated signs.
 For this example, we use [SignWriting](https://en.wikipedia.org/wiki/SignWriting) as the notation system.
-Note that the same sign might have two unrelated glosses, and the same gloss might have multiple valid texts.
+Note that the same sign might have two unrelated glosses, and the same gloss might have multiple valid spoken language translations.
 
 ```{=html}
 <div id="formats-table" class="table">
@@ -70,8 +77,6 @@ formats.md
 ```{=html}
 </div>
 ```
-
-```{=ignore}
 
 We also demonstrate the various representations in the following figure for a continuous sign language video. 
 To show the alignment of the annotations between the video and representations, we deconstruct the video into its individual frames.
@@ -84,7 +89,7 @@ An English translation of this phrase could be: "What is your name?"
 -`{=latex}
 \includegraphics[width=\linewidth]{assets/representation/continuous.pdf}
 -`
-```
+
 
 ## Tasks
 
@@ -101,29 +106,38 @@ In addition to the raw frame, they also either encode optical flow history, aggr
 
 @detection:moryossef2020real improved upon their method by performing sign language detection in real-time.
 They identified that sign language use involves movement of the body, and as such, designed a model that works on top of 
-human poses rather than directly on the video signal.
+estimated human poses rather than directly on the video signal.
 They calculate the optical flow norm of every joint detected on the body and apply a shallow yet effective contextualized model
 to predict for every frame whether the person is signing or not.
 
-While these works show performs well on this task, well-annotated data, including interferences and distractors, is still lacking for proper evaluation.
+While these works perform well on this task, well-annotated data, including interferences and distractors, is still lacking for real-world evaluation.
 
 ### Sign Language Identification
 
-Sign language identification [@identification:gebre2013automatic;@identification:monteiro2016detecting] is defined as the classification between two or more sign languages.
+Sign language identification [@identification:gebre2013automatic;@identification:monteiro2016detecting] is defined as the classification between two or more signed languages.
  
 @identification:gebre2013automatic found that a simple random-forest classifier can distinguish between British Sign Language (BSL) and Greek Sign Language (ENN) with a 95% F1 score.
-This finding is further supported by identification:monteiro2016detecting, which manages to differentiate between British Sign Language and French Sign Language (Langue des Signes Française, LSF) with 98% F1 score in videos with static backgrounds, and between American Sign Language and British Sign Language with 0% F1 score for videos mined from popular video sharing sites. 
+This finding is further supported by @identification:monteiro2016detecting, which manages to differentiate between British Sign Language and 
+French Sign Language (Langue des Signes Française, LSF) with 98% F1 score in videos with static backgrounds, 
+and between American Sign Language and British Sign Language with 70% F1 score for videos mined from popular video sharing sites. 
 The authors attribute their success mainly to the different fingerspelling systems, which is two-handed in the case of BSL and one-handed in the case of ASL and LSF.
 
 
-```{=ignore}
-
 ### Sign Language Segmentation
 
-Segmentation of an input into a sequence of meaningful units is a crucial step for several downstream tasks in NLP. While the most canonical way of dividing a spoken language text is into a linear sequence of words, due to the simultaneity of sign language, the notion of a sign language "word" is ill-defined, and sign language cannot be fully modeled linearly.
+Segmentation consists of detecting the frame boundaries for signs or phrases in videos to divide them into meaningful units.
+While the most canonical way of dividing a spoken language text is into a linear sequence of words, 
+due to the simultaneity of sign language, the notion of a sign language "word" is ill-defined, and sign language cannot be fully modeled linearly.
 
-\citet{bull2020automatic} segment French Sign Language into subtitle-units by detecting the temporal boundaries of subtitles aligned with sign language videos, \citet{farag2019learning} use a random forest classifier to distinguish frames containing words in Japanese Sign Language \ky{not sure how they define a `word'}. 
-```
+Current methods resort to segmenting units loosely mapped to signed language units [@segmentation:santemiz2009automatic;@segmentation:farag2019learning;@segmentation:bull2020automatic], 
+and do not leverage reliable linguistic predictors of sentence boundaries such as prosody in signed languages (i.e. pauses, sign duration, facial expressions, eye apertures) \cite{sandler2010prosody, ormel2012prosodic}.
+
+@segmentation:bull2020automatic segment French Sign Language into subtitle-units by detecting the temporal boundaries of subtitles aligned with sign language videos.
+
+@segmentation:farag2019learning use a random forest classifier to distinguish frames containing words in Japanese Sign Language 
+
+TODO add Gul Varol's works
+
 
 ### Sign Language Recognition, Translation, and Production
 
@@ -136,7 +150,7 @@ and each directed edge represents the task of converting between one data repres
 
 We split the graph into two: 
 
-- Every edge to the left, on the orange background, represents a task in computer vision. These tasks are inherently language-agnostic, thus generalize between sign languages.
+- Every edge to the left, on the orange background, represents a task in computer vision. These tasks are inherently language-agnostic, thus generalize between signed languages.
 - Every edge to the right, on the blue background, represents a task in natural language processing. These tasks are sign language-specific, requiring a specific sign language lexicon or spoken language tokens.
 - Every edge on both backgrounds represents a task requiring a combination of computer vision and natural language processing.
 
@@ -512,10 +526,10 @@ TODO
 ### Fingerspelling 
 
 Fingerspelling is the act of spelling a word letter-by-letter, borrowing from the spoken language alphabet [@battison1978lexical;@wilcox1992phonetics;@brentari2001language].
-This phenomenon, found in most sign languages, often occurs when there is no previously agreed upon sign for a concept,
+This phenomenon, found in most signed languages, often occurs when there is no previously agreed upon sign for a concept,
 like in technical language, colloquial conversations involving names, conversations involving current events, 
 emphatic forms, and the context of code-switching between the sign language and corresponding spoken language [@padden1998asl;@montemurro2018emphatic].
-The relative amount of fingerspelling varies between sign languages, and for American Sign Language (ASL) accounts for 12–35% of the signed content [@padden2003alphabet].
+The relative amount of fingerspelling varies between signed languages, and for American Sign Language (ASL) accounts for 12–35% of the signed content [@padden2003alphabet].
 
 @patrie2011fingerspelled describe the following terminology to describe three different forms of fingerspelling:
 
@@ -575,7 +589,7 @@ PyMPI [@pympi-1.69] allows for simple python interaction with Elan files.
 [iLex](https://www.sign-lang.uni-hamburg.de/ilex/) [@hanke2002ilex] is a tool for sign language lexicography and corpus analysis, 
 that combines features found in empirical sign language lexicography and in sign language discourse transcription. 
 It supports the user in integrated lexicon building while working on the transcription of a corpus and 
-offers a number of unique features considered essential due to the specific nature of sign languages.
+offers a number of unique features considered essential due to the specific nature of signed languages.
 iLex binaries are [available](https://www.sign-lang.uni-hamburg.de/ilex/ilex.xml) for macOS.
 
 ##### SignStream
@@ -637,7 +651,7 @@ Furthermore, we follow a unified interface when possibles, making attributes the
 ```
 
 
-The following table contains a curated list of datasets including various sign languages and data formats:
+The following table contains a curated list of datasets including various signed languages and data formats:
 
 ```{=ignore}
 TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6477&context=etd) page 26 has more datasets.

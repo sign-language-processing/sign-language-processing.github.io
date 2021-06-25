@@ -47,9 +47,9 @@ tmp/datasets.md: src/datasets.js tmp
 #tex:
 #	mkdir $@
 #
-#tex/main.tex: dst/index.md tex/references.bib tex
-#	pandoc dst/index.md -s -N --natbib --bibliography=references.bib -o $@
-#
+dst/index.tex: dst dst/index.md src/references.bib
+	pandoc dst/index.md -s -N --natbib --bibliography=src/references.bib -o $@
+
 #
 #
 #tex/references.bib: src/references.bib tex
