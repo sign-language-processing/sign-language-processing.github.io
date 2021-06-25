@@ -82,13 +82,13 @@ We also demonstrate the various representations in the following figure for a co
 To show the alignment of the annotations between the video and representations, we deconstruct the video into its individual frames.
 An English translation of this phrase could be: "What is your name?"
 
--`{=html}
+```{=html}
 <object type="image/svg+xml" data="assets/representation/continuous.svg" id="continuous-rep"></object>
--`
+```
 
--`{=latex}
+```{=latex}
 \includegraphics[width=\linewidth]{assets/representation/continuous.pdf}
--`
+```
 
 
 ## Tasks
