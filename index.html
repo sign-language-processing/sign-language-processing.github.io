@@ -125,8 +125,8 @@
 </ul>
 </nav>
 <h2 id="introduction">Introduction</h2>
-<p>Signed languages (also known as sign languages) are languages that use the visual-gestural modality to convey meaning through manual articulations in combination with non-manual elements. Similar to spoken languages, signed languages are natural languages governed by a set of linguistic rules <span class="citation" data-cites="sandler2006sign">(Sandler and Lillo-Martin <a href="#ref-sandler2006sign" role="doc-biblioref">2006</a>)</span>, both emerging through an abstract, protracted aging process and evolved without meticulous planning. Signed languages are not universal, or mutually intelligible, despite often having striking similarities among them. They are also distinct from spoken languages—i.e., American Sign Language (ASL) is not a visual form of English, rather its own unique language.</p>
-<p>Sign Language Processing <span class="citation" data-cites="bragg2019sign">(Bragg et al. <a href="#ref-bragg2019sign" role="doc-biblioref">2019</a>)</span> is an emerging field of artificial intelligence concerned with the automatic processing and analysis of sign language content. It is a subfield of both natural language processing (NLP) and computer vision (CV). Challenges in sign language processing frequently involve machine translation of sign language videos to spoken language text (sign language translation), from spoken language text (sign language production), or sign language recognition for sign language understanding.</p>
+<p>Signed languages (also known as sign languages) are languages that use the visual-gestural modality to convey meaning through manual articulations in combination with non-manual elements like the face and body. Similar to spoken languages, signed languages are natural languages governed by a set of linguistic rules <span class="citation" data-cites="sandler2006sign">(Sandler and Lillo-Martin <a href="#ref-sandler2006sign" role="doc-biblioref">2006</a>)</span>, both emerging through an abstract, protracted aging process and evolved without meticulous planning. Signed languages are not universal, or mutually intelligible, despite often having striking similarities among them. They are also distinct from spoken languages—i.e., American Sign Language (ASL) is not a visual form of English, rather its own unique language.</p>
+<p>Sign Language Processing <span class="citation" data-cites="bragg2019sign yin-etal-2021-including">(Bragg et al. <a href="#ref-bragg2019sign" role="doc-biblioref">2019</a>; Yin et al. <a href="#ref-yin-etal-2021-including" role="doc-biblioref">2021</a>)</span> is an emerging field of artificial intelligence concerned with the automatic processing and analysis of sign language content. It is a subfield of both natural language processing (NLP) and computer vision (CV). Challenges in sign language processing frequently involve machine translation of sign language videos to spoken language text (sign language translation), from spoken language text (sign language production), or sign language recognition for sign language understanding.</p>
 <p>Unfortunately, the latest advances in language-based artificial intelligence, like machine translation and personal assistants, expect a spoken language input (text or transcribed speech), which excludes around 200 different signed languages and up to 70 million deaf people (According to the <a href="https://wfdeaf.org/our-work/">World Federation of the Deaf</a>).</p>
 <p>One of the challenging aspects regarding the translation of signed languages compared to spoken languages is that while spoken languages usually have agreed upon written forms, signed languages do not. The lack of a written form makes the spoken language processing pipelines - which often start with audio-transcription before processing - incompatible with signed languages, forcing researchers to work directly on the raw video signal.</p>
 <p>In this work, we describe the different representations used for sign language processing, as well as survey the various tasks and recent advances on them. We also make a comprehensive list of existing datasets and make the ones available easy to load using a simple and standardized interface.</p>
@@ -208,11 +208,11 @@
 <h4 id="video-to-pose">Video-to-Pose</h4>
 <p>Video-to-Pose—commonly known as pose estimation—is the task to detect human figures in images and videos, so that one could determine, for example, where someone’s elbow shows up in an image. It was shown <span class="citation" data-cites="vogler2005analysis">(Vogler and Goldenstein <a href="#ref-vogler2005analysis" role="doc-biblioref">2005</a>)</span> that the face pose correlates with facial non-manual features like head direction.</p>
 <p>This area has been thoroughly researched <span class="citation" data-cites="pose:pishchulin2012articulated pose:chen2017adversarial pose:cao2018openpose pose:alp2018densepose">(Pishchulin et al. <a href="#ref-pose:pishchulin2012articulated" role="doc-biblioref">2012</a>; Chen et al. <a href="#ref-pose:chen2017adversarial" role="doc-biblioref">2017</a>; Cao et al. <a href="#ref-pose:cao2018openpose" role="doc-biblioref">2019</a>; Güler, Neverova, and Kokkinos <a href="#ref-pose:alp2018densepose" role="doc-biblioref">2018</a>)</span> with objectives varying from predicting 2D / 3D poses to a selection of a small specific set of landmarks or a dense mesh of a person.</p>
-<p>OpenPose <span class="citation" data-cites="pose:cao2018openpose pose:simon2017hand pose:cao2017realtime pose:wei2016cpm">(Cao et al. <a href="#ref-pose:cao2018openpose" role="doc-biblioref">2019</a>; Simon et al. <a href="#ref-pose:simon2017hand" role="doc-biblioref">2017</a>; Cao et al. <a href="#ref-pose:cao2017realtime" role="doc-biblioref">2017</a>; Wei et al. <a href="#ref-pose:wei2016cpm" role="doc-biblioref">2016</a>)</span> is the first multi-person system to jointly detect human body, hand, facial, and foot keypoints (in total 135 keypoints) in 2D on single images. While their model can estimate the full pose directly from an image in a single inference, they also suggest a pipeline approach where first they estimate the body pose and then independently estimate the hands and face pose by acquiring higher resolution crops around those areas. With multiple angles of recording, OpenPose also offers keypoint triangulation in order to reconstruct the pose in 3D.</p>
+<p>OpenPose <span class="citation" data-cites="pose:cao2018openpose pose:simon2017hand pose:cao2017realtime pose:wei2016cpm">(Cao et al. <a href="#ref-pose:cao2018openpose" role="doc-biblioref">2019</a>; Simon et al. <a href="#ref-pose:simon2017hand" role="doc-biblioref">2017</a>; Cao et al. <a href="#ref-pose:cao2017realtime" role="doc-biblioref">2017</a>; Wei et al. <a href="#ref-pose:wei2016cpm" role="doc-biblioref">2016</a>)</span> is the first multi-person system to jointly detect human body, hand, facial, and foot keypoints (in total 135 keypoints) in 2D on single images. While their model can estimate the full pose directly from an image in a single inference, they also suggest a pipeline approach where first they estimate the body pose and then independently estimate the hands and face pose by acquiring higher resolution crops around those areas. Building on the slow pipeline approach, a single network whole body OpenPose model has been proposed <span class="citation" data-cites="pose:hidalgo2019singlenetwork">(Hidalgo et al. <a href="#ref-pose:hidalgo2019singlenetwork" role="doc-biblioref">2019</a>)</span>, which is faster and more accurate for the case of obtaining all keypoints. Additionally, with multiple angles of recording, OpenPose also offers keypoint triangulation in order to reconstruct the pose in 3D.</p>
 <p><span class="citation" data-cites="pose:alp2018densepose">Güler, Neverova, and Kokkinos (<a href="#ref-pose:alp2018densepose" role="doc-biblioref">2018</a>)</span> takes a different approach with DensePose. Instead of classifying for every keypoint which pixel is most likely, they suggest similarly to semantic segmentation, for each pixel to classify which body part it belongs to. Then, for each pixel, knowing the body part, they predict where that pixel is on the body part relative to a 2D projection of a representative body model. This approach results in the reconstruction of the full-body mesh and allows sampling to find specific keypoints similar to OpenPose.</p>
 <p>However, 2D human poses might not be sufficient to fully understand the position and orientation of landmarks in space, and applying pose estimation per-frame does not take the video temporal movement information into account, especially in cases of rapid movement, which contain motion blur.</p>
-<p><span class="citation" data-cites="pose:pavllo20193d">Pavllo et al. (<a href="#ref-pose:pavllo20193d" role="doc-biblioref">2019</a>)</span> developed two methods to convert between 2D poses to 3D poses. The first, a supervised method, was trained to use the temporal information between frames to predict the missing Z-axis. The second, an unsupervised method, leveraging the fact that the 2D poses are merely a projection of an unknown 3D pose and train a model to estimate the 3D pose and back-project to the input 2D poses. This back-projection is a deterministic process, and as such, it applies constraints on the 3D pose encoder. <span class="citation" data-cites="pose:zelinka2020neural">Zelinka and Kanis (<a href="#ref-pose:zelinka2020neural" role="doc-biblioref">2020</a>)</span> follows a similar process and adds a constraint for bones to stay of a fixed length between frames.</p>
-<p><span class="citation" data-cites="pose:panteleris2018using">Panteleris, Oikonomidis, and Argyros (<a href="#ref-pose:panteleris2018using" role="doc-biblioref">2018</a>)</span> suggests converting the 2D poses to 3D using inverse kinematics (IK), a process taken from computer animation and robotics to calculate the variable joint parameters needed to place the end of a kinematic chain, such as a robot manipulator or animation character’s skeleton in a given position and orientation relative to the start of the chain. Demonstrating their approach on hand pose estimation, they manually explicitly encode the constraints and limits of each joint, resulting in 26 degrees of freedom. Then, non-linear least-squares minimization fits a 3D model of the hand to the estimated 2D joint positions, recovering the 3D hand pose. This is similar to the back-projection used by <span class="citation" data-cites="pose:pavllo20193d">Pavllo et al. (<a href="#ref-pose:pavllo20193d" role="doc-biblioref">2019</a>)</span>, except here, no temporal information is being used.</p>
+<p><span class="citation" data-cites="pose:pavllo20193d">Pavllo et al. (<a href="#ref-pose:pavllo20193d" role="doc-biblioref">2019</a>)</span> developed two methods to convert between 2D poses to 3D poses. The first, a supervised method, was trained to use the temporal information between frames to predict the missing Z-axis. The second, an unsupervised method, leveraging the fact that the 2D poses are merely a projection of an unknown 3D pose and train a model to estimate the 3D pose and back-project to the input 2D poses. This back-projection is a deterministic process, and as such, it applies constraints on the 3D pose encoder. <span class="citation" data-cites="pose:zelinka2020neural">Zelinka and Kanis (<a href="#ref-pose:zelinka2020neural" role="doc-biblioref">2020</a>)</span> follow a similar process and adds a constraint for bones to stay of a fixed length between frames.</p>
+<p><span class="citation" data-cites="pose:panteleris2018using">Panteleris, Oikonomidis, and Argyros (<a href="#ref-pose:panteleris2018using" role="doc-biblioref">2018</a>)</span> suggest converting the 2D poses to 3D using inverse kinematics (IK), a process taken from computer animation and robotics to calculate the variable joint parameters needed to place the end of a kinematic chain, such as a robot manipulator or animation character’s skeleton in a given position and orientation relative to the start of the chain. Demonstrating their approach on hand pose estimation, they manually explicitly encode the constraints and limits of each joint, resulting in 26 degrees of freedom. Then, non-linear least-squares minimization fits a 3D model of the hand to the estimated 2D joint positions, recovering the 3D hand pose. This is similar to the back-projection used by <span class="citation" data-cites="pose:pavllo20193d">Pavllo et al. (<a href="#ref-pose:pavllo20193d" role="doc-biblioref">2019</a>)</span>, except here, no temporal information is being used.</p>
 <p>MediaPipe Holistic <span class="citation" data-cites="mediapipe2020holistic">(Grishchenko and Bazarevsky <a href="#ref-mediapipe2020holistic" role="doc-biblioref">2020</a>)</span> attempts to solve the 3D pose estimation problem directly by taking a similar approach to OpenPose, having a pipeline system to estimate the body and then the face and hands. Unlike OpenPose, the estimated poses are in 3D, and the pose estimator runs in real-time on CPU, allowing for pose-based sign language models on low powered mobile devices. This pose estimation tool is widely available and built for Android, iOS, C++, Python, and the Web using Javascript.</p>
 <h4 id="pose-to-video">Pose-to-Video</h4>
 <p>Pose-to-Video, also known as motion-transfer or skeletal animation in the field of robotics and animation, is the conversion of a sequence of poses to a realistic-looking video. For sign language production, this is the final “rendering” to make the produced sign language look human.</p>
@@ -496,14 +496,14 @@
 <td></td>
 </tr>
 <tr class="even">
-<td>How2Sign</td>
+<td><a href="https://how2sign.github.io/">How2Sign</a> <a href="https://github.com/huggingface/datasets/tree/master/datasets/how2sign">💾</a></td>
 <td><span class="citation" data-cites="dataset:duarte2020how2sign">Duarte et al. (<a href="#ref-dataset:duarte2020how2sign" role="doc-biblioref">2020</a>)</span></td>
 <td>American</td>
 <td>🎥👋📋📜🔊</td>
 <td>16,000</td>
 <td>79 hours (35,000 sentences)</td>
 <td>11</td>
-<td>Not Published</td>
+<td><a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></td>
 </tr>
 <tr class="odd">
 <td><a href="https://krslproject.github.io/krsl20/">K-RSL</a></td>
@@ -616,6 +616,16 @@
 <td><a href="mailto:leena.savolainen@kuurojenliitto.fi">Permission</a></td>
 </tr>
 <tr class="even">
+<td><a href="https://sign2mint.de/">Sign2MINT</a> <a href="https://github.com/huggingface/datasets/tree/master/datasets/sign2mint">💾</a></td>
+<td>2021</td>
+<td>German</td>
+<td>🎥✍📜</td>
+<td>740</td>
+<td>1135</td>
+<td></td>
+<td><a href="https://creativecommons.org/licenses/by-nc-sa/3.0/de/">CC BY-NC-SA 3.0 DE</a></td>
+</tr>
+<tr class="odd">
 <td><a href="http://lojze.lugos.si/signor/">SIGNOR</a></td>
 <td><span class="citation" data-cites="dataset:vintar2012compiling">Vintar, Jerko, and Kulovec (<a href="#ref-dataset:vintar2012compiling" role="doc-biblioref">2012</a>)</span></td>
 <td>Slovene</td>
@@ -625,7 +635,7 @@
 <td>80</td>
 <td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span> emailed Špela</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://www.phonetik.uni-muenchen.de/forschung/Bas/SIGNUM/">SIGNUM</a></td>
 <td><span class="citation" data-cites="dataset:von2007towards">Von Agris and Kraiss (<a href="#ref-dataset:von2007towards" role="doc-biblioref">2007</a>)</span></td>
 <td>German</td>
@@ -635,7 +645,7 @@
 <td>20</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>SMILE</td>
 <td><span class="citation" data-cites="dataset:ebling2018smile">Ebling et al. (<a href="#ref-dataset:ebling2018smile" role="doc-biblioref">2018</a>)</span></td>
 <td>Swiss-German</td>
@@ -645,7 +655,7 @@
 <td>30</td>
 <td>Not Published</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://teckensprakskorpus.su.se">SSL Corpus</a></td>
 <td><span class="citation" data-cites="dataset:oqvist-etal-2020-sts">Öqvist, Riemer Kankkonen, and Mesch (<a href="#ref-dataset:oqvist-etal-2020-sts" role="doc-biblioref">2020</a>)</span></td>
 <td>Swedish</td>
@@ -655,7 +665,7 @@
 <td></td>
 <td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span> In January</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://teckensprakslexikon.su.se/">SSL Lexicon</a></td>
 <td><span class="citation" data-cites="dataset:mesch2012meaning">Mesch and Wallin (<a href="#ref-dataset:mesch2012meaning" role="doc-biblioref">2012</a>)</span></td>
 <td>Swedish</td>
@@ -665,7 +675,7 @@
 <td></td>
 <td><a href="https://creativecommons.org/licenses/by-nc-sa/2.5/se/">CC BY-NC-SA 2.5 SE</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="http://home.ustc.edu.cn/~pjh/openresources/cslr-dataset-2015/index.html">Video-Based CSL</a></td>
 <td><span class="citation" data-cites="dataset:huang2018video">Huang et al. (<a href="#ref-dataset:huang2018video" role="doc-biblioref">2018</a>)</span></td>
 <td>Chinese</td>
@@ -675,7 +685,7 @@
 <td>50</td>
 <td><a href="https://rec.ustc.edu.cn/share/475ac440-dab7-11ea-963e-ebae3cfe5012">Research Attribution</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://dxli94.github.io/WLASL/">WLASL</a> <a href="https://github.com/huggingface/datasets/tree/master/datasets/wlasl">💾</a></td>
 <td><span class="citation" data-cites="dataset:li2020word">Li et al. (<a href="#ref-dataset:li2020word" role="doc-biblioref">2020</a>)</span></td>
 <td>American</td>
@@ -830,6 +840,9 @@
 </div>
 <div id="ref-dataset:hassan-etal-2020-isolated">
 <p>Hassan, Saad, Larwan Berke, Elahe Vahdani, Longlong Jing, Yingli Tian, and Matt Huenerfauth. 2020. “An Isolated-Signing RGBD Dataset of 100 American Sign Language Signs Produced by Fluent ASL Signers.” In <em>Proceedings of the Lrec2020 9th Workshop on the Representation and Processing of Sign Languages: Sign Language Resources in the Service of the Language Community, Technological Challenges and Application Perspectives</em>, 89–94. Marseille, France: European Language Resources Association (ELRA). <a href="https://www.aclweb.org/anthology/2020.signlang-1.14">https://www.aclweb.org/anthology/2020.signlang-1.14</a>.</p>
+</div>
+<div id="ref-pose:hidalgo2019singlenetwork">
+<p>Hidalgo, Gines, Yaadhav Raaj, Haroon Idrees, Donglai Xiang, Hanbyul Joo, Tomas Simon, and Yaser Sheikh. 2019. “Single-Network Whole-Body Pose Estimation.” In <em>ICCV</em>.</p>
 </div>
 <div id="ref-dataset:huang2018video">
 <p>Huang, Jie, Wengang Zhou, Qilin Zhang, Houqiang Li, and Weiping Li. 2018. “Video-Based Sign Language Recognition Without Temporal Segmentation.” In <em>Proceedings of the Aaai Conference on Artificial Intelligence</em>. Vol. 32. 1.</p>
@@ -1013,6 +1026,9 @@
 </div>
 <div id="ref-xiao2020skeleton">
 <p>Xiao, Qinkun, Minying Qin, and Yuting Yin. 2020. “Skeleton-Based Chinese Sign Language Recognition and Generation for Bidirectional Communication Between Deaf and Hearing People.” <em>Neural Networks</em> 125: 41–55.</p>
+</div>
+<div id="ref-yin-etal-2021-including">
+<p>Yin, Kayo, Amit Moryossef, Julie Hochgesang, Yoav Goldberg, and Malihe Alikhani. 2021. “Including Signed Languages in Natural Language Processing.” In <em>Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)</em>, 7347–60. Online: Association for Computational Linguistics. <a href="https://aclanthology.org/2021.acl-long.570">https://aclanthology.org/2021.acl-long.570</a>.</p>
 </div>
 <div id="ref-yin2020better">
 <p>Yin, Kayo, and Jesse Read. 2020. “Better Sign Language Translation with Stmc-Transformer.” In <em>Proceedings of the 28th International Conference on Computational Linguistics</em>, 5975–89.</p>
