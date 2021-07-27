@@ -1,0 +1,20 @@
+{
+  "pub": {
+    "name": "Sign2MINT",
+    "year": 2021,
+    "publication": null,
+    "url": "https://sign2mint.de/"
+  },
+  "loader": "sign2mint",
+  "features": [
+    "video",
+    "writing:SignWriting",
+    "text:German"
+  ],
+  "language": "German",
+  "#items": 740,
+  "#samples": "1135",
+  "#signers": null,
+  "license": "CC BY-NC-SA 3.0 DE",
+  "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/de/"
+}

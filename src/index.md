@@ -21,14 +21,14 @@ abstract: |
 
 ## Introduction
 
-Signed languages (also known as sign languages) are languages that use the visual-gestural modality to convey meaning through manual articulations in combination with non-manual elements.
+Signed languages (also known as sign languages) are languages that use the visual-gestural modality to convey meaning through manual articulations in combination with non-manual elements like the face and body.
 Similar to spoken languages, signed languages are natural languages governed by a set of linguistic rules [@sandler2006sign], 
 both emerging through an abstract, protracted aging process and evolved without meticulous planning.
 Signed languages are not universal, or mutually intelligible, despite often having striking similarities among them.
 They are also distinct from spoken languages---i.e., American Sign Language (ASL) is not a visual form of English, 
 rather its own unique language.
 
-Sign Language Processing [@bragg2019sign] is an emerging field of artificial intelligence concerned with the automatic processing and analysis of sign language content.
+Sign Language Processing [@bragg2019sign;@yin-etal-2021-including] is an emerging field of artificial intelligence concerned with the automatic processing and analysis of sign language content.
 It is a subfield of both natural language processing (NLP) and computer vision (CV).
 Challenges in sign language processing frequently involve machine translation of sign language videos to spoken language text (sign language translation), 
 from spoken language text (sign language production), or sign language recognition for sign language understanding.
@@ -190,7 +190,9 @@ jointly detect human body, hand, facial, and foot keypoints (in total 135 keypoi
 While their model can estimate the full pose directly from an image in a single inference,
 they also suggest a pipeline approach where first they estimate the body pose and then independently estimate 
 the hands and face pose by acquiring higher resolution crops around those areas.
-With multiple angles of recording, OpenPose also offers keypoint triangulation in order to reconstruct the pose in 3D.
+Building on the slow pipeline approach, a single network whole body OpenPose model has been proposed [@pose:hidalgo2019singlenetwork], 
+which is faster and more accurate for the case of obtaining all keypoints.
+Additionally, with multiple angles of recording, OpenPose also offers keypoint triangulation in order to reconstruct the pose in 3D.
 
 @pose:alp2018densepose takes a different approach with DensePose. 
 Instead of classifying for every keypoint which pixel is most likely, they suggest similarly to semantic segmentation,
@@ -207,9 +209,9 @@ The first, a supervised method, was trained to use the temporal information betw
 The second, an unsupervised method, leveraging the fact that the 2D poses are merely a projection of an unknown 3D pose
 and train a model to estimate the 3D pose and back-project to the input 2D poses. This back-projection is a deterministic process, 
 and as such, it applies constraints on the 3D pose encoder. 
-@pose:zelinka2020neural follows a similar process and adds a constraint for bones to stay of a fixed length between frames.
+@pose:zelinka2020neural follow a similar process and adds a constraint for bones to stay of a fixed length between frames.
 
-@pose:panteleris2018using suggests converting the 2D poses to 3D using inverse kinematics (IK), a process taken from computer animation and robotics to calculate the variable joint parameters needed to place the end of a kinematic chain, 
+@pose:panteleris2018using suggest converting the 2D poses to 3D using inverse kinematics (IK), a process taken from computer animation and robotics to calculate the variable joint parameters needed to place the end of a kinematic chain, 
 such as a robot manipulator or animation character's skeleton in a given position and orientation relative to the start of the chain.
 Demonstrating their approach on hand pose estimation, they manually explicitly encode the constraints and limits of each joint, resulting in 26 degrees of freedom.
 Then, non-linear least-squares minimization fits a 3D model of the hand to the estimated 2D joint positions, recovering the 3D hand pose.

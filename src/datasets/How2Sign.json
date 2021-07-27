@@ -3,8 +3,9 @@
     "name": "How2Sign",
     "year": 2020,
     "publication": "dataset:duarte2020how2sign",
-    "url": null
+    "url": "https://how2sign.github.io/"
   },
+  "loader": "how2sign",
   "features": [
     "video",
     "pose:OpenPose",
@@ -16,6 +17,6 @@
   "#items": 16000,
   "#samples": "79 hours (35,000 sentences)",
   "#signers": 11,
-  "license": "Not Published",
-  "licenseUrl": null
+  "license": "CC BY-NC 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-nc/4.0/"
 }
