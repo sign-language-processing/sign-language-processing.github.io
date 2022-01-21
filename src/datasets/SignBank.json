@@ -1,0 +1,20 @@
+{
+  "pub": {
+    "name": "SignBank",
+    "year": null,
+    "publication": null,
+    "url": "https://www.signbank.org/signpuddle/"
+  },
+  "loader": "sign_bank",
+  "features": [
+    "video",
+    "writing:SignWriting",
+    "text:Multilingual"
+  ],
+  "language": "Multilingual",
+  "#items": null,
+  "#samples": "222148",
+  "#signers": null,
+  "license": null,
+  "licenseUrl": null
+}
