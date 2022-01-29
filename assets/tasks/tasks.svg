@@ -1,8 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="500">
+	<defs xmlns="http://www.w3.org/2000/svg">
+		<pattern id="texture_vertical" x="0" y="0" width="10%" height="10%" patternUnits="objectBoundingBox">
+			<path d="M 50 0 l 0 500" style="stroke: white;fill: none;"/>
+		</pattern>
+		<pattern id="texture_horizontal" x="0" y="0" width="10%" height="10%" patternUnits="objectBoundingBox">
+			<path d="M 0 50 l 500 0" style="stroke: white;fill: none;"/>
+		</pattern>
+	</defs>
 	<g>
 		<!-- Containers -->
 		<rect width="500" height="500" rx="6" fill="#ffdba9" /><!-- CV -->
+		<rect width="500" height="500" rx="6" fill="url(#texture_vertical)" />
 		<rect x="500" width="500" height="500" rx="6" fill="#c1e4f7" /><!-- NLP -->
+		<rect x="500" width="500" height="500" rx="6" fill="url(#texture_horizontal)" />
 
 		<!-- Nodes -->
 		<rect x="50" y="50" width="150" height="75" rx="6" stroke="#5e5e5e" stroke-width="3" fill="white" /><!-- Video -->
