@@ -18,7 +18,13 @@ abstract: |
     This is a work in progress. The contents of this document will be refined over the course of 2020-2022.
 ...
 
-!! Try [sign.mt](https://sign.mt) to experience state of the art sign language translation technology !!
+
+```{=html}
+<p style="text-align: center">
+<iframe src="https://sign.mt/?embed=&spl=en&sil=us&text=Hello%20world!" allow="camera;microphone"></iframe>
+Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-sign language translation technology.
+</p>
+```
 
 ## Introduction
 

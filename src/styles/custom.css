@@ -16,7 +16,7 @@ pre {
 }
 
 /* Hide authors */
-.author {
+.author, .abstract-title {
     display: none;
 }
 
@@ -65,4 +65,13 @@ table, th, td {
     margin: auto;
     max-width: 95vw;
     width: 1400px;
+}
+
+iframe {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 1px solid #eee;;
+    width: 100%;
+    border-radius: 16px;
+    height: 549px;
 }
