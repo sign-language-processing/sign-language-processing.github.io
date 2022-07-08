@@ -2,8 +2,8 @@ markdown: dst dst/index.html dst/style.css
 
 server: dst dst/style.css dst/index.md dst/sitemap.xml
 
-dst/index.html: dst/index.md src/references.bib
-	pandoc dst/index.md -s --table-of-contents --bibliography=src/references.bib --columns 1000  -o $@ -H src/header.html -V lang=en
+dst/index.html: dst/index.md src/references.bib dst/style.css
+	pandoc dst/index.md -s --table-of-contents --bibliography=src/references.bib --citeproc --columns 1000  -o $@ -H src/header.html -V lang=en
 
 dst/index_shortcode.md: dst/index.md
 	node addons/emoji-to-shortcode/main.js dst/index.md > $@
@@ -14,9 +14,7 @@ dst/index.pdf: dst/index_shortcode.md src/references.bib
 
 dst/index.md: src/index.md src/formats.md dst tmp/datasets.md dst/assets
 	cat src/index.md > $@
-	sed -i -e '/formats.md/{r src/formats.md' -e 'd}' $@
-	sed -i -e '/datasets.md/{r tmp/datasets.md' -e 'd}' $@
-	sed -i 's/TODO/\<span style=\"background-color: red; color: white; padding: 0 2px !important;\"\>\*\*TODO\*\*\<\/span\>/g' $@
+	sh src/markdown_fix.sh $@
 
 dst/style.css: dst src/styles/splendor.css src/styles/custom.css
 	cat src/styles/splendor.css src/styles/custom.css > $@
