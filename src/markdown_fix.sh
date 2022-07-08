@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if type gsed >/dev/null
 then
   echo "Using gsed"

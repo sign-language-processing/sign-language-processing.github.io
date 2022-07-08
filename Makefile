@@ -14,7 +14,7 @@ dst/index.pdf: dst/index_shortcode.md src/references.bib
 
 dst/index.md: src/index.md src/formats.md dst tmp/datasets.md dst/assets
 	cat src/index.md > $@
-	sh src/markdown_fix.sh $@
+	bash src/markdown_fix.sh $@
 
 dst/style.css: dst src/styles/splendor.css src/styles/custom.css
 	cat src/styles/splendor.css src/styles/custom.css > $@
