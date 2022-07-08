@@ -136,14 +136,19 @@ Segmentation consists of detecting the frame boundaries for signs or phrases in 
 While the most canonical way of dividing a spoken language text is into a linear sequence of words, 
 due to the simultaneity of sign language, the notion of a sign language "word" is ill-defined, and sign language cannot be fully modeled linearly.
 
-Current methods resort to segmenting units loosely mapped to signed language units [@segmentation:santemiz2009automatic;@segmentation:farag2019learning;@segmentation:bull2020automatic], 
+Current methods resort to segmenting units loosely mapped to signed language units [@segmentation:santemiz2009automatic;@segmentation:farag2019learning;@segmentation:bull2020automatic;@segmentation:renz2021signa;@segmentation:renz2021signb;@segmentation:bull2021aligning], 
 and do not leverage reliable linguistic predictors of sentence boundaries such as prosody in signed languages (i.e. pauses, sign duration, facial expressions, eye apertures) \cite{sandler2010prosody, ormel2012prosodic}.
 
-@segmentation:bull2020automatic segment French Sign Language into subtitle-units by detecting the temporal boundaries of subtitles aligned with sign language videos.
+@segmentation:santemiz2009automatic automatically extract isolated signs from continuous signing by aligning the sequences obtained via speech recognition, modeled by Dynamic Time Warping (DTW) and Hidden Markov Models (HMMs) approaches. 
 
-@segmentation:farag2019learning use a random forest classifier to distinguish frames containing words in Japanese Sign Language 
+@segmentation:farag2019learning use a random forest classifier to distinguish frames containing words in Japanese Sign Language based on the composition of spatio-temporal angular and distance features betweeen domain-specific pairs of joint segments.
 
-TODO add Gul Varol's works
+@segmentation:bull2020automatic segment French Sign Language into subtitle-units by detecting the temporal boundaries of subtitles aligned with sign language videos, leveraging a spatio-temporal graph convolutional network with a BiLSTM on 2D skeleton data.
+
+@segmentation:renz2021signa determine the location of temporal boundaries between signs in continuous sign language videos by employing 3D convolutional neural network representations with iterative temporal segment refinement to resolve ambiguities between sign boundary cues. @segmentation:renz2021signb further propose the Changepoint-Modulated Pseudo-Labelling (CMPL) algorithm to solve the problem of source-free domain
+adaptation. 
+
+@segmentation:bull2021aligning present a Transformer-based approach to segment sign language video content and align with subtitles at the same time, encoding subtitles by BERT and videos by CNN video representations.
 
 
 ### Sign Language Recognition, Translation, and Production
