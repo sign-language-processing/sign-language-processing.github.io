@@ -216,6 +216,11 @@ a:focus,
 a:active {
     color: #2980b9;
 }
+* {
+    max-width: 100%;
+    overflow: auto;
+}
+
 p, *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) {
     max-width: 1000px;
 }
