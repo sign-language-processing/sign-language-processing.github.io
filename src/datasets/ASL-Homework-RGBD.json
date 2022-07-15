@@ -1,0 +1,20 @@
+{
+  "pub": {
+    "name": "ASL-Homework-RGBD",
+    "year": 2022,
+    "publication": "dataset:hassan-etal-2022-asl-homework",
+    "url": "https://nyu.databrary.org/volume/1249"
+  },
+  "features": [
+    "video:RGBD",
+    "pose:Kinect",
+    "gloss:ASL"
+  ],
+  "language": "American",
+  "#items": null,
+  "#samples": "935",
+  "#signers": 45,
+  "license": "Authorized Academics",
+  "licenseUrl": "https://nyu.databrary.org/volume/1249",
+  "contact": "Saad Hassan (sh2513@rit.edu)"
+}

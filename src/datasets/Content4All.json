@@ -1,0 +1,20 @@
+{
+  "pub": {
+    "name": "Content4All",
+    "year": 2021,
+    "publication": "dataset:camgoz2021content4all",
+    "url": "https://www.cvssp.org/data/c4a-news-corpus/"
+  },
+  "features": [
+    "video",
+    "pose:OpenPose",
+    "text:Swiss-German",
+    "text:Flemish"
+  ],
+  "language": "Swiss-German, Flemish",
+  "#items": null,
+  "#samples": "190 Hours",
+  "#signers": null,
+  "license": "CC BY-NC-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+}

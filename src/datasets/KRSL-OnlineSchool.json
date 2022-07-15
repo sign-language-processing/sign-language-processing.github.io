@@ -1,0 +1,19 @@
+{
+  "pub": {
+    "name": "KRSL-OnlineSchool",
+    "year": 2022,
+    "publication": "dataset:mukushev2022towards",
+    "url": "https://krslproject.github.io/online-school/"
+  },
+  "features": [
+    "video",
+    "gloss",
+    "text:Kazakh-Russian"
+  ],
+  "language": "Kazakh-Russian",
+  "#items": null,
+  "#samples": "890 Hours (1M sentences)",
+  "#signers": 7,
+  "license": null,
+  "licenseUrl": null
+}
