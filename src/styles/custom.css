@@ -3,11 +3,15 @@
     overflow: auto;
 }
 
-p, *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) {
+p, #refs, *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) {
     max-width: 1000px;
 }
 
-a, span, video, ul, hr, em {
+#refs > * {
+    overflow: visible;
+}
+
+a, span, video, ul, hr, em, #refs {
     margin: 0 auto !important;
     padding: 0 !important;
 }
