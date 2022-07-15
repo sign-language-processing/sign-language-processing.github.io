@@ -9,7 +9,7 @@ dst/index_shortcode.md: dst/index.md
 	node addons/emoji-to-shortcode/main.js dst/index.md > $@
 
 dst/index.pdf: dst/index_shortcode.md src/references.bib
-	cd dst && pandoc -f markdown+emoji -L../addons/latex-emoji.lua index_shortcode.md -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=../src/references.bib -o index.pdf
+	cd dst && pandoc -f markdown+emoji -L../addons/latex-emoji.lua index_shortcode.md -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=../src/references.bib --citeproc -o index.pdf
 
 
 dst/index.md: src/index.md src/formats.md dst tmp/datasets.md dst/assets

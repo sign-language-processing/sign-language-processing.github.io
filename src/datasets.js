@@ -28,7 +28,7 @@ function getIcon(feature) {
         'text': '📜',
         'speech': '🔊',
     };
-    return dict[type] || "TODO";
+    return `<span title="${feature}">${dict[type]}</span>` || "TODO";
     // return `![${type}](assets/icons/${type}.png "${feature}")`;
 }
 
