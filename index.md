@@ -20,7 +20,7 @@ abstract: |
 
 
 ```{=html}
-<p style="text-align: center">
+<p style="text-align: center;overflow:visible">
 <iframe src="https://sign.mt/?embed=&spl=en&sil=us&text=Hello%20world!" allow="camera;microphone"></iframe>
 Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-sign language translation technology.
 </p>
@@ -171,7 +171,7 @@ We split the graph into two:
 - Every edge on both backgrounds represents a task requiring a combination of computer vision and natural language processing.
 
 ```{=html}
-<p>
+<p style="overflow: visible">
 <span style="font-weight: bold;">Language Agnostic Tasks</span>
 <span style="font-weight: bold;float:right">Language Specific Tasks</span>
 <object type="image/svg+xml" data="assets/tasks/tasks.svg"></object>
