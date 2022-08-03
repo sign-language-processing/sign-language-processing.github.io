@@ -7,8 +7,8 @@ p, #refs, *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p)
     max-width: 1000px;
 }
 
-#refs * {
-    overflow: visible;
+#refs {
+    text-indent: 0;
 }
 
 a, span, video, ul, hr, em, #refs {
