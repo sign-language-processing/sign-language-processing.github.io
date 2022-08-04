@@ -230,7 +230,8 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <hr />
 <h4 id="pose-to-gloss">Pose-to-Gloss</h4>
 <p>Pose-to-Gloss—also known as sign language recognition—is the task of recognizing a sequence of signs from a sequence of poses.</p>
-<p><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></p>
+<p><span class="citation" data-cites="jiang2021sign">Jiang et al. (<a href="#ref-jiang2021sign" role="doc-biblioref">2021</a>)</span> propose a novel Skeleton Aware Multi-modal Framework with a Global Ensemble Model (GEM) for isolated SLR (SAM-SLR-v2) to learn and fuse multimodal feature representations. Specifically, they use a Sign Language Graph Convolution Network (SL-GCN) to model the embedded dynamics of skeleton keypoints and a Separable Spatial-Temporal Convolution Network (SSTCN) to exploit skeleton features. The skeleton-based predictions are fused with other RGB and depth based modalities by the proposed late-fusion GEM to provide global information and make a faithful SLR prediction.</p>
+<p><span class="citation" data-cites="dafnis2022bidirectional">Dafnis et al. (<a href="#ref-dafnis2022bidirectional" role="doc-biblioref">2022</a>)</span> work on the same modified WLASL dataset as <span class="citation" data-cites="jiang2021sign">Jiang et al. (<a href="#ref-jiang2021sign" role="doc-biblioref">2021</a>)</span>, but do not require multimodal data input. They propose a bidirectional skeleton-based graph convolutional network framework, with linguistically motivated parameters and attention to the start and end frames of signs. They cooperatively use forward and backward data streams including various sub-streams as input. They also use pre-training to leverage transfer learning.</p>
 <h4 id="gloss-to-pose">Gloss-to-Pose</h4>
 <p>Gloss-to-Pose—also known as sign language production—is the task to produce a sequence of poses that adequately represent a sequence of signs written as gloss.</p>
 <p>To produce a sign language video, <span class="citation" data-cites="stoll2018sign">Stoll et al. (<a href="#ref-stoll2018sign" role="doc-biblioref">2018</a>)</span> constructs a lookup-table between glosses and sequences of 2D poses. They align all pose sequences at the neck joint of a reference skeleton and group all sequences belonging to the same gloss. Then, for each group, they apply dynamic time warping and average out all sequences in the group to construct the mean pose sequence. This approach suffers from not having an accurate set of poses aligned to the gloss and from unnatural motion transitions between glosses.</p>
@@ -842,6 +843,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <div id="ref-cui2019deep">
 <p>———. 2019. “A Deep Neural Framework for Continuous Sign Language Recognition by Iterative Training.” <em>IEEE Transactions on Multimedia</em> 21 (7): 1880–91.</p>
 </div>
+<div id="ref-dafnis2022bidirectional">
+<p>Dafnis, Konstantinos M, Evgenia Chroni, Carol Neidle, and Dimitris N Metaxas. 2022. “Bidirectional Skeleton-Based Isolated Sign Recognition Using Graph Convolution Networks.” In <em>Proceedings of the 13th Conference on Language Resources and Evaluation (Lrec 2022), Marseille, 20-25 June 2022.</em></p>
+</div>
 <div id="ref-dataset:databases2007volumes">
 <p>Databases, NCSLGR. 2007. “Volumes 2–7.” American Sign Language Linguistic Research Project (Distributed on CD-ROM ….</p>
 </div>
@@ -907,6 +911,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 </div>
 <div id="ref-isola2017image">
 <p>Isola, Phillip, Jun-Yan Zhu, Tinghui Zhou, and Alexei A Efros. 2017. “Image-to-Image Translation with Conditional Adversarial Networks.” In <em>Proceedings of the Ieee Conference on Computer Vision and Pattern Recognition</em>, 1125–34.</p>
+</div>
+<div id="ref-jiang2021sign">
+<p>Jiang, Songyao, Bin Sun, Lichen Wang, Yue Bai, Kunpeng Li, and Yun Fu. 2021. “Sign Language Recognition via Skeleton-Aware Multi-Model Ensemble.” <em>arXiv Preprint arXiv:2110.06161</em>.</p>
 </div>
 <div id="ref-dataset:johnston2010archive">
 <p>Johnston, Trevor. 2010. “From Archive to Corpus: Transcription and Annotation in the Creation of Signed Language Corpora.” <em>International Journal of Corpus Linguistics</em> 15 (1): 106–31.</p>
