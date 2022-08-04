@@ -275,7 +275,10 @@ or even replace cartoon faces from animated 3D models.
 #### Pose-to-Gloss
 Pose-to-Gloss---also known as sign language recognition---is the task of recognizing a sequence of signs from a sequence of poses.
 
-TODO
+@jiang2021sign propose a novel Skeleton Aware Multi-modal Framework with a Global Ensemble Model (GEM) for isolated SLR (SAM-SLR-v2) to learn and fuse multimodal feature representations. Specifically, they use a Sign Language Graph Convolution Network (SL-GCN) to model the embedded dynamics of skeleton keypoints and a Separable Spatial-Temporal Convolution Network (SSTCN) to exploit skeleton features. The skeleton-based predictions are fused with other RGB and depth based modalities by the proposed late-fusion GEM to provide global information and make a faithful SLR prediction.
+
+@dafnis2022bidirectional work on the same modified WLASL dataset as @jiang2021sign, but do not require multimodal data input. They propose a bidirectional skeleton-based graph convolutional network framework, with linguistically motivated parameters and attention to the start and end
+frames of signs. They cooperatively use forward and backward data streams including various sub-streams as input. They also use pre-training to leverage transfer learning.
 
 #### Gloss-to-Pose
 
@@ -374,7 +377,6 @@ a sequence of signs written as gloss.
 As of 2020, there is no research discussing the direct translation task between a gloss to video.
 We believe this is a result of the computational impracticality of the desired model, 
 which led researchers to avoid performing this task directly and instead rely on pipeline approaches using intermediate pose representations.
-
 
 ---
 
