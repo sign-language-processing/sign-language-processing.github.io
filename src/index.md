@@ -295,7 +295,6 @@ They build a Motion Graph [@min2012motion] - which is a Markov process that can 
 and select the motion primitives (sequence of poses) per gloss with the highest transition probability.
 To smooth that sequence and reduce unnatural motion, they use Savitzky–Golay motion transition smoothing filter [@savitzky1964smoothing].
 
-
 ---
 
 #### Video-to-Gloss
@@ -501,7 +500,9 @@ almost reach the same classification performance as the real sequences.
 As of 2020, there is no research discussing the translation task between a writing notation system to any other modality. 
 
 #### $X$-to-Notation
-As of 2020, there is no research discussing the translation task between any modality to a writing notation system.
+<!-- As of 2020, there is no research discussing the translation task between any modality to a writing notation system. -->
+
+@walsh2022changing explore Text to HamNoSys (T2H) translation, with HamNoSys as the target sign language writting notation system. They experiment with both direct T2H and Text to Gloss to HamNoSys (T2G2H) on MineDGS dataset, and find that T2H results in higher BLEU. They leverage language models such as BERT and Word2Vec to create better sentence level embeddings and use HamNoSys to extract the hand shape of a sign as additional supervision during training.
 
 ---
 
