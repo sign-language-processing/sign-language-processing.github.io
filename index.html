@@ -276,8 +276,8 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <hr />
 <h4 id="notation-to-x">Notation-to-<span class="math inline"><em>X</em></span></h4>
 <p>As of 2020, there is no research discussing the translation task between a writing notation system to any other modality.</p>
-<h4 id="x-to-notation"><span class="math inline"><em>X</em></span>-to-Notation</h4>
-<p>As of 2020, there is no research discussing the translation task between any modality to a writing notation system.</p>
+<h4 id="text-to-notation">Text-to-Notation</h4>
+<p><span class="citation" data-cites="walsh2022changing">Walsh, Saunders, and Bowden (<a href="#ref-walsh2022changing" role="doc-biblioref">2022</a>)</span> explore Text to HamNoSys (T2H) translation, with HamNoSys as the target sign language writing notation system. They experiment with both direct T2H and Text to Gloss to HamNoSys (T2G2H) on a subset of the data that has all glosses with HamNoSys from the MineDGS dataset <span class="citation" data-cites="dataset:hanke-etal-2020-extending">(Hanke et al. <a href="#ref-dataset:hanke-etal-2020-extending" role="doc-biblioref">2020</a>)</span>, and find that T2H results in higher BLEU (it is not clear how well BLEU represents the quality of HamNoSys translations though). They encode HamNoSys with BPE <span class="citation" data-cites="sennrich-etal-2016-neural">(Sennrich, Haddow, and Birch <a href="#ref-sennrich-etal-2016-neural" role="doc-biblioref">2016</a>)</span> and it outperforms character-level and word-level tokenization. They also leverage BERT to create better sentence level embeddings and use HamNoSys to extract the hand shape of a sign as additional supervision during training.</p>
 <hr />
 <h3 id="fingerspelling">Fingerspelling</h3>
 <p>Fingerspelling is the act of spelling a word letter-by-letter, borrowing from the spoken language alphabet <span class="citation" data-cites="battison1978lexical wilcox1992phonetics brentari2001language">(Battison <a href="#ref-battison1978lexical" role="doc-biblioref">1978</a>; Wilcox <a href="#ref-wilcox1992phonetics" role="doc-biblioref">1992</a>; Brentari and Padden <a href="#ref-brentari2001language" role="doc-biblioref">2001</a>)</span>. This phenomenon, found in most signed languages, often occurs when there is no previously agreed upon sign for a concept, like in technical language, colloquial conversations involving names, conversations involving current events, emphatic forms, and the context of code-switching between the sign language and corresponding spoken language <span class="citation" data-cites="padden1998asl montemurro2018emphatic">(Padden <a href="#ref-padden1998asl" role="doc-biblioref">1998</a>; Montemurro and Brentari <a href="#ref-montemurro2018emphatic" role="doc-biblioref">2018</a>)</span>. The relative amount of fingerspelling varies between signed languages, and for American Sign Language (ASL) accounts for 12–35% of the signed content <span class="citation" data-cites="padden2003alphabet">(Padden and Gunsauls <a href="#ref-padden2003alphabet" role="doc-biblioref">2003</a>)</span>.</p>
@@ -1026,6 +1026,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <div id="ref-dataset:schembri2013building">
 <p>Schembri, Adam, Jordan Fenlon, Ramas Rentelis, Sally Reynolds, and Kearsy Cormier. 2013. “Building the British Sign Language Corpus.” <em>Language Documentation &amp; Conservation</em> 7: 136–54.</p>
 </div>
+<div id="ref-sennrich-etal-2016-neural">
+<p>Sennrich, Rico, Barry Haddow, and Alexandra Birch. 2016. “Neural Machine Translation of Rare Words with Subword Units.” In <em>Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</em>, 1715–25. Berlin, Germany: Association for Computational Linguistics. <a href="https://doi.org/10.18653/v1/P16-1162">https://doi.org/10.18653/v1/P16-1162</a>.</p>
+</div>
 <div id="ref-dataset:fs18iccv">
 <p>Shi, B., A. Martinez Del Rio, J. Keane, D. Brentari, G. Shakhnarovich, and K. Livescu. 2019. “Fingerspelling Recognition in the Wild with Iterative Visual Attention.” <em>ICCV</em>.</p>
 </div>
@@ -1079,6 +1082,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 </div>
 <div id="ref-dataset:von2007towards">
 <p>Von Agris, Ulrich, and Karl-Friedrich Kraiss. 2007. “Towards a Video Corpus for Signer-Independent Continuous Sign Language Recognition.” <em>Gesture in Human-Computer Interaction and Simulation, Lisbon, Portugal, May</em> 11.</p>
+</div>
+<div id="ref-walsh2022changing">
+<p>Walsh, Harry Thomas, Ben Saunders, and Richard Bowden. 2022. “Changing the Representation: Examining Language Representation for Neural Sign Language Production.” In <em>LREC 2022</em>.</p>
 </div>
 <div id="ref-pose:wang2018vid2vid">
 <p>Wang, Ting-Chun, Ming-Yu Liu, Jun-Yan Zhu, Guilin Liu, Andrew Tao, Jan Kautz, and Bryan Catanzaro. 2018. “Video-to-Video Synthesis.” In <em>Advances in Neural Information Processing Systems (Neurips)</em>.</p>
