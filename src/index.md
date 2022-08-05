@@ -499,10 +499,9 @@ almost reach the same classification performance as the real sequences.
 #### Notation-to-$X$
 As of 2020, there is no research discussing the translation task between a writing notation system to any other modality. 
 
-#### $X$-to-Notation
-<!-- As of 2020, there is no research discussing the translation task between any modality to a writing notation system. -->
+#### Text-to-Notation
 
-@walsh2022changing explore Text to HamNoSys (T2H) translation, with HamNoSys as the target sign language writting notation system. They experiment with both direct T2H and Text to Gloss to HamNoSys (T2G2H) on MineDGS dataset, and find that T2H results in higher BLEU. They leverage language models such as BERT and Word2Vec to create better sentence level embeddings and use HamNoSys to extract the hand shape of a sign as additional supervision during training.
+@walsh2022changing explore Text to HamNoSys (T2H) translation, with HamNoSys as the target sign language writing notation system. They experiment with both direct T2H and Text to Gloss to HamNoSys (T2G2H) on a subset of the data that has all glosses with HamNoSys from the MineDGS dataset [@dataset:hanke-etal-2020-extending], and find that T2H results in higher BLEU (it is not clear how well BLEU represents the quality of HamNoSys translations though). They encode HamNoSys with BPE [@sennrich-etal-2016-neural] and it outperforms character-level and word-level tokenization. They also leverage BERT to create better sentence level embeddings and use HamNoSys to extract the hand shape of a sign as additional supervision during training.
 
 ---
 
