@@ -394,7 +394,7 @@ In parallel with the advancements in spoken language machine translation,
 RWTH-PHOENIX-Weather-2014T (DGS) and ASLG-PC12 (ASL) datasets both using a single model and ensemble of models.
 Interestingly, in gloss-to-text, they show that using the sign language recognition (video-to-gloss) system output outperforms using the gold annotated glosses.
 
-Building on the code published by @yin2020better, @todo TODO show it is beneficial to pre-train these translation models
+Building on the code published by @yin2020better, @moryossef-etal-2021-data show it is beneficial to pre-train these translation models
 using augmented monolingual spoken language corpora.
 They try three different approaches for data augmentation: 
 (1) Back-translation; 
@@ -501,7 +501,7 @@ As of 2020, there is no research discussing the translation task between a writi
 
 #### Text-to-Notation
 
-@walsh2022changing explore Text to HamNoSys (T2H) translation, with HamNoSys as the target sign language writing notation system. They experiment with both direct T2H and Text to Gloss to HamNoSys (T2G2H) on a subset of the data that has all glosses with HamNoSys from the MineDGS dataset [@dataset:hanke-etal-2020-extending], and find that T2H results in higher BLEU (it is not clear how well BLEU represents the quality of HamNoSys translations though). They encode HamNoSys with BPE [@sennrich-etal-2016-neural] and it outperforms character-level and word-level tokenization. They also leverage BERT to create better sentence level embeddings and use HamNoSys to extract the hand shape of a sign as additional supervision during training.
+@walsh2022changing explore Text to HamNoSys (T2H) translation, with HamNoSys as the target sign language writing notation system. They experiment with both direct T2H and Text to Gloss to HamNoSys (T2G2H) on a subset of the data from the MEINE DGS dataset [@dataset:hanke-etal-2020-extending], where all glosses are mapped to HamNoSys by a dictionary look up. They find that direct T2H translation results in higher BLEU (it is not clear how well BLEU represents the quality of HamNoSys translations though). They encode HamNoSys with BPE [@sennrich-etal-2016-neural] and it outperforms character-level and word-level tokenization. They also leverage BERT to create better sentence level embeddings and use HamNoSys to extract the hand shape of a sign as additional supervision during training.
 
 ---
 
