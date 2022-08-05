@@ -394,7 +394,7 @@ In parallel with the advancements in spoken language machine translation,
 RWTH-PHOENIX-Weather-2014T (DGS) and ASLG-PC12 (ASL) datasets both using a single model and ensemble of models.
 Interestingly, in gloss-to-text, they show that using the sign language recognition (video-to-gloss) system output outperforms using the gold annotated glosses.
 
-Building on the code published by @yin2020better, @todo TODO show it is beneficial to pre-train these translation models
+Building on the code published by @yin2020better, @moryossef2021data show it is beneficial to pre-train these translation models
 using augmented monolingual spoken language corpora.
 They try three different approaches for data augmentation: 
 (1) Back-translation; 
