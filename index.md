@@ -747,6 +747,8 @@ Emailed Eleni and Evita, need to make sure data is available
 \restoregeometry
 ```
 
+## Other Resources
+- iReviews had compiled a list of [Top Resources for Learning (American) Sign Language](https://www.ireviews.com/sign-language-resources)
 
 ## Citation
 
