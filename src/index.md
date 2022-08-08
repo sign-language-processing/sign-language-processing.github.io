@@ -703,6 +703,8 @@ datasets.md
 \restoregeometry
 ```
 
+## Other Resources
+- iReviews had compiled a list of [Top Resources for Learning (American) Sign Language](https://www.ireviews.com/sign-language-resources)
 
 ## Citation
 
