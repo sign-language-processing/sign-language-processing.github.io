@@ -15,7 +15,7 @@ abstract: |
     Sign Language Processing (SLP) is a field of artificial intelligence
     concerned with automatic processing and analysis of sign language content.
     This project aims to organize the sign language processing literature, datasets, and tasks.
-    This is a work in progress. The contents of this document will be refined over the course of 2020-2022.
+    This is a work in progress. The contents of this document will be refined over the course of 2020-2023.
 ...
 
 
@@ -28,7 +28,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 
 ## Introduction
 
-Signed languages (also known as sign languages) are languages that use the visual-gestural modality to convey meaning through manual articulations in combination with non-manual elements like the face and body.
+Signed languages (also known as sign languages) are languages that use the visual-gestural modality to
+convey meaning through manual articulations in combination with non-manual elements like the face and body.
+They are the primary means of communication for many deaf and hard of hearing individuals.
 Similar to spoken languages, signed languages are natural languages governed by a set of linguistic rules [@sandler2006sign], 
 both emerging through an abstract, protracted aging process and evolved without meticulous planning.
 Signed languages are not universal, or mutually intelligible, despite often having striking similarities among them.
@@ -36,21 +38,112 @@ They are also distinct from spoken languages---i.e., American Sign Language (ASL
 rather its own unique language.
 
 Sign Language Processing [@bragg2019sign;@yin-etal-2021-including] is an emerging field of artificial intelligence concerned with the automatic processing and analysis of sign language content.
-It is a subfield of both natural language processing (NLP) and computer vision (CV).
+While to date, research has focused more on the visual aspects of signed languages, it is a subfield of both Natural Language Processing (NLP) and Computer Vision (CV).
 Challenges in sign language processing frequently involve machine translation of sign language videos to spoken language text (sign language translation), 
 from spoken language text (sign language production), or sign language recognition for sign language understanding.
 
 Unfortunately, the latest advances in language-based artificial intelligence, like machine translation and personal assistants, 
-expect a spoken language input (text or transcribed speech), which excludes around 200 different signed languages and up to 70 million deaf people (According to the [World Federation of the Deaf](https://wfdeaf.org/our-work/)). 
+expect a spoken language input (text or transcribed speech), excluding around 200-to-300 different signed languages [@un2022] and up to 70 million deaf people [@who2021;@wfd2022].
 
-One of the challenging aspects regarding the translation of signed languages compared to spoken languages is that
-while spoken languages usually have agreed upon written forms, signed languages do not.
-The lack of a written form makes the spoken language processing pipelines - which often start with audio-transcription before processing - 
+Throughout history, Deaf communities fought for the right to learn and use signed languages, as well as for the recognition of signed languages as legitimate languages.
+Indeed, signed languages are sophisticated communication modalities that are at least as capable as spoken languages in all manners, linguistic and social.
+However, in a predominantly oral society, deaf people are constantly encouraged to use spoken languages through lip-reading or text-based communication.
+The exclusion of signed languages from modern language technologies further suppresses signing in favor of spoken languages.
+This disregards the preferences of the Deaf communities who strongly prefer to communicate in signed languages both online and for in-person day-to-day interactions,
+among themselves and when interacting with spoken language communities [@padden1988deaf;@glickman2018language].
+Thus, it is essential to make signed languages accessible.
+
+To date, a large amount of research on Sign Language Processing (SLP) has been focused on the visual aspect of signed languages, led by the Computer Vision (CV) community, with little NLP involvement.
+This is not unreasonable, given that a decade ago, we lacked the adequate CV tools to process videos for further linguistic analyses.
+However, like spoken languages, signed languages are fully-fledged systems that exhibit all the fundamental characteristics of natural languages,
+and current SLP techniques fail to address or leverage the linguistic structure of signed languages.
+Signed languages introduce novel challenges for NLP due to their visual-gestural modality, simultaneity, spatial coherence, and lack of written form.
+The lack of a written form makes the spoken language processing pipelines - which often start with audio-transcription before processing -
 incompatible with signed languages, forcing researchers to work directly on the raw video signal.
 
-In this work, we describe the different representations used for sign language processing, 
+Moreover, SLP is not only an intellectually appealing area but also an important research area with a strong potential to benefit signing communities.
+Examples of beneficial applications enabled by signed language technologies include better documentation of endangered sign languages;
+educational tools for sign language learners; tools for query and retrieval of information from signed language videos;
+personal assistants that react to signed languages; real-time automatic sign language interpretations, and more.
+Needless to say, in addressing this research area, researchers should work *alongside* and *under the direction of* deaf communities,
+and to the benefit of the signing communities' interest above all [@harris2009research].
+
+In this work, we describe the different representations used for sign language processing,
 as well as survey the various tasks and recent advances on them.
 We also make a comprehensive list of existing datasets and make the ones available easy to load using a simple and standardized interface.
+
+### (Brief) History of Signed Languages and Deaf Culture
+
+Over the course of modern history,
+spoken languages were dominant so much so that signed languages struggled to be recognized as languages in their own right
+and educators developed misconceptions that signed language acquisition may hinder the development of speech skills.
+For example, in 1880, a large international conference of deaf educators called the "Second International Congress on Education of the Deaf"
+banned teaching signed languages, favoring speech therapy instead.
+It was not until the seminal work on American Sign Language (ASL) by @writing:stokoe1960sign that signed languages started gaining
+recognition as natural, independent, and well-defined languages, which then inspired other researchers to further explore signed languages as a research area.
+Nevertheless, antiquated notions that deprioritized signed languages continue to do harm and subjects many to linguistic neglect [@humphries2016avoiding].
+Several studies have shown that deaf children raised solely with spoken languages do not gain enough access to a first language during their critical period of language acquisition [@murray2020importance].
+This language deprivation can lead to life-long consequences on the cognitive, linguistic, socioemotional, and academic development of the deaf [@hall2017language].
+
+Signed languages are the primary languages of communication for the Deaf[^deaf] and are at the heart of Deaf communities.
+Failing to recognize signed languages as fully-fledged natural language systems in their own right has had harmful effects in the past,
+and in an increasingly digitized world, NLP research should strive to enable a world in which all people,
+including the Deaf, have access to languages that fit their lived experience.
+
+[^deaf]: When capitalized, "Deaf" refers to a community of deaf people who share a language and a culture, whereas the lowercase "deaf" refers to the audiological condition of not hearing.
+
+## Sign Language Lingusitics Overiew
+
+Signed languages consist of phonological, morphological, syntactic, and semantic levels of structure that fulfill the same social, cognitive,
+and communicative purposes as other natural languages.
+While spoken languages primarily channel the oral-auditory modality, signed languages use the visual-gestural modality,
+relying on the face, hands, body of the signer, and the space around them to create distinctions in meaning.
+We present the linguistic features of signed languages[^asl-specific] that must be taken into account during their modeling.
+
+[^asl-specific]: We mainly refer to ASL, where most sign language research has been conducted, but not exclusively.
+
+###### Phonology {-}
+Signs are composed of minimal units that combine manual features such as hand configuration,
+palm orientation, placement, contact, path movement, local movement,
+as well as non-manual features including eye aperture, head movement, and torso positioning [@liddell1989american;@johnson2011toward;@brentari2011sign;@sandler2012phonological].
+In both signed and spoken languages, not all possible phonemes are realized, and inventories of two languages' phonemes/features may not overlap completely.
+Different languages are also subject to rules for the allowed combinations of features.
+
+###### Simultaneity {-}
+Though an ASL sign takes about twice as long to produce than an English word,
+the rates of transmission of information between the two languages are similar [@bellugi1972comparison].
+One way signed languages compensate for the slower production rate of signs is through simultaneity:
+signed languages make use of multiple visual cues to convey different information simultaneously [@sandler2012phonological].
+For example, the signer may produce the sign for 'cup' on one hand while simultaneously pointing to the actual cup with the other to express ``that cup''.
+Similarly to tone in spoken languages, the face and torso can convey additional affective information [@liddell2003grammar;@johnston2007australian].
+Facial expressions can modify adjectives, adverbs, and verbs; a head shake can negate a phrase or sentence; eye direction can help indicate referents.
+
+###### Referencing {-}
+The signer can introduce referents in discourse either by pointing to their actual locations in space,
+or by assigning a region in the signing space to a non-present referent and by pointing to this region to refer to it [@rathmann2011featural;@schembri2018indicating].
+Signers can also establish relations between referents grounded in signing space by using directional signs or embodying the referents using body shift or eye gaze [@dudis2004body;@liddell1998gesture].
+Spatial referencing also impacts morphology when the directionality of a verb depends on the location of the reference to its subject and/or object [@de2008pointing;@fenlon2018modification]:
+for example, a directional verb can move from the location of its subject and ending at the location of its object.
+While the relation between referents and verbs in spoken language is more arbitrary, referent relations are usually grounded in signed languages.
+The visual space is heavily exploited to make referencing clear.
+
+Another way anaphoric entities are referenced in sign language is by using classifiers or depicting signs [@supalla1986classifier;@wilcox2004rethinking;@roy2011discourse] that help describe the characteristics of the referent.
+Classifiers are typically one-handed signs that do not have a particular location or movement assigned to them,
+or derive features from meaningful discourse [@liddell2003grammar], so they can be used to convey how the referent relates to other entities,
+describe its movement, and give more details.
+For example, to tell about a car swerving and crashing, one might use the hand classifier for a vehicle,
+move it to indicate swerving, and crash it with another entity in space.
+
+To quote someone other than oneself, signers perform *role shift* [@cormier2015rethinking],
+where they may physically shift in space to mark the distinction, and take on some characteristics of the people they are representing.
+For example, to recount a dialogue between a taller and a shorter person,
+the signer may shift to one side and look up when taking the shorter person's role,
+shift to the other side and look down when taking the taller person's role.
+
+###### Fingerspelling {-}
+Fingerspelling is a result of language contact between a signed language and a surrounding spoken language written form [@battison1978lexical;@wilcox1992phonetics;@brentari2001language;@patrie2011fingerspelled].
+A set of manual gestures correspond with a written orthography or phonetic system.
+This phenomenon, found in most signed languages, is often used to indicate names or places or new concepts from the spoken language but often have become integrated into the signed languages themselves as another linguistic strategy [@padden1998asl;@montemurro2018emphatic].
 
 
 ## Sign Language Representations
@@ -66,7 +159,7 @@ Another representation system is sign language notation. Despite the fact that s
 no writing system has been adopted widely enough by any sign language community that it could be considered the "written form" of a given sign language. 
 There are various universal notation systems---[SignWriting](https://en.wikipedia.org/wiki/SignWriting) [@writing:sutton1990lessons], 
 [HamNoSys](https://en.wikipedia.org/wiki/Hamburg_Notation_System) [@writing:prillwitz1990hamburg]---and various language specific notation systems---[Stokoe notation](https://en.wikipedia.org/wiki/Stokoe_notation) 
-[@writing:stokoe2005sign] and [si5s](https://en.wikipedia.org/wiki/Si5s) for American Sign Language, [SWL](https://zrajm.github.io/teckentranskription/freesans-swl.html) [@writing:bergman1977tecknad] 
+[@writing:stokoe1960sign] and [si5s](https://en.wikipedia.org/wiki/Si5s) for American Sign Language, [SWL](https://zrajm.github.io/teckentranskription/freesans-swl.html) [@writing:bergman1977tecknad]
 for Swedish Sign Language, etc.
 
 Making an abstraction over the phonetics of sign language, glossing is a widely used practice to "transcribe" a video sign-by-sign by assigning a unique identifier for every sign and possibly every variation of it. 
@@ -541,9 +634,9 @@ TODO
 
 ### Fingerspelling 
 
-Fingerspelling is the act of spelling a word letter-by-letter, borrowing from the spoken language alphabet [@battison1978lexical;@wilcox1992phonetics;@brentari2001language].
+Fingerspelling is the act of spelling a word letter-by-letter, borrowing from the spoken language alphabet [@battison1978lexical;@wilcox1992phonetics;@brentari2001language;@patrie2011fingerspelled].
 This phenomenon, found in most signed languages, often occurs when there is no previously agreed upon sign for a concept,
-like in technical language, colloquial conversations involving names, conversations involving current events, 
+like in technical language, colloquial conversations involving names, conversations involving current events,
 emphatic forms, and the context of code-switching between the sign language and corresponding spoken language [@padden1998asl;@montemurro2018emphatic].
 The relative amount of fingerspelling varies between signed languages, and for American Sign Language (ASL) accounts for 12–35% of the signed content [@padden2003alphabet].
 
@@ -687,11 +780,10 @@ Emailed Eleni and Evita, need to make sure data is available
 
 
 ```{=latex}
-\newgeometry{left=0.3cm,right=0.3cm,top=-1.5cm,bottom=-1.5cm}
+\newgeometry{left=0cm,right=0cm,top=-1.5cm,bottom=-1.5cm}
 \begin{landscape}
 \hspace{1.5cm}
 ```
-
 🎥 Video | 👋 Pose | 👄 Mouthing | ✍ Notation | 📋 Gloss | 📜 Text | 🔊 Speech
 
 <div id="datasets-table" class="table">
