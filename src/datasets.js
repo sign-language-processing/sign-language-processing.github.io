@@ -56,8 +56,8 @@ const downloadEmoji = '💾';
 for (const dataset of datasets) {
     let title = link(dataset.pub.name, dataset.pub.url);
     if (dataset.loader) {
-        const hf = 'https://github.com/huggingface/datasets/tree/master/datasets/' + dataset.loader;
-        title += ' ' + link(downloadEmoji, hf);
+        const sld = 'https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/' + dataset.loader;
+        title += ' ' + link(downloadEmoji, sld);
     }
 
     const row = [

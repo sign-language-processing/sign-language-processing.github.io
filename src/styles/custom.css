@@ -1,51 +1,25 @@
-* {
-    max-width: 100%;
-    overflow: auto;
+#container {
+    max-width: 1800px;
+    margin: 1em auto;
 }
 
-p, #refs, *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) {
-    max-width: 1000px;
+#navbar > nav {
+    top: 75px;
+    z-index: 1019;
 }
 
-#refs {
-    text-indent: 0;
+nav > nav {
+    padding-left: 1rem !important;
 }
 
-a, span, video, ul, hr, em, #refs {
-    margin: 0 auto !important;
-    padding: 0 !important;
+.nav {
+    --bs-nav-link-padding-x: .1rem;
+    --bs-nav-link-padding-y: 0.1rem;
 }
 
-h1 {
-    padding-bottom: 0 !important;
-}
-
-pre {
-    overflow: auto;
-}
-
-/* Hide authors */
-.author, .abstract-title {
-    display: none;
-}
-
-/* Tables */
-.table {
-    display: block;
-    margin: auto;
-}
-
-table {
-    border-collapse: collapse;
-}
-
-table, th, td {
-    border: 1px solid black;
-}
-
-/* Dataset Table */
-#datasets-table table {
-    max-width: 100%;
+/* Justify content */
+p {
+    text-align: justify;
 }
 
 #datasets-table img {
@@ -54,7 +28,6 @@ table, th, td {
     margin: 0 4px;
 }
 
-/* Formats Table */
 #formats-table {
     width: 850px;
     text-align: center;
@@ -77,10 +50,11 @@ table, th, td {
 }
 
 iframe {
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 1px solid #eee;;
+    border: 1px solid #eee;
     width: 100%;
     border-radius: 16px;
-    height: 549px;
+    height: 500px;
+    max-width: 900px;
+    margin: auto;
+    display: block;
 }

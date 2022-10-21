@@ -2,8 +2,8 @@ markdown: dst dst/index.html dst/style.css
 
 server: dst dst/style.css dst/index.md dst/sitemap.xml
 
-dst/index.html: dst/index.md src/references.bib dst/style.css
-	pandoc dst/index.md -s --table-of-contents --bibliography=src/references.bib --citeproc --columns 1000  -o $@ -H src/header.html -V lang=en
+dst/index.html: dst/index.md src/references.bib src/template/index.html dst/style.css
+	pandoc dst/index.md --template src/template/index.html -s --table-of-contents --bibliography=src/references.bib --citeproc --columns 1000 -H src/header.html -V lang=en -o $@
 
 dst/index_shortcode.md: dst/index.md
 	node addons/emoji-to-shortcode/main.js dst/index.md > $@
@@ -16,8 +16,8 @@ dst/index.md: src/index.md src/formats.md dst tmp/datasets.md dst/assets
 	cat src/index.md > $@
 	bash src/markdown_fix.sh $@
 
-dst/style.css: dst src/styles/splendor.css src/styles/custom.css
-	cat src/styles/splendor.css src/styles/custom.css > $@
+dst/style.css: dst src/styles/custom.css
+	cat src/styles/custom.css > $@
 
 dst/sitemap.xml: dst src/sitemap.js
 	node src/sitemap.js > $@

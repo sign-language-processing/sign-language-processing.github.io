@@ -5,7 +5,7 @@
     "publication": "dataset:Crasborn2008TheCN",
     "url": "https://www.ru.nl/corpusngtuk/"
   },
-  "loader": "ngt",
+  "loader": "ngt_corpus",
   "features": [],
   "language": "Netherlands",
   "#items": null,

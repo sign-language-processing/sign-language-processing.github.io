@@ -5,7 +5,7 @@
     "publication": null,
     "url": "https://www.signbank.org/signpuddle/"
   },
-  "loader": "sign_bank",
+  "loader": "signbank",
   "features": [
     "video",
     "writing:SignWriting",

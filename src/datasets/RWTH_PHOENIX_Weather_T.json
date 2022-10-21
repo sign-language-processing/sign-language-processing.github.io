@@ -5,7 +5,7 @@
     "publication": "dataset:forster2014extensions;@cihan2018neural",
     "url": "https://www-i6.informatik.rwth-aachen.de/~koller/RWTH-PHOENIX-2014-T/"
   },
-  "loader": "rwth_phoenix_weather_2014_t",
+  "loader": "rwth_phoenix2014_t",
   "features": [
     "video",
     "gloss:DGS",

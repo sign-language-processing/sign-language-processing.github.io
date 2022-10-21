@@ -15,6 +15,7 @@
     "text:German",
     "text:English"
   ],
+  "loader": "dgs_corpus",
   "language": "German",
   "#items": null,
   "#samples": "50 Hours",
