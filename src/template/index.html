@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html$if(lang)$ lang="$lang$"$endif$$if(dir)$ dir="$dir$"$endif$>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="generator" content="pandoc">
+
+    <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+
+    $for(author-meta)$
+    <meta name="author" content="$author-meta$">
+    $endfor$
+
+    $if(date-meta)$
+    <meta name="dcterms.date" content="$date-meta$">
+    $endif$
+
+    $if(keywords)$
+    <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$">
+    $endif$
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <!-- Code syntax highlighting -->
+    <style type="text/css">code{white-space: pre;}</style>
+    $if(highlighting-css)$
+    <style type="text/css">$highlighting-css$</style>
+    $endif$
+
+    $for(css)$
+    <link rel="stylesheet" href="$css$" $if(html5)$$else$type="text/css" $endif$/>
+    $endfor$
+
+    $if(math)$$math$$endif$
+
+    <!-- All other additional includes -->
+    $for(header-includes)$$header-includes$$endfor$
+</head>
+
+<body>
+    $for(include-before)$$include-before$$endfor$
+    <header class="navbar sticky-top navbar-dark bg-dark bd-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand mb-0 h1" href="#">$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</a>
+
+            <span class="navbar-text">
+                <a class="github-button" href="https://github.com/sign-language-processing/sign-language-processing.github.io" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star sign-language-processing/sign-language-processing.github.io on GitHub">Star</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="row" id="container">
+        $if(toc)$
+        <aside class="bd-sidebar col-12 col-lg-2" id="navbar">
+            <nav class="bd-links nav nav-pills flex-column sticky-top">$toc$</nav>
+        </aside>
+        $endif$
+
+        <main class="bd-main order-1 col-12 col-lg-10"
+            data-bs-spy="scroll" data-bs-target="#navbar" data-bs-smooth-scroll="true" tabindex="0">
+            $body$
+        </main>
+    </div>
+
+    $for(include-after)$$include-after$$endfor$
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <!-- Add bootstrap classes -->
+    <script>
+    for(const table of document.getElementsByTagName("table")) {
+        table.className += "table table-bordered table-hover";
+    }
+
+    // Replace navbar ul with nav elements
+    while(ul = document.querySelector("#navbar ul")) {
+        const nav = document.createElement("nav");
+        nav.classList = "nav nav-pills flex-column";
+
+        for(const child of ul.children) {
+            if(child.tagName == "LI") {
+                nav.innerHTML += child.innerHTML;
+            } else {
+                nav.innerHTML += child.outerHTML;
+            }
+        }
+        ul.replaceWith(nav);
+    }
+
+    for(const link of document.querySelectorAll("#navbar a")) {
+        link.className += "nav-link my-1";
+    }
+    </script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@
     "publication": "dataset:schembri2013building",
     "url": "https://bslcorpusproject.org/"
   },
+  "loader": "bsl_corpus",
   "features": [],
   "language": "British",
   "#items": null,
