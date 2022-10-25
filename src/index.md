@@ -20,12 +20,10 @@ abstract: |
 
 
 ```{=html}
-<!--
 <p style="text-align: center;overflow:visible">
 <iframe src="https://sign.mt/?embed=&spl=en&sil=us&text=Hello%20world!" allow="camera;microphone" title="sign.mt translation demo"></iframe>
 Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-sign language translation technology.
 </p>
--->
 ```
 
 ## Introduction
