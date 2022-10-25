@@ -15,20 +15,22 @@ abstract: |
     Sign Language Processing (SLP) is a field of artificial intelligence
     concerned with automatic processing and analysis of sign language content.
     This project aims to organize the sign language processing literature, datasets, and tasks.
-    This is a work in progress. The contents of this document will be refined over the course of 2020-2022.
+    This is a work in progress. The contents of this document will be refined over the course of 2020-2023.
 ...
 
 
 ```{=html}
 <p style="text-align: center;overflow:visible">
-<iframe src="https://sign.mt/?embed=&spl=en&sil=us&text=Hello%20world!" allow="camera;microphone"></iframe>
+<iframe src="https://sign.mt/?embed=&spl=en&sil=us&text=Hello%20world!" allow="camera;microphone" title="sign.mt translation demo"></iframe>
 Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-sign language translation technology.
 </p>
 ```
 
 ## Introduction
 
-Signed languages (also known as sign languages) are languages that use the visual-gestural modality to convey meaning through manual articulations in combination with non-manual elements like the face and body.
+Signed languages (also known as sign languages) are languages that use the visual-gestural modality to
+convey meaning through manual articulations in combination with non-manual elements like the face and body.
+They are the primary means of communication for many deaf and hard of hearing individuals.
 Similar to spoken languages, signed languages are natural languages governed by a set of linguistic rules [@sandler2006sign], 
 both emerging through an abstract, protracted aging process and evolved without meticulous planning.
 Signed languages are not universal, or mutually intelligible, despite often having striking similarities among them.
@@ -36,45 +38,164 @@ They are also distinct from spoken languages---i.e., American Sign Language (ASL
 rather its own unique language.
 
 Sign Language Processing [@bragg2019sign;@yin-etal-2021-including] is an emerging field of artificial intelligence concerned with the automatic processing and analysis of sign language content.
-It is a subfield of both natural language processing (NLP) and computer vision (CV).
+While to date, research has focused more on the visual aspects of signed languages, it is a subfield of both Natural Language Processing (NLP) and Computer Vision (CV).
 Challenges in sign language processing frequently involve machine translation of sign language videos to spoken language text (sign language translation), 
 from spoken language text (sign language production), or sign language recognition for sign language understanding.
 
 Unfortunately, the latest advances in language-based artificial intelligence, like machine translation and personal assistants, 
-expect a spoken language input (text or transcribed speech), which excludes around 200 different signed languages and up to 70 million deaf people (According to the [World Federation of the Deaf](https://wfdeaf.org/our-work/)). 
+expect a spoken language input (text or transcribed speech), excluding around 200-to-300 different signed languages [@un2022] and up to 70 million deaf people [@who2021;@wfd2022].
 
-One of the challenging aspects regarding the translation of signed languages compared to spoken languages is that
-while spoken languages usually have agreed upon written forms, signed languages do not.
-The lack of a written form makes the spoken language processing pipelines - which often start with audio-transcription before processing - 
+Throughout history, Deaf communities fought for the right to learn and use signed languages, as well as for the recognition of signed languages as legitimate languages.
+Indeed, signed languages are sophisticated communication modalities that are at least as capable as spoken languages in all manners, linguistic and social.
+However, in a predominantly oral society, deaf people are constantly encouraged to use spoken languages through lip-reading or text-based communication.
+The exclusion of signed languages from modern language technologies further suppresses signing in favor of spoken languages.
+This disregards the preferences of the Deaf communities who strongly prefer to communicate in signed languages both online and for in-person day-to-day interactions,
+among themselves and when interacting with spoken language communities [@padden1988deaf;@glickman2018language].
+Thus, it is essential to make signed languages accessible.
+
+To date, a large amount of research on Sign Language Processing (SLP) has been focused on the visual aspect of signed languages, led by the Computer Vision (CV) community, with little NLP involvement.
+This is not unreasonable, given that a decade ago, we lacked the adequate CV tools to process videos for further linguistic analyses.
+However, like spoken languages, signed languages are fully-fledged systems that exhibit all the fundamental characteristics of natural languages,
+and current SLP techniques fail to address or leverage the linguistic structure of signed languages.
+Signed languages introduce novel challenges for NLP due to their visual-gestural modality, simultaneity, spatial coherence, and lack of written form.
+The lack of a written form makes the spoken language processing pipelines - which often start with audio-transcription before processing -
 incompatible with signed languages, forcing researchers to work directly on the raw video signal.
 
-In this work, we describe the different representations used for sign language processing, 
+Moreover, SLP is not only an intellectually appealing area but also an important research area with a strong potential to benefit signing communities.
+Examples of beneficial applications enabled by signed language technologies include better documentation of endangered sign languages;
+educational tools for sign language learners; tools for query and retrieval of information from signed language videos;
+personal assistants that react to signed languages; real-time automatic sign language interpretations, and more.
+Needless to say, in addressing this research area, researchers should work *alongside* and *under the direction of* deaf communities,
+and to the benefit of the signing communities' interest above all [@harris2009research].
+
+In this work, we describe the different representations used for sign language processing,
 as well as survey the various tasks and recent advances on them.
 We also make a comprehensive list of existing datasets and make the ones available easy to load using a simple and standardized interface.
+
+### (Brief) History of Signed Languages and Deaf Culture
+
+Over the course of modern history,
+spoken languages were dominant so much so that signed languages struggled to be recognized as languages in their own right
+and educators developed misconceptions that signed language acquisition may hinder the development of speech skills.
+For example, in 1880, a large international conference of deaf educators called the "Second International Congress on Education of the Deaf"
+banned teaching signed languages, favoring speech therapy instead.
+It was not until the seminal work on American Sign Language (ASL) by @writing:stokoe1960sign that signed languages started gaining
+recognition as natural, independent, and well-defined languages, which then inspired other researchers to further explore signed languages as a research area.
+Nevertheless, antiquated notions that deprioritized signed languages continue to do harm and subjects many to linguistic neglect [@humphries2016avoiding].
+Several studies have shown that deaf children raised solely with spoken languages do not gain enough access to a first language during their critical period of language acquisition [@murray2020importance].
+This language deprivation can lead to life-long consequences on the cognitive, linguistic, socioemotional, and academic development of the deaf [@hall2017language].
+
+Signed languages are the primary languages of communication for the Deaf[^deaf] and are at the heart of Deaf communities.
+Failing to recognize signed languages as fully-fledged natural language systems in their own right has had harmful effects in the past,
+and in an increasingly digitized world, NLP research should strive to enable a world in which all people,
+including the Deaf, have access to languages that fit their lived experience.
+
+[^deaf]: When capitalized, "Deaf" refers to a community of deaf people who share a language and a culture, whereas the lowercase "deaf" refers to the audiological condition of not hearing.
+
+## Sign Language Lingusitics Overiew
+
+Signed languages consist of phonological, morphological, syntactic, and semantic levels of structure that fulfill the same social, cognitive,
+and communicative purposes as other natural languages.
+While spoken languages primarily channel the oral-auditory modality, signed languages use the visual-gestural modality,
+relying on the face, hands, body of the signer, and the space around them to create distinctions in meaning.
+We present the linguistic features of signed languages[^asl-specific] that must be taken into account during their modeling.
+
+[^asl-specific]: We mainly refer to ASL, where most sign language research has been conducted, but not exclusively.
+
+###### Phonology {-}
+Signs are composed of minimal units that combine manual features such as hand configuration,
+palm orientation, placement, contact, path movement, local movement,
+as well as non-manual features including eye aperture, head movement, and torso positioning [@liddell1989american;@johnson2011toward;@brentari2011sign;@sandler2012phonological].
+In both signed and spoken languages, not all possible phonemes are realized, and inventories of two languages' phonemes/features may not overlap completely.
+Different languages are also subject to rules for the allowed combinations of features.
+
+###### Simultaneity {-}
+Though an ASL sign takes about twice as long to produce than an English word,
+the rates of transmission of information between the two languages are similar [@bellugi1972comparison].
+One way signed languages compensate for the slower production rate of signs is through simultaneity:
+signed languages make use of multiple visual cues to convey different information simultaneously [@sandler2012phonological].
+For example, the signer may produce the sign for 'cup' on one hand while simultaneously pointing to the actual cup with the other to express ``that cup''.
+Similarly to tone in spoken languages, the face and torso can convey additional affective information [@liddell2003grammar;@johnston2007australian].
+Facial expressions can modify adjectives, adverbs, and verbs; a head shake can negate a phrase or sentence; eye direction can help indicate referents.
+
+###### Referencing {-}
+The signer can introduce referents in discourse either by pointing to their actual locations in space,
+or by assigning a region in the signing space to a non-present referent and by pointing to this region to refer to it [@rathmann2011featural;@schembri2018indicating].
+Signers can also establish relations between referents grounded in signing space by using directional signs or embodying the referents using body shift or eye gaze [@dudis2004body;@liddell1998gesture].
+Spatial referencing also impacts morphology when the directionality of a verb depends on the location of the reference to its subject and/or object [@de2008pointing;@fenlon2018modification]:
+for example, a directional verb can move from the location of its subject and ending at the location of its object.
+While the relation between referents and verbs in spoken language is more arbitrary, referent relations are usually grounded in signed languages.
+The visual space is heavily exploited to make referencing clear.
+
+Another way anaphoric entities are referenced in sign language is by using classifiers or depicting signs [@supalla1986classifier;@wilcox2004rethinking;@roy2011discourse] that help describe the characteristics of the referent.
+Classifiers are typically one-handed signs that do not have a particular location or movement assigned to them,
+or derive features from meaningful discourse [@liddell2003grammar], so they can be used to convey how the referent relates to other entities,
+describe its movement, and give more details.
+For example, to tell about a car swerving and crashing, one might use the hand classifier for a vehicle,
+move it to indicate swerving, and crash it with another entity in space.
+
+To quote someone other than oneself, signers perform *role shift* [@cormier2015rethinking],
+where they may physically shift in space to mark the distinction, and take on some characteristics of the people they are representing.
+For example, to recount a dialogue between a taller and a shorter person,
+the signer may shift to one side and look up when taking the shorter person's role,
+shift to the other side and look down when taking the taller person's role.
+
+###### Fingerspelling {-}
+Fingerspelling is a result of language contact between a signed language and a surrounding spoken language written form [@battison1978lexical;@wilcox1992phonetics;@brentari2001language;@patrie2011fingerspelled].
+A set of manual gestures correspond with a written orthography or phonetic system.
+This phenomenon, found in most signed languages, is often used to indicate names or places or new concepts from the spoken language but often have become integrated into the signed languages themselves as another linguistic strategy [@padden1998asl;@montemurro2018emphatic].
 
 
 ## Sign Language Representations
 
+Representation is a significant challenge for SLP.
+Unlike spoken languages, signed languages have no widely adopted written form.
 As signed languages are conveyed through the visual-gestural modality, the most straightforward way to capture them is via video recording.
-However, as videos include more information than needed for modeling, and are expensive to record, store, and transmit, a lower-dimensionality representation has been sought after.
+However, as videos include more information than needed for modeling, and are expensive to record, store, and transmit,
+a lower-dimensional representation has been sought after.
 
-One such representation is human [poses](https://en.wikipedia.org/wiki/Pose_(computer_vision)), either recorded with [motion capture](https://en.wikipedia.org/wiki/Motion_capture) technologies,
-or estimated from videos using [pose estimation](https://en.wikipedia.org/wiki/Pose_(computer_vision)#Pose_estimation) techniques.
-Accurate full-body human poses can include all the relevant information for sign language processing (manual or non-manual), except for visual cues such as props.
+The following figure illustrates each signed language representation we will describe below.
+In this demonstration, we deconstruct the video into its individual frames to examplify the alignment of the annotations between the video and representations.
 
-Another representation system is sign language notation. Despite the fact that several notation systems have been proposed to capture the phonetics of signed languages, 
-no writing system has been adopted widely enough by any sign language community that it could be considered the "written form" of a given sign language. 
-There are various universal notation systems---[SignWriting](https://en.wikipedia.org/wiki/SignWriting) [@writing:sutton1990lessons], 
-[HamNoSys](https://en.wikipedia.org/wiki/Hamburg_Notation_System) [@writing:prillwitz1990hamburg]---and various language specific notation systems---[Stokoe notation](https://en.wikipedia.org/wiki/Stokoe_notation) 
-[@writing:stokoe2005sign] and [si5s](https://en.wikipedia.org/wiki/Si5s) for American Sign Language, [SWL](https://zrajm.github.io/teckentranskription/freesans-swl.html) [@writing:bergman1977tecknad] 
-for Swedish Sign Language, etc.
+```{=html}
+<object type="image/svg+xml" data="assets/representation/continuous.pdf" id="continuous-rep"></object>
+```
+```{=latex}
+\includegraphics[width=\linewidth]{assets/representation/continuous.pdf}
+```
 
-Making an abstraction over the phonetics of sign language, glossing is a widely used practice to "transcribe" a video sign-by-sign by assigning a unique identifier for every sign and possibly every variation of it. 
-Unlike other representations previously discussed, as glosses represent the semantics of sign, they are language-specific, requiring a new glossary for every sign language.
+###### Videos {-}
+are the most straightforward representation of a signed language and can amply incorporate the information conveyed through sign.
+One major drawback of using videos is their high dimensionality:
+they usually include more information than needed for modeling, and are expensive to store, transmit, and encode.
+As facial features are essential in sign, anonymizing raw videos also remains an open problem,
+limiting the possibility of making these videos publicly available [@isard2020approaches].
+
+###### [Poses](https://en.wikipedia.org/wiki/Pose_(computer_vision)) {-}
+reduce the visual cues from videos to skeleton-like wireframe or mesh representing the location of joints.
+While [motion capture](https://en.wikipedia.org/wiki/Motion_capture) equipment can often provide better quality pose estimation, it is expensive and intrusive,
+and [estimating pose from videos](https://en.wikipedia.org/wiki/Pose_(computer_vision)#Pose_estimation) is the preferred method currently [@pose:pishchulin2012articulated;@pose:chen2017adversarial;@pose:cao2018openpose;@pose:alp2018densepose].
+Compared to video representations, *accurate* poses are lower in complexity and semi-anonymized, while observing relatively low information loss.
+However, they remain a continuous, multidimensional representation that is not adapted to most NLP models.
+
+###### Written notation systems {-}
+represent signs as discrete visual features. Some systems are written linearly and others use graphemes in two dimensions.
+While various universal [@writing:sutton1990lessons;@writing:prillwitz1990hamburg] and language-specific notation systems [@writing:stokoe2005sign;@writing:kakumasu1968urubu;@writing:bergman1977tecknad] have been proposed,
+no writing system has been adopted widely by any sign language community, and the lack of standard hinders the exchange and unification of resources and applications between projects.
+The figure above depicts two universal notation systems:
+SignWriting [@writing:sutton1990lessons], a two-dimensional pictographic system,
+and HamNoSys [@writing:prillwitz1990hamburg], a linear stream of graphemes that was designed to be readable by machines.
+
+###### Glossing {-}
+is the transcription of signed languages sign-by-sign, where every sign has a unique identifier.
+Despite various sign language corpus projects have provided gloss annotation guidelines [@mesch2015gloss;@johnston2016auslan;@konrad2018public], again, there is no single agreed-upon standard.
+Linear gloss annotations are also an imprecise representation of signed language:
+they do not adequately capture all information expressed simultaneously through different cues (i.e. body posture, eye gaze) or spatial relations,
+which leads to an inevitable information loss up to a semantic level that affects downstream performance on SLP tasks [@yin-read-2020-better].
 
 
-The following table exemplifies the various representations for isolated signs.
-For this example, we use [SignWriting](https://en.wikipedia.org/wiki/SignWriting) as the notation system.
+The following table addiotnaly exemplifies the various representations for more isolated signs.
+For this example, we use SignWriting as the notation system.
 Note that the same sign might have two unrelated glosses, and the same gloss might have multiple valid spoken language translations.
 
 ```{=html}
@@ -85,25 +206,20 @@ formats.md
 </div>
 ```
 
-We also demonstrate the various representations in the following figure for a continuous sign language video. 
-To show the alignment of the annotations between the video and representations, we deconstruct the video into its individual frames.
-An English translation of this phrase could be: "What is your name?"
-
-```{=html}
-<object type="image/svg+xml" data="assets/representation/continuous.svg" id="continuous-rep"></object>
-```
-
-```{=latex}
-\includegraphics[width=\linewidth]{assets/representation/continuous.pdf}
-```
-
 
 ## Tasks
 
+The computer vision community has mainly led the research on SLP so far to focus on processing the visual features in signed language videos.
+As a result, current SLP methods do not fully address the linguistic complexity of signed languages.
+We survey common SLP tasks and limitations of current methods by drawing on linguistic theories of signed languages.
+
 ### Sign Language Detection
 
-Sign language detection [@detection:borg2019sign;@detection:moryossef2020real] is defined as the binary classification for any
-given frame of a video whether a person is using sign language or not.
+Sign language detection [@detection:borg2019sign;@detection:moryossef2020real] is the binary classification task to determine whether a signed language is being used or not in a given video frame.
+A similar task in spoken languages is voice activity detection (VAD) [@sohn1999statistical;@ramirez2004efficient],
+the detection of when a human voice is used in an audio signal.
+However, as VAD methods often rely on speech-specific representations such as spectrograms, they are not always applicable to videos.
+
 
 @detection:borg2019sign introduced the classification of frames taken from YouTube videos as either signing or not. 
 They take a spatial and temporal approach based on VGG-16 [@simonyan2015very] CNN to encode each frame 
@@ -117,18 +233,24 @@ estimated human poses rather than directly on the video signal.
 They calculate the optical flow norm of every joint detected on the body and apply a shallow yet effective contextualized model
 to predict for every frame whether the person is signing or not.
 
-While these works perform well on this task, well-annotated data, including interferences and distractors, is still lacking for real-world evaluation.
+While these recent detection models achieve high performance,
+we lack well-annotated data that include interference and distractions with non-signing instances for proper real-world evaluation.
 
 ### Sign Language Identification
 
-Sign language identification [@identification:gebre2013automatic;@identification:monteiro2016detecting] is defined as the classification between two or more signed languages.
- 
-@identification:gebre2013automatic found that a simple random-forest classifier can distinguish between British Sign Language (BSL) and Greek Sign Language (ENN) with a 95% F1 score.
-This finding is further supported by @identification:monteiro2016detecting, which manages to differentiate between British Sign Language and 
+Sign language identification [@identification:gebre2013automatic;@identification:monteiro2016detecting] classifies which signed language is being used in a given video automatically.
+
+@identification:gebre2013automatic found that a simple random-forest classifier utilizing the distribution of phonemes can distinguish between British Sign Language (BSL) and Greek Sign Language (ENN) with a 95% F1 score.
+This finding is further supported by @identification:monteiro2016detecting, which based on activity maps in signing space,
+manages to differentiate between British Sign Language and
 French Sign Language (Langue des Signes Française, LSF) with 98% F1 score in videos with static backgrounds, 
 and between American Sign Language and British Sign Language with 70% F1 score for videos mined from popular video sharing sites. 
 The authors attribute their success mainly to the different fingerspelling systems, which is two-handed in the case of BSL and one-handed in the case of ASL and LSF.
 
+Although these pairwise classification results seem promising, better models would be needed for classifying from a large set of signed languages.
+These methods only rely on low-level visual features,
+while signed languages have several distinctive features on a linguistic level,
+such as lexical or structural differences [@mckee2000lexical;@kimmelman2014information;@ferreira1984similarities;@shroyer1984signs] which have not been explored for this task.
 
 ### Sign Language Segmentation
 
@@ -137,7 +259,7 @@ While the most canonical way of dividing a spoken language text is into a linear
 due to the simultaneity of sign language, the notion of a sign language "word" is ill-defined, and sign language cannot be fully modeled linearly.
 
 Current methods resort to segmenting units loosely mapped to signed language units [@segmentation:santemiz2009automatic;@segmentation:farag2019learning;@segmentation:bull2020automatic;@segmentation:renz2021signa;@segmentation:renz2021signb;@segmentation:bull2021aligning], 
-and do not leverage reliable linguistic predictors of sentence boundaries such as prosody in signed languages (i.e. pauses, sign duration, facial expressions, eye apertures) \cite{sandler2010prosody, ormel2012prosodic}.
+and do not leverage reliable linguistic predictors of sentence boundaries such as prosody in signed languages (i.e. pauses, sign duration, facial expressions, eye apertures) [@sandler2010prosody;@ormel2012prosodic].
 
 @segmentation:santemiz2009automatic automatically extract isolated signs from continuous signing by aligning the sequences obtained via speech recognition, modeled by Dynamic Time Warping (DTW) and Hidden Markov Models (HMMs) approaches. 
 
@@ -153,9 +275,10 @@ adaptation.
 
 ### Sign Language Recognition, Translation, and Production
 
-Sign language translation is generally considered the task of translating between a video in sign language to spoken language text.
+<!-- Sign language translation is generally considered the task of translating between a video in sign language to spoken language text. -->
+Sign language translation (SLT) commonly refers to the translation of signed language to spoken language.
 Sign language production is the reverse process of producing a sign language video from spoken language text.
-Sign language recognition [@adaloglou2020comprehensive] is the task of recognizing the discrete signs themselves in sign language (glosses).
+Sign language recognition (SLR) [@adaloglou2020comprehensive] detects and labels signs from a video, either on isolated [@dataset:imashev2020dataset;dataset:sincan2020autsl] or continuous [@cui2017recurrent;@cihan2018neural;@camgoz2020sign] signs.
 
 In the following graph, we can see a fully connected pentagon where each node is a single data representation, 
 and each directed edge represents the task of converting between one data representation to another.
@@ -167,11 +290,11 @@ We split the graph into two:
 - Every edge on both backgrounds represents a task requiring a combination of computer vision and natural language processing.
 
 ```{=html}
-<p style="overflow: visible">
-<span style="font-weight: bold;">Language Agnostic Tasks</span>
-<span style="font-weight: bold;float:right">Language Specific Tasks</span>
-<object type="image/svg+xml" data="assets/tasks/tasks.svg"></object>
-</p>
+<div class="tasks">
+    <span style="font-weight: bold;">Language Agnostic Tasks</span>
+    <span style="font-weight: bold;float:right">Language Specific Tasks</span>
+</div>
+<img src="assets/tasks/tasks.svg" alt="Sign language tasks graph" class="tasks" />
 ```
 
 ```{=latex}
@@ -274,6 +397,9 @@ or even replace cartoon faces from animated 3D models.
 
 #### Pose-to-Gloss
 Pose-to-Gloss---also known as sign language recognition---is the task of recognizing a sequence of signs from a sequence of poses.
+Though some previous works have referred to this as ``sign language translation'', recognition merely determines the associated label of each sign,
+without handling the syntax and morphology of the signed language [@padden1988interaction] to create a spoken language output.
+Instead, SLR has often been used as an intermediate step during translation to produce glosses from signed language videos.
 
 @jiang2021sign propose a novel Skeleton Aware Multi-modal Framework with a Global Ensemble Model (GEM) for isolated SLR (SAM-SLR-v2) to learn and fuse multimodal feature representations. Specifically, they use a Sign Language Graph Convolution Network (SL-GCN) to model the embedded dynamics of skeleton keypoints and a Separable Spatial-Temporal Convolution Network (SSTCN) to exploit skeleton features. The skeleton-based predictions are fused with other RGB and depth based modalities by the proposed late-fusion GEM to provide global information and make a faithful SLR prediction.
 
@@ -390,11 +516,11 @@ They concluded that on the RWTH-PHOENIX-Weather-2014T dataset, which was also pr
 using GRUs, Luong attention, and a batch size of 1 outperforms all other configurations.
 
 In parallel with the advancements in spoken language machine translation, 
-@yin2020better proposed replacing the RNN with a Transformer [@vaswani2017attention] encoder-decoder model, showing improvements on both
+@yin-read-2020-better proposed replacing the RNN with a Transformer [@vaswani2017attention] encoder-decoder model, showing improvements on both
 RWTH-PHOENIX-Weather-2014T (DGS) and ASLG-PC12 (ASL) datasets both using a single model and ensemble of models.
 Interestingly, in gloss-to-text, they show that using the sign language recognition (video-to-gloss) system output outperforms using the gold annotated glosses.
 
-Building on the code published by @yin2020better, @moryossef-etal-2021-data show it is beneficial to pre-train these translation models
+Building on the code published by @yin-read-2020-better, @moryossef-etal-2021-data show it is beneficial to pre-train these translation models
 using augmented monolingual spoken language corpora.
 They try three different approaches for data augmentation: 
 (1) Back-translation; 
@@ -462,7 +588,8 @@ either with respect to the entire frame or to the relevant "object" (Body, Face,
 
 #### Text-to-Pose
 Text-to-Pose---also known as sign language production---is the task to produce a sequence of poses that adequately represent
-a spoken language text in sign language.
+a spoken language text in sign language, as an intermediate representation to overcome challenges in animation.
+To overcome the challenges in generating videos directly, most efforts use poses as an intermediate representation, with the goal of either using computer animation or pose-to-video models to perform video production.
 
 @saunders2020progressive propose Progressive Transformers, a model to translate from 
 discrete spoken language sentences to continuous 3D sign pose sequences in an autoregressive manner.
@@ -494,6 +621,9 @@ and the loss is applied between $y$ and $ŷ$, and not directly on the generated 
 They evaluate their approach on the CSL dataset [@dataset:huang2018video] and show that their generated pose sequences 
 almost reach the same classification performance as the real sequences.
 
+Due to the lack of suitable automatic evaluation methods of generated signs, existing works resort to measuring back-translation quality, which cannot accurately capture the quality of the produced signs nor its usability in real-world settings.
+A better understanding of how distinctions in meaning are created in signed language may help develop a better evaluation method.
+
 ---
 
 #### Notation-to-$X$
@@ -506,34 +636,34 @@ As of 2020, there is no research discussing the translation task between a writi
 ---
 
 ```{=ignore}
-#### Pose-to-Writing
+#### Pose-to-Notation
 TODO
 
-#### Writing-to-Pose
-TODO
-
----
-
-#### Video-to-Writing
-TODO
-
-#### Writing-to-Video
+#### Notation-to-Pose
 TODO
 
 ---
 
-#### Writing-to-Text
+#### Video-to-Notation
 TODO
 
-#### Text-to-Writing
+#### Notation-to-Video
 TODO
 
 ---
 
-#### Writing-to-Gloss
+#### Notation-to-Text
 TODO
 
-#### Gloss-to-Writing
+#### Text-to-Notation
+TODO
+
+---
+
+#### Notation-to-Gloss
+TODO
+
+#### Gloss-to-Notation
 TODO
 
 ```
@@ -541,9 +671,9 @@ TODO
 
 ### Fingerspelling 
 
-Fingerspelling is the act of spelling a word letter-by-letter, borrowing from the spoken language alphabet [@battison1978lexical;@wilcox1992phonetics;@brentari2001language].
+Fingerspelling is the act of spelling a word letter-by-letter, borrowing from the spoken language alphabet [@battison1978lexical;@wilcox1992phonetics;@brentari2001language;@patrie2011fingerspelled].
 This phenomenon, found in most signed languages, often occurs when there is no previously agreed upon sign for a concept,
-like in technical language, colloquial conversations involving names, conversations involving current events, 
+like in technical language, colloquial conversations involving names, conversations involving current events,
 emphatic forms, and the context of code-switching between the sign language and corresponding spoken language [@padden1998asl;@montemurro2018emphatic].
 The relative amount of fingerspelling varies between signed languages, and for American Sign Language (ASL) accounts for 12–35% of the signed content [@padden2003alphabet].
 
@@ -624,7 +754,89 @@ Anvil installation is [available](https://www.anvil-software.org/download/index.
 \clearpage
 ```
 
-## Existing Datasets
+## Resources
+
+### Existing Datasets
+
+```{=ignore}
+TODO
+\paragraph{Bilingual dictionaries} for signed language [@dataset:mesch2012meaning;@fenlon2015building;@crasborn2016ngt;@dataset:gutierrez2016lse] map a spoken language word or short phrase to a signed language video.
+One notable dictionary is, SpreadTheSign\footnote{\url{https://www.spreadthesign.com/}} is a parallel dictionary containing around 23,000 words with up to 41 different spoken-signed language pairs and more than 500,000 videos in total. While dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.
+
+\paragraph{Fingerspelling corpora} usually consist of videos of words borrowed from spoken languages that are signed letter-by-letter. They can be synthetically created [@dataset:dreuw2006modeling] or mined from online resources [@dataset:fs18slt,@dataset:fs18iccv]. However, they only capture one aspect of signed languages.
+
+\paragraph{Isolated sign corpora} are collections of annotated single signs. They are synthesized [@dataset:ebling2018smile;@dataset:huang2018video;@dataset:sincan2020autsl;@dataset:hassan-etal-2020-isolated] or mined from online resources [@dataset:joze2018ms;@dataset:li2020word], and can be used for isolated sign language recognition or for contrastive analysis of minimal signing pairs [@dataset:imashev2020dataset]. However, like dictionaries, they do not describe relations between signs nor do they capture coarticulation during signing, and are often limited in vocabulary size (20-1000 signs)
+
+\paragraph{Continuous sign corpora} contain parallel sequences of signs and spoken language.
+Available continuous sign corpora are extremely limited, containing 4-6 orders of magnitude fewer sentence pairs than similar corpora for spoken language machine translation [@arivazhagan2019massively].
+Moreover, while automatic speech recognition (ASR) datasets contain up to 50,000 hours of recordings [@pratap2020mls], the largest continuous sign language corpus contain only 1,150 hours, and only 50 of them are publicly available [@dataset:hanke-etal-2020-extending].
+These datasets are usually synthesized [@dataset:databases2007volumes;@dataset:Crasborn2008TheCN;@dataset:ko2019neural;@dataset:hanke-etal-2020-extending] or recorded in studio conditions [@dataset:forster2014extensions,@cihan2018neural], which does not account for noise in real-life conditions. Moreover, some contain signed interpretations of spoken language rather than naturally-produced signs, which may not accurately represent native signing since translation is now a part of the discourse event.
+
+
+\paragraph{Availability}
+Unlike the vast amount and diversity of available spoken language resources that allow various applications,
+signed language resources are scarce and currently only support translation and production.
+Unfortunately, most of the signed language corpora discussed in the literature are either not available for use or available under heavy restrictions and licensing terms. Signed language data is especially challenging to anonymize due to the importance of facial and other physical features in signing videos, limiting its open distribution, and developing anonymization with minimal information loss, or accurate anonymous representations is a promising research problem.
+
+
+
+
+\subsection{Collect Real-World Data}\label{sec:applications-data}
+
+Data is essential to develop any of the core NLP tools previously described, and current efforts in SLP are often limited by the lack of adequate data. We discuss the considerations to keep in mind when building datasets, challenges of collecting such data, and directions to facilitate data collection.
+
+\paragraph{What is Good Signed Language Data?}
+For SLP models to be deployable, they must be developed using data that represents the real world accurately. What constitutes an ideal signed language dataset is an open question,
+we suggest including the following requirements:
+(1) a broad domain; (2) sufficient data and vocabulary size; (3) real-world conditions; (4) naturally produced signs; (5) a diverse signer demographic; (6) native signers; and when applicable, (7) dense annotations.
+% \begin{enumerate}
+%     \item A broad domain
+%     \item Sufficient data and vocabulary size
+%     \item Real-world conditions
+%     \item Naturally produced signs
+%     \item A diverse signer demographic
+%     \item Native signers
+%     \item Dense annotations (when appropriate)
+% \end{enumerate}
+
+To illustrate the importance of data quality during modeling, we first take as an example a current benchmark for SLP, the RWTH-PHOENIX-Weather 2014T dataset [@cihan2018neural] of German Sign Language, that does not meet most of the above criteria: it is restricted to the weather domain (1); contains only around 8K segments with 1K unique signs (2); filmed in studio conditions (3); interpreted from German utterances (4); and signed by nine Caucasian interpreters (5,6).
+Although this dataset successfully addressed data scarcity issues at the time and successfully rendered results comparable and fueled competitive research, it does not accurately represent signed languages in the real world. On the other hand, the Public DGS Corpus [@dataset:hanke-etal-2020-extending] is an open-domain (1) dataset consisting of 50 hours of natural signing (4) by 330 native signers from various regions in Germany (5,6), annotated with glosses, HamNoSys and German translations (7), meeting all but two requirements we suggest.
+
+We train a gloss-to-text sign language translation transformer [@yin-read-2020-better] on both datasets. On RWTH-PHOENIX-Weather 2014T, we obtain **22.17** BLEU on testing; on Public DGS Corpus, we obtain a mere \textbf{3.2} BLEU. Although Transformers achieve encouraging results on RWTH-PHOENIX-Weather 2014T [@saunders2020progressive;@camgoz2020multi], they fail on more realistic, open-domain data. These results reveal that firstly, for real-world applications, we need more data to train such types of models, and secondly, while available data is severely limited in size, less data-hungry and more linguistically-informed approaches may be more suitable. This experiment reveals how it is crucial to use data that accurately represent the complexity and diversity of signed languages to precisely assess what types of methods are suitable, and how well our models would deploy to the real world.
+
+
+%\yg{Does DGS meet the criteria? or how does it hold? asking because you are mentioning it in the next paragraph} \am{Not sure we'd want to include this paragraph. Gloss-to-text is a nice example, but it doesn't really show anything on sign language, mainly because Phoenix is more "high resource" in domain, vs DGS which has most signs appearing once, and is just a general low resource task}
+%\ky{I still think there's a valuable message to it: datasets like Phoenix don't accurately represent signed languages IRL, DGS corpus has more rare signs because that's the nature of language (Zipf's law), methods that work on Phoenix aren't deployable, those on DGS corpus have a higher chance for real-world applications. We can reword some parts though, so that reviewers don't make the same critique you did. Also, I think the conclusion flows nicely into the next subsection. Uncommenting for now, since I'm curious to know what others think}
+
+%\yg{The argument here is confused: it goes from we need more data to we don't have data to we need better models to we need better data, very very quickly.}
+
+\paragraph{Challenges of Data Collection}
+Collecting and annotating signed data inline with the ideal requires more resources than speech or text data, taking up to 600 minutes per minute of an annotated signed language video [@dataset:hanke-etal-2020-extending]. Moreover, annotation usually requires a specific set of knowledge and skills, which makes recruiting or training qualified annotators challenging. Additionally, there is little existing signed language data in the wild that are open to use, especially from native signers that are not interpretations of speech.
+Therefore, data collection often requires significant efforts and costs of on-site recording as well.
+
+\paragraph{Automating Annotation}
+%\yg{need to collect more data inline with the ideal, need to create tools to facilitate this.}
+To collect more data that enables the development of deployable SLP models, one useful research direction is creating tools that can simplify or automate parts of the collection and annotation process. One of the largest bottleneck in obtaining more adequate signed language data is the amount of time and scarcity of experts required to perform annotation. Therefore, tools that perform automatic parsing, detection of frame boundaries, extraction of articulatory features, suggestions for lexical annotations, and allow parts of the annotation process to be crowdsourced to non-experts, to name a few, have a high potential to facilitate and accelerate the availability of good data.
+
+% \subsection{Practice Deaf Collaboration, Not Exploitation}\label{sec:applications-deaf}
+\subsection{Practice Deaf Collaboration}\label{sec:applications-deaf}
+
+Finally, when working with signed languages, it is vital to keep in mind \emph{who} this technology should benefit, and \emph{what} they need.
+Researchers in SLP must honor that signed languages belong to the Deaf community and avoid exploiting their language as a commodity [@bird-2020-decolonising].
+
+\paragraph{Solving Real Needs}
+
+% \yg{this paragraph needs a different title. maybe ``solving real needs'' or something to that effect. it is not about identification.}
+Many efforts in SLP have developed intrusive methods (e.g. requiring signers to wear special gloves), which are often rejected by signing communities and therefore have limited real-world value.
+Such efforts are often marketed to perform ``sign language translation" when they, in fact, only identify fingerspelling or recognize a very limited set of isolated signs at best. These approaches oversimplify the rich grammar of signed languages, promote the misconception that signs are solely expressed through the hands, and are considered by the Deaf community as a manifestation of audism, where it is the signers who must make the extra effort to wear additional sensors to be understood by non-signers [@erard2017sign]. In order to avoid such mistakes, we encourage close Deaf involvement throughout the research process to ensure that we direct our efforts towards applications that will be adopted by signers, and do not make false assumptions about signed languages or the needs of signing communities.
+
+\paragraph{Building Collaboration}
+Deaf collaborations and leadership are essential for developing signed language technologies to ensure they address the community's needs and will be adopted, and that they do not rely on misconceptions or inaccuracies about signed language [@harris2009research;@kusters2017innovations].
+Hearing researchers cannot relate to the deaf experience or fully understand the context in which the tools being developed would be used, nor can they speak for the deaf. Therefore, we encourage the creation of a long-term collaborative environment between signed language researchers and users, so that deaf users can identify meaningful challenges, and provide insights on the considerations to take, while researchers cater to the signers' needs as the field evolves. We also recommend reaching out to signing communities for reviewing papers on signed languages, to ensure an adequate evaluation of this type of research results published at ACL venues. There are several ways to connect with Deaf communities for collaboration: one can seek deaf students in their local community, reach out to schools for the deaf, contact deaf linguists, join a network of researchers of sign-related technologies\footnote{\url{https://www.crest-network.com/}}, and/or participate in deaf-led projects.
+```
+
+
+### Downloading
 
 Currently, there is no easy way or agreed upon format to download and load sign language datasets, and as such, evaluation on these datasets is scarce.
 As part of this work, we streamlined the loading of available datasets using [Tensorflow Datasets](https://github.com/tensorflow/datasets) [@TFDS].
@@ -687,11 +899,10 @@ Emailed Eleni and Evita, need to make sure data is available
 
 
 ```{=latex}
-\newgeometry{left=0.3cm,right=0.3cm,top=-1.5cm,bottom=-1.5cm}
+\newgeometry{left=0cm,right=0cm,top=-1.5cm,bottom=-1.5cm}
 \begin{landscape}
 \hspace{1.5cm}
 ```
-
 🎥 Video | 👋 Pose | 👄 Mouthing | ✍ Notation | 📋 Gloss | 📜 Text | 🔊 Speech
 
 <div id="datasets-table" class="table">
