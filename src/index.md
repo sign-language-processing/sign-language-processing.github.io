@@ -20,12 +20,10 @@ abstract: |
 
 
 ```{=html}
-<!--
 <p style="text-align: center;overflow:visible">
-<iframe src="https://sign.mt/?embed=&spl=en&sil=us&text=Hello%20world!" allow="camera;microphone"></iframe>
+<iframe src="https://sign.mt/?embed=&spl=en&sil=us&text=Hello%20world!" allow="camera;microphone" title="sign.mt translation demo"></iframe>
 Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-sign language translation technology.
 </p>
--->
 ```
 
 ## Introduction
@@ -165,8 +163,6 @@ In this demonstration, we deconstruct the video into its individual frames to ex
 ```{=latex}
 \includegraphics[width=\linewidth]{assets/representation/continuous.pdf}
 ```
-![Caption](assets/representation/continuous.pdf){#fig:modeling}
-
 
 ###### Videos {-}
 are the most straightforward representation of a signed language and can amply incorporate the information conveyed through sign.
@@ -186,7 +182,7 @@ However, they remain a continuous, multidimensional representation that is not a
 represent signs as discrete visual features. Some systems are written linearly and others use graphemes in two dimensions.
 While various universal [@writing:sutton1990lessons;@writing:prillwitz1990hamburg] and language-specific notation systems [@writing:stokoe2005sign;@writing:kakumasu1968urubu;@writing:bergman1977tecknad] have been proposed,
 no writing system has been adopted widely by any sign language community, and the lack of standard hinders the exchange and unification of resources and applications between projects.
-Figure @fig:modeling depicts two universal notation systems:
+The figure above depicts two universal notation systems:
 SignWriting [@writing:sutton1990lessons], a two-dimensional pictographic system,
 and HamNoSys [@writing:prillwitz1990hamburg], a linear stream of graphemes that was designed to be readable by machines.
 
@@ -282,7 +278,7 @@ adaptation.
 <!-- Sign language translation is generally considered the task of translating between a video in sign language to spoken language text. -->
 Sign language translation (SLT) commonly refers to the translation of signed language to spoken language.
 Sign language production is the reverse process of producing a sign language video from spoken language text.
-Sign language recognition (SLR) [@adaloglou2020comprehensive] detects and labels signs from a video, either on isolated [@dataset:imashev2020dataset;dataset:sincan2020autsl] or continuous [@cui2017recurrent;@camgoz2018neural;@camgoz2020sign] signs.
+Sign language recognition (SLR) [@adaloglou2020comprehensive] detects and labels signs from a video, either on isolated [@dataset:imashev2020dataset;dataset:sincan2020autsl] or continuous [@cui2017recurrent;@cihan2018neural;@camgoz2020sign] signs.
 
 In the following graph, we can see a fully connected pentagon where each node is a single data representation, 
 and each directed edge represents the task of converting between one data representation to another.
@@ -294,11 +290,11 @@ We split the graph into two:
 - Every edge on both backgrounds represents a task requiring a combination of computer vision and natural language processing.
 
 ```{=html}
-<p style="overflow: visible">
-<span style="font-weight: bold;">Language Agnostic Tasks</span>
-<span style="font-weight: bold;float:right">Language Specific Tasks</span>
-<object type="image/svg+xml" data="assets/tasks/tasks.svg"></object>
-</p>
+<div class="tasks">
+    <span style="font-weight: bold;">Language Agnostic Tasks</span>
+    <span style="font-weight: bold;float:right">Language Specific Tasks</span>
+</div>
+<img src="assets/tasks/tasks.svg" alt="Sign language tasks graph" class="tasks" />
 ```
 
 ```{=latex}
@@ -520,11 +516,11 @@ They concluded that on the RWTH-PHOENIX-Weather-2014T dataset, which was also pr
 using GRUs, Luong attention, and a batch size of 1 outperforms all other configurations.
 
 In parallel with the advancements in spoken language machine translation, 
-@yin2020better proposed replacing the RNN with a Transformer [@vaswani2017attention] encoder-decoder model, showing improvements on both
+@yin-read-2020-better proposed replacing the RNN with a Transformer [@vaswani2017attention] encoder-decoder model, showing improvements on both
 RWTH-PHOENIX-Weather-2014T (DGS) and ASLG-PC12 (ASL) datasets both using a single model and ensemble of models.
 Interestingly, in gloss-to-text, they show that using the sign language recognition (video-to-gloss) system output outperforms using the gold annotated glosses.
 
-Building on the code published by @yin2020better, @moryossef-etal-2021-data show it is beneficial to pre-train these translation models
+Building on the code published by @yin-read-2020-better, @moryossef-etal-2021-data show it is beneficial to pre-train these translation models
 using augmented monolingual spoken language corpora.
 They try three different approaches for data augmentation: 
 (1) Back-translation; 
@@ -640,34 +636,34 @@ As of 2020, there is no research discussing the translation task between a writi
 ---
 
 ```{=ignore}
-#### Pose-to-Writing
+#### Pose-to-Notation
 TODO
 
-#### Writing-to-Pose
-TODO
-
----
-
-#### Video-to-Writing
-TODO
-
-#### Writing-to-Video
+#### Notation-to-Pose
 TODO
 
 ---
 
-#### Writing-to-Text
+#### Video-to-Notation
 TODO
 
-#### Text-to-Writing
+#### Notation-to-Video
 TODO
 
 ---
 
-#### Writing-to-Gloss
+#### Notation-to-Text
 TODO
 
-#### Gloss-to-Writing
+#### Text-to-Notation
+TODO
+
+---
+
+#### Notation-to-Gloss
+TODO
+
+#### Gloss-to-Notation
 TODO
 
 ```
@@ -762,7 +758,8 @@ Anvil installation is [available](https://www.anvil-software.org/download/index.
 
 ### Existing Datasets
 
-```{=ignore} TODO
+```{=ignore}
+TODO
 \paragraph{Bilingual dictionaries} for signed language [@dataset:mesch2012meaning;@fenlon2015building;@crasborn2016ngt;@dataset:gutierrez2016lse] map a spoken language word or short phrase to a signed language video.
 One notable dictionary is, SpreadTheSign\footnote{\url{https://www.spreadthesign.com/}} is a parallel dictionary containing around 23,000 words with up to 41 different spoken-signed language pairs and more than 500,000 videos in total. While dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.
 

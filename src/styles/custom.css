@@ -29,7 +29,7 @@ p {
 }
 
 #formats-table {
-    width: 850px;
+    width: min(100%, 850px);
     text-align: center;
 }
 
@@ -45,8 +45,14 @@ p {
 #continuous-rep {
     display: block;
     margin: auto;
-    max-width: 95vw;
+    max-width: 100%;
     width: 1400px;
+    aspect-ratio: 16 / 6.61;
+}
+
+.tasks {
+    width: 100%;
+    max-width: 1000px;
 }
 
 iframe {
