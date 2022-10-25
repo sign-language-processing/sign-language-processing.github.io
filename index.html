@@ -139,7 +139,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#annotation-tools">Annotation Tools</a></li>
 <li><a href="#resources">Resources</a>
 <ul>
-<li><a href="#existing-datasets">Existing Datasets</a></li>
+<li><a href="#collect-real-world-data">Collect Real-World Data</a></li>
+<li><a href="#practice-deaf-collaboration">Practice Deaf Collaboration</a></li>
 <li><a href="#downloading">Downloading</a></li>
 </ul></li>
 <li><a href="#other-resources">Other Resources</a></li>
@@ -373,8 +374,52 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <h5 id="anvil---the-video-annotation-research-tool">Anvil - The Video Annotation Research Tool</h5>
 <p><a href="https://www.anvil-software.org/">Anvil</a> <span class="citation" data-cites="kipp2001anvil">(Kipp <a href="#ref-kipp2001anvil" role="doc-biblioref">2001</a>)</span> is a free video annotation tool, offering multi-layered annotation based on a user-defined coding scheme. In Anvil, the annotator can see color-coded elements on multiple tracks in time-alignment. Some special features are cross-level links, non-temporal objects, timepoint tracks, coding agreement analysis, 3D viewing of motion capture data and a project tool for managing whole corpora of annotation files. Anvil installation is <a href="https://www.anvil-software.org/download/index.html">available</a> for Windows, macOS, and Linux.</p>
 <h2 id="resources">Resources</h2>
-<h3 id="existing-datasets">Existing Datasets</h3>
-
+<section id="bilingual-dictionaries" class="unnumbered">
+<h6 class="unnumbered">Bilingual dictionaries</h6>
+<p>for signed language <span class="citation" data-cites="dataset:mesch2012meaning fenlon2015building crasborn2016ngt dataset:gutierrez2016lse">(Mesch and Wallin <a href="#ref-dataset:mesch2012meaning" role="doc-biblioref">2012</a>; Fenlon, Cormier, and Schembri <a href="#ref-fenlon2015building" role="doc-biblioref">2015</a>; Crasborn et al. <a href="#ref-crasborn2016ngt" role="doc-biblioref">2016</a>; Gutierrez-Sigut et al. <a href="#ref-dataset:gutierrez2016lse" role="doc-biblioref">2016</a>)</span> map a spoken language word or short phrase to a signed language video. One notable dictionary is, SpreadTheSign is a parallel dictionary containing around 23,000 words with up to 41 different spoken-signed language pairs and more than 500,000 videos in total. While dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.</p>
+</section>
+<section id="fingerspelling-corpora" class="unnumbered">
+<h6 class="unnumbered">Fingerspelling corpora</h6>
+<p>usually consist of videos of words borrowed from spoken languages that are signed letter-by-letter. They can be synthetically created <span class="citation" data-cites="dataset:dreuw2006modeling">(Dreuw et al. <a href="#ref-dataset:dreuw2006modeling" role="doc-biblioref">2006</a>)</span> or mined from online resources <span class="citation" data-cites="dataset:fs18slt">(Shi et al. <a href="#ref-dataset:fs18slt" role="doc-biblioref">2018</a>, @dataset:fs18iccv)</span>. However, they only capture one aspect of signed languages.</p>
+</section>
+<section id="isolated-sign-corpora" class="unnumbered">
+<h6 class="unnumbered">Isolated sign corpora</h6>
+<p>are collections of annotated single signs. They are synthesized <span class="citation" data-cites="dataset:ebling2018smile dataset:huang2018video dataset:sincan2020autsl dataset:hassan-etal-2020-isolated">(Ebling et al. <a href="#ref-dataset:ebling2018smile" role="doc-biblioref">2018</a>; Huang et al. <a href="#ref-dataset:huang2018video" role="doc-biblioref">2018</a>; Sincan and Keles <a href="#ref-dataset:sincan2020autsl" role="doc-biblioref">2020</a>; Hassan et al. <a href="#ref-dataset:hassan-etal-2020-isolated" role="doc-biblioref">2020</a>)</span> or mined from online resources <span class="citation" data-cites="dataset:joze2018ms dataset:li2020word">(Vaezi Joze and Koller <a href="#ref-dataset:joze2018ms" role="doc-biblioref">2019</a>; Li et al. <a href="#ref-dataset:li2020word" role="doc-biblioref">2020</a>)</span>, and can be used for isolated sign language recognition or for contrastive analysis of minimal signing pairs <span class="citation" data-cites="dataset:imashev2020dataset">(Imashev et al. <a href="#ref-dataset:imashev2020dataset" role="doc-biblioref">2020</a>)</span>. However, like dictionaries, they do not describe relations between signs nor do they capture coarticulation during signing, and are often limited in vocabulary size (20-1000 signs)</p>
+</section>
+<section id="continuous-sign-corpora" class="unnumbered">
+<h6 class="unnumbered">Continuous sign corpora</h6>
+<p>contain parallel sequences of signs and spoken language. Available continuous sign corpora are extremely limited, containing 4-6 orders of magnitude fewer sentence pairs than similar corpora for spoken language machine translation <span class="citation" data-cites="arivazhagan2019massively">(Arivazhagan et al. <a href="#ref-arivazhagan2019massively" role="doc-biblioref">2019</a>)</span>. Moreover, while automatic speech recognition (ASR) datasets contain up to 50,000 hours of recordings <span class="citation" data-cites="pratap2020mls">(Pratap et al. <a href="#ref-pratap2020mls" role="doc-biblioref">2020</a>)</span>, the largest continuous sign language corpus contain only 1,150 hours, and only 50 of them are publicly available <span class="citation" data-cites="dataset:hanke-etal-2020-extending">(Hanke et al. <a href="#ref-dataset:hanke-etal-2020-extending" role="doc-biblioref">2020</a>)</span>. These datasets are usually synthesized <span class="citation" data-cites="dataset:databases2007volumes dataset:Crasborn2008TheCN dataset:ko2019neural dataset:hanke-etal-2020-extending">(Databases <a href="#ref-dataset:databases2007volumes" role="doc-biblioref">2007</a>; Crasborn and Zwitserlood <a href="#ref-dataset:Crasborn2008TheCN" role="doc-biblioref">2008</a>; Ko et al. <a href="#ref-dataset:ko2019neural" role="doc-biblioref">2019</a>; Hanke et al. <a href="#ref-dataset:hanke-etal-2020-extending" role="doc-biblioref">2020</a>)</span> or recorded in studio conditions <span class="citation" data-cites="dataset:forster2014extensions">(Forster et al. <a href="#ref-dataset:forster2014extensions" role="doc-biblioref">2014</a>, @cihan2018neural)</span>, which does not account for noise in real-life conditions. Moreover, some contain signed interpretations of spoken language rather than naturally-produced signs, which may not accurately represent native signing since translation is now a part of the discourse event.</p>
+</section>
+<section id="availability" class="unnumbered">
+<h6 class="unnumbered">Availability</h6>
+<p>Unlike the vast amount and diversity of available spoken language resources that allow various applications, signed language resources are scarce and currently only support translation and production. Unfortunately, most of the signed language corpora discussed in the literature are either not available for use or available under heavy restrictions and licensing terms. Signed language data is especially challenging to anonymize due to the importance of facial and other physical features in signing videos, limiting its open distribution, and developing anonymization with minimal information loss, or accurate anonymous representations is a promising research problem.</p>
+</section>
+<h3 id="collect-real-world-data">Collect Real-World Data</h3>
+<p>Data is essential to develop any of the core NLP tools previously described, and current efforts in SLP are often limited by the lack of adequate data. We discuss the considerations to keep in mind when building datasets, challenges of collecting such data, and directions to facilitate data collection.</p>
+<section id="what-is-good-signed-language-data" class="unnumbered">
+<h6 class="unnumbered">What is Good Signed Language Data?</h6>
+<p>For SLP models to be deployable, they must be developed using data that represents the real world accurately. What constitutes an ideal signed language dataset is an open question, we suggest including the following requirements: (1) a broad domain; (2) sufficient data and vocabulary size; (3) real-world conditions; (4) naturally produced signs; (5) a diverse signer demographic; (6) native signers; and when applicable, (7) dense annotations.</p>
+<p>To illustrate the importance of data quality during modeling, <span class="citation" data-cites="yin-etal-2021-including">Yin et al. (<a href="#ref-yin-etal-2021-including" role="doc-biblioref">2021</a>)</span> first take as an example a current benchmark for SLP, the RWTH-PHOENIX-Weather 2014T dataset <span class="citation" data-cites="cihan2018neural">(Cihan Camgöz et al. <a href="#ref-cihan2018neural" role="doc-biblioref">2018</a>)</span> of German Sign Language, that does not meet most of the above criteria: it is restricted to the weather domain (1); contains only around 8K segments with 1K unique signs (2); filmed in studio conditions (3); interpreted from German utterances (4); and signed by nine Caucasian interpreters (5,6). Although this dataset successfully addressed data scarcity issues at the time and successfully rendered results comparable and fueled competitive research, it does not accurately represent signed languages in the real world. On the other hand, the Public DGS Corpus <span class="citation" data-cites="dataset:hanke-etal-2020-extending">(Hanke et al. <a href="#ref-dataset:hanke-etal-2020-extending" role="doc-biblioref">2020</a>)</span> is an open-domain (1) dataset consisting of 50 hours of natural signing (4) by 330 native signers from various regions in Germany (5,6), annotated with glosses, HamNoSys and German translations (7), meeting all but two requirements we suggest.</p>
+<p>They train a gloss-to-text sign language translation transformer <span class="citation" data-cites="yin-read-2020-better">(Yin and Read <a href="#ref-yin-read-2020-better" role="doc-biblioref">2020</a>)</span> on both datasets. On RWTH-PHOENIX-Weather 2014T, they obtain <strong>22.17</strong> BLEU on testing; on Public DGS Corpus, they obtain a mere  BLEU. Although Transformers achieve encouraging results on RWTH-PHOENIX-Weather 2014T <span class="citation" data-cites="saunders2020progressive camgoz2020multi">(Saunders, Camgöz, and Bowden <a href="#ref-saunders2020progressive" role="doc-biblioref">2020</a><a href="#ref-saunders2020progressive" role="doc-biblioref">c</a>; N. C. Camgöz et al. <a href="#ref-camgoz2020multi" role="doc-biblioref">2020</a><a href="#ref-camgoz2020multi" role="doc-biblioref">a</a>)</span>, they fail on more realistic, open-domain data. These results reveal that firstly, for real-world applications, we need more data to train such types of models, and secondly, while available data is severely limited in size, less data-hungry and more linguistically-informed approaches may be more suitable. This experiment reveals how it is crucial to use data that accurately represent the complexity and diversity of signed languages to precisely assess what types of methods are suitable, and how well our models would deploy to the real world.</p>
+</section>
+<section id="challenges-of-data-collection" class="unnumbered">
+<h6 class="unnumbered">Challenges of Data Collection</h6>
+<p>Collecting and annotating signed data inline with the ideal requires more resources than speech or text data, taking up to 600 minutes per minute of an annotated signed language video <span class="citation" data-cites="dataset:hanke-etal-2020-extending">(Hanke et al. <a href="#ref-dataset:hanke-etal-2020-extending" role="doc-biblioref">2020</a>)</span>. Moreover, annotation usually requires a specific set of knowledge and skills, which makes recruiting or training qualified annotators challenging. Additionally, there is little existing signed language data in the wild that are open to use, especially from native signers that are not interpretations of speech. Therefore, data collection often requires significant efforts and costs of on-site recording as well.</p>
+</section>
+<section id="automating-annotation" class="unnumbered">
+<h6 class="unnumbered">Automating Annotation</h6>
+<p>To collect more data that enables the development of deployable SLP models, one useful research direction is creating tools that can simplify or automate parts of the collection and annotation process. One of the largest bottleneck in obtaining more adequate signed language data is the amount of time and scarcity of experts required to perform annotation. Therefore, tools that perform automatic parsing, detection of frame boundaries, extraction of articulatory features, suggestions for lexical annotations, and allow parts of the annotation process to be crowdsourced to non-experts, to name a few, have a high potential to facilitate and accelerate the availability of good data.</p>
+</section>
+<h3 id="practice-deaf-collaboration">Practice Deaf Collaboration</h3>
+<p>Finally, when working with signed languages, it is vital to keep in mind  this technology should benefit, and  they need. Researchers in SLP must honor that signed languages belong to the Deaf community and avoid exploiting their language as a commodity <span class="citation" data-cites="bird-2020-decolonising">(Bird <a href="#ref-bird-2020-decolonising" role="doc-biblioref">2020</a>)</span>.</p>
+<section id="solving-real-needs" class="unnumbered">
+<h6 class="unnumbered">Solving Real Needs</h6>
+<p>Many efforts in SLP have developed intrusive methods (e.g. requiring signers to wear special gloves), which are often rejected by signing communities and therefore have limited real-world value. Such efforts are often marketed to perform ``sign language translation" when they, in fact, only identify fingerspelling or recognize a very limited set of isolated signs at best. These approaches oversimplify the rich grammar of signed languages, promote the misconception that signs are solely expressed through the hands, and are considered by the Deaf community as a manifestation of audism, where it is the signers who must make the extra effort to wear additional sensors to be understood by non-signers <span class="citation" data-cites="erard2017sign">(Erard <a href="#ref-erard2017sign" role="doc-biblioref">2017</a>)</span>. In order to avoid such mistakes, we encourage close Deaf involvement throughout the research process to ensure that we direct our efforts towards applications that will be adopted by signers, and do not make false assumptions about signed languages or the needs of signing communities.</p>
+</section>
+<section id="building-collaboration" class="unnumbered">
+<h6 class="unnumbered">Building Collaboration</h6>
+<p>Deaf collaborations and leadership are essential for developing signed language technologies to ensure they address the community’s needs and will be adopted, and that they do not rely on misconceptions or inaccuracies about signed language <span class="citation" data-cites="harris2009research kusters2017innovations">(Harris, Holmes, and Mertens <a href="#ref-harris2009research" role="doc-biblioref">2009</a>; Kusters, De Meulder, and O’Brien <a href="#ref-kusters2017innovations" role="doc-biblioref">2017</a>)</span>. Hearing researchers cannot relate to the deaf experience or fully understand the context in which the tools being developed would be used, nor can they speak for the deaf. Therefore, we encourage the creation of a long-term collaborative environment between signed language researchers and users, so that deaf users can identify meaningful challenges, and provide insights on the considerations to take, while researchers cater to the signers’ needs as the field evolves. We also recommend reaching out to signing communities for reviewing papers on signed languages, to ensure an adequate evaluation of this type of research results published at ACL venues. There are several ways to connect with Deaf communities for collaboration: one can seek deaf students in their local community, reach out to schools for the deaf, contact deaf linguists, join a network of researchers of sign-related technologies, and/or participate in deaf-led projects.</p>
+</section>
 <h3 id="downloading">Downloading</h3>
 <p>Currently, there is no easy way or agreed upon format to download and load sign language datasets, and as such, evaluation on these datasets is scarce. As part of this work, we streamlined the loading of available datasets using <a href="https://github.com/tensorflow/datasets">Tensorflow Datasets</a> <span class="citation" data-cites="TFDS">(“TensorFlow Datasets, a Collection of Ready-to-Use Datasets,” <a href="#ref-TFDS" role="doc-biblioref">n.d.</a>)</span>. This allows researchers to load large and small datasets alike with a simple command and be comparable to other works. We make these datasets available using a custom library, <a href="https://github.com/sign-language-processing/datasets">Sign Language Datasets</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> tensorflow_datasets <span class="im">as</span> tfds</span>
@@ -840,6 +885,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <div id="ref-adeline2013fingerspell">
 <p>Adeline, Chloe. 2013. “Fingerspell.net.” <a href="http://fingerspell.net/">http://fingerspell.net/</a>.</p>
 </div>
+<div id="ref-arivazhagan2019massively">
+<p>Arivazhagan, Naveen, Ankur Bapna, Orhan Firat, Dmitry Lepikhin, Melvin Johnson, Maxim Krikun, Mia Xu Chen, et al. 2019. “Massively Multilingual Neural Machine Translation in the Wild: Findings and Challenges.” <em>arXiv Preprint arXiv:1907.05019</em>.</p>
+</div>
 <div id="ref-dataset:athitsos2008american">
 <p>Athitsos, Vassilis, Carol Neidle, Stan Sclaroff, Joan Nash, Alexandra Stefan, Quan Yuan, and Ashwin Thangali. 2008. “The American Sign Language Lexicon Video Dataset.” In <em>2008 Ieee Computer Society Conference on Computer Vision and Pattern Recognition Workshops</em>, 1–8. IEEE.</p>
 </div>
@@ -857,6 +905,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 </div>
 <div id="ref-de2008pointing">
 <p>Beuzeville, Louise de. 2008. “Pointing and Verb Modification: The Expression of Semantic Roles in the Auslan Corpus.” In <em>Workshop Programme</em>, 13. Citeseer.</p>
+</div>
+<div id="ref-bird-2020-decolonising">
+<p>Bird, Steven. 2020. “Decolonising Speech and Language Technology.” In <em>Proceedings of the 28th International Conference on Computational Linguistics</em>, 3504–19. Barcelona, Spain (Online): International Committee on Computational Linguistics. <a href="https://doi.org/10.18653/v1/2020.coling-main.313">https://doi.org/10.18653/v1/2020.coling-main.313</a>.</p>
 </div>
 <div id="ref-bishop1994mixture">
 <p>Bishop, Christopher M. 1994. “Mixture Density Networks.”</p>
@@ -921,6 +972,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <div id="ref-cormier2015rethinking">
 <p>Cormier, Kearsy, Sandra Smith, and Zed Sevcikova-Sehyr. 2015. “Rethinking Constructed Action.” <em>Sign Language &amp; Linguistics</em> 18 (2): 167–204.</p>
 </div>
+<div id="ref-crasborn2016ngt">
+<p>Crasborn, Onno, R Bank, I Zwitserlood, E Van der Kooij, E Ormel, J Ros, A Schüller, et al. 2016. “NGT Signbank.” <em>Nijmegen: Radboud University, Centre for Language Studies</em>.</p>
+</div>
 <div id="ref-dataset:Crasborn2008TheCN">
 <p>Crasborn, O., and I. Zwitserlood. 2008. “The Corpus Ngt: An Online Corpus for Professionals and Laymen.” In.</p>
 </div>
@@ -954,8 +1008,14 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <div id="ref-dataset:ebling2018smile">
 <p>Ebling, Sarah, Necati Cihan Camg ö z, Penny Boyes Braem, Katja Tissi, Sandra Sidler-Miserez, Stephanie Stoll, Simon Hadfield, et al. 2018. “SMILE Swiss German Sign Language Dataset.” In <em>Proceedings of the Eleventh International Conference on Language Resources and Evaluation (LREC 2018)</em>. Miyazaki, Japan: European Language Resources Association (ELRA). <a href="https://www.aclweb.org/anthology/L18-1666">https://www.aclweb.org/anthology/L18-1666</a>.</p>
 </div>
+<div id="ref-erard2017sign">
+<p>Erard, Michael. 2017. “Why Sign-Language Gloves Don’t Help Deaf People.” <em>The Atlantic</em> 9.</p>
+</div>
 <div id="ref-segmentation:farag2019learning">
 <p>Farag, Iva, and Heike Brock. 2019. “Learning Motion Disfluencies for Automatic Sign Language Segmentation.” In <em>ICASSP 2019-2019 Ieee International Conference on Acoustics, Speech and Signal Processing (Icassp)</em>, 7360–4. IEEE.</p>
+</div>
+<div id="ref-fenlon2015building">
+<p>Fenlon, Jordan, Kearsy Cormier, and Adam Schembri. 2015. “Building Bsl Signbank: The Lemma Dilemma Revisited.” <em>International Journal of Lexicography</em> 28 (2): 169–206.</p>
 </div>
 <div id="ref-fenlon2018modification">
 <p>Fenlon, Jordan, Adam Schembri, and Kearsy Cormier. 2018. “Modification of Indicating Verbs in British Sign Language: A Corpus-Based Study.” <em>Language</em> 94 (1): 84–118.</p>
@@ -1059,6 +1119,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <div id="ref-krizhevsky2012imagenet">
 <p>Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E Hinton. 2012. “Imagenet Classification with Deep Convolutional Neural Networks.” In <em>Advances in Neural Information Processing Systems</em>, 1097–1105.</p>
 </div>
+<div id="ref-kusters2017innovations">
+<p>Kusters, Annelies, Maartje De Meulder, and Dai O’Brien. 2017. <em>Innovations in Deaf Studies: The Role of Deaf Scholars</em>. Oxford University Press.</p>
+</div>
 <div id="ref-lebert2008project">
 <p>Lebert, Marie. 2008. “Project Gutenberg (1971-2008).” Project Gutenberg.</p>
 </div>
@@ -1154,6 +1217,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 </div>
 <div id="ref-pose:pishchulin2012articulated">
 <p>Pishchulin, Leonid, Arjun Jain, Mykhaylo Andriluka, Thorsten Thorm ä hlen, and Bernt Schiele. 2012. “Articulated People Detection and Pose Estimation: Reshaping the Future.” In <em>2012 Ieee Conference on Computer Vision and Pattern Recognition</em>, 3178–85. IEEE.</p>
+</div>
+<div id="ref-pratap2020mls">
+<p>Pratap, Vineel, Qiantong Xu, Anuroop Sriram, Gabriel Synnaeve, and Ronan Collobert. 2020. “MLS: A Large-Scale Multilingual Dataset for Speech Research.” In <em>Proc. Interspeech 2020</em>, 2757–61. <a href="https://doi.org/10.21437/Interspeech.2020-2826">https://doi.org/10.21437/Interspeech.2020-2826</a>.</p>
 </div>
 <div id="ref-writing:prillwitz1990hamburg">
 <p>Prillwitz, Siegmund, and Heiko Zienert. 1990. “Hamburg Notation System for Sign Language: Development of a Sign Writing with Computer Application.” In <em>Current Trends in European Sign Language Research. Proceedings of the 3rd European Congress on Sign Language Research</em>, 355–79.</p>
