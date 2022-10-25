@@ -20,10 +20,12 @@ abstract: |
 
 
 ```{=html}
+<!--
 <p style="text-align: center;overflow:visible">
 <iframe src="https://sign.mt/?embed=&spl=en&sil=us&text=Hello%20world!" allow="camera;microphone" title="sign.mt translation demo"></iframe>
 Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-sign language translation technology.
 </p>
+-->
 ```
 
 ## Introduction
@@ -756,24 +758,24 @@ Anvil installation is [available](https://www.anvil-software.org/download/index.
 
 ## Resources
 
-### Existing Datasets
-
-```{=ignore}
-TODO
-\paragraph{Bilingual dictionaries} for signed language [@dataset:mesch2012meaning;@fenlon2015building;@crasborn2016ngt;@dataset:gutierrez2016lse] map a spoken language word or short phrase to a signed language video.
+###### Bilingual dictionaries {-}
+for signed language [@dataset:mesch2012meaning;@fenlon2015building;@crasborn2016ngt;@dataset:gutierrez2016lse] map a spoken language word or short phrase to a signed language video.
 One notable dictionary is, SpreadTheSign\footnote{\url{https://www.spreadthesign.com/}} is a parallel dictionary containing around 23,000 words with up to 41 different spoken-signed language pairs and more than 500,000 videos in total. While dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.
 
-\paragraph{Fingerspelling corpora} usually consist of videos of words borrowed from spoken languages that are signed letter-by-letter. They can be synthetically created [@dataset:dreuw2006modeling] or mined from online resources [@dataset:fs18slt,@dataset:fs18iccv]. However, they only capture one aspect of signed languages.
+###### Fingerspelling corpora {-}
+usually consist of videos of words borrowed from spoken languages that are signed letter-by-letter. They can be synthetically created [@dataset:dreuw2006modeling] or mined from online resources [@dataset:fs18slt,@dataset:fs18iccv]. However, they only capture one aspect of signed languages.
 
-\paragraph{Isolated sign corpora} are collections of annotated single signs. They are synthesized [@dataset:ebling2018smile;@dataset:huang2018video;@dataset:sincan2020autsl;@dataset:hassan-etal-2020-isolated] or mined from online resources [@dataset:joze2018ms;@dataset:li2020word], and can be used for isolated sign language recognition or for contrastive analysis of minimal signing pairs [@dataset:imashev2020dataset]. However, like dictionaries, they do not describe relations between signs nor do they capture coarticulation during signing, and are often limited in vocabulary size (20-1000 signs)
+###### Isolated sign corpora {-}
+are collections of annotated single signs. They are synthesized [@dataset:ebling2018smile;@dataset:huang2018video;@dataset:sincan2020autsl;@dataset:hassan-etal-2020-isolated] or mined from online resources [@dataset:joze2018ms;@dataset:li2020word], and can be used for isolated sign language recognition or for contrastive analysis of minimal signing pairs [@dataset:imashev2020dataset]. However, like dictionaries, they do not describe relations between signs nor do they capture coarticulation during signing, and are often limited in vocabulary size (20-1000 signs)
 
-\paragraph{Continuous sign corpora} contain parallel sequences of signs and spoken language.
+###### Continuous sign corpora {-}
+contain parallel sequences of signs and spoken language.
 Available continuous sign corpora are extremely limited, containing 4-6 orders of magnitude fewer sentence pairs than similar corpora for spoken language machine translation [@arivazhagan2019massively].
 Moreover, while automatic speech recognition (ASR) datasets contain up to 50,000 hours of recordings [@pratap2020mls], the largest continuous sign language corpus contain only 1,150 hours, and only 50 of them are publicly available [@dataset:hanke-etal-2020-extending].
 These datasets are usually synthesized [@dataset:databases2007volumes;@dataset:Crasborn2008TheCN;@dataset:ko2019neural;@dataset:hanke-etal-2020-extending] or recorded in studio conditions [@dataset:forster2014extensions,@cihan2018neural], which does not account for noise in real-life conditions. Moreover, some contain signed interpretations of spoken language rather than naturally-produced signs, which may not accurately represent native signing since translation is now a part of the discourse event.
 
 
-\paragraph{Availability}
+###### Availability {-}
 Unlike the vast amount and diversity of available spoken language resources that allow various applications,
 signed language resources are scarce and currently only support translation and production.
 Unfortunately, most of the signed language corpora discussed in the literature are either not available for use or available under heavy restrictions and licensing terms. Signed language data is especially challenging to anonymize due to the importance of facial and other physical features in signing videos, limiting its open distribution, and developing anonymization with minimal information loss, or accurate anonymous representations is a promising research problem.
@@ -781,59 +783,42 @@ Unfortunately, most of the signed language corpora discussed in the literature a
 
 
 
-\subsection{Collect Real-World Data}\label{sec:applications-data}
+### Collect Real-World Data
 
 Data is essential to develop any of the core NLP tools previously described, and current efforts in SLP are often limited by the lack of adequate data. We discuss the considerations to keep in mind when building datasets, challenges of collecting such data, and directions to facilitate data collection.
 
-\paragraph{What is Good Signed Language Data?}
+###### What is Good Signed Language Data? {-}
 For SLP models to be deployable, they must be developed using data that represents the real world accurately. What constitutes an ideal signed language dataset is an open question,
 we suggest including the following requirements:
 (1) a broad domain; (2) sufficient data and vocabulary size; (3) real-world conditions; (4) naturally produced signs; (5) a diverse signer demographic; (6) native signers; and when applicable, (7) dense annotations.
-% \begin{enumerate}
-%     \item A broad domain
-%     \item Sufficient data and vocabulary size
-%     \item Real-world conditions
-%     \item Naturally produced signs
-%     \item A diverse signer demographic
-%     \item Native signers
-%     \item Dense annotations (when appropriate)
-% \end{enumerate}
 
-To illustrate the importance of data quality during modeling, we first take as an example a current benchmark for SLP, the RWTH-PHOENIX-Weather 2014T dataset [@cihan2018neural] of German Sign Language, that does not meet most of the above criteria: it is restricted to the weather domain (1); contains only around 8K segments with 1K unique signs (2); filmed in studio conditions (3); interpreted from German utterances (4); and signed by nine Caucasian interpreters (5,6).
+To illustrate the importance of data quality during modeling, @yin-etal-2021-including first take as an example a current benchmark for SLP, the RWTH-PHOENIX-Weather 2014T dataset [@cihan2018neural] of German Sign Language, that does not meet most of the above criteria: it is restricted to the weather domain (1); contains only around 8K segments with 1K unique signs (2); filmed in studio conditions (3); interpreted from German utterances (4); and signed by nine Caucasian interpreters (5,6).
 Although this dataset successfully addressed data scarcity issues at the time and successfully rendered results comparable and fueled competitive research, it does not accurately represent signed languages in the real world. On the other hand, the Public DGS Corpus [@dataset:hanke-etal-2020-extending] is an open-domain (1) dataset consisting of 50 hours of natural signing (4) by 330 native signers from various regions in Germany (5,6), annotated with glosses, HamNoSys and German translations (7), meeting all but two requirements we suggest.
 
-We train a gloss-to-text sign language translation transformer [@yin-read-2020-better] on both datasets. On RWTH-PHOENIX-Weather 2014T, we obtain **22.17** BLEU on testing; on Public DGS Corpus, we obtain a mere \textbf{3.2} BLEU. Although Transformers achieve encouraging results on RWTH-PHOENIX-Weather 2014T [@saunders2020progressive;@camgoz2020multi], they fail on more realistic, open-domain data. These results reveal that firstly, for real-world applications, we need more data to train such types of models, and secondly, while available data is severely limited in size, less data-hungry and more linguistically-informed approaches may be more suitable. This experiment reveals how it is crucial to use data that accurately represent the complexity and diversity of signed languages to precisely assess what types of methods are suitable, and how well our models would deploy to the real world.
+They train a gloss-to-text sign language translation transformer [@yin-read-2020-better] on both datasets. On RWTH-PHOENIX-Weather 2014T, they obtain **22.17** BLEU on testing; on Public DGS Corpus, they obtain a mere \textbf{3.2} BLEU. Although Transformers achieve encouraging results on RWTH-PHOENIX-Weather 2014T [@saunders2020progressive;@camgoz2020multi], they fail on more realistic, open-domain data.
+These results reveal that firstly, for real-world applications, we need more data to train such types of models, and secondly, while available data is severely limited in size, less data-hungry and more linguistically-informed approaches may be more suitable.
+This experiment reveals how it is crucial to use data that accurately represent the complexity and diversity of signed languages to precisely assess what types of methods are suitable, and how well our models would deploy to the real world.
 
-
-%\yg{Does DGS meet the criteria? or how does it hold? asking because you are mentioning it in the next paragraph} \am{Not sure we'd want to include this paragraph. Gloss-to-text is a nice example, but it doesn't really show anything on sign language, mainly because Phoenix is more "high resource" in domain, vs DGS which has most signs appearing once, and is just a general low resource task}
-%\ky{I still think there's a valuable message to it: datasets like Phoenix don't accurately represent signed languages IRL, DGS corpus has more rare signs because that's the nature of language (Zipf's law), methods that work on Phoenix aren't deployable, those on DGS corpus have a higher chance for real-world applications. We can reword some parts though, so that reviewers don't make the same critique you did. Also, I think the conclusion flows nicely into the next subsection. Uncommenting for now, since I'm curious to know what others think}
-
-%\yg{The argument here is confused: it goes from we need more data to we don't have data to we need better models to we need better data, very very quickly.}
-
-\paragraph{Challenges of Data Collection}
+###### Challenges of Data Collection {-}
 Collecting and annotating signed data inline with the ideal requires more resources than speech or text data, taking up to 600 minutes per minute of an annotated signed language video [@dataset:hanke-etal-2020-extending]. Moreover, annotation usually requires a specific set of knowledge and skills, which makes recruiting or training qualified annotators challenging. Additionally, there is little existing signed language data in the wild that are open to use, especially from native signers that are not interpretations of speech.
 Therefore, data collection often requires significant efforts and costs of on-site recording as well.
 
-\paragraph{Automating Annotation}
-%\yg{need to collect more data inline with the ideal, need to create tools to facilitate this.}
+###### Automating Annotation {-}
 To collect more data that enables the development of deployable SLP models, one useful research direction is creating tools that can simplify or automate parts of the collection and annotation process. One of the largest bottleneck in obtaining more adequate signed language data is the amount of time and scarcity of experts required to perform annotation. Therefore, tools that perform automatic parsing, detection of frame boundaries, extraction of articulatory features, suggestions for lexical annotations, and allow parts of the annotation process to be crowdsourced to non-experts, to name a few, have a high potential to facilitate and accelerate the availability of good data.
 
-% \subsection{Practice Deaf Collaboration, Not Exploitation}\label{sec:applications-deaf}
-\subsection{Practice Deaf Collaboration}\label{sec:applications-deaf}
+### Practice Deaf Collaboration
 
 Finally, when working with signed languages, it is vital to keep in mind \emph{who} this technology should benefit, and \emph{what} they need.
 Researchers in SLP must honor that signed languages belong to the Deaf community and avoid exploiting their language as a commodity [@bird-2020-decolonising].
 
-\paragraph{Solving Real Needs}
+###### Solving Real Needs {-}
 
-% \yg{this paragraph needs a different title. maybe ``solving real needs'' or something to that effect. it is not about identification.}
 Many efforts in SLP have developed intrusive methods (e.g. requiring signers to wear special gloves), which are often rejected by signing communities and therefore have limited real-world value.
 Such efforts are often marketed to perform ``sign language translation" when they, in fact, only identify fingerspelling or recognize a very limited set of isolated signs at best. These approaches oversimplify the rich grammar of signed languages, promote the misconception that signs are solely expressed through the hands, and are considered by the Deaf community as a manifestation of audism, where it is the signers who must make the extra effort to wear additional sensors to be understood by non-signers [@erard2017sign]. In order to avoid such mistakes, we encourage close Deaf involvement throughout the research process to ensure that we direct our efforts towards applications that will be adopted by signers, and do not make false assumptions about signed languages or the needs of signing communities.
 
-\paragraph{Building Collaboration}
+###### Building Collaboration {-}
 Deaf collaborations and leadership are essential for developing signed language technologies to ensure they address the community's needs and will be adopted, and that they do not rely on misconceptions or inaccuracies about signed language [@harris2009research;@kusters2017innovations].
 Hearing researchers cannot relate to the deaf experience or fully understand the context in which the tools being developed would be used, nor can they speak for the deaf. Therefore, we encourage the creation of a long-term collaborative environment between signed language researchers and users, so that deaf users can identify meaningful challenges, and provide insights on the considerations to take, while researchers cater to the signers' needs as the field evolves. We also recommend reaching out to signing communities for reviewing papers on signed languages, to ensure an adequate evaluation of this type of research results published at ACL venues. There are several ways to connect with Deaf communities for collaboration: one can seek deaf students in their local community, reach out to schools for the deaf, contact deaf linguists, join a network of researchers of sign-related technologies\footnote{\url{https://www.crest-network.com/}}, and/or participate in deaf-led projects.
-```
 
 
 ### Downloading
