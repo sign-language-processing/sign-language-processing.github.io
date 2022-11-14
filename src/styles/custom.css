@@ -22,6 +22,10 @@ p {
     text-align: justify;
 }
 
+#datasets-table, #formats-table {
+    overflow: scroll;
+}
+
 #datasets-table img {
     width: 32px;
     height: 32px;
@@ -64,3 +68,9 @@ iframe {
     margin: auto;
     display: block;
 }
+
+/*thead {*/
+/*    position: sticky;*/
+/*    top: 64px;*/
+/*    background: white;*/
+/*}*/
