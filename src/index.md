@@ -606,10 +606,17 @@ Understanding how distinctions in meaning are created in signed language may hel
 
 ---
 
-#### Notation-to-$X$
-As of 2020, no research discusses the translation task between a writing notation system and any other modality. 
+#### Notation-to-Text
+@jiang2022machine explore text-to-text sign to spoken language translation, with SignWriting as the chosen sign language notation system. 
+Despite SignWriting usually represented in 2D, they use the 1D Formal SignWriting specification and propose a neural factored machine translation approach to encode sequences of the SignWriting graphemes as well as their position in the 2D space. 
+They verify the proposed approach on the SignBank dataset in both a bilingual setup (American Sign Language to English) and two multilingual setups (4 and 21 signed-to-spoken language pairs, respectively). 
+They apply several low-resource machine translation techniques used to improve spoken language translation to similarly improve the performance of sign language translation. 
+Their findings validate the use of an intermediate text representation for signed language translation, and pave the way for including sign language translation in natural language processing research.
 
-#### Text-to-Notation
+#### Text-to-Notation\
+@jiang2022machine also explore the reverse translation direction, i.e., text to SignWriting translation. 
+They conduct experiments under a same condition of their multilingual SignWriting to text (4 language pairs) experiment, and again propose a neural factored machine translation approach to decode the graphemes and their position separately. 
+They borrow BLEU from spoken language translation to evaluate the predicted graphemes and mean absolute error to evaluate the positional numbers.
 
 @walsh2022changing explore Text to HamNoSys (T2H) translation, with HamNoSys as the target sign language notation system. They experiment with direct T2H and Text to Gloss to HamNoSys (T2G2H) on a subset of the data from the MEINE DGS dataset [@dataset:hanke-etal-2020-extending], where all glosses are mapped to HamNoSys by a dictionary look up. They find that direct T2H translation results in higher BLEU (it still needs to be clarified how well BLEU represents the quality of HamNoSys translations, though). They encode HamNoSys with BPE [@sennrich-etal-2016-neural], and it outperforms character-level and word-level tokenization. They also leverage BERT to create better sentence-level embeddings and use HamNoSys to extract the hand shape of a sign as additional supervision during training.
 
