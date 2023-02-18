@@ -927,6 +927,7 @@ Emailed Eleni and Evita; I need to make sure data is available.
 ```
 
 ## Other Resources
+
 - iReviews had compiled a list of [Top Resources for Learning (American) Sign Language](https://www.ireviews.com/sign-language-resources)
 
 ## Citation
@@ -943,3 +944,5 @@ For attribution in academic contexts, please cite this work as:
 ```
 
 ## References
+
+<div id="refs"></div>
