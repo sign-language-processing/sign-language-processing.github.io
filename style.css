@@ -74,3 +74,8 @@ iframe {
 /*    top: 64px;*/
 /*    background: white;*/
 /*}*/
+
+#refs div[id] {
+    padding-top: 66px;
+    margin-top: -66px;
+}
