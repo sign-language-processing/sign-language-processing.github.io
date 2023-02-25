@@ -155,7 +155,7 @@ The following figure illustrates each signed language representation we will des
 In this demonstration, we deconstruct the video into its individual frames to exemplify the alignment of the annotations between the video and representations.
 
 ```{=html}
-<object type="image/svg+xml" data="assets/representation/continuous.pdf" id="continuous-rep"></object>
+<object type="image/svg+xml" data="assets/representation/continuous.pdf#toolbar=0&navpanes=0&scrollbar=0" id="continuous-rep"></object>
 ```
 ```{=latex}
 \includegraphics[width=\linewidth]{assets/representation/continuous.pdf}
