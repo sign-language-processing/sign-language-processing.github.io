@@ -289,8 +289,8 @@ We split the graph into two:
 <div class="tasks">
     <span style="font-weight: bold;">Language Agnostic Tasks</span>
     <span style="font-weight: bold;float:right">Language Specific Tasks</span>
+    <img src="assets/tasks/tasks.svg" alt="Sign language tasks graph" />
 </div>
-<img src="assets/tasks/tasks.svg" alt="Sign language tasks graph" class="tasks" />
 ```
 
 ```{=latex}
