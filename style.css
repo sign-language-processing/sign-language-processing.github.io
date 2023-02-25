@@ -48,10 +48,10 @@ p {
 
 #continuous-rep {
     display: block;
-    margin: auto;
     max-width: 100%;
     width: 1400px;
-    aspect-ratio: 16 / 6.61;
+    aspect-ratio: 167.93 / 60.05;
+    margin: 0 auto 2em;
 }
 
 .tasks {
