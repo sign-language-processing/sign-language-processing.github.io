@@ -936,6 +936,56 @@
 	year         = 2022,
 	booktitle    = {Proceedings of the 13th Conference on Language Resources and Evaluation (LREC 2022), Marseille, 20-25 June 2022.},
 }
+@inproceedings{selvaraj-etal-2022-openhands,
+    title = "{O}pen{H}ands: Making Sign Language Recognition Accessible with Pose-based Pretrained Models across Languages",
+    author = "Selvaraj, Prem  and
+      Nc, Gokul  and
+      Kumar, Pratyush  and
+      Khapra, Mitesh",
+    booktitle = "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.acl-long.150",
+    doi = "10.18653/v1/2022.acl-long.150",
+    pages = "2114--2133",
+    abstract = "AI technologies for Natural Languages have made tremendous progress recently. However, commensurate progress has not been made on Sign Languages, in particular, in recognizing signs as individual words or as complete sentences. We introduce OpenHands, a library where we take four key ideas from the NLP community for low-resource languages and apply them to sign languages for word-level recognition. First, we propose using pose extracted through pretrained models as the standard modality of data in this work to reduce training time and enable efficient inference, and we release standardized pose datasets for different existing sign language datasets. Second, we train and release checkpoints of 4 pose-based isolated sign language recognition models across 6 languages (American, Argentinian, Chinese, Greek, Indian, and Turkish), providing baselines and ready checkpoints for deployment. Third, to address the lack of labelled data, we propose self-supervised pretraining on unlabelled data. We curate and release the largest pose-based pretraining dataset on Indian Sign Language (Indian-SL). Fourth, we compare different pretraining strategies and for the first time establish that pretraining is effective for sign language recognition by demonstrating (a) improved fine-tuning performance especially in low-resource settings, and (b) high crosslingual transfer from Indian-SL to few other sign languages. We open-source all models and datasets in OpenHands with a hope that it makes research in sign languages reproducible and more accessible.",
+}
+% TODO: update this once the EACL citation is out.
+@article{kezar2023improving,
+  title={Improving Sign Recognition with Phonology},
+  author={Kezar, Lee and Thomason, Jesse and Sehyr, Zed Sevcikova},
+  journal={arXiv preprint arXiv:2302.05759},
+  year={2023}
+}
+@inproceedings{tavella-etal-2022-wlasl,
+    title = "{WLASL}-{LEX}: a Dataset for Recognising Phonological Properties in {A}merican {S}ign {L}anguage",
+    author = "Tavella, Federico  and
+      Schlegel, Viktor  and
+      Romeo, Marta  and
+      Galata, Aphrodite  and
+      Cangelosi, Angelo",
+    booktitle = "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.acl-short.49",
+    doi = "10.18653/v1/2022.acl-short.49",
+    pages = "453--463",
+    abstract = "Signed Language Processing (SLP) concerns the automated processing of signed languages, the main means of communication of Deaf and hearing impaired individuals. SLP features many different tasks, ranging from sign recognition to translation and production of signed speech, but has been overlooked by the NLP community thus far.In this paper, we bring to attention the task of modelling the phonology of sign languages. We leverage existing resources to construct a large-scale dataset of American Sign Language signs annotated with six different phonological properties. We then conduct an extensive empirical study to investigate whether data-driven end-to-end and feature-based approaches can be optimised to automatically recognise these properties. We find that, despite the inherent challenges of the task, graph-based neural networks that operate over skeleton features extracted from raw videos are able to succeed at the task to a varying degree. Most importantly, we show that this performance pertains even on signs unobserved during training.",
+}
+@article{sehyr2021asl,
+  title={The ASL-LEX 2.0 Project: A database of lexical and phonological properties for 2,723 signs in American Sign Language},
+  author={Sehyr, Zed Sevcikova and Caselli, Naomi and Cohen-Goldberg, Ariel M and Emmorey, Karen},
+  journal={The Journal of Deaf Studies and Deaf Education},
+  volume={26},
+  number={2},
+  pages={263--277},
+  year={2021},
+  publisher={Oxford University Press}
+}
 @inproceedings{camgoz2017subunets,
 	title        = {Subunets: End-to-end hand shape and continuous sign language recognition},
 	author       = {Camg{\"o}z, Necati Cihan and Hadfield, Simon and Koller, Oscar and Bowden, Richard},
