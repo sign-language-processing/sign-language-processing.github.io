@@ -516,6 +516,7 @@ They try three different approaches for data augmentation:
 (3) Language-pair-specific rules augmenting the spoken language syntax to its corresponding sign language syntax.
 When pretraining, all augmentations show improvements over the baseline for RWTH-PHOENIX-Weather-2014T (DGS) and NCSLGR (ASL). 
 
+<!-- TODO: gloss translation (Mathias) -->
 
 #### Text-to-Gloss
 Text-to-gloss---also known as sign language translation---is the task of translating between a spoken language text and sign language glosses.
