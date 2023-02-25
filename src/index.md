@@ -403,7 +403,7 @@ frames of signs. They cooperatively use forward and backward data streams, inclu
 
 @selvaraj-etal-2022-openhands introduce a open-source [OpenHands](https://github.com/AI4Bharat/OpenHands) library, which consists of standardized pose datasets for different existing sign language datasets and trained checkpoints of 4 pose-based isolated sign language recognition models across 6 languages (American, Argentinian, Chinese, Greek, Indian, and Turkish). To address the lack of labelled data, they propose self-supervised pretraining on unlabelled data and curate the largest pose-based pretraining dataset on Indian Sign Language (Indian-SL). They establish that pretraining is effective for sign language recognition by demonstrating improved fine-tuning performance especially in low-resource settings and high crosslingual transfer from Indian-SL to few other sign languages.
 
-@kezar2023improving work based on the [OpenHands](https://github.com/AI4Bharat/OpenHands) library to explicitly recognize the role of phonology to achieve more accurate isolated sign language recognition (ISLR). To allow additional predictions on phonological characteristics (such as handshape), they combine the phonological annotations in ASL-LEX 2.0 [@sehyr2021asl] with signs in the WLASL 2000 ISLR benchmark [@dataset:li2020word]. Interestingly, @tavella-etal-2022-wlasl construct a similar dataset aiming just for phonological property recognition in American Sign Language (ASL).
+The work of @kezar2023improving based on the [OpenHands](https://github.com/AI4Bharat/OpenHands) library explicitly recognize the role of phonology to achieve more accurate isolated sign language recognition (ISLR). To allow additional predictions on phonological characteristics (such as handshape), they combine the phonological annotations in ASL-LEX 2.0 [@sehyr2021asl] with signs in the WLASL 2000 ISLR benchmark [@dataset:li2020word]. Interestingly, @tavella-etal-2022-wlasl construct a similar dataset aiming just for phonological property recognition in American Sign Language (ASL).
 
 #### Gloss-to-Pose
 
@@ -517,6 +517,12 @@ They try three different approaches for data augmentation:
 When pretraining, all augmentations show improvements over the baseline for RWTH-PHOENIX-Weather-2014T (DGS) and NCSLGR (ASL). 
 
 <!-- TODO: gloss translation (Mathias) -->
+<!-- @article{muller2022considerations,
+  title={Considerations for meaningful sign language machine translation based on glosses},
+  author={M{\"u}ller, Mathias and Jiang, Zifan and Moryossef, Amit and Rios, Annette and Ebling, Sarah},
+  journal={arXiv preprint arXiv:2211.15464},
+  year={2022}
+} -->
 
 #### Text-to-Gloss
 Text-to-gloss---also known as sign language translation---is the task of translating between a spoken language text and sign language glosses.
