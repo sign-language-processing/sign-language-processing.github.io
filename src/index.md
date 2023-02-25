@@ -552,6 +552,9 @@ as silver annotations are available to them using the model proposed in @koller2
 They conclude that this approach is on-par with previous approaches requiring glosses, 
 and so they have broken the dependency upon costly annotated gloss information in the video-to-text task.
 
+@shi-etal-2022-open introduce OpenASL, a large-scale American Sign Language (ASL) - English dataset collected from online video sites (e.g., YouTube), and then propose a set of techniques including sign search as a pretext task for pre-training and fusion of mouthing and handshape features to improve translation quality in the absence of glosses and in the presence of visually challenging data.
+
+<!-- TODO: SLTUNET (Biao and Mathias at ICLR) -->
 
 #### Text-to-Video
 Text-to-Video---also known as sign language production---is the task of producing a video that adequately represents
@@ -631,7 +634,7 @@ They borrow BLEU from spoken language translation to evaluate the predicted grap
 TODO
 
 #### Notation-to-Pose
-TODO
+TODO: Ham2Pose
 
 ---
 
