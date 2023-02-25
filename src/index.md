@@ -255,8 +255,7 @@ Segmentation consists of detecting the frame boundaries for signs or phrases in 
 While the most canonical way of dividing a spoken language text is into a linear sequence of words, 
 due to the simultaneity of sign language, the notion of a sign language "word" is ill-defined, and sign language cannot be fully linearly modeled.
 
-Current methods resort to segmenting units loosely mapped to signed language units [@segmentation:santemiz2009automatic;@segmentation:farag2019learning;@segmentation:bull2020automatic;@segmentation:renz2021signa;@segmentation:renz2021signb;@segmentation:bull2021aligning], 
-and do not leverage reliable linguistic predictors of sentence boundaries such as prosody in signed languages (i.e., pauses, sign duration, facial expressions, eye apertures) [@sandler2010prosody;@ormel2012prosodic].
+Current methods resort to segmenting units loosely mapped to signed language units [@segmentation:santemiz2009automatic;@segmentation:farag2019learning;@segmentation:bull2020automatic;@segmentation:renz2021signa;@segmentation:renz2021signb;@segmentation:bull2021aligning], and do not leverage reliable linguistic predictors of sentence boundaries such as prosody in signed languages (i.e., pauses, sign duration, facial expressions, eye apertures) [@sandler2010prosody;@ormel2012prosodic]. @segmentation:de-sisto-etal-2021-defining call for a better understanding of sign language structure, which they believe is the necessary ground for the design and development of sign language recognition and segmentation methodologies.
 
 @segmentation:santemiz2009automatic automatically extract isolated signs from continuous signing by aligning the sequences obtained via speech recognition, modeled by Dynamic Time Warping (DTW) and Hidden Markov Models (HMMs) approaches. 
 
@@ -269,10 +268,11 @@ adaptation.
 
 @segmentation:bull2021aligning present a Transformer-based approach to segment sign language videos and align them with subtitles simultaneously, encoding subtitles by BERT and videos by CNN video representations.
 
+<!-- @segmentation:de-sisto-etal-2021-defining introduce a proposal for mapping segments to meaning in the form of an agglomerate of lexical and non-lexical information. -->
 
 ### Sign Language Recognition, Translation, and Production
 
-Sign language translation (SLT) commonly refers to the translation of signed language to spoken language.
+Sign language translation (SLT) commonly refers to the translation of signed language to spoken language [@de2022machine;@muller-etal-2022-findings].
 Sign language production is the reverse process of producing a sign language video from spoken language text.
 Sign language recognition (SLR) [@adaloglou2020comprehensive] detects and labels signs from a video, either on isolated [@dataset:imashev2020dataset;@dataset:sincan2020autsl] or continuous [@cui2017recurrent;@cihan2018neural;@camgoz2020sign] signs.
 
