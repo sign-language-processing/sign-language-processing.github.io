@@ -11,6 +11,10 @@ dst/index_shortcode.md: dst/index.md
 dst/index.pdf: dst/index_shortcode.md src/references.bib
 	cd dst && pandoc -f markdown+emoji -L../addons/latex-emoji.lua index_shortcode.md -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=../src/references.bib --citeproc -o index.pdf
 
+dst/thesis.pdf: dst/index_shortcode.md src/references.bib
+	#pandoc -f markdown+emoji -L addons/latex-emoji.lua src/thesis/main.tex -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=src/references.bib --citeproc -o index.pdf
+	cd src/thesis && pandoc main.tex -s -N --natbib --pdf-engine=xelatex -o index.pdf
+
 
 dst/index.md: src/index.md src/markdown_fix.sh src/formats.md dst tmp/datasets.md dst/assets
 	cat src/index.md > $@
@@ -46,7 +50,7 @@ tmp/datasets.md: src/datasets.js tmp
 #	mkdir $@
 #
 dst/index.tex: dst dst/index.md src/references.bib
-	pandoc dst/index.md -s -N --natbib --bibliography=src/references.bib -o $@
+	cd dst && pandoc -f markdown+emoji -L../addons/latex-emoji.lua index_shortcode.md --shift-heading-level-by=-1 -s -N --natbib -o index.tex
 
 #
 #
