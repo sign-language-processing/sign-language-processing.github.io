@@ -411,6 +411,22 @@
 	booktitle    = {Proceedings of the IEEE/CVF International Conference on Computer Vision},
 	pages        = {11552--11561},
 }
+@inproceedings{segmentation:de-sisto-etal-2021-defining,
+    title = "Defining meaningful units. Challenges in sign segmentation and segment-meaning mapping (short paper)",
+    author = "De Sisto, Mirella  and
+      Shterionov, Dimitar  and
+      Murtagh, Irene  and
+      Vermeerbergen, Myriam  and
+      Leeson, Lorraine",
+    booktitle = "Proceedings of the 1st International Workshop on Automatic Translation for Signed and Spoken Languages (AT4SSL)",
+    month = aug,
+    year = "2021",
+    address = "Virtual",
+    publisher = "Association for Machine Translation in the Americas",
+    url = "https://aclanthology.org/2021.mtsummit-at4ssl.11",
+    pages = "98--103",
+    abstract = "This paper addresses the tasks of sign segmentation and segment-meaning mapping in the context of sign language (SL) recognition. It aims to give an overview of the linguistic properties of SL, such as coarticulation and simultaneity, which make these tasks complex. A better understanding of SL structure is the necessary ground for the design and development of SL recognition and segmentation methodologies, which are fundamental for machine translation of these languages. Based on this preliminary exploration, a proposal for mapping segments to meaning in the form of an agglomerate of lexical and non-lexical information is introduced.",
+}
 @book{writing:bergman1977tecknad,
 	title        = {Tecknad svenska:[Signed Swedish]},
 	author       = {Bergman, Brita},
@@ -935,6 +951,56 @@
 	author       = {Dafnis, Konstantinos M and Chroni, Evgenia and Neidle, Carol and Metaxas, Dimitris N},
 	year         = 2022,
 	booktitle    = {Proceedings of the 13th Conference on Language Resources and Evaluation (LREC 2022), Marseille, 20-25 June 2022.},
+}
+@inproceedings{selvaraj-etal-2022-openhands,
+    title = "{O}pen{H}ands: Making Sign Language Recognition Accessible with Pose-based Pretrained Models across Languages",
+    author = "Selvaraj, Prem  and
+      Nc, Gokul  and
+      Kumar, Pratyush  and
+      Khapra, Mitesh",
+    booktitle = "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.acl-long.150",
+    doi = "10.18653/v1/2022.acl-long.150",
+    pages = "2114--2133",
+    abstract = "AI technologies for Natural Languages have made tremendous progress recently. However, commensurate progress has not been made on Sign Languages, in particular, in recognizing signs as individual words or as complete sentences. We introduce OpenHands, a library where we take four key ideas from the NLP community for low-resource languages and apply them to sign languages for word-level recognition. First, we propose using pose extracted through pretrained models as the standard modality of data in this work to reduce training time and enable efficient inference, and we release standardized pose datasets for different existing sign language datasets. Second, we train and release checkpoints of 4 pose-based isolated sign language recognition models across 6 languages (American, Argentinian, Chinese, Greek, Indian, and Turkish), providing baselines and ready checkpoints for deployment. Third, to address the lack of labelled data, we propose self-supervised pretraining on unlabelled data. We curate and release the largest pose-based pretraining dataset on Indian Sign Language (Indian-SL). Fourth, we compare different pretraining strategies and for the first time establish that pretraining is effective for sign language recognition by demonstrating (a) improved fine-tuning performance especially in low-resource settings, and (b) high crosslingual transfer from Indian-SL to few other sign languages. We open-source all models and datasets in OpenHands with a hope that it makes research in sign languages reproducible and more accessible.",
+}
+% TODO: update this once the EACL citation is out.
+@article{kezar2023improving,
+  title={Improving Sign Recognition with Phonology},
+  author={Kezar, Lee and Thomason, Jesse and Sehyr, Zed Sevcikova},
+  journal={arXiv preprint arXiv:2302.05759},
+  year={2023}
+}
+@inproceedings{tavella-etal-2022-wlasl,
+    title = "{WLASL}-{LEX}: a Dataset for Recognising Phonological Properties in {A}merican {S}ign {L}anguage",
+    author = "Tavella, Federico  and
+      Schlegel, Viktor  and
+      Romeo, Marta  and
+      Galata, Aphrodite  and
+      Cangelosi, Angelo",
+    booktitle = "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.acl-short.49",
+    doi = "10.18653/v1/2022.acl-short.49",
+    pages = "453--463",
+    abstract = "Signed Language Processing (SLP) concerns the automated processing of signed languages, the main means of communication of Deaf and hearing impaired individuals. SLP features many different tasks, ranging from sign recognition to translation and production of signed speech, but has been overlooked by the NLP community thus far.In this paper, we bring to attention the task of modelling the phonology of sign languages. We leverage existing resources to construct a large-scale dataset of American Sign Language signs annotated with six different phonological properties. We then conduct an extensive empirical study to investigate whether data-driven end-to-end and feature-based approaches can be optimised to automatically recognise these properties. We find that, despite the inherent challenges of the task, graph-based neural networks that operate over skeleton features extracted from raw videos are able to succeed at the task to a varying degree. Most importantly, we show that this performance pertains even on signs unobserved during training.",
+}
+@article{sehyr2021asl,
+  title={The ASL-LEX 2.0 Project: A database of lexical and phonological properties for 2,723 signs in American Sign Language},
+  author={Sehyr, Zed Sevcikova and Caselli, Naomi and Cohen-Goldberg, Ariel M and Emmorey, Karen},
+  journal={The Journal of Deaf Studies and Deaf Education},
+  volume={26},
+  number={2},
+  pages={263--277},
+  year={2021},
+  publisher={Oxford University Press}
 }
 @inproceedings{camgoz2017subunets,
 	title        = {Subunets: End-to-end hand shape and continuous sign language recognition},
@@ -1542,4 +1608,55 @@
 	address      = {Barcelona, Spain},
 	pages        = {74--81},
 	url          = {https://aclanthology.org/W04-1013},
+}
+@article{de2022machine,
+	title={Machine translation from signed to spoken languages: State of the art and challenges},
+	author={De Coster, Mathieu and Shterionov, Dimitar and Van Herreweghe, Mieke and Dambre, Joni},
+	journal={arXiv preprint arXiv:2202.03086},
+	year={2022}
+}
+@inproceedings{muller-etal-2022-findings,
+    title = "Findings of the First {WMT} Shared Task on Sign Language Translation ({WMT}-{SLT}22)",
+    author = {M{\"u}ller, Mathias  and
+      Ebling, Sarah  and
+      Avramidis, Eleftherios  and
+      Battisti, Alessia  and
+      Berger, Mich{\`e}le  and
+      Bowden, Richard  and
+      Braffort, Annelies  and
+      Cihan Camg{\"o}z, Necati  and
+      Espa{\~n}a-bonet, Cristina  and
+      Grundkiewicz, Roman  and
+      Jiang, Zifan  and
+      Koller, Oscar  and
+      Moryossef, Amit  and
+      Perrollaz, Regula  and
+      Reinhard, Sabine  and
+      Rios, Annette  and
+      Shterionov, Dimitar  and
+      Sidler-miserez, Sandra  and
+      Tissi, Katja},
+    booktitle = "Proceedings of the Seventh Conference on Machine Translation (WMT)",
+    month = dec,
+    year = "2022",
+    address = "Abu Dhabi, United Arab Emirates (Hybrid)",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.wmt-1.71",
+    pages = "744--772",
+    abstract = "This paper presents the results of the First WMT Shared Task on Sign Language Translation (WMT-SLT22).This shared task is concerned with automatic translation between signed and spoken languages. The task is novel in the sense that it requires processing visual information (such as video frames or human pose estimation) beyond the well-known paradigm of text-to-text machine translation (MT).The task featured two tracks, translating from Swiss German Sign Language (DSGS) to German and vice versa. Seven teams participated in this first edition of the task, all submitting to the DSGS-to-German track.Besides a system ranking and system papers describing state-of-the-art techniques, this shared task makes the following scientific contributions: novel corpora, reproducible baseline systems and new protocols and software for human evaluation. Finally, the task also resulted in the first publicly available set of system outputs and human evaluation scores for sign language translation.",
+}
+@inproceedings{shi-etal-2022-open,
+    title = "Open-Domain Sign Language Translation Learned from Online Video",
+    author = "Shi, Bowen  and
+      Brentari, Diane  and
+      Shakhnarovich, Gregory  and
+      Livescu, Karen",
+    booktitle = "Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing",
+    month = dec,
+    year = "2022",
+    address = "Abu Dhabi, United Arab Emirates",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.emnlp-main.427",
+    pages = "6365--6379",
+    abstract = "Existing work on sign language translation {--} that is, translation from sign language videos into sentences in a written language {--} has focused mainly on (1) data collected in a controlled environment or (2) data in a specific domain, which limits the applicability to real-world settings. In this paper, we introduce OpenASL, a large-scale American Sign Language (ASL) - English dataset collected from online video sites (e.g., YouTube).OpenASL contains 288 hours of ASL videos in multiple domains from over 200 signers and is the largest publicly available ASL translation dataset to date. To tackle the challenges of sign language translation in realistic settings and without glosses, we propose a set of techniques including sign search as a pretext task for pre-training and fusion of mouthing and handshape features. The proposed techniques produce consistent and large improvements in translation quality, over baseline models basedon prior work.",
 }

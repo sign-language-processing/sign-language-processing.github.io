@@ -255,8 +255,7 @@ Segmentation consists of detecting the frame boundaries for signs or phrases in 
 While the most canonical way of dividing a spoken language text is into a linear sequence of words, 
 due to the simultaneity of sign language, the notion of a sign language "word" is ill-defined, and sign language cannot be fully linearly modeled.
 
-Current methods resort to segmenting units loosely mapped to signed language units [@segmentation:santemiz2009automatic;@segmentation:farag2019learning;@segmentation:bull2020automatic;@segmentation:renz2021signa;@segmentation:renz2021signb;@segmentation:bull2021aligning], 
-and do not leverage reliable linguistic predictors of sentence boundaries such as prosody in signed languages (i.e., pauses, sign duration, facial expressions, eye apertures) [@sandler2010prosody;@ormel2012prosodic].
+Current methods resort to segmenting units loosely mapped to signed language units [@segmentation:santemiz2009automatic;@segmentation:farag2019learning;@segmentation:bull2020automatic;@segmentation:renz2021signa;@segmentation:renz2021signb;@segmentation:bull2021aligning], and do not leverage reliable linguistic predictors of sentence boundaries such as prosody in signed languages (i.e., pauses, sign duration, facial expressions, eye apertures) [@sandler2010prosody;@ormel2012prosodic]. @segmentation:de-sisto-etal-2021-defining call for a better understanding of sign language structure, which they believe is the necessary ground for the design and development of sign language recognition and segmentation methodologies.
 
 @segmentation:santemiz2009automatic automatically extract isolated signs from continuous signing by aligning the sequences obtained via speech recognition, modeled by Dynamic Time Warping (DTW) and Hidden Markov Models (HMMs) approaches. 
 
@@ -269,10 +268,11 @@ adaptation.
 
 @segmentation:bull2021aligning present a Transformer-based approach to segment sign language videos and align them with subtitles simultaneously, encoding subtitles by BERT and videos by CNN video representations.
 
+<!-- @segmentation:de-sisto-etal-2021-defining introduce a proposal for mapping segments to meaning in the form of an agglomerate of lexical and non-lexical information. -->
 
 ### Sign Language Recognition, Translation, and Production
 
-Sign language translation (SLT) commonly refers to the translation of signed language to spoken language.
+Sign language translation (SLT) commonly refers to the translation of signed language to spoken language [@de2022machine;@muller-etal-2022-findings].
 Sign language production is the reverse process of producing a sign language video from spoken language text.
 Sign language recognition (SLR) [@adaloglou2020comprehensive] detects and labels signs from a video, either on isolated [@dataset:imashev2020dataset;@dataset:sincan2020autsl] or continuous [@cui2017recurrent;@cihan2018neural;@camgoz2020sign] signs.
 
@@ -289,8 +289,8 @@ We split the graph into two:
 <div class="tasks">
     <span style="font-weight: bold;">Language Agnostic Tasks</span>
     <span style="font-weight: bold;float:right">Language Specific Tasks</span>
+    <img src="assets/tasks/tasks.svg" alt="Sign language tasks graph" />
 </div>
-<img src="assets/tasks/tasks.svg" alt="Sign language tasks graph" class="tasks" />
 ```
 
 ```{=latex}
@@ -392,7 +392,7 @@ or even replace cartoon faces rendered by animated 3D models.
 
 #### Pose-to-Gloss
 Pose-to-Gloss---also known as sign language recognition---is the task of recognizing a sequence of signs from a sequence of poses.
-Though some previous works have referred to this as ``sign language translation'', recognition merely determines the associated label of each sign,
+Though some previous works have referred to this as "sign language translation", recognition merely determines the associated label of each sign,
 without handling the syntax and morphology of the signed language [@padden1988interaction] to create a spoken language output.
 Instead, SLR has often been used as an intermediate step during translation to produce glosses from signed language videos.
 
@@ -400,6 +400,10 @@ Instead, SLR has often been used as an intermediate step during translation to p
 
 @dafnis2022bidirectional work on the same modified WLASL dataset as @jiang2021sign, but do not require multimodal data input. Instead, they propose a bidirectional skeleton-based graph convolutional network framework with linguistically motivated parameters and attention to the start and end
 frames of signs. They cooperatively use forward and backward data streams, including various sub-streams, as input. They also use pre-training to leverage transfer learning.
+
+@selvaraj-etal-2022-openhands introduce a open-source [OpenHands](https://github.com/AI4Bharat/OpenHands) library, which consists of standardized pose datasets for different existing sign language datasets and trained checkpoints of 4 pose-based isolated sign language recognition models across 6 languages (American, Argentinian, Chinese, Greek, Indian, and Turkish). To address the lack of labelled data, they propose self-supervised pretraining on unlabelled data and curate the largest pose-based pretraining dataset on Indian Sign Language (Indian-SL). They establish that pretraining is effective for sign language recognition by demonstrating improved fine-tuning performance especially in low-resource settings and high crosslingual transfer from Indian-SL to few other sign languages.
+
+The work of @kezar2023improving based on the [OpenHands](https://github.com/AI4Bharat/OpenHands) library explicitly recognize the role of phonology to achieve more accurate isolated sign language recognition (ISLR). To allow additional predictions on phonological characteristics (such as handshape), they combine the phonological annotations in ASL-LEX 2.0 [@sehyr2021asl] with signs in the WLASL 2000 ISLR benchmark [@dataset:li2020word]. Interestingly, @tavella-etal-2022-wlasl construct a similar dataset aiming just for phonological property recognition in American Sign Language (ASL).
 
 #### Gloss-to-Pose
 
@@ -512,6 +516,13 @@ They try three different approaches for data augmentation:
 (3) Language-pair-specific rules augmenting the spoken language syntax to its corresponding sign language syntax.
 When pretraining, all augmentations show improvements over the baseline for RWTH-PHOENIX-Weather-2014T (DGS) and NCSLGR (ASL). 
 
+<!-- TODO: gloss translation (Mathias) -->
+<!-- @article{muller2022considerations,
+  title={Considerations for meaningful sign language machine translation based on glosses},
+  author={M{\"u}ller, Mathias and Jiang, Zifan and Moryossef, Amit and Rios, Annette and Ebling, Sarah},
+  journal={arXiv preprint arXiv:2211.15464},
+  year={2022}
+} -->
 
 #### Text-to-Gloss
 Text-to-gloss---also known as sign language translation---is the task of translating between a spoken language text and sign language glosses.
@@ -548,6 +559,10 @@ as silver annotations are available to them using the model proposed in @koller2
 They conclude that this approach is on-par with previous approaches requiring glosses, 
 and so they have broken the dependency upon costly annotated gloss information in the video-to-text task.
 
+@shi-etal-2022-open introduce OpenASL, a large-scale American Sign Language (ASL) - English dataset collected from online video sites (e.g., YouTube), and then propose a set of techniques including sign search as a pretext task for pre-training and fusion of mouthing and handshape features to improve translation quality in the absence of glosses and in the presence of visually challenging data.
+
+<!-- TODO: SLTUNET (Biao and Mathias at ICLR) -->
+<!-- TODO: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
 #### Text-to-Video
 Text-to-Video---also known as sign language production---is the task of producing a video that adequately represents
@@ -627,7 +642,7 @@ They borrow BLEU from spoken language translation to evaluate the predicted grap
 TODO
 
 #### Notation-to-Pose
-TODO
+TODO: Ham2Pose
 
 ---
 
