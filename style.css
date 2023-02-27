@@ -57,6 +57,11 @@ p {
 .tasks {
     width: 100%;
     max-width: 1000px;
+    margin: 0.5em 0;
+}
+
+.tasks img {
+    margin-top: 0.3em;
 }
 
 iframe {
@@ -74,6 +79,14 @@ iframe {
 /*    top: 64px;*/
 /*    background: white;*/
 /*}*/
+
+.csl-entry {
+    margin: 0.5em 0;
+}
+
+.nav-link {
+    padding: 0.1em 0.2em;
+}
 
 #refs div[id] {
     padding-top: 66px;
