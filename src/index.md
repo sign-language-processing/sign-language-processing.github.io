@@ -563,7 +563,6 @@ and so they have broken the dependency upon costly annotated gloss information i
 
 @zhang2023sltunet propose a multi-modal, multi-task learning approach to end-to-end sign language translation. The model features shared representations for different modalities such as text and video and is trained jointly on several tasks such as video-to-gloss, gloss-to-text and video-to-text. The approach allows to leverage external data such as parallel data for spoken language machine translation.
 
-<!-- TODO: SLTUNET (Biao and Mathias at ICLR) -->
 <!-- TODO: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
 #### Text-to-Video
