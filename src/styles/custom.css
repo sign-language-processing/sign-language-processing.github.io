@@ -62,6 +62,7 @@ p {
 
 .tasks img {
     margin-top: 0.3em;
+    max-width: 100%;
 }
 
 iframe {
