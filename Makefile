@@ -43,6 +43,21 @@ tmp:
 tmp/datasets.md: src/datasets.js tmp
 	node src/datasets.js > $@
 
+
+dst/sections: dst/index.tex
+	python src/split_sections.py
+
+
+overleaf: dst/sections tmp
+	#	rm -rf tmp/overleaf
+	#	git clone https://git.overleaf.com/611a535f64617c334d122e31 tmp/overleaf
+	cp -r dst/sections tmp/overleaf/parts/
+	rm tmp/overleaf/parts/sections/.DS_Store
+	cd tmp/overleaf
+	git add -A
+	git commit -am "autoamtic sections upload"
+	git push
+
 #
 #latex: tex/main.tex
 #

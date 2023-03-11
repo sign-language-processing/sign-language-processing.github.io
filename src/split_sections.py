@@ -1,13 +1,13 @@
 import os
 import regex as re
 
-with open("../dst/index.tex", "r") as f:
+with open("dst/index.tex", "r") as f:
     text = f.read()
 
 matches = re.findall(r'(\\([sub]*)section\{([\s\S]*?)}\\label{([\s\S]*?)}\}([\s\S]*?))\\(sub)*section', text, overlapped=True)
 print("matches", len(matches))
 
-dir_name = "../dst/sections"
+dir_name = "dst/sections"
 os.makedirs(dir_name, exist_ok=True)
 
 labels = []
