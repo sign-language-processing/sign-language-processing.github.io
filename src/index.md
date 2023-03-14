@@ -157,8 +157,19 @@ In this demonstration, we deconstruct the video into its individual frames to ex
 ```{=html}
 <object type="image/svg+xml" data="assets/representation/continuous.pdf#toolbar=0&navpanes=0&scrollbar=0" id="continuous-rep"></object>
 ```
+
 ```{=latex}
-\includegraphics[width=\linewidth]{assets/representation/continuous.pdf}
+\newgeometry{left=0cm,right=0cm,top=1.5cm,bottom=1.5cm}
+\begin{landscape}
+\thispagestyle{empty}
+\begin{figure*}
+  \centering
+  \includegraphics[width=\linewidth]{assets/representation/continuous.pdf}
+  \caption{Representations of an American Sign Language phrase with video frames, pose estimations, SignWriting, HamNoSys and glosses. English translation: “What is your name?” \citep{yin-etal-2021-including}}
+  \label{fig:continuous}
+\end{figure*}
+\end{landscape}
+\restoregeometry
 ```
 
 ###### Videos {-}
@@ -168,11 +179,13 @@ They usually include more information than needed for modeling and are expensive
 As facial features are essential in sign, anonymizing raw videos remains an open problem,
 limiting the possibility of making these videos publicly available [@isard2020approaches].
 
-###### [Poses](https://en.wikipedia.org/wiki/Pose_(computer_vision)) {-}
-reduce the visual cues from videos to skeleton-like wireframes or mesh representing the location of joints.
-While [motion capture](https://en.wikipedia.org/wiki/Motion_capture) equipment can often provide better quality pose estimation, it is expensive and intrusive,
-and [estimating pose from videos](https://en.wikipedia.org/wiki/Pose_(computer_vision)#Pose_estimation) is the preferred method currently [@pose:pishchulin2012articulated;@pose:chen2017adversarial;@pose:cao2018openpose;@pose:alp2018densepose].
-Compared to video representations, *accurate* poses are lower in complexity and semi-anonymized while observing relatively low information loss.
+###### Skeletal Poses {-} 
+reduce the visual cues in videos to skeleton-like wireframes or mesh representing the location of joints. 
+This technique has been extensively used in the field of computer vision to estimate human pose from video data, 
+where the goal is to determine the spatial configuration of the body at each point in time. 
+Although high-quality pose estimation can be achieved using motion capture equipment, such methods are often expensive and intrusive. 
+As a result, estimating pose from videos has become the preferred method in recent years [@pose:pishchulin2012articulated;@pose:chen2017adversarial;@pose:cao2018openpose;@pose:alp2018densepose].
+Compared to video representations, accurate skeletal poses have a lower complexity and provide a semi-anonymized representation of the human body, while observing relatively low information loss. 
 However, they remain a continuous, multidimensional representation that is not adapted to most NLP models.
 
 ###### Written notation systems {-}
@@ -183,12 +196,13 @@ The figure above depicts two universal notation systems:
 SignWriting [@writing:sutton1990lessons], a two-dimensional pictographic system,
 and HamNoSys [@writing:prillwitz1990hamburg], a linear stream of graphemes designed to be machine-readable.
 
-###### Glossing {-}
-is the transcription of signed languages sign-by-sign, where every sign has a unique identifier.
-Although various sign language corpus projects have provided gloss annotation guidelines [@mesch2015gloss;@johnston2016auslan;@konrad2018public], again, there is yet to be a single agreed-upon standard.
-Linear gloss annotations are also an imprecise representation of signed language:
-they do not adequately capture all information expressed simultaneously through different cues (i.e., body posture, eye gaze) or spatial relations,
-which leads to an inevitable information loss up to a semantic level that affects downstream performance on SLP tasks [@yin-read-2020-better].
+###### Glosses {-}
+are the transcription of signed languages sign-by-sign, with each sign having a unique semantic identifier. 
+While various sign language corpus projects have provided guidelines for gloss annotation [@mesch2015gloss;@johnston2016auslan;@konrad2018public], 
+a standardized gloss annotation protocol has yet to be established.
+Linear gloss annotations have been criticized for their imprecise representation of signed language. 
+These annotations fail to capture all the information expressed simultaneously through different cues, 
+such as body posture, eye gaze, or spatial relations, leading to a loss of information that can significantly affect downstream performance on SLP tasks [@yin-read-2020-better].
 
 
 The following table additionally exemplifies the various representations for more isolated signs.
@@ -629,7 +643,7 @@ They verify the proposed approach on the SignBank dataset in both a bilingual se
 They apply several low-resource machine translation techniques used to improve spoken language translation to similarly improve the performance of sign language translation. 
 Their findings validate the use of an intermediate text representation for signed language translation, and pave the way for including sign language translation in natural language processing research.
 
-#### Text-to-Notation\
+#### Text-to-Notation
 @jiang2022machine also explore the reverse translation direction, i.e., text to SignWriting translation. 
 They conduct experiments under a same condition of their multilingual SignWriting to text (4 language pairs) experiment, and again propose a neural factored machine translation approach to decode the graphemes and their position separately. 
 They borrow BLEU from spoken language translation to evaluate the predicted graphemes and mean absolute error to evaluate the positional numbers.
@@ -752,15 +766,11 @@ Some special features are cross-level links, non-temporal objects, timepoint tra
 3D viewing of motion capture data and a project tool for managing whole corpora of annotation files.
 Anvil installation is [available](https://www.anvil-software.org/download/index.html) for Windows, macOS, and Linux.
 
-```{=latex}
-\clearpage
-```
-
 ## Resources
 
 ###### Bilingual dictionaries {-}
 for signed language [@dataset:mesch2012meaning;@fenlon2015building;@crasborn2016ngt;@dataset:gutierrez2016lse] map a spoken language word or short phrase to a signed language video.
-One notable dictionary is, SpreadTheSign\footnote{\url{https://www.spreadthesign.com/}} is a parallel dictionary containing around 23,000 words with up to 41 different spoken-signed language pairs and more than 500,000 videos in total. Unfortunately, while dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.
+One notable dictionary is, SpreadTheSign\footnote{\url{https://www.spreadthesign.com/}} is a parallel dictionary containing around 23,000 words with up to 41 different spoken-signed language pairs and more than 600,000 videos in total. Unfortunately, while dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.
 
 ###### Fingerspelling corpora {-}
 usually consist of videos of words borrowed from spoken languages that are signed letter-by-letter. They can be synthetically created [@dataset:dreuw2006modeling] or mined from online resources [@dataset:fs18slt,@dataset:fs18iccv]. However, they only capture one aspect of signed languages.
@@ -837,13 +847,23 @@ aslg_pc12 = tfds.load("aslg_pc12")
 
 # Loading a dataset with custom configuration
 from sign_language_datasets.datasets.config import SignDatasetConfig
-config = SignDatasetConfig(name="videos_and_poses256x256:12", 
-                           version="3.0.0",          # Specific version
-                           include_video=True,       # Download, and load dataset videos
-                           fps=12,                   # Load videos at constant, 12 fps
-                           resolution=(256, 256),    # Convert videos to a constant resolution, 256x256
-                           include_pose="holistic")  # Download and load Holistic pose estimation
-rwth_phoenix2014_t = tfds.load(name='rwth_phoenix2014_t', builder_kwargs=dict(config=config))
+
+config = SignDatasetConfig(
+    name="videos_and_poses256x256:12",
+    # Specific version
+    version="3.0.0",
+    # Download, and load dataset videos
+    include_video=True,
+    # Load videos at constant, 12 fps
+    fps=12,
+    # Convert videos to a constant resolution, 256x256
+    resolution=(256, 256),
+    # Download and load Holistic pose estimation
+    include_pose="holistic")
+
+rwth_phoenix2014_t = tfds.load(
+    name='rwth_phoenix2014_t',
+    builder_kwargs=dict(config=config))
 ```
 
 Furthermore, we follow a unified interface when possible, making attributes the same and comparable between datasets:
@@ -851,12 +871,18 @@ Furthermore, we follow a unified interface when possible, making attributes the 
 {
     "id": tfds.features.Text(),
     "signer": tfds.features.Text() | tf.int32,
-    "video": tfds.features.Video(shape=(None, HEIGHT, WIDTH, 3)),
-    "depth_video": tfds.features.Video(shape=(None, HEIGHT, WIDTH, 1)),
+    "video": tfds.features.Video(
+        shape=(None, HEIGHT, WIDTH, 3)),
+    "depth_video": tfds.features.Video(
+        shape=(None, HEIGHT, WIDTH, 1)),
     "fps": tf.int32,
     "pose": {
-        "data": tfds.features.Tensor(shape=(None, 1, POINTS, CHANNELS), dtype=tf.float32),
-        "conf": tfds.features.Tensor(shape=(None, 1, POINTS), dtype=tf.float32)
+        "data": tfds.features.Tensor(
+            shape=(None, 1, POINTS, CHANNELS),
+            dtype=tf.float32),
+        "conf": tfds.features.Tensor(
+            shape=(None, 1, POINTS),
+            dtype=tf.float32)
     },
     "gloss": tfds.features.Text(),
     "text": tfds.features.Text()

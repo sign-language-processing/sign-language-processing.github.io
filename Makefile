@@ -49,14 +49,17 @@ dst/sections: dst/index.tex
 
 
 overleaf: dst/sections tmp
-	#	rm -rf tmp/overleaf
-	#	git clone https://git.overleaf.com/611a535f64617c334d122e31 tmp/overleaf
-	cp -r dst/sections tmp/overleaf/parts/
-	rm tmp/overleaf/parts/sections/.DS_Store
-	cd tmp/overleaf
-	git add -A
-	git commit -am "autoamtic sections upload"
-	git push
+	rm -rf tmp/overleaf
+	git clone https://git.overleaf.com/611a535f64617c334d122e31 tmp/overleaf
+	mkdir -p tmp/overleaf/parts/background
+	cp -r dst/sections tmp/overleaf/parts/background
+	rm tmp/overleaf/parts/background/sections/.DS_Store
+	cp -r dst/assets tmp/overleaf/parts/background
+	rm tmp/overleaf/parts/background/assets/.DS_Store
+	cd tmp/overleaf && \
+		git add -A && \
+		git commit -am "autoamtic sections upload" && \
+		git push
 
 #
 #latex: tex/main.tex
@@ -64,7 +67,7 @@ overleaf: dst/sections tmp
 #tex:
 #	mkdir $@
 #
-dst/index.tex: dst dst/index.md src/references.bib
+dst/index.tex: dst dst/index_shortcode.md src/references.bib
 	cd dst && pandoc -f markdown+emoji -L../addons/latex-emoji.lua index_shortcode.md --shift-heading-level-by=-1 -s -N --natbib -o index.tex
 
 #
