@@ -370,13 +370,13 @@ This pose estimation tool is widely available and built for Android, iOS, C++, P
 #### Pose-to-Video
 
 Pose-to-Video, also known as motion transfer or skeletal animation in the field of robotics and animation, is the
-conversion of a sequence of poses to a realistic-looking video.
-This task is the final "rendering" for sign language production to make the produced sign language look human.
+conversion of a sequence of poses to a video.
+This task is the final "rendering" of sign language in a visual modality.
 
-@pose:chan2019everybody demonstrates a semi-supervised approach where they take a set of videos, 
-run pose-estimation with OpenPose [@pose:cao2018openpose], and learn an image-to-image translation [@isola2017image]
+@pose:chan2019everybody demonstrate a semi-supervised approach where they take a set of videos, 
+run pose estimation with OpenPose [@pose:cao2018openpose], and learn an image-to-image translation [@isola2017image]
 between the rendered skeleton and the original video.
-They demonstrate their approach to human dancing, where they can extract poses from a choreography, 
+They demonstrate their approach on human dancing, where they can extract poses from a choreography
 and render any person as if they were dancing that dance.
 They predict two consecutive frames for temporally coherent video results and 
 introduce a separate pipeline for a more realistic face synthesis, although still flawed.
@@ -386,15 +386,15 @@ in addition to the OpenPose [@pose:cao2018openpose] ones.
 They formalize a different model, with various objectives to optimize for, such as background-foreground separation and
 temporal coherence by using the previous two timestamps in the input.
 
-Using the same method by @pose:chan2019everybody on "Everybody Dance Now", @pose:girocan2020slrtp asks, "Can Everybody Sign Now"?
+Using the method of @pose:chan2019everybody on "Everybody Dance Now", @pose:girocan2020slrtp asks, "Can Everybody Sign Now"?
 They evaluate the generated videos by asking signers various tasks after watching them and comparing the signers' ability to
 perform these tasks on the original videos, rendered pose videos, and reconstructed videos.
-They show that subjects prefer synthesized realistic videos over skeleton visualizations, 
+They show that subjects prefer synthesized videos over skeleton visualizations, 
 and that out-of-the-box synthesis methods are not effective enough, 
 as subjects struggled to understand the reconstructed videos.
 
-As a direct response, @saunders2020everybody shows that like in @pose:chan2019everybody, 
-where an adversarial loss is added to specifically generate the face, adding a similar loss to the hand-generation process
+As a direct response, @saunders2020everybody show that like in @pose:chan2019everybody, 
+where an adversarial loss is added to specifically generate the face, adding a similar loss to the hand generation process
 yields high-resolution, more photo-realistic continuous sign language videos.
 
 [Deepfakes](https://en.wikipedia.org/wiki/Deepfake) is a technique to replace a person in an 
@@ -421,18 +421,18 @@ The work of @kezar2023improving based on the [OpenHands](https://github.com/AI4B
 
 #### Gloss-to-Pose
 
-Gloss-to-Pose---also known as sign language production---is the task of producing a sequence of poses that adequately represent
+Gloss-to-Pose---subsumed under the task of sign language production---is the task of producing a sequence of poses that adequately represent
 a sequence of signs written as gloss.
 
-To produce a sign language video, @stoll2018sign constructs a lookup table between glosses and sequences of 2D poses.
+To produce a sign language video, @stoll2018sign construct a lookup table between glosses and sequences of 2D poses.
 They align all pose sequences at the neck joint of a reference skeleton and group all sequences belonging to the same gloss.
 Then, for each group, they apply dynamic time warping and average out all sequences in the group to construct the mean pose sequence.
 This approach suffers from not having an accurate set of poses aligned to the gloss and from unnatural motion transitions between glosses.
 
-To alleviate the downsides of the previous work, @stoll2020text2sign constructs a lookup table of gloss to a group of sequences of poses rather than creating a mean pose sequence.
-They build a Motion Graph [@min2012motion] - which is a Markov process used to generate new motion sequences that are representative of natural motion,
+To alleviate the downsides of the previous work, @stoll2020text2sign construct a lookup table of gloss to a group of sequences of poses rather than creating a mean pose sequence.
+They build a Motion Graph [@min2012motion], which is a Markov process used to generate new motion sequences that are representative of natural motion,
 and select the motion primitives (sequence of poses) per gloss with the highest transition probability.
-To smooth that sequence and reduce unnatural motion, they use Savitzky–Golay motion transition smoothing filter [@savitzky1964smoothing].
+To smooth that sequence and reduce unnatural motion, they use a Savitzky–Golay motion transition smoothing filter [@savitzky1964smoothing].
 
 ---
 
@@ -539,9 +539,9 @@ When pretraining, all augmentations show improvements over the baseline for RWTH
 } -->
 
 #### Text-to-Gloss
-Text-to-gloss---also known as sign language translation---is the task of translating between a spoken language text and sign language glosses.
+Text-to-gloss---an instantiation of sign language translation---is the task of translating between a spoken language text and sign language glosses.
 
-@zhao2000machine used a Tree Adjoining Grammar (TAG) based system to translate English sentences and American Sign Language glosses.
+@zhao2000machine used a Tree Adjoining Grammar (TAG)-based system to translate English sentences to American Sign Language (ASL) gloss sequences.
 They parse the English text and simultaneously assemble an American Sign Language gloss tree, using Synchronous TAGs [@shieber1990synchronous;@shieber1994restricting], 
 by associating the ASL elementary trees with the English elementary trees and associating the nodes at which subsequent substitutions or adjunctions can occur.
 Synchronous TAGs have been used for machine translation between spoken languages [@abeille1991using], but this is the first application to a signed language.
@@ -549,7 +549,7 @@ Synchronous TAGs have been used for machine translation between spoken languages
 For the automatic translation of gloss-to-text, @dataset:othman2012english identified the need for a large parallel sign language gloss and spoken language text corpus.
 They develop a part-of-speech-based grammar to transform English sentences from the Gutenberg Project ebooks collection [@lebert2008project] into American Sign Language gloss.
 Their final corpus contains over 100 million synthetic sentences and 800 million words and is the most extensive English-ASL gloss corpus we know of.
-Unfortunately, it is hard to attest to the quality of the corpus, as they didn't evaluate their method on real English-ASL gloss pairs, and only a small sample of this corpus is available online.
+Unfortunately, it is hard to attest to the quality of the corpus, as the authors did not evaluate their method on real English-ASL gloss pairs, and only a small sample of this corpus is available online.
 
 ---
 
