@@ -30,23 +30,26 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 
 Signed languages (also known as sign languages) are languages that use the visual-gestural modality to
 convey meaning through manual articulations in combination with non-manual elements like the face and body.
-They are the primary means of communication for many deaf and hard-of-hearing individuals.
+They serve as the primary means of communication for numerous deaf and hard-of-hearing individuals.
 Similar to spoken languages, signed languages are natural languages governed by a set of linguistic rules [@sandler2006sign], 
-both emerging through an abstract, protracted aging process and evolving without meticulous planning.
+both emerging through an abstract, protracted aging process and evolving without deliberate meticulous planning.
 Signed languages are not universal or mutually intelligible, despite often having striking similarities among them.
 They are also distinct from spoken languages---i.e., American Sign Language (ASL) is not a visual form of English 
 but its own unique language.
 
 Sign Language Processing [@bragg2019sign;@yin-etal-2021-including] is an emerging field of artificial intelligence concerned with the automatic processing and analysis of sign language content.
-While, to date, research has focused more on the visual aspects of signed languages, it is a subfield of both Natural Language Processing (NLP) and Computer Vision (CV).
-Challenges in sign language processing frequently involve machine translation of sign language videos to spoken language text (sign language translation), 
-from spoken language text (sign language production) or sign language recognition for sign language understanding.
+While research has focused more on the visual aspects of signed languages, 
+it is a subfield of both Natural Language Processing (NLP) and Computer Vision (CV).
+Challenges in sign language processing often include machine translation of 
+sign language videos into spoken language text (sign language translation),
+from spoken language text (sign language production), 
+or sign language recognition for sign language understanding.
 
 Unfortunately, the latest advances in language-based artificial intelligence, like machine translation and personal assistants, 
 expect a spoken language input (text or transcribed speech), excluding around 200-to-300 different signed languages [@un2022] and up to 70 million deaf people [@who2021;@wfd2022].
 
 Throughout history, Deaf communities fought for the right to learn and use signed languages and for the public recognition of signed languages as legitimate ones.
-Indeed, signed languages are sophisticated communication modalities that are at least as capable as spoken languages in all manners, linguistic and social.
+Indeed, signed languages are sophisticated communication modalities, at least as capable as spoken languages in all aspects, both linguistic and social.
 However, in a predominantly oral society, deaf people are constantly encouraged to use spoken languages through lip-reading or text-based communication.
 The exclusion of signed languages from modern language technologies further suppresses signing in favor of spoken languages.
 This exclusion disregards the preferences of the Deaf communities who strongly prefer to communicate in signed languages both online and for in-person day-to-day interactions,
@@ -55,14 +58,14 @@ Thus, it is essential to make signed languages accessible.
 
 To date, a large amount of research on Sign Language Processing (SLP) has been focused on the visual aspect of signed languages, led by the Computer Vision (CV) community, with little NLP involvement.
 This focus is not unreasonable, given that a decade ago, we lacked adequate CV tools to process videos for further linguistic analyses.
-However, like spoken languages, signed languages are fully-fledged systems that exhibit all the fundamental characteristics of natural languages,
-and current SLP techniques fail to address or leverage the linguistic structure of signed languages.
+However, similar to spoken languages, signed languages are fully-fledged systems exhibiting all the fundamental characteristics of natural languages,
+and existing SLP techniques do not adequately address or leverage the linguistic structure of signed languages.
 Signed languages introduce novel challenges for NLP due to their visual-gestural modality, simultaneity, spatial coherence, and lack of written form.
 The lack of a written form makes the spoken language processing pipelines - which often start with audio transcription before processing -
 incompatible with signed languages, forcing researchers to work directly on the raw video signal.
 
-Moreover, SLP is not only an intellectually appealing area but also an important research area with a solid potential to benefit signing communities.
-Examples of beneficial applications enabled by signed language technologies include better documentation of endangered sign languages;
+Furthermore, SLP is not only intellectually appealing but also an important research area with significant potential to benefit signing communities.
+Beneficial applications enabled by signed language technologies include improved documentation of endangered sign languages;
 educational tools for sign language learners; tools for query and retrieval of information from signed language videos; personal assistants that react to signed languages; real-time automatic sign language interpretations; and more.
 Needless to say, in addressing this research area, researchers should work *alongside* and *under the direction of* deaf communities,
 and to benefit the signing communities' interest above all [@harris2009research].
@@ -85,11 +88,11 @@ Several studies have shown that deaf children raised solely with spoken language
 This language deprivation can lead to life-long consequences on the cognitive, linguistic, socio-emotional, and academic development of the deaf [@hall2017language].
 
 Signed languages are the primary languages of communication for the Deaf[^deaf] and are at the heart of Deaf communities.
-Failing to recognize signed languages as fully-fledged natural language systems in their own right has had harmful effects in the past,
+In the past, the failure to recognize signed languages as fully-fledged natural language systems in their own right has had detrimental effects,
 and in an increasingly digitized world, NLP research should strive to enable a world in which all people,
 including the Deaf, have access to languages that fit their lived experience.
 
-[^deaf]: When capitalized, "Deaf" refers to a community of deaf people who share a language and a culture, whereas the lowercase "deaf" refers to the audiological condition of not hearing.
+[^deaf]: When capitalized, "Deaf" refers to a community of deaf people who share a language and a culture, whereas the lowercase "deaf" refers to the audiological condition of not hearing. We follow the more recent convention of abandoning a distinction between ``Deaf'' and ``deaf'', using the latter term also to refer to (deaf) members of the sign language community [@napier-leeson-2016;@kusters-et-al-2017].}
 
 ## Sign Language Linguistics Overview
 
@@ -214,9 +217,9 @@ Note that the same sign might have two unrelated glosses, and the same gloss mig
 ```
 | Video       | Pose Estimation | Notation | Gloss     | English Translation         |
 |-----------|------------|--------|------------|-----------------|
-| ![ASL HOUSE](assets/videos/original/asl_house.gif){ width=2.5cm }           | ![ASL HOUSE](assets/videos/pose/asl_house.gif){ width=2.5cm }           | ![HOUSE](assets/writing/house.png){ width=1cm }           | HOUSE            | House                               |
-| ![ASL WRONG-WHAT](assets/videos/original/asl_wrong_what.gif){ width=2.5cm } | ![ASL WRONG-WHAT](assets/videos/pose/asl_wrong_what.gif){ width=2.5cm } | ![WRONG-WHAT](assets/writing/wrong_what.png){ width=0.7cm } | WRONG-WHAT       | What's the matter?<br> What's wrong? |
-| ![ASL DIFFERENT](assets/videos/original/asl_different.gif){ width=2.5cm }   | ![ASL DIFFERENT](assets/videos/pose/asl_different.gif){ width=2.5cm }   | ![DIFFERENT](assets/writing/different.png){ width=1cm }   | DIFFERENT<br> BUT | Different<br> But                    |
+| ![ASL HOUSE](assets/videos/original/asl_house.gif){ width=2.5cm }           | ![ASL HOUSE](assets/videos/pose/asl_house.gif){ width=2.5cm }           | ![HOUSE](assets/writing/house.png){ width=1cm }             | HOUSE             | House                                |
+| ![ASL WRONG-WHAT](assets/videos/original/asl_wrong_what.gif){ width=2.5cm } | ![ASL WRONG-WHAT](assets/videos/pose/asl_wrong_what.gif){ width=2.5cm } | ![WRONG-WHAT](assets/writing/wrong_what.png){ width=0.7cm } | WRONG-WHAT        | What's the matter?<br> What's wrong? |
+| ![ASL DIFFERENT](assets/videos/original/asl_different.gif){ width=2.5cm }   | ![ASL DIFFERENT](assets/videos/pose/asl_different.gif){ width=2.5cm }   | ![DIFFERENT](assets/writing/different.png){ width=1cm }     | DIFFERENT<br> BUT | Different<br> But                    |
 ```{=html}
 </div>
 ```
@@ -326,6 +329,7 @@ Every path between two nodes might or might not be valid, depending on how lossy
 ---
 
 #### Video-to-Pose
+
 
 Video-to-Pose---commonly known as pose estimation---is the task of detecting human figures in images and videos, 
 so that one could determine, for example, where someone's elbow shows up in an image.
@@ -455,6 +459,14 @@ Then they apply a GRU encoder-decoder architecture with Luong Attention [@luong2
 In follow-up work, @camgoz2020sign use a transformer encoder [@vaswani2017attention] to replace the GRU 
 and use a CTC to decode the gloss. They show a slight improvement with this approach on the video-to-gloss task.
 
+@adaloglou2020comprehensive perform a comparative experimental assessment of computer vision-based methods for the video-to-gloss task.
+They implement various approaches from previous research [@camgoz2017subunets;@cui2019deep;@dataset:joze2018ms]
+and test them on multiple datasets [@dataset:huang2018video;@cihan2018neural;@dataset:von2007towards;@dataset:joze2018ms]
+either for isolated sign recognition or continuous sign recognition.
+They conclude that 3D convolutional models outperform models using only recurrent networks to capture the temporal information,
+and that these models are more scalable given the restricted receptive field, which results from the CNN "sliding window" technique.
+
+
 ```{=ignore}
 <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> @camgoz2017subunets SubUNets
 Camgoz et al. [26] introduce a DNN-based approach for
@@ -495,12 +507,6 @@ and video segments. The proposed pseudo-alignments are then
 employed for iterative optimization.
 ```
 
-@adaloglou2020comprehensive perform a comparative experimental assessment of computer vision-based methods for the video-to-gloss task.
-They implement various approaches from previous research [@camgoz2017subunets;@cui2019deep;@dataset:joze2018ms]
-and test them on multiple datasets [@dataset:huang2018video;@cihan2018neural;@dataset:von2007towards;@dataset:joze2018ms]
-either for isolated sign recognition or continuous sign recognition.
-They conclude that 3D convolutional models outperform models using only recurrent networks to capture the temporal information,
-and that these models are more scalable given the restricted receptive field, which results from the CNN "sliding window" technique.
 
 #### Gloss-to-Video
 Gloss-to-Video---also known as sign language production---is the task of producing a video that adequately represents
@@ -760,7 +766,7 @@ iLex binaries are [available](https://www.sign-lang.uni-hamburg.de/ilex/ilex.xml
 
 ##### SignStream
 [SignStream](http://www.bu.edu/asllrp/SignStream/3/) [@neidle2001signstream] is a tool for linguistic annotations and computer vision research on visual-gestural language data
-SignStream installation is only [available](http://www.bu.edu/asllrp/SignStream/3/download-newSS.html) for old macOS versions and is distributed under an MIT license.
+SignStream installation is [available](http://www.bu.edu/asllrp/SignStream/3/download-newSS.html) for macOS and is distributed under an MIT license.
 
 ##### Anvil - The Video Annotation Research Tool
 [Anvil](https://www.anvil-software.org/) [@kipp2001anvil] is a free video annotation tool,
@@ -840,7 +846,7 @@ Hearing researchers cannot relate to the deaf experience or fully understand the
 Currently, there is no easy way or agreed-upon format to download and load sign language datasets, and as such, evaluation of these datasets is scarce.
 As part of this work, we streamlined the loading of available datasets using [Tensorflow Datasets](https://github.com/tensorflow/datasets) [@TFDS].
 This tool allows researchers to load large and small datasets alike with a simple command and be comparable to other works.
-We make these datasets available using a custom library, [Sign Language Datasets](https://github.com/sign-language-processing/datasets).
+We make these datasets available using a custom library, [Sign Language Datasets](https://github.com/sign-language-processing/datasets) [@moryossef2021datasets].
 
 ```python
 import tensorflow_datasets as tfds
