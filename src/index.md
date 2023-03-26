@@ -229,7 +229,7 @@ We survey common SLP tasks and current methods' limitations, drawing on signed l
 
 ### Sign Language Detection
 
-Sign language detection [@detection:borg2019sign;@detection:moryossef2020real] is the binary classification task to determine whether a signed language is being used in a given video frame.
+Sign language detection [@detection:borg2019sign;@detection:moryossef2020real;@detection:pal2023importance] is the binary classification task to determine whether a signed language is being used in a given video frame.
 A similar task in spoken languages is voice activity detection (VAD) [@sohn1999statistical;@ramirez2004efficient],
 the detection of when a human voice is used in an audio signal.
 However, as VAD methods often rely on speech-specific representations such as spectrograms, they are not necessarily applicable to videos.
@@ -248,7 +248,7 @@ They calculate the optical flow norm of every joint detected on the body and app
 to predict for every frame whether the person is signing or not.
 
 While these recent detection models achieve high performance,
-we need well-annotated data that include interference and distractions with non-signing instances for proper real-world evaluation.
+we need well-annotated data that include interference and distractions with non-signing instances for proper real-world evaluation. @detection:pal2023importance perform a detailed analysis of the effect of signer overlap on the two sign detection benchmark data sets (Signing in the Wild and the DGS corpus [@dataset:hanke-etal-2020-extending]) used by @detection:borg2019sign and @detection:moryossef2020real. Comparing accuracy with and without overlap, they observe a relative decrease, so they propose new data set partitions that are free of overlap and allow for more realistic performance assessment.
 
 ### Sign Language Identification
 
