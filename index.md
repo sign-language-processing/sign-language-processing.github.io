@@ -233,7 +233,7 @@ We survey common SLP tasks and current methods' limitations, drawing on signed l
 
 ### Sign Language Detection
 
-Sign language detection [@detection:borg2019sign;@detection:moryossef2020real] is the binary classification task to determine whether a signed language is being used in a given video frame.
+Sign language detection [@detection:borg2019sign;@detection:moryossef2020real;@detection:pal2023importance] is the binary classification task to determine whether a signed language is being used in a given video frame.
 A similar task in spoken languages is voice activity detection (VAD) [@sohn1999statistical;@ramirez2004efficient],
 the detection of when a human voice is used in an audio signal.
 However, as VAD methods often rely on speech-specific representations such as spectrograms, they are not necessarily applicable to videos.
@@ -252,7 +252,7 @@ They calculate the optical flow norm of every joint detected on the body and app
 to predict for every frame whether the person is signing or not.
 
 While these recent detection models achieve high performance,
-we need well-annotated data that include interference and distractions with non-signing instances for proper real-world evaluation.
+we need well-annotated data that include interference and distractions with non-signing instances for proper real-world evaluation. @detection:pal2023importance conducted a detailed analysis of the impact of signer overlap between the training and test sets on two sign detection benchmark datasets (Signing in the Wild [@detection:borg2019sign] and the DGS corpus [@dataset:hanke-etal-2020-extending]) used by @detection:borg2019sign and @detection:moryossef2020real. By comparing the accuracy with and without overlap, they notice a relative decrease in performance. As a result, they suggest new dataset partitions that eliminate overlap and facilitate a more accurate evaluation of performance.
 
 ### Sign Language Identification
 
@@ -466,6 +466,7 @@ either for isolated sign recognition or continuous sign recognition.
 They conclude that 3D convolutional models outperform models using only recurrent networks to capture the temporal information,
 and that these models are more scalable given the restricted receptive field, which results from the CNN "sliding window" technique.
 
+@momeni2022automatic developed a comprehensive pipeline that combines various models to densely annotate sign language videos. By leveraging the use of synonyms and subtitle-signing alignment, their approach demonstrates the value of pseudo-labeling from a sign recognition model for sign spotting. They propose a novel method to increase annotations for both known and unknown classes, relying on in-domain exemplars. As a result, their framework significantly expands the number of confident automatic annotations on the BOBSL BSL sign language corpus [@dataset:albanie2021bobsl] from 670K to 5M, and they generously make these annotations publicly available.
 
 ```{=ignore}
 <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> @camgoz2017subunets SubUNets
