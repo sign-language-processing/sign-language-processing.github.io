@@ -216,7 +216,7 @@ Note that the same sign might have two unrelated glosses, and the same gloss mig
 <div id="formats-table" class="table">
 ```
 | Video       | Pose Estimation | Notation | Gloss     | English Translation         |
-|-----------|------------|--------|------------|-----------------|
+| :----------: | :-----------: | :-------: | :-----------: | :----------------: |
 | ![ASL HOUSE](assets/videos/original/asl_house.gif){ width=2.5cm }           | ![ASL HOUSE](assets/videos/pose/asl_house.gif){ width=2.5cm }           | ![HOUSE](assets/writing/house.png){ width=1cm }             | HOUSE             | House                                |
 | ![ASL WRONG-WHAT](assets/videos/original/asl_wrong_what.gif){ width=2.5cm } | ![ASL WRONG-WHAT](assets/videos/pose/asl_wrong_what.gif){ width=2.5cm } | ![WRONG-WHAT](assets/writing/wrong_what.png){ width=0.7cm } | WRONG-WHAT        | What's the matter?<br> What's wrong? |
 | ![ASL DIFFERENT](assets/videos/original/asl_different.gif){ width=2.5cm }   | ![ASL DIFFERENT](assets/videos/pose/asl_different.gif){ width=2.5cm }   | ![DIFFERENT](assets/writing/different.png){ width=1cm }     | DIFFERENT<br> BUT | Different<br> But                    |
@@ -404,11 +404,14 @@ as subjects struggled to understand the reconstructed videos.
 As a direct response, @saunders2020everybody show that like in @pose:chan2019everybody, 
 where an adversarial loss is added to specifically generate the face, adding a similar loss to the hand generation process
 yields high-resolution, more photo-realistic continuous sign language videos.
+To further improve the hand image synthesis quality, they introduce a keypoint-based loss function to avoids issues caused by motion blur. 
 
-[Deepfakes](https://en.wikipedia.org/wiki/Deepfake) is a technique to replace a person in an 
-existing image or video with someone else's likeness [@nguyen2019deep]. 
-This technique can be used to improve the unrealistic face synthesis resulting from not face-specialized models,
-or even replace cartoon faces rendered by animated 3D models. 
+In a followup paper [@anonysign], they introduce the task of Sign Language Video Anonymisation (SLVA) 
+as an automatic method to anonymize the visual appearance of a sign language video while 
+retaining the original sign language content.
+Using a conditional variational autoencoder framework, they first extract pose information from the source video to remove the original signer appearance,
+then generates a photo-realistic sign language video of a novel appearance from the pose sequence. 
+The authors propose a novel style loss that ensures style consistency in the anonymized sign language videos.
 
 ---
 

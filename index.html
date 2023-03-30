@@ -209,34 +209,34 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <table>
 <thead>
 <tr class="header">
-<th>Video</th>
-<th>Pose Estimation</th>
-<th>Notation</th>
-<th>Gloss</th>
-<th>English Translation</th>
+<th style="text-align: center;">Video</th>
+<th style="text-align: center;">Pose Estimation</th>
+<th style="text-align: center;">Notation</th>
+<th style="text-align: center;">Gloss</th>
+<th style="text-align: center;">English Translation</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><img src="assets/videos/original/asl_house.gif" style="width:2.5cm" alt="ASL HOUSE" /></td>
-<td><img src="assets/videos/pose/asl_house.gif" style="width:2.5cm" alt="ASL HOUSE" /></td>
-<td><img src="assets/writing/house.png" style="width:1cm" alt="HOUSE" /></td>
-<td>HOUSE</td>
-<td>House</td>
+<td style="text-align: center;"><img src="assets/videos/original/asl_house.gif" style="width:2.5cm" alt="ASL HOUSE" /></td>
+<td style="text-align: center;"><img src="assets/videos/pose/asl_house.gif" style="width:2.5cm" alt="ASL HOUSE" /></td>
+<td style="text-align: center;"><img src="assets/writing/house.png" style="width:1cm" alt="HOUSE" /></td>
+<td style="text-align: center;">HOUSE</td>
+<td style="text-align: center;">House</td>
 </tr>
 <tr class="even">
-<td><img src="assets/videos/original/asl_wrong_what.gif" style="width:2.5cm" alt="ASL WRONG-WHAT" /></td>
-<td><img src="assets/videos/pose/asl_wrong_what.gif" style="width:2.5cm" alt="ASL WRONG-WHAT" /></td>
-<td><img src="assets/writing/wrong_what.png" style="width:0.7cm" alt="WRONG-WHAT" /></td>
-<td>WRONG-WHAT</td>
-<td>What’s the matter?<br> What’s wrong?</td>
+<td style="text-align: center;"><img src="assets/videos/original/asl_wrong_what.gif" style="width:2.5cm" alt="ASL WRONG-WHAT" /></td>
+<td style="text-align: center;"><img src="assets/videos/pose/asl_wrong_what.gif" style="width:2.5cm" alt="ASL WRONG-WHAT" /></td>
+<td style="text-align: center;"><img src="assets/writing/wrong_what.png" style="width:0.7cm" alt="WRONG-WHAT" /></td>
+<td style="text-align: center;">WRONG-WHAT</td>
+<td style="text-align: center;">What’s the matter?<br> What’s wrong?</td>
 </tr>
 <tr class="odd">
-<td><img src="assets/videos/original/asl_different.gif" style="width:2.5cm" alt="ASL DIFFERENT" /></td>
-<td><img src="assets/videos/pose/asl_different.gif" style="width:2.5cm" alt="ASL DIFFERENT" /></td>
-<td><img src="assets/writing/different.png" style="width:1cm" alt="DIFFERENT" /></td>
-<td>DIFFERENT<br> BUT</td>
-<td>Different<br> But</td>
+<td style="text-align: center;"><img src="assets/videos/original/asl_different.gif" style="width:2.5cm" alt="ASL DIFFERENT" /></td>
+<td style="text-align: center;"><img src="assets/videos/pose/asl_different.gif" style="width:2.5cm" alt="ASL DIFFERENT" /></td>
+<td style="text-align: center;"><img src="assets/writing/different.png" style="width:1cm" alt="DIFFERENT" /></td>
+<td style="text-align: center;">DIFFERENT<br> BUT</td>
+<td style="text-align: center;">Different<br> But</td>
 </tr>
 </tbody>
 </table>
@@ -292,8 +292,8 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <p><span class="citation" data-cites="pose:chan2019everybody">Chan et al. (<a href="#ref-pose:chan2019everybody" role="doc-biblioref">2019</a>)</span> demonstrate a semi-supervised approach where they take a set of videos, run pose estimation with OpenPose <span class="citation" data-cites="pose:cao2018openpose">(Cao et al. <a href="#ref-pose:cao2018openpose" role="doc-biblioref">2019</a>)</span>, and learn an image-to-image translation <span class="citation" data-cites="isola2017image">(Isola et al. <a href="#ref-isola2017image" role="doc-biblioref">2017</a>)</span> between the rendered skeleton and the original video. They demonstrate their approach on human dancing, where they can extract poses from a choreography and render any person as if they were dancing that dance. They predict two consecutive frames for temporally coherent video results and introduce a separate pipeline for a more realistic face synthesis, although still flawed.</p>
 <p><span class="citation" data-cites="pose:wang2018vid2vid">Wang et al. (<a href="#ref-pose:wang2018vid2vid" role="doc-biblioref">2018</a>)</span> suggest a similar method using DensePose <span class="citation" data-cites="pose:alp2018densepose">(Güler, Neverova, and Kokkinos <a href="#ref-pose:alp2018densepose" role="doc-biblioref">2018</a>)</span> representations in addition to the OpenPose <span class="citation" data-cites="pose:cao2018openpose">(Cao et al. <a href="#ref-pose:cao2018openpose" role="doc-biblioref">2019</a>)</span> ones. They formalize a different model, with various objectives to optimize for, such as background-foreground separation and temporal coherence by using the previous two timestamps in the input.</p>
 <p>Using the method of <span class="citation" data-cites="pose:chan2019everybody">Chan et al. (<a href="#ref-pose:chan2019everybody" role="doc-biblioref">2019</a>)</span> on “Everybody Dance Now”, <span class="citation" data-cites="pose:girocan2020slrtp">Giró-i-Nieto (<a href="#ref-pose:girocan2020slrtp" role="doc-biblioref">2020</a>)</span> asks, “Can Everybody Sign Now”? They evaluate the generated videos by asking signers various tasks after watching them and comparing the signers’ ability to perform these tasks on the original videos, rendered pose videos, and reconstructed videos. They show that subjects prefer synthesized videos over skeleton visualizations, and that out-of-the-box synthesis methods are not effective enough, as subjects struggled to understand the reconstructed videos.</p>
-<p>As a direct response, <span class="citation" data-cites="saunders2020everybody">Saunders, Camgöz, and Bowden (<a href="#ref-saunders2020everybody" role="doc-biblioref">2020</a><a href="#ref-saunders2020everybody" role="doc-biblioref">b</a>)</span> show that like in <span class="citation" data-cites="pose:chan2019everybody">Chan et al. (<a href="#ref-pose:chan2019everybody" role="doc-biblioref">2019</a>)</span>, where an adversarial loss is added to specifically generate the face, adding a similar loss to the hand generation process yields high-resolution, more photo-realistic continuous sign language videos.</p>
-<p><a href="https://en.wikipedia.org/wiki/Deepfake">Deepfakes</a> is a technique to replace a person in an existing image or video with someone else’s likeness <span class="citation" data-cites="nguyen2019deep">(Nguyen et al. <a href="#ref-nguyen2019deep" role="doc-biblioref">2019</a>)</span>. This technique can be used to improve the unrealistic face synthesis resulting from not face-specialized models, or even replace cartoon faces rendered by animated 3D models.</p>
+<p>As a direct response, <span class="citation" data-cites="saunders2020everybody">Saunders, Camgöz, and Bowden (<a href="#ref-saunders2020everybody" role="doc-biblioref">2020</a><a href="#ref-saunders2020everybody" role="doc-biblioref">b</a>)</span> show that like in <span class="citation" data-cites="pose:chan2019everybody">Chan et al. (<a href="#ref-pose:chan2019everybody" role="doc-biblioref">2019</a>)</span>, where an adversarial loss is added to specifically generate the face, adding a similar loss to the hand generation process yields high-resolution, more photo-realistic continuous sign language videos. To further improve the hand image synthesis quality, they introduce a keypoint-based loss function to avoids issues caused by motion blur.</p>
+<p>In a followup paper <span class="citation" data-cites="anonysign">(Saunders, Camgöz, and Bowden <a href="#ref-anonysign" role="doc-biblioref">2021</a>)</span>, they introduce the task of Sign Language Video Anonymisation (SLVA) as an automatic method to anonymize the visual appearance of a sign language video while retaining the original sign language content. Using a conditional variational autoencoder framework, they first extract pose information from the source video to remove the original signer appearance, then generates a photo-realistic sign language video of a novel appearance from the pose sequence. The authors propose a novel style loss that ensures style consistency in the anonymized sign language videos.</p>
 <hr />
 <h4 id="pose-to-gloss">Pose-to-Gloss</h4>
 <p>Pose-to-Gloss—also known as sign language recognition—is the task of recognizing a sequence of signs from a sequence of poses. Though some previous works have referred to this as “sign language translation”, recognition merely determines the associated label of each sign, without handling the syntax and morphology of the signed language <span class="citation" data-cites="padden1988interaction">(C. Padden <a href="#ref-padden1988interaction" role="doc-biblioref">1988</a>)</span> to create a spoken language output. Instead, SLR has often been used as an intermediate step during translation to produce glosses from signed language videos.</p>
@@ -1240,9 +1240,6 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <div id="ref-neidle2001signstream">
 <p>Neidle, Carol, Stan Sclaroff, and Vassilis Athitsos. 2001. “SignStream: A Tool for Linguistic and Computer Vision Research on Visual-Gestural Language Data.” <em>Behavior Research Methods, Instruments, &amp; Computers</em> 33 (3): 311–20.</p>
 </div>
-<div id="ref-nguyen2019deep">
-<p>Nguyen, Thanh Thi, Cuong M. Nguyen, Dung Tien Nguyen, Duc Thanh Nguyen, and Saeid Nahavandi. 2019. “Deep Learning for Deepfakes Creation and Detection.” <em>CoRR</em> abs/1909.11573. <a href="http://arxiv.org/abs/1909.11573">http://arxiv.org/abs/1909.11573</a>.</p>
-</div>
 <div id="ref-ormel2012prosodic">
 <p>Ormel, Ellen, and Onno Crasborn. 2012. “Prosodic Correlates of Sentences in Signed Languages: A Literature Review and Suggestions for New Types of Studies.” <em>Sign Language Studies</em> 12 (2): 279–315.</p>
 </div>
@@ -1320,6 +1317,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 </div>
 <div id="ref-saunders2020progressive">
 <p>———. 2020c. “Progressive Transformers for End-to-End Sign Language Production.” In <em>European Conference on Computer Vision</em>, 687–705.</p>
+</div>
+<div id="ref-anonysign">
+<p>———. 2021. “Anonysign: Novel Human Appearance Synthesis for Sign Language Video Anonymisation.” In <em>2021 16th Ieee International Conference on Automatic Face and Gesture Recognition (Fg 2021)</em>, 1–8. <a href="https://doi.org/10.1109/FG52635.2021.9666984">https://doi.org/10.1109/FG52635.2021.9666984</a>.</p>
 </div>
 <div id="ref-savitzky1964smoothing">
 <p>Savitzky, Abraham, and Marcel JE Golay. 1964. “Smoothing and Differentiation of Data by Simplified Least Squares Procedures.” <em>Analytical Chemistry</em> 36 (8): 1627–39.</p>
