@@ -46,7 +46,7 @@ from spoken language text (sign language production),
 or sign language recognition for sign language understanding.
 
 Unfortunately, the latest advances in language-based artificial intelligence, like machine translation and personal assistants, 
-expect a spoken language input (text or transcribed speech), excluding around 200-to-300 different signed languages [@un2022] and up to 70 million deaf people [@who2021;@wfd2022].
+expect a spoken language input (text or transcribed speech), excluding around 200 to 300 different signed languages [@un2022] and up to 70 million deaf people [@who2021;@wfd2022].
 
 Throughout history, Deaf communities fought for the right to learn and use signed languages and for the public recognition of signed languages as legitimate ones.
 Indeed, signed languages are sophisticated communication modalities, at least as capable as spoken languages in all aspects, both linguistic and social.
@@ -77,13 +77,13 @@ We also make a comprehensive list of existing datasets and make the ones availab
 ### (Brief) History of Signed Languages and Deaf Culture
 
 Throughout modern history,
-spoken languages were dominant, so much so that signed languages struggled to be recognized as languages in their own right
+spoken languages were dominant, so much so that signed languages struggled to be recognized as languages in their own right,
 and educators developed misconceptions that signed language acquisition might hinder the development of speech skills.
 For example, in 1880, a large international conference of deaf educators called the "Second International Congress on Education of the Deaf"
 banned teaching signed languages, favoring speech therapy instead.
 It was not until the seminal work on American Sign Language (ASL) by @writing:stokoe1960sign that signed languages started gaining
 recognition as natural, independent, and well-defined languages, which inspired other researchers to further explore signed languages as a research area.
-Nevertheless, antiquated notions that deprioritized signed languages continue to do harm and subjects many to linguistic neglect [@humphries2016avoiding].
+Nevertheless, antiquated attitudes that placed less importance on signed languages continue to inflict harm and subject many to linguistic neglect [@humphries2016avoiding].
 Several studies have shown that deaf children raised solely with spoken languages do not gain enough access to a first language during their critical period of language acquisition [@murray2020importance].
 This language deprivation can lead to life-long consequences on the cognitive, linguistic, socio-emotional, and academic development of the deaf [@hall2017language].
 
@@ -116,7 +116,7 @@ Though an ASL sign takes about twice as long to produce than an English word,
 the rates of transmission of information between the two languages are similar [@bellugi1972comparison].
 One way signed languages compensate for the slower production rate of signs is through simultaneity:
 Signed languages use multiple visual cues to convey different information simultaneously [@sandler2012phonological].
-For example, the signer may produce the sign for 'cup' on one hand while simultaneously pointing to the actual cup with the other to express ``that cup''.
+For example, the signer may produce the sign for "cup" on one hand while simultaneously pointing to the actual cup with the other to express "that cup."
 Similarly to tone in spoken languages, the face and torso can convey additional affective information [@liddell2003grammar;@johnston2007australian].
 Facial expressions can modify adjectives, adverbs, and verbs; a head shake can negate a phrase or sentence; eye direction can help indicate referents.
 
@@ -223,7 +223,7 @@ formats.md
 
 ## Tasks
 
-So far, the computer vision community has mainly led the SLP research to focus on processing the visual features in signed language videos.
+So far, the computer vision community has primarily led the SLP research to focus on processing the visual features in signed language videos.
 As a result, current SLP methods do not fully address the linguistic complexity of signed languages.
 We survey common SLP tasks and current methods' limitations, drawing on signed languages' linguistic theories.
 
@@ -234,21 +234,24 @@ A similar task in spoken languages is voice activity detection (VAD) [@sohn1999s
 the detection of when a human voice is used in an audio signal.
 However, as VAD methods often rely on speech-specific representations such as spectrograms, they are not necessarily applicable to videos.
 
-
 @detection:borg2019sign introduced the classification of frames taken from YouTube videos as either signing or not. 
-They take a spatial and temporal approach based on VGG-16 [@simonyan2015very] CNN to encode each frame 
-and use a [GRU](https://en.wikipedia.org/wiki/Gated_recurrent_unit) [@cho2014learning] 
+They took a spatial and temporal approach based on VGG-16 [@simonyan2015very] CNN to encode each frame 
+and used a Gated Recurrent Unit (GRU) [@cho2014learning] 
 to encode the sequence of frames in a window of 20 frames at 5fps.
-In addition to the raw frame, they either encode optical-flow history, aggregated motion history, or frame difference.
+In addition to the raw frame, they either encoded optical-flow history, aggregated motion history, or frame difference.
 
 @detection:moryossef2020real improved upon their method by performing sign language detection in real time.
 They identified that sign language use involves movement of the body and, as such, designed a model that works on top of 
 estimated human poses rather than directly on the video signal.
-They calculate the optical flow norm of every joint detected on the body and apply a shallow yet effective contextualized model
+They calculated the optical flow norm of every joint detected on the body and applied a shallow yet effective contextualized model
 to predict for every frame whether the person is signing or not.
 
 While these recent detection models achieve high performance,
-we need well-annotated data that include interference and distractions with non-signing instances for proper real-world evaluation. @detection:pal2023importance conducted a detailed analysis of the impact of signer overlap between the training and test sets on two sign detection benchmark datasets (Signing in the Wild [@detection:borg2019sign] and the DGS corpus [@dataset:hanke-etal-2020-extending]) used by @detection:borg2019sign and @detection:moryossef2020real. By comparing the accuracy with and without overlap, they notice a relative decrease in performance. As a result, they suggest new dataset partitions that eliminate overlap and facilitate a more accurate evaluation of performance.
+we need well-annotated data that include interference and distractions with non-signing instances for proper real-world evaluation. 
+@detection:pal2023importance conducted a detailed analysis of the impact of signer overlap between the training and test sets 
+on two sign detection benchmark datasets (Signing in the Wild [@detection:borg2019sign] and the DGS corpus [@dataset:hanke-etal-2020-extending]) used by @detection:borg2019sign and @detection:moryossef2020real. 
+By comparing the accuracy with and without overlap, they noticed a relative decrease in performance. 
+As a result, they suggested new dataset partitions that eliminate overlap and facilitate a more accurate evaluation of performance.
 
 ### Sign Language Identification
 
@@ -274,16 +277,21 @@ due to the simultaneity of sign language, the notion of a sign language "word" i
 
 Current methods resort to segmenting units loosely mapped to signed language units [@segmentation:santemiz2009automatic;@segmentation:farag2019learning;@segmentation:bull2020automatic;@segmentation:renz2021signa;@segmentation:renz2021signb;@segmentation:bull2021aligning], and do not leverage reliable linguistic predictors of sentence boundaries such as prosody in signed languages (i.e., pauses, sign duration, facial expressions, eye apertures) [@sandler2010prosody;@ormel2012prosodic]. @segmentation:de-sisto-etal-2021-defining call for a better understanding of sign language structure, which they believe is the necessary ground for the design and development of sign language recognition and segmentation methodologies.
 
-@segmentation:santemiz2009automatic automatically extract isolated signs from continuous signing by aligning the sequences obtained via speech recognition, modeled by Dynamic Time Warping (DTW) and Hidden Markov Models (HMMs) approaches. 
+@segmentation:santemiz2009automatic automatically extracted isolated signs from continuous signing by aligning the sequences obtained via speech recognition, 
+modeled by Dynamic Time Warping (DTW) and Hidden Markov Models (HMMs) approaches. 
 
-@segmentation:farag2019learning use a random forest classifier to distinguish frames containing words in Japanese Sign Language based on the composition of spatio-temporal angular and distance features between domain-specific pairs of joint segments.
+@segmentation:farag2019learning used a random forest classifier to distinguish frames containing words in Japanese Sign Language 
+based on the composition of spatio-temporal angular and distance features between domain-specific pairs of joint segments.
 
-@segmentation:bull2020automatic segment French Sign Language into subtitle units by detecting the temporal boundaries of subtitles aligned with sign language videos, leveraging a spatio-temporal graph convolutional network with a BiLSTM on 2D skeleton data.
+@segmentation:bull2020automatic segmented French Sign Language into subtitle units by detecting the temporal boundaries of subtitles aligned with sign language videos, 
+leveraging a spatio-temporal graph convolutional network with a BiLSTM on 2D skeleton data.
 
-@segmentation:renz2021signa determine the location of temporal boundaries between signs in continuous sign language videos by employing 3D convolutional neural network representations with iterative temporal segment refinement to resolve ambiguities between sign boundary cues. @segmentation:renz2021signb further propose the Changepoint-Modulated Pseudo-Labelling (CMPL) algorithm to solve the problem of source-free domain
-adaptation. 
+@segmentation:renz2021signa determined the location of temporal boundaries between signs in continuous sign language videos by employing 
+3D convolutional neural network representations with iterative temporal segment refinement to resolve ambiguities between sign boundary cues. 
+@segmentation:renz2021signb further proposed the Changepoint-Modulated Pseudo-Labelling (CMPL) algorithm to solve the problem of source-free domain adaptation. 
 
-@segmentation:bull2021aligning present a Transformer-based approach to segment sign language videos and align them with subtitles simultaneously, encoding subtitles by BERT and videos by CNN video representations.
+@segmentation:bull2021aligning presented a Transformer-based approach to segment sign language videos and align them with subtitles simultaneously, encoding subtitles by BERT and videos by CNN video representations.
+
 
 <!-- @segmentation:de-sisto-etal-2021-defining introduce a proposal for mapping segments to meaning in the form of an agglomerate of lexical and non-lexical information. -->
 
@@ -318,7 +326,6 @@ We split the graph into two:
 \includegraphics[width=\linewidth]{assets/tasks/tasks.pdf}
 ```
 
-
 There are 20 tasks conceptually defined by this graph, with varying amounts of previous research.
 Every path between two nodes might or might not be valid, depending on how lossy the tasks in the path are.
 
@@ -326,10 +333,9 @@ Every path between two nodes might or might not be valid, depending on how lossy
 
 #### Video-to-Pose
 
-
-Video-to-Pose---commonly known as pose estimation---is the task of detecting human figures in images and videos, 
-so that one could determine, for example, where someone's elbow shows up in an image.
-It was shown [@vogler2005analysis] that the face pose correlates with facial non-manual features like head direction.
+Video-to-Pose—commonly known as pose estimation—is the task of detecting human figures in images and videos, 
+so that one could determine, for example, where someone's elbow shows up in an image. 
+It was shown that the face pose correlates with facial non-manual features like head direction [@vogler2005analysis].
 
 This area has been thoroughly researched [@pose:pishchulin2012articulated;@pose:chen2017adversarial;@pose:cao2018openpose;@pose:alp2018densepose]
 with objectives varying from predicting 2D / 3D poses to a selection of a small specific set of landmarks or a dense mesh of a person.
@@ -337,14 +343,14 @@ with objectives varying from predicting 2D / 3D poses to a selection of a small 
 OpenPose [@pose:cao2018openpose;@pose:simon2017hand;@pose:cao2017realtime;@pose:wei2016cpm] is the first multi-person system to 
 jointly detect human body, hand, facial, and foot keypoints (in total 135 keypoints) in 2D on single images.
 While their model can estimate the full pose directly from an image in a single inference,
-they also suggest a pipeline approach where they first estimate the body pose and then independently estimate 
+they also suggest a pipeline approach where they first estimate the body pose and then independently estimate
 the hands and face pose by acquiring higher resolution crops around those areas.
-Building on the slow pipeline approach, a single network whole body OpenPose model has been proposed [@pose:hidalgo2019singlenetwork], 
+Building on the slow pipeline approach, a single network whole body OpenPose model has been proposed [@pose:hidalgo2019singlenetwork],
 which is faster and more accurate for the case of obtaining all keypoints.
 With multiple recording angles, OpenPose also offers keypoint triangulation to reconstruct the pose in 3D.
 
-@pose:alp2018densepose take a different approach with DensePose. 
-Instead of classifying for every keypoint which pixel is most likely, they suggest similar to semantic segmentation,
+DensePose [@pose:alp2018densepose] takes a different approach. 
+Instead of classifying for every keypoint which pixel is most likely, they suggest a method similar to semantic segmentation,
 for each pixel to classify which body part it belongs to.
 Then, for each pixel, knowing the body part, they predict where that pixel is on the body part relative to a 2D projection of a representative body model.
 This approach results in the reconstruction of the full-body mesh and allows sampling to find specific keypoints similar to OpenPose.
@@ -354,22 +360,21 @@ and applying pose estimation per frame does not take the video temporal movement
 especially in cases of rapid movement, which contain motion blur.
 
 @pose:pavllo20193d developed two methods to convert between 2D poses to 3D poses. 
-The first, a supervised method, was trained to use the temporal information between frames to predict the missing Z-axis.
-The second is an unsupervised method, leveraging the fact that the 2D poses are merely a projection of an unknown 3D pose
-and train a model to estimate the 3D pose and back-project to the input 2D poses. This back projection is a deterministic process, applying constraints on the 3D pose encoder. 
-@pose:zelinka2020neural follow a similar process and adds a constraint for bones to stay of a fixed length between frames.
+The first, a supervised method, was trained to use the temporal information between frames to predict the missing Z-axis. 
+The second is an unsupervised method, leveraging the fact that the 2D poses are merely a projection of an unknown 3D pose 
+and training a model to estimate the 3D pose and back-project to the input 2D poses. This back projection is a deterministic process, applying constraints on the 3D pose encoder. 
+@pose:zelinka2020neural followed a similar process and added a constraint for bones to stay of a fixed length between frames.
 
-@pose:panteleris2018using suggest converting the 2D poses to 3D using inverse kinematics (IK), a process taken from computer animation and robotics to calculate the variable joint parameters needed to place the end of a kinematic chain, 
-such as a robot manipulator or animation character's skeleton in a given position and orientation relative to the start of the chain.
-Demonstrating their approach to hand pose estimation, they manually explicitly encode the constraints and limits of each joint, resulting in 26 degrees of freedom.
+@pose:panteleris2018using suggest converting the 2D poses to 3D using inverse kinematics (IK), a process taken from computer animation and robotics to calculate the variable joint parameters needed to place the end of a kinematic chain,
+such as a robot manipulator or animation character's skeleton, in a given position and orientation relative to the start of the chain.
+Demonstrating their approach to hand pose estimation, they manually explicitly encode the constraints and limits of each joint, resulting in 26 degrees of freedom. 
 Then, non-linear least-squares minimization fits a 3D model of the hand to the estimated 2D joint positions, recovering the 3D hand pose.
 This process is similar to the back-projection used by @pose:pavllo20193d, except here, no temporal information is being used.
 
 MediaPipe Holistic [@mediapipe2020holistic] attempts to solve the 3D pose estimation problem directly by taking a similar approach to OpenPose,
 having a pipeline system to estimate the body, then the face and hands. Unlike OpenPose, the estimated poses are in 3D,
 and the pose estimator runs in real-time on CPU, allowing for pose-based sign language models on low-powered mobile devices.
-This pose estimation tool is widely available and built for Android, iOS, C++, Python, and the Web using Javascript.
-
+This pose estimation tool is widely available and built for Android, iOS, C++, Python, and the Web using JavaScript.
 
 #### Pose-to-Video
 
@@ -377,43 +382,46 @@ Pose-to-Video, also known as motion transfer or skeletal animation in the field 
 conversion of a sequence of poses to a video.
 This task is the final "rendering" of sign language in a visual modality.
 
-@pose:chan2019everybody demonstrate a semi-supervised approach where they take a set of videos, 
-run pose estimation with OpenPose [@pose:cao2018openpose], and learn an image-to-image translation [@isola2017image]
+@pose:chan2019everybody demonstrated a semi-supervised approach where they took a set of videos, 
+ran pose estimation with OpenPose [@pose:cao2018openpose], and learned an image-to-image translation [@isola2017image]
 between the rendered skeleton and the original video.
-They demonstrate their approach on human dancing, where they can extract poses from a choreography
-and render any person as if they were dancing that dance.
-They predict two consecutive frames for temporally coherent video results and 
-introduce a separate pipeline for a more realistic face synthesis, although still flawed.
+They demonstrated their approach on human dancing, where they could extract poses from a choreography
+and render any person as if *they* were dancing.
+They predicted two consecutive frames for temporally coherent video results and 
+introduced a separate pipeline for a more realistic face synthesis, although still flawed.
 
-@pose:wang2018vid2vid suggest a similar method using DensePose [@pose:alp2018densepose] representations 
+@pose:wang2018vid2vid suggested a similar method using DensePose [@pose:alp2018densepose] representations 
 in addition to the OpenPose [@pose:cao2018openpose] ones. 
-They formalize a different model, with various objectives to optimize for, such as background-foreground separation and
+They formalized a different model, with various objectives to optimize for, such as background-foreground separation and
 temporal coherence by using the previous two timestamps in the input.
 
-Using the method of @pose:chan2019everybody on "Everybody Dance Now", @pose:girocan2020slrtp asks, "Can Everybody Sign Now"?
-They evaluate the generated videos by asking signers various tasks after watching them and comparing the signers' ability to
-perform these tasks on the original videos, rendered pose videos, and reconstructed videos.
-They show that subjects prefer synthesized videos over skeleton visualizations, 
-and that out-of-the-box synthesis methods are not effective enough, 
-as subjects struggled to understand the reconstructed videos.
+Using the method of @pose:chan2019everybody on "Everybody Dance Now", @pose:girocan2020slrtp asked, "Can Everybody Sign Now?" 
+and investigated if people could understand sign language from automatically generated videos.
+They conducted a study in which participants watched three types of videos: the original signing videos, 
+videos showing only poses (skeletons), and reconstructed videos with realistic signing. 
+The researchers evaluated the participants' understanding after watching each type of video.
+The results of the study revealed that participants preferred the reconstructed videos over the skeleton videos. 
+However, the standard video synthesis methods used in the study were not effective enough for clear sign language translation. 
+Participants had trouble understanding the reconstructed videos, 
+suggesting that improvements are needed for better sign language translation in the future.
 
-As a direct response, @saunders2020everybody show that like in @pose:chan2019everybody, 
-where an adversarial loss is added to specifically generate the face, adding a similar loss to the hand generation process
-yields high-resolution, more photo-realistic continuous sign language videos.
-To further improve the hand image synthesis quality, they introduce a keypoint-based loss function to avoids issues caused by motion blur. 
+As a direct response, @saunders2020everybody showed that like in @pose:chan2019everybody, 
+where an adversarial loss was added to specifically generate the face, adding a similar loss to the hand generation process
+yielded high-resolution, more photo-realistic continuous sign language videos.
+To further improve the hand image synthesis quality, they introduced a keypoint-based loss function to avoid issues caused by motion blur. 
 
-In a followup paper [@anonysign], they introduce the task of Sign Language Video Anonymisation (SLVA) 
+In a follow-up paper, @anonysign introduced the task of Sign Language Video Anonymisation (SLVA) 
 as an automatic method to anonymize the visual appearance of a sign language video while 
 retaining the original sign language content.
-Using a conditional variational autoencoder framework, they first extract pose information from the source video to remove the original signer appearance,
-then generates a photo-realistic sign language video of a novel appearance from the pose sequence. 
-The authors propose a novel style loss that ensures style consistency in the anonymized sign language videos.
+Using a conditional variational autoencoder framework, they first extracted pose information from the source video to remove the original signer appearance,
+then generated a photo-realistic sign language video of a novel appearance from the pose sequence. 
+The authors proposed a novel style loss that ensures style consistency in the anonymized sign language videos. 
 
 ---
 
 #### Pose-to-Gloss
-Pose-to-Gloss---also known as sign language recognition---is the task of recognizing a sequence of signs from a sequence of poses.
-Though some previous works have referred to this as "sign language translation", recognition merely determines the associated label of each sign,
+Pose-to-Gloss, also known as sign language recognition, is the task of recognizing a sequence of signs from a sequence of poses.
+Though some previous works have referred to this as "sign language translation," recognition merely determines the associated label of each sign,
 without handling the syntax and morphology of the signed language [@padden1988interaction] to create a spoken language output.
 Instead, SLR has often been used as an intermediate step during translation to produce glosses from signed language videos.
 
@@ -422,13 +430,21 @@ Instead, SLR has often been used as an intermediate step during translation to p
 @dafnis2022bidirectional work on the same modified WLASL dataset as @jiang2021sign, but do not require multimodal data input. Instead, they propose a bidirectional skeleton-based graph convolutional network framework with linguistically motivated parameters and attention to the start and end
 frames of signs. They cooperatively use forward and backward data streams, including various sub-streams, as input. They also use pre-training to leverage transfer learning.
 
-@selvaraj-etal-2022-openhands introduce a open-source [OpenHands](https://github.com/AI4Bharat/OpenHands) library, which consists of standardized pose datasets for different existing sign language datasets and trained checkpoints of 4 pose-based isolated sign language recognition models across 6 languages (American, Argentinian, Chinese, Greek, Indian, and Turkish). To address the lack of labelled data, they propose self-supervised pretraining on unlabelled data and curate the largest pose-based pretraining dataset on Indian Sign Language (Indian-SL). They establish that pretraining is effective for sign language recognition by demonstrating improved fine-tuning performance especially in low-resource settings and high crosslingual transfer from Indian-SL to few other sign languages.
+@selvaraj-etal-2022-openhands introduce an open-source [OpenHands](https://github.com/AI4Bharat/OpenHands) library, 
+which consists of standardized pose datasets for different existing sign language datasets and trained checkpoints 
+of four pose-based isolated sign language recognition models across six languages (American, Argentinian, Chinese, Greek, Indian, and Turkish). 
+To address the lack of labeled data, they propose self-supervised pretraining on unlabeled data and curate the largest pose-based 
+pretraining dataset on Indian Sign Language (Indian-SL). They establish that pretraining is effective for sign language recognition by 
+demonstrating improved fine-tuning performance especially in low-resource settings and high crosslingual transfer from Indian-SL to a few other sign languages.
 
-The work of @kezar2023improving based on the [OpenHands](https://github.com/AI4Bharat/OpenHands) library explicitly recognize the role of phonology to achieve more accurate isolated sign language recognition (ISLR). To allow additional predictions on phonological characteristics (such as handshape), they combine the phonological annotations in ASL-LEX 2.0 [@sehyr2021asl] with signs in the WLASL 2000 ISLR benchmark [@dataset:li2020word]. Interestingly, @tavella-etal-2022-wlasl construct a similar dataset aiming just for phonological property recognition in American Sign Language (ASL).
+The work of @kezar2023improving, based on the [OpenHands](https://github.com/AI4Bharat/OpenHands) library, 
+explicitly recognizes the role of phonology to achieve more accurate isolated sign language recognition (ISLR). 
+To allow additional predictions on phonological characteristics (such as handshape), 
+they combine the phonological annotations in ASL-LEX 2.0 [@sehyr2021asl] with signs in the WLASL 2000 ISLR benchmark [@dataset:li2020word]. 
+Interestingly, @tavella-etal-2022-wlasl construct a similar dataset aiming just for phonological property recognition in American Sign Language (ASL).
 
 #### Gloss-to-Pose
-
-Gloss-to-Pose---subsumed under the task of sign language production---is the task of producing a sequence of poses that adequately represent
+Gloss-to-Pose, subsumed under the task of sign language production, is the task of producing a sequence of poses that adequately represent
 a sequence of signs written as gloss.
 
 To produce a sign language video, @stoll2018sign construct a lookup table between glosses and sequences of 2D poses.
@@ -447,10 +463,10 @@ To smooth that sequence and reduce unnatural motion, they use a Savitzky–Golay
 Video-to-Gloss---also known as sign language recognition---is the task of recognizing a sequence of signs from a video.
 
 For this recognition, @cui2017recurrent constructs a three-step optimization model.
-First, they train a video-to-gloss end-to-end model, where they encode the video using a spatio-temporal CNN encoder 
+First, they train a video-to-gloss end-to-end model, where they encode the video using a spatio-temporal CNN encoder
 and predict the gloss using a Connectionist Temporal Classification (CTC) [@graves2006connectionist].
 Then, from the CTC alignment and category proposal, they encode each gloss-level segment independently, trained to predict the gloss category,
-and use this gloss video segments encoding to optimize the sequence learning model. 
+and use this gloss video segments encoding to optimize the sequence learning model.
 
 @cihan2018neural fundamentally differ from that approach and formulate this problem as if it is a natural-language translation problem.
 They encode each video frame using AlexNet [@krizhevsky2012imagenet], initialized using weights trained on ImageNet [@deng2009imagenet].
@@ -465,7 +481,11 @@ either for isolated sign recognition or continuous sign recognition.
 They conclude that 3D convolutional models outperform models using only recurrent networks to capture the temporal information,
 and that these models are more scalable given the restricted receptive field, which results from the CNN "sliding window" technique.
 
-@momeni2022automatic developed a comprehensive pipeline that combines various models to densely annotate sign language videos. By leveraging the use of synonyms and subtitle-signing alignment, their approach demonstrates the value of pseudo-labeling from a sign recognition model for sign spotting. They propose a novel method to increase annotations for both known and unknown classes, relying on in-domain exemplars. As a result, their framework significantly expands the number of confident automatic annotations on the BOBSL BSL sign language corpus [@dataset:albanie2021bobsl] from 670K to 5M, and they generously make these annotations publicly available.
+@momeni2022automatic developed a comprehensive pipeline that combines various models to densely annotate sign language videos. 
+By leveraging the use of synonyms and subtitle-signing alignment, their approach demonstrates the value of pseudo-labeling from a sign recognition model for sign spotting. 
+They propose a novel method to increase annotations for both known and unknown classes, relying on in-domain exemplars. 
+As a result, their framework significantly expands the number of confident automatic annotations on the 
+BOBSL BSL sign language corpus [@dataset:albanie2021bobsl] from 670K to 5M, and they generously make these annotations publicly available.
 
 ```{=ignore}
 TODO @camgoz2017subunets SubUNets
@@ -549,10 +569,10 @@ When pretraining, all augmentations show improvements over the baseline for RWTH
 } -->
 
 #### Text-to-Gloss
-Text-to-gloss---an instantiation of sign language translation---is the task of translating between a spoken language text and sign language glosses.
+Text-to-gloss, an instantiation of sign language translation, is the task of translating between a spoken language text and sign language glosses.
 
 @zhao2000machine used a Tree Adjoining Grammar (TAG)-based system to translate English sentences to American Sign Language (ASL) gloss sequences.
-They parse the English text and simultaneously assemble an American Sign Language gloss tree, using Synchronous TAGs [@shieber1990synchronous;@shieber1994restricting], 
+They parsed the English text and simultaneously assembled an ASL gloss tree, using Synchronous TAGs [@shieber1990synchronous;@shieber1994restricting], 
 by associating the ASL elementary trees with the English elementary trees and associating the nodes at which subsequent substitutions or adjunctions can occur.
 Synchronous TAGs have been used for machine translation between spoken languages [@abeille1991using], but this is the first application to a signed language.
 
@@ -563,8 +583,8 @@ Unfortunately, it is hard to attest to the quality of the corpus, as the authors
 
 ---
 
-#### Video-to-Text
-Video-to-text---also known as sign language translation---is the task of translating a raw video to spoken language text.
+#### Video-to-Text {-}
+Video-to-text, also known as sign language translation, is the task of translating a raw video to spoken language text.
 
 @camgoz2020sign proposed a single architecture to perform this task that can use both the sign language gloss and 
 the spoken language text in joint supervision.
@@ -577,7 +597,7 @@ Following up, @camgoz2020multi propose a new architecture that does not require 
 In this approach, they crop the signing hand and the face and perform 3D pose estimation to obtain three separate data channels.
 They encode each data channel separately using a transformer, then encode all channels together and concatenate the separate channels for each frame.
 Like their previous work, they use a transformer decoder to decode the spoken language text, but unlike their previous work,
-do not use the gloss as additional supervision. 
+do not use the gloss as additional supervision.
 Instead, they add two "anchoring" losses to predict the hand shape and mouth shape from each frame independently, 
 as silver annotations are available to them using the model proposed in @koller2019weakly.
 They conclude that this approach is on-par with previous approaches requiring glosses, 
@@ -585,7 +605,10 @@ and so they have broken the dependency upon costly annotated gloss information i
 
 @shi-etal-2022-open introduce OpenASL, a large-scale American Sign Language (ASL) - English dataset collected from online video sites (e.g., YouTube), and then propose a set of techniques including sign search as a pretext task for pre-training and fusion of mouthing and handshape features to improve translation quality in the absence of glosses and in the presence of visually challenging data.
 
-@zhang2023sltunet propose a multi-modal, multi-task learning approach to end-to-end sign language translation. The model features shared representations for different modalities such as text and video and is trained jointly on several tasks such as video-to-gloss, gloss-to-text and video-to-text. The approach allows to leverage external data such as parallel data for spoken language machine translation.
+@zhang2023sltunet propose a multi-modal, multi-task learning approach to end-to-end sign language translation. 
+The model features shared representations for different modalities such as text and video and is trained jointly 
+on several tasks such as video-to-gloss, gloss-to-text, and video-to-text. 
+The approach allows leveraging external data such as parallel data for spoken language machine translation.
 
 <!-- TODO: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
@@ -600,42 +623,42 @@ leading researchers to refrain from performing this task directly and instead re
 ---
 
 #### Pose-to-Text
-Pose-to-text---also known as sign language translation---is the task of translating a captured or estimated pose sequence to spoken language text.
+Pose-to-text, also known as sign language translation, is the task of translating a captured or estimated pose sequence to spoken language text.
 
-@dataset:ko2019neural demonstrate impressive performance on the pose-to-text task by inputting the pose sequence into a
+@dataset:ko2019neural demonstrated impressive performance on the pose-to-text task by inputting the pose sequence into a
 standard encoder-decoder translation network. 
-They experiment both with GRU and various types of attention [@luong2015effective;@bahdanau2014neural] and with a Transformer [@vaswani2017attention],
-and show similar performance, with the transformer underperforming on the validation set and overperforming on the test set, which consists of unseen signers.
-They experiment with various normalization schemes, mainly subtracting the mean and dividing by the standard deviation of every individual keypoint
+They experimented both with GRU and various types of attention [@luong2015effective;@bahdanau2014neural] and with a Transformer [@vaswani2017attention],
+and showed similar performance, with the transformer underperforming on the validation set and overperforming on the test set, which consists of unseen signers.
+They experimented with various normalization schemes, mainly subtracting the mean and dividing by the standard deviation of every individual keypoint
 either concerning the entire frame or the relevant "object" (Body, Face, and Hand).
 
 #### Text-to-Pose
-Text-to-Pose---also known as sign language production---is the task of producing a sequence of poses that adequately represent
+Text-to-Pose, also known as sign language production, is the task of producing a sequence of poses that adequately represent
 a spoken language text in sign language, as an intermediate representation to overcome challenges in animation.
 Most efforts use poses as an intermediate representation to overcome the challenges in generating videos directly, with the goal of using computer animation or pose-to-video models to perform video production.
 
-@saunders2020progressive propose Progressive Transformers, a model to translate from 
+@saunders2020progressive proposed Progressive Transformers, a model to translate from 
 discrete spoken language sentences to continuous 3D sign pose sequences in an autoregressive manner.
 Unlike symbolic transformers [@vaswani2017attention], which use a discrete vocabulary and thus can predict an end-of-sequence (`EOS`) token in every step, the progressive transformer predicts a 
 $counter ∈ [0,1]$ in addition to the pose.
 In inference time, $counter=1$ is considered the end of the sequence.
-They test their approach on the RWTH-PHOENIX-Weather-2014T dataset using OpenPose 2D pose estimation,
-uplifted to 3D [@pose:zelinka2020neural], and show favorable results when evaluating using back-translation 
+They tested their approach on the RWTH-PHOENIX-Weather-2014T dataset using OpenPose 2D pose estimation,
+uplifted to 3D [@pose:zelinka2020neural], and showed favorable results when evaluating using back-translation 
 from the generated poses to spoken language.
-They further show [@saunders2020adversarial] that using an adversarial discriminator between 
-the ground truth poses, and the generated poses, conditioned on the input spoken language text improves the production quality as measured using back-translation.
+They further showed [@saunders2020adversarial] that using an adversarial discriminator between 
+the ground truth poses and the generated poses, conditioned on the input spoken language text, improves the production quality as measured using back-translation.
 
 To overcome the issues of under-articulation seen in the above works, 
-@saunders2020everybody expands on the progressive transformer model using a 
+@saunders2020everybody expanded on the progressive transformer model using a 
 Mixture Density Network (MDN) [@bishop1994mixture] to model the variation found in sign language.
-While this model underperforms on the validation set, compared to previous work, it outperforms on the test set.
+While this model underperformed on the validation set, compared to previous work, it outperformed on the test set.
 
-@pose:zelinka2020neural present a similar autoregressive decoder approach, with added dynamic-time-warping (DTW) and soft attention.
-They test their approach on Czech Sign Language weather data extracted from the news, which is not manually annotated,
-or aligned to the spoken language captions, and show their DTW is advantageous for this kind of task.
+@pose:zelinka2020neural presented a similar autoregressive decoder approach, with added dynamic-time-warping (DTW) and soft attention.
+They tested their approach on Czech Sign Language weather data extracted from the news, which is not manually annotated,
+or aligned to the spoken language captions, and showed their DTW is advantageous for this kind of task.
 
-@xiao2020skeleton close the loop by proposing a text-to-pose-to-text model for the case of isolated sign language recognition.
-They first train a classifier to take a sequence of poses encoded by a BiLSTM and classify the relevant sign, then, propose a production system to take a single sign and sample a constant length sequence of 50 poses from a Gaussian Mixture Model.
+@xiao2020skeleton closed the loop by proposing a text-to-pose-to-text model for the case of isolated sign language recognition.
+They first trained a classifier to take a sequence of poses encoded by a BiLSTM and classify the relevant sign, then proposed a production system to take a single sign and sample a constant length sequence of 50 poses from a Gaussian Mixture Model.
 These components are combined such that given a sign class $y$, a pose sequence is generated, then classified back into a sign class $ŷ$,
 and the loss is applied between $y$ and $ŷ$, and not directly on the generated pose sequence.
 They evaluate their approach on the CSL dataset [@dataset:huang2018video] and show that their generated pose sequences 
@@ -696,54 +719,54 @@ TODO
 ```
 
 
-### Fingerspelling 
+### Fingerspelling
 
 Fingerspelling is spelling a word letter-by-letter, borrowing from the spoken language alphabet [@battison1978lexical;@wilcox1992phonetics;@brentari2001language;@patrie2011fingerspelled].
 This phenomenon, found in most signed languages, often occurs when there is no previously agreed-upon sign for a concept,
 like in technical language, colloquial conversations involving names, conversations involving current events,
 emphatic forms, and the context of code-switching between the sign language and corresponding spoken language [@padden1998asl;@montemurro2018emphatic].
-The relative amount of fingerspelling varies between signed languages, and for American Sign Language (ASL), it accounts for 12–35% of the signed content [@padden2003alphabet].
+The relative amount of fingerspelling varies between signed languages, and for American Sign Language (ASL), it accounts for 12-35% of the signed content [@padden2003alphabet].
 
-@patrie2011fingerspelled describe the following terminology to describe three different forms of fingerspelling:
+@patrie2011fingerspelled described the following terminology to describe three different forms of fingerspelling:
 
-- **Careful**---slower spelling where each letter pose is clearly formed.
-- **Rapid**---quick spelling where letters are often not completed and contain remnants of other letters in the word.
-- **Lexicalized**---a sign produced by often using no more than two letter-hand-shapes [@battison1978lexical].<br>
+- **Careful**—slower spelling where each letter pose is clearly formed.
+- **Rapid**—quick spelling where letters are often not completed and contain remnants of other letters in the word.
+- **Lexicalized**—a sign produced by often using no more than two letter-hand-shapes [@battison1978lexical].<br>
 For example, lexicalized `ALL` uses `A` and `L`, lexicalized `BUZZ` uses `B` and `Z`, etc...
 
 #### Recognition
-Fingerspelling recognition--a sub-task of sign language recognition--is the task of recognizing fingerspelled words from a sign language video.
+Fingerspelling recognition, a sub-task of sign language recognition, is the task of recognizing fingerspelled words from a sign language video.
 
 @dataset:fs18slt introduced a large dataset available for American Sign Language fingerspelling recognition.
 This dataset includes both the "careful" and "rapid" forms of fingerspelling collected from naturally occurring videos "in the wild", which are more challenging than studio conditions.
-They train a baseline model to take a sequence of images cropped around the signing hand and either use an autoregressive decoder or a CTC.
-They found that the CTC outperforms the autoregressive decoder model, but both achieve poor recognition rates (35-41% character level accuracy) compared to human performance (around 82%).
+They trained a baseline model to take a sequence of images cropped around the signing hand and either use an autoregressive decoder or a CTC.
+They found that the CTC outperformed the autoregressive decoder model, but both achieved poor recognition rates (35-41% character level accuracy) compared to human performance (around 82%).
 
 In follow-up work, @dataset:fs18iccv collected nearly an order-of-magnitude larger dataset and designed a new recognition model.
-Instead of detecting the signing hand, they detect the face and crop a large area around it. 
-Then, they perform an iterative process of zooming in to the hand using visual attention to retain sufficient information in high resolution of the hand.
-Finally, like their previous work, they encode the image hand crops sequence and use a CTC to obtain the frame labels.
-They show that this method outperforms their original "hand crop" method by 4% and that they can achieve up to 62.3% character-level accuracy using the additional data collected.
-Looking through this dataset, we note that the videos in the dataset are taken from longer videos, and as they are cut, they do not retain the signing before the fingerspelling.
+Instead of detecting the signing hand, they detected the face and cropped a large area around it. 
+Then, they performed an iterative process of zooming in to the hand using visual attention to retain sufficient information in high resolution of the hand.
+Finally, like their previous work, they encoded the image hand crops sequence and used a CTC to obtain the frame labels.
+They showed that this method outperformed their original "hand crop" method by 4% and that they could achieve up to 62.3% character-level accuracy using the additional data collected.
+Looking through this dataset, we note that the videos in the dataset were taken from longer videos, and as they were cut, they did not retain the signing before the fingerspelling.
 This context relates to language modeling, where at first, one fingerspells a word carefully, and when repeating it, might fingerspell it rapidly, 
 but the interlocutors can infer they are fingerspelling the same word.
 
 #### Production
 
-Fingerspelling production--a sub-task of sign language production--is the task of producing a fingerspelling video for words.
+Fingerspelling production, a sub-task of sign language production, is the task of producing a fingerspelling video for words.
 
-In its basic form, "Careful" fingerspelling production can be trivially solved using pre-defined letter handshapes interpolation.
-@adeline2013fingerspell demonstrates this approach for American Sign Language and English fingerspelling.
-They rig a hand armature for each letter in the English alphabet ($N=26$) and generate all ($N^2=676$) transitions between every two letters using interpolation or manual animation.
+In its basic form, "careful" fingerspelling production can be trivially solved using pre-defined letter handshapes interpolation.
+@adeline2013fingerspell demonstrated this approach for American Sign Language and English fingerspelling.
+They rigged a hand armature for each letter in the English alphabet ($N=26$) and generated all ($N^2=676$) transitions between every two letters using interpolation or manual animation.
 Then, to fingerspell entire words, they chain pairs of letter transitions.
 For example, for the word "CHLOE", they would chain the following transitions sequentially: `#C` `CH` `HL` `LO` `OE` `E#`.
 
-However, to produce life-like animations, one must also consider the rhythm and speed of holding letters, and transitioning between letters, 
+However, to produce life-like animations, one must also consider the rhythm and speed of holding letters, and transitioning between letters,
 as those can affect how intelligible fingerspelling motions are to an interlocutor (@wilcox1992phonetics).
-@wheatland2016analysis analyzes both "careful" and "rapid" fingerspelling videos for these features. 
-They find that for both forms of fingerspelling, on average, the longer the word, the shorter the transition and hold time.
-Furthermore, they find that less time is spent on middle letters on average, and the last letter is held on average for longer than the other letters in the word.
-Finally, they use this information to construct an animation system using letter pose interpolation and control the timing using a data-driven statistical model.
+@wheatland2016analysis analyzed both "careful" and "rapid" fingerspelling videos for these features.
+They found that for both forms of fingerspelling, on average, the longer the word, the shorter the transition and hold time.
+Furthermore, they found that less time is spent on middle letters on average, and the last letter is held on average for longer than the other letters in the word.
+Finally, they used this information to construct an animation system using letter pose interpolation and controlled the timing using a data-driven statistical model.
 
 ## Annotation Tools
 
@@ -799,8 +822,6 @@ These datasets are usually synthesized [@dataset:databases2007volumes;@dataset:C
 Unlike the vast amount and diversity of available spoken language resources that allow various applications,
 signed language resources are scarce and, currently only support translation and production.
 Unfortunately, most of the signed language corpora discussed in the literature are either not available for use or available under heavy restrictions and licensing terms. Furthermore, signed language data is especially challenging to anonymize due to the importance of facial and other physical features in signing videos, limiting its open distribution. Developing anonymization with minimal information loss or accurate anonymous representations is a promising research direction.
-
-
 
 
 ### Collect Real-World Data

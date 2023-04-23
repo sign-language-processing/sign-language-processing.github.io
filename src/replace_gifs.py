@@ -53,7 +53,8 @@ include_graphics_cmds = include_graphics_pattern.findall(input_str)
 for cmd in include_graphics_cmds:
     base_dir = os.path.dirname(args.input_file)
     gif_path = os.path.join(os.path.dirname(args.input_file), cmd[1])
-    png_path = gif_path.replace('.gif', '.png')
+    file_ext = gif_path.split('.')[-1]
+    png_path = gif_path.replace('.' + file_ext, '.png')
 
     if not os.path.exists(png_path):
         num_frames = int(os.popen(f"identify -format \"%n \" {gif_path}").read().split(" ")[0])
