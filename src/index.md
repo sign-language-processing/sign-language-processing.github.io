@@ -417,6 +417,38 @@ Using a conditional variational autoencoder framework, they first extracted pose
 then generated a photo-realistic sign language video of a novel appearance from the pose sequence. 
 The authors proposed a novel style loss that ensures style consistency in the anonymized sign language videos. 
 
+##### Image and Video Generation Models
+
+Most recently in the field of image and video generation, 
+there have been notable advances in methods such as 
+Style-Based Generator Architecture for Generative Adversarial Networks [@text-to-image:Karras2018ASG], 
+Variational Diffusion Models [@text-to-image:Kingma2021VariationalDM], 
+High-Resolution Image Synthesis with Latent Diffusion Models [@Rombach2021HighResolutionIS], 
+High Definition Video Generation with Diffusion Models [@text-to-video:Ho2022ImagenVH], and 
+High-Resolution Video Synthesis with Latent Diffusion Models [@text-to-video:blattmann2023videoldm]. 
+These methods have significantly improved image and video synthesis quality, 
+providing stunningly realistic and visually appealing results. 
+However, despite their remarkable progress in generating high-quality images and videos, 
+these models come with a trade-off in terms of computational efficiency. 
+The complexity of these algorithms often results in slower inference times, making real-time applications challenging.
+
+
+ControlNet [@pose-to-video:zhang2023adding] recently presented a neural network structure for controlling 
+pretrained large diffusion models with additional input conditions. 
+This approach enables end-to-end learning of task-specific conditions, even with a small training dataset. 
+Training a ControlNet is as fast as fine-tuning a diffusion model and 
+can be executed on personal devices or scaled to large amounts of data using powerful computation clusters. 
+ControlNet has been demonstrated to augment large diffusion models like Stable Diffusion with conditional inputs such as edge maps, segmentation maps, and keypoints.
+One of the applications of ControlNet is pose-to-image translation control, 
+which allows the generation of images based on pose information. 
+Although this method has shown promising results, it still requires retraining the model and does not inherently support temporal coherency, which is important for tasks like sign language translation.
+
+In the near future, we can expect many works on controlling video diffusion models directly from text for sign language translation. 
+These models will likely generate visually appealing and realistic videos. However, they may still make 
+mistakes and be limited to scenarios with more training data available. 
+Developing models that can accurately generate sign language videos from text or pose information while maintaining 
+visual quality and temporal coherency will be essential for advancing the field of sign language production.
+
 ---
 
 #### Pose-to-Gloss
@@ -447,15 +479,15 @@ Interestingly, @tavella-etal-2022-wlasl construct a similar dataset aiming just 
 Gloss-to-Pose, subsumed under the task of sign language production, is the task of producing a sequence of poses that adequately represent
 a sequence of signs written as gloss.
 
-To produce a sign language video, @stoll2018sign construct a lookup table between glosses and sequences of 2D poses.
-They align all pose sequences at the neck joint of a reference skeleton and group all sequences belonging to the same gloss.
-Then, for each group, they apply dynamic time warping and average out all sequences in the group to construct the mean pose sequence.
+To produce a sign language video, @stoll2018sign constructed a lookup table between glosses and sequences of 2D poses.
+They aligned all pose sequences at the neck joint of a reference skeleton and grouped all sequences belonging to the same gloss.
+Then, for each group, they applied dynamic time warping and averaged out all sequences in the group to construct the mean pose sequence.
 This approach suffers from not having an accurate set of poses aligned to the gloss and from unnatural motion transitions between glosses.
 
-To alleviate the downsides of the previous work, @stoll2020text2sign construct a lookup table of gloss to a group of sequences of poses rather than creating a mean pose sequence.
-They build a Motion Graph [@min2012motion], which is a Markov process used to generate new motion sequences that are representative of natural motion,
-and select the motion primitives (sequence of poses) per gloss with the highest transition probability.
-To smooth that sequence and reduce unnatural motion, they use a Savitzky–Golay motion transition smoothing filter [@savitzky1964smoothing].
+To alleviate the downsides of the previous work, @stoll2020text2sign constructed a lookup table of gloss to a group of sequences of poses rather than creating a mean pose sequence.
+They built a Motion Graph [@min2012motion], which is a Markov process used to generate new motion sequences that are representative of natural motion,
+and selected the motion primitives (sequence of poses) per gloss with the highest transition probability.
+To smooth that sequence and reduce unnatural motion, they used a Savitzky–Golay motion transition smoothing filter [@savitzky1964smoothing].
 
 ---
 
@@ -574,10 +606,10 @@ Text-to-gloss, an instantiation of sign language translation, is the task of tra
 @zhao2000machine used a Tree Adjoining Grammar (TAG)-based system to translate English sentences to American Sign Language (ASL) gloss sequences.
 They parsed the English text and simultaneously assembled an ASL gloss tree, using Synchronous TAGs [@shieber1990synchronous;@shieber1994restricting], 
 by associating the ASL elementary trees with the English elementary trees and associating the nodes at which subsequent substitutions or adjunctions can occur.
-Synchronous TAGs have been used for machine translation between spoken languages [@abeille1991using], but this is the first application to a signed language.
+Synchronous TAGs have been used for machine translation between spoken languages [@abeille1991using], but this was the first application to a signed language.
 
 For the automatic translation of gloss-to-text, @dataset:othman2012english identified the need for a large parallel sign language gloss and spoken language text corpus.
-They develop a part-of-speech-based grammar to transform English sentences from the Gutenberg Project ebooks collection [@lebert2008project] into American Sign Language gloss.
+They developed a part-of-speech-based grammar to transform English sentences from the Gutenberg Project ebooks collection [@lebert2008project] into American Sign Language gloss.
 Their final corpus contains over 100 million synthetic sentences and 800 million words and is the most extensive English-ASL gloss corpus we know of.
 Unfortunately, it is hard to attest to the quality of the corpus, as the authors did not evaluate their method on real English-ASL gloss pairs, and only a small sample of this corpus is available online.
 
