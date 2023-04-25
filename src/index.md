@@ -356,7 +356,7 @@ Then, for each pixel, knowing the body part, they predict where that pixel is on
 This approach results in the reconstruction of the full-body mesh and allows sampling to find specific keypoints similar to OpenPose.
 
 However, 2D human poses might not be sufficient to fully understand the position and orientation of landmarks in space,
-and applying pose estimation per frame does not take the video temporal movement information into account, 
+and applying pose estimation per frame disregards video temporal movement information into account, 
 especially in cases of rapid movement, which contain motion blur.
 
 @pose:pavllo20193d developed two methods to convert between 2D poses to 3D poses. 
@@ -371,7 +371,7 @@ Demonstrating their approach to hand pose estimation, they manually explicitly e
 Then, non-linear least-squares minimization fits a 3D model of the hand to the estimated 2D joint positions, recovering the 3D hand pose.
 This process is similar to the back-projection used by @pose:pavllo20193d, except here, no temporal information is being used.
 
-MediaPipe Holistic [@mediapipe2020holistic] attempts to solve the 3D pose estimation problem directly by taking a similar approach to OpenPose,
+MediaPipe Holistic [@mediapipe2020holistic] attempts to solve 3D pose estimation by taking a similar approach to OpenPose,
 having a pipeline system to estimate the body, then the face and hands. Unlike OpenPose, the estimated poses are in 3D,
 and the pose estimator runs in real-time on CPU, allowing for pose-based sign language models on low-powered mobile devices.
 This pose estimation tool is widely available and built for Android, iOS, C++, Python, and the Web using JavaScript.
@@ -385,8 +385,8 @@ This task is the final "rendering" of sign language in a visual modality.
 @pose:chan2019everybody demonstrated a semi-supervised approach where they took a set of videos, 
 ran pose estimation with OpenPose [@pose:cao2018openpose], and learned an image-to-image translation [@isola2017image]
 between the rendered skeleton and the original video.
-They demonstrated their approach on human dancing, where they could extract poses from a choreography
-and render any person as if *they* were dancing.
+They demonstrated their approach on human dancing, extracting poses from a choreography
+and rendering any person as if *they* were dancing.
 They predicted two consecutive frames for temporally coherent video results and 
 introduced a separate pipeline for a more realistic face synthesis, although still flawed.
 
@@ -400,7 +400,7 @@ and investigated if people could understand sign language from automatically gen
 They conducted a study in which participants watched three types of videos: the original signing videos, 
 videos showing only poses (skeletons), and reconstructed videos with realistic signing. 
 The researchers evaluated the participants' understanding after watching each type of video.
-The results of the study revealed that participants preferred the reconstructed videos over the skeleton videos. 
+Results revealed a preference for reconstructed videos over skeleton videos.
 However, the standard video synthesis methods used in the study were not effective enough for clear sign language translation. 
 Participants had trouble understanding the reconstructed videos, 
 suggesting that improvements are needed for better sign language translation in the future.
@@ -417,23 +417,52 @@ Using a conditional variational autoencoder framework, they first extracted pose
 then generated a photo-realistic sign language video of a novel appearance from the pose sequence. 
 The authors proposed a novel style loss that ensures style consistency in the anonymized sign language videos. 
 
+##### Sign Language Avatars
+
+TODO: Anna from the JASigning project
+
+TODO: simax
+
+PAULA [@paula:davidson2006paula] is a computer-based sign language avatar, initially developed for teaching sign language to hearing adults. 
+The avatar is a 3D model of a person with a sign vocabulary that is manually animated. 
+It takes an ASL utterance as a stream of glosses, performs syntactic and morphological modifications, 
+decides on the appropriate phonemes and timings, and combines the results into a 3D animation of the avatar. 
+Over the years, several techniques were used to make the avatar look more realistic. 
+
+Over the years, several advancements have been made to enhance the realism and expressiveness of the PAULA avatar, 
+such as refining the eyebrow motion to appear more natural [@paula:wolfe2011linguistics], 
+combining emotion and co-occurring facial nonmanual signals [@paula:schnepp2012combining;@paula:schnepp2013generating], 
+improving smoothness while avoiding robotic movements [@paula:mcdonald2016automated], 
+and facilitating simultaneity [@paula:mcdonald2017improved]. 
+Other developments include interfacing with sign language notation systems like AZee [@paula:filhol2017synthesizing], 
+enhancing mouthing animation [@paula:johnson2018improved;@paula:wolfe2022supporting], 
+multi-layering facial textures and makeup [@paula:wolfecase], 
+and applying adverbial modifiers [@paula:moncrief2020extending;@paula:moncrief2021generalizing]. 
+
+Additional improvements to PAULA focus on making the avatar more lifelike by relaxing wrist orientations and other extreme "mathematical" angles [@paula:filhol2020synthesis], 
+refining hand shape transition, relaxation, and collision [@paula:baowidan2021improving], 
+implementing hierarchical phrase transitions [@paula:mcdonald2021natural], 
+creating more realistic facial muscle control [@paula:mcdonald2022novel], 
+and supporting geometric relocations [@paula:filhol2022representation].
+
+
+
 ##### Image and Video Generation Models
 
 Most recently in the field of image and video generation, 
 there have been notable advances in methods such as 
-Style-Based Generator Architecture for Generative Adversarial Networks [@text-to-image:Karras2018ASG], 
+Style-Based Generator Architecture for Generative Adversarial Networks [@style-to-image:Karras2018ASG,@style-to-image:Karras2019stylegan2,@style-to-image:Karras2021], 
 Variational Diffusion Models [@text-to-image:Kingma2021VariationalDM], 
-High-Resolution Image Synthesis with Latent Diffusion Models [@Rombach2021HighResolutionIS], 
+High-Resolution Image Synthesis with Latent Diffusion Models [@text-to-image:Rombach2021HighResolutionIS], 
 High Definition Video Generation with Diffusion Models [@text-to-video:Ho2022ImagenVH], and 
 High-Resolution Video Synthesis with Latent Diffusion Models [@text-to-video:blattmann2023videoldm]. 
 These methods have significantly improved image and video synthesis quality, 
 providing stunningly realistic and visually appealing results. 
 However, despite their remarkable progress in generating high-quality images and videos, 
-these models come with a trade-off in terms of computational efficiency. 
+these models trade-off computational efficiency.
 The complexity of these algorithms often results in slower inference times, making real-time applications challenging.
 
-
-ControlNet [@pose-to-video:zhang2023adding] recently presented a neural network structure for controlling 
+ControlNet [@pose-to-image:zhang2023adding] recently presented a neural network structure for controlling 
 pretrained large diffusion models with additional input conditions. 
 This approach enables end-to-end learning of task-specific conditions, even with a small training dataset. 
 Training a ControlNet is as fast as fine-tuning a diffusion model and 
@@ -492,7 +521,7 @@ To smooth that sequence and reduce unnatural motion, they used a Savitzky–Gola
 ---
 
 #### Video-to-Gloss
-Video-to-Gloss---also known as sign language recognition---is the task of recognizing a sequence of signs from a video.
+Video-to-Gloss, also known as sign language recognition, is the task of recognizing a sequence of signs from a video.
 
 For this recognition, @cui2017recurrent constructs a three-step optimization model.
 First, they train a video-to-gloss end-to-end model, where they encode the video using a spatio-temporal CNN encoder
@@ -561,7 +590,7 @@ employed for iterative optimization.
 
 
 #### Gloss-to-Video
-Gloss-to-Video---also known as sign language production---is the task of producing a video that adequately represents
+Gloss-to-Video, also known as sign language production, is the task of producing a video that adequately represents
 a sequence of signs written as gloss.
 
 As of 2020, no research discusses the direct translation task between gloss and video.
@@ -571,7 +600,7 @@ leading researchers to refrain from performing this task directly and instead re
 ---
 
 #### Gloss-to-Text
-Gloss-to-Text---also known as sign language translation---is the natural language processing task of translating
+Gloss-to-Text, also known as sign language translation, is the natural language processing task of translating
 between gloss text representing sign language signs and spoken language text. 
 These texts commonly differ in terminology, capitalization, and sentence structure.
 
@@ -615,7 +644,7 @@ Unfortunately, it is hard to attest to the quality of the corpus, as the authors
 
 ---
 
-#### Video-to-Text {-}
+#### Video-to-Text
 Video-to-text, also known as sign language translation, is the task of translating a raw video to spoken language text.
 
 @camgoz2020sign proposed a single architecture to perform this task that can use both the sign language gloss and 
@@ -645,7 +674,7 @@ The approach allows leveraging external data such as parallel data for spoken la
 <!-- TODO: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
 #### Text-to-Video
-Text-to-Video---also known as sign language production---is the task of producing a video that adequately represents
+Text-to-Video, also known as sign language production, is the task of producing a video that adequately represents
 a spoken language text in sign language.
 
 As of 2020, no research discusses the direct translation task between text and video.
