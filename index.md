@@ -522,6 +522,13 @@ They built a Motion Graph [@min2012motion], which is a Markov process used to ge
 and selected the motion primitives (sequence of poses) per gloss with the highest transition probability.
 To smooth that sequence and reduce unnatural motion, they used a Savitzky–Golay motion transition smoothing filter [@savitzky1964smoothing].
 
+@huang2021towards used a new non-autoregressive model to generate a sequence of poses for a sequence of glosses. 
+They argued that existing models like @saunders2020adversarial are prone to error accumulation and high inference latency due to their autoregressive nature. 
+Their model performs gradual upsampling of the poses, by starting with a pose including only two joints in the first layer, and gradually introducing more keypoints.
+They evaluated their model on the Phoenix-14T dataset [@dataset:camgnt2020phoenix] using 
+Dynamic Time Warping (DTW) [@Berndt1994UsingDT] to align the poses before computing Mean Joint Error (DTW-MJE).
+They demonstrated that their model outperforms existing methods in terms of accuracy and speed, making it a promising approach for fast and high-quality sign language production.
+
 ---
 
 #### Video-to-Gloss
@@ -750,12 +757,21 @@ They borrow BLEU from spoken language translation to evaluate the predicted grap
 
 ---
 
+#### Notation-to-Pose
+@shalev2022ham2pose proposed Ham2Pose, a model to animate HamNoSys into a sequence of poses.
+They first encode the HamNoSys into a meaningful "context" representation using a transform encoder, 
+and use it to predict the length of the pose sequence to be generated.
+Then, starting from a still frame they used an iterative non-autoregressive decoder to gradually refine the sign over $T$ steps,
+In each time step $t$ from $T$ to $1$, the model predicts the required change from step $t$ to step $t-1$. After $T$ steps, the pose generator outputs the final pose sequence.
+Their model outperformed previous methods like @saunders2020progressive, animating HamNoSys into more realistic sign language sequences. 
+
+
+
 ```{=ignore}
 #### Pose-to-Notation
 <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span>
 
-#### Notation-to-Pose
-<span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span>: Ham2Pose
+
 
 ---
 
