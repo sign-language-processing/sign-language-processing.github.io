@@ -92,7 +92,7 @@ In the past, the failure to recognize signed languages as fully-fledged natural 
 and in an increasingly digitized world, NLP research should strive to enable a world in which all people,
 including the Deaf, have access to languages that fit their lived experience.
 
-[^deaf]: When capitalized, "Deaf" refers to a community of deaf people who share a language and a culture, whereas the lowercase "deaf" refers to the audiological condition of not hearing. We follow the more recent convention of abandoning a distinction between ``Deaf'' and ``deaf'', using the latter term also to refer to (deaf) members of the sign language community [@napier-leeson-2016;@kusters-et-al-2017].}
+[^deaf]: When capitalized, "Deaf" refers to a community of deaf people who share a language and a culture, whereas the lowercase "deaf" refers to the audiological condition of not hearing. We follow the more recent convention of abandoning a distinction between "Deaf" and "deaf", using the latter term also to refer to (deaf) members of the sign language community [@napier-leeson-2016;@kusters-et-al-2017].}
 
 ## Sign Language Linguistics Overview
 
@@ -423,11 +423,28 @@ The authors proposed a novel style loss that ensures style consistency in the an
 
 ##### Sign Language Avatars
 
-<span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span>: Anna from the JASigning project
+###### JASigning {-}
+ is a virtual signing system that generates sign language performances using virtual human characters. 
+This system evolved from the earlier SiGMLSigning system, which was developed during the ViSiCAST [@bangham2000virtual;@elliott2000development] and eSIGN [@zwitserlood2004synthetic] projects, 
+and later underwent further development as part of the Dicta-Sign project [@dataset:matthes2012dicta;@dataset:efthimiou2012sign].
 
-<span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span>: simax
+Originally, JASigning relied on Java JNLP apps for standalone use and integration into web pages. 
+However, this approach became outdated due to the lack of support for Java in modern browsers. 
+Consequently, the more recent CWA Signing Avatars (CWASA) system was developed, which is based on HTML5, 
+utilizing JavaScript and WebGL technologies.
 
-PAULA [@paula:davidson2006paula] is a computer-based sign language avatar, initially developed for teaching sign language to hearing adults. 
+SiGML (Signing Gesture Markup Language) [@elliott2004overview] is an XML application that enables the transcription of sign language gestures. 
+SiGML builds on HamNoSys, and indeed, one variant of SiGML is essentially an encoding of HamNoSys manual features, 
+accompanied by a representation of non-manual aspects. 
+SiGML is the input notation used by the JASigning applications and web applets. 
+A number of editing tools for SiGML are available, mostly produced by the University of Hamburg.
+
+The system parses the English text into SiGML before mapping it onto a 3D signing avatar that can produce signing.
+CWASA then uses a large database of pre-defined 3D signing avatar animations, which can be combined to form new sentences. 
+The system includes a 3D editor, allowing users to create custom signing avatars and animations.
+
+###### PAULA [@paula:davidson2006paula] {-}
+is a computer-based sign language avatar, initially developed for teaching sign language to hearing adults. 
 The avatar is a 3D model of a person with a sign vocabulary that is manually animated. 
 It takes an ASL utterance as a stream of glosses, performs syntactic and morphological modifications, 
 decides on the appropriate phonemes and timings, and combines the results into a 3D animation of the avatar. 
@@ -449,6 +466,15 @@ implementing hierarchical phrase transitions [@paula:mcdonald2021natural],
 creating more realistic facial muscle control [@paula:mcdonald2022novel], 
 and supporting geometric relocations [@paula:filhol2022representation].
 
+###### SiMAX [@SiMAX_2020] {-}
+is a software application developed to transform textual input into 3D animated sign language representations.
+Utilizing a comprehensive database and the expertise of deaf sign language professionals, SiMAX ensures accurate translations of both written and spoken content.
+The process begins with the generation of a translation suggestion, which is subsequently reviewed and, if necessary, 
+modified by deaf translators to ensure accuracy and cultural appropriateness.
+These translations are carried out by a customizable digital avatar that can be adapted to reflect the corporate identity or target audience of the user.
+This approach offers a cost-effective alternative to traditional sign language video production, as it eliminates 
+the need for expensive film studios and complex video technology typically associated with such productions.
+
 
 
 ##### Image and Video Generation Models
@@ -461,10 +487,16 @@ High-Resolution Image Synthesis with Latent Diffusion Models [@text-to-image:Rom
 High Definition Video Generation with Diffusion Models [@text-to-video:Ho2022ImagenVH], and 
 High-Resolution Video Synthesis with Latent Diffusion Models [@text-to-video:blattmann2023videoldm]. 
 These methods have significantly improved image and video synthesis quality, 
-providing stunningly realistic and visually appealing results. 
+providing stunningly realistic and visually appealing results.
+
 However, despite their remarkable progress in generating high-quality images and videos, 
 these models trade-off computational efficiency.
-The complexity of these algorithms often results in slower inference times, making real-time applications challenging.
+The complexity of these algorithms often results in slower inference times, 
+making real-time applications challenging.
+On-device deployment of these models provides benefits such as lower server costs, offline functionality, and improved user privacy.
+While compute-aware optimizations, specifically targeting hardware capabilities of different devices, could
+improve the inference latency of these models, @Chen2023SpeedIA found that optimizing such models on top-of-the-line mobile devices
+such as the Samsung S23 Ultra or iPhone 14 Pro Max can decrease per-frame inference latency from around 23 seconds to around 12.
 
 ControlNet [@pose-to-image:zhang2023adding] recently presented a neural network structure for controlling 
 pretrained large diffusion models with additional input conditions. 
@@ -475,6 +507,8 @@ ControlNet has been demonstrated to augment large diffusion models like Stable D
 One of the applications of ControlNet is pose-to-image translation control, 
 which allows the generation of images based on pose information. 
 Although this method has shown promising results, it still requires retraining the model and does not inherently support temporal coherency, which is important for tasks like sign language translation.
+
+
 
 In the near future, we can expect many works on controlling video diffusion models directly from text for sign language translation. 
 These models will likely generate visually appealing and realistic videos. However, they may still make 
@@ -936,7 +970,7 @@ Researchers in SLP must honor that signed languages belong to the Deaf community
 ###### Solving Real Needs {-}
 
 Many efforts in SLP have developed intrusive methods (e.g., requiring signers to wear special gloves), which are often rejected by signing communities and therefore have limited real-world value.
-Such efforts are often marketed to perform ``sign language translation" when they, in fact, only identify fingerspelling or recognize a minimal set of isolated signs at best. These approaches oversimplify the rich grammar of signed languages, promote the misconception that signs are solely expressed through the hands, and are considered by the Deaf community as a manifestation of audism, where it is the signers who must make the extra effort to wear additional sensors to be understood by non-signers [@erard2017sign]. To avoid such mistakes, we encourage close Deaf involvement throughout the research process to ensure that we direct our efforts toward applications that will be adopted by signers and do not make false assumptions about signed languages or the needs of signing communities.
+Such efforts are often marketed to perform "sign language translation" when they, in fact, only identify fingerspelling or recognize a minimal set of isolated signs at best. These approaches oversimplify the rich grammar of signed languages, promote the misconception that signs are solely expressed through the hands, and are considered by the Deaf community as a manifestation of audism, where it is the signers who must make the extra effort to wear additional sensors to be understood by non-signers [@erard2017sign]. To avoid such mistakes, we encourage close Deaf involvement throughout the research process to ensure that we direct our efforts toward applications that will be adopted by signers and do not make false assumptions about signed languages or the needs of signing communities.
 
 ###### Building Collaboration {-}
 Deaf collaborations and leadership are essential for developing signed language technologies to ensure they address the community's needs and will be adopted, not relying on misconceptions or inaccuracies about signed language [@harris2009research;@kusters2017innovations].
@@ -1012,6 +1046,9 @@ The following table contains a curated list of datasets, including various signe
 - Danish Sign  Language: Jette H. Kristoffersen, Thomas Troelsgård (jehk@ucc.dk, ttro@ucc.dk)
 - GSL - https://arxiv.org/pdf/2007.12530.pdf
 - Phoenix SD / SI - J. Forster, C. Schmidt, O. Koller, M. Bellgardt, and H. Ney, "Extensions of the sign language recognition and translation corpus rwth-phoenixweather." in LREC, 2014, pp. 1911–1916.
+- Noema+ GSL dictionary (Efthimiou et al., 2016), 
+- BSL signbank (Jordan et al., 2014), 
+- NGT global signbank (Crasborn et al., 2020)
 
 
 GSLC - https://www.academia.edu/1990408/GSLC_creation_and_annotation_of_a_Greek_sign_language_corpus_for_HCI
@@ -1054,7 +1091,7 @@ Emailed Eleni and Evita; I need to make sure data is available.
 | [LSE-SIGN](https://link.springer.com/content/pdf/10.3758/s13428-014-0560-1.pdf) | @dataset:gutierrez2016lse | Spanish | <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> | 2,400 | 2,400 Samples | 2 |  |
 | [MS-ASL](https://www.microsoft.com/en-us/download/details.aspx?id=100121) | @dataset:joze2018ms | American | <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> | 1,000 | 25,000 (25 hours) | 200 | Public |
 | [NCSLGR](https://www.bu.edu/asllrp/ncslgr.html) [💾](https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/ncslgr) | @dataset:databases2007volumes | American | <span title="video">🎥</span><span title="gloss:ASL">📋</span><span title="text:English">📜</span> |  | 1,875 sentences | 4 | <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> |
-| [Public DGS Corpus](https://www.sign-lang.uni-hamburg.de/dgs-korpus/index.php/welcome.html) [💾](https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/dgs_corpus) | @dataset:hanke-etal-2020-extending | German | <span title="video:Front">🎥</span><span title="video:Side">🎥</span><span title="pose:OpenPose">👋</span><span title="mouthing">👄</span><span title="writing:HamNoSys">✍</span><span title="gloss:DGS">📋</span><span title="text:German">📜</span><span title="text:English">📜</span> |  | 50 Hours | 330 | [Custom](https://www.sign-lang.uni-hamburg.de/meinedgs/ling/license_en.html) |
+| [Public DGS Corpus](https://www.sign-lang.uni-hamburg.de/dgs-korpus/index.php/welcome.html) [💾](https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/dgs_corpus) | @dataset:prillwitz2008dgs | German | <span title="video:Front">🎥</span><span title="video:Side">🎥</span><span title="pose:OpenPose">👋</span><span title="mouthing">👄</span><span title="writing:HamNoSys">✍</span><span title="gloss:DGS">📋</span><span title="text:German">📜</span><span title="text:English">📜</span> |  | 50 Hours | 330 | [Custom](https://www.sign-lang.uni-hamburg.de/meinedgs/ling/license_en.html) |
 | [RVL-SLLL ASL](https://engineering.purdue.edu/RVL/Database/ASL/asl-database-front.htm) | @dataset:martinez2002purdue | American | <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> | 104 | 2,576 Videos | 14 | [Research Attribution](https://engineering.purdue.edu/RVL/Database/ASL/Agreement.pdf) |
 | [RWTH Fingerspelling](https://www-i6.informatik.rwth-aachen.de/aslr/fingerspelling.php) | @dataset:dreuw2006modeling | German | <span title="video">🎥</span><span title="text:German">📜</span> | 35 | 1,400 single-char videos | 20 |  |
 | [RWTH-BOSTON-104](https://www-i6.informatik.rwth-aachen.de/aslr/database-rwth-boston-104.php) | @dataset:dreuw2008benchmark | American | <span title="video">🎥</span><span title="text:English">📜</span> | 104 | 201 Sentences | 3 |  |
