@@ -951,7 +951,6 @@
 	year         = 2020,
 	journal      = {arXiv preprint arXiv:2007.12530},
 }
-% TODO: update this once the EACL citation is out.
 @article{jiang2021sign,
 	title        = {Sign language recognition via skeleton-aware multi-model ensemble},
 	author       = {Jiang, Songyao and Sun, Bin and Wang, Lichen and Bai, Yue and Li, Kunpeng and Fu, Yun},
@@ -980,12 +979,19 @@
     pages = "2114--2133",
     abstract = "AI technologies for Natural Languages have made tremendous progress recently. However, commensurate progress has not been made on Sign Languages, in particular, in recognizing signs as individual words or as complete sentences. We introduce OpenHands, a library where we take four key ideas from the NLP community for low-resource languages and apply them to sign languages for word-level recognition. First, we propose using pose extracted through pretrained models as the standard modality of data in this work to reduce training time and enable efficient inference, and we release standardized pose datasets for different existing sign language datasets. Second, we train and release checkpoints of 4 pose-based isolated sign language recognition models across 6 languages (American, Argentinian, Chinese, Greek, Indian, and Turkish), providing baselines and ready checkpoints for deployment. Third, to address the lack of labelled data, we propose self-supervised pretraining on unlabelled data. We curate and release the largest pose-based pretraining dataset on Indian Sign Language (Indian-SL). Fourth, we compare different pretraining strategies and for the first time establish that pretraining is effective for sign language recognition by demonstrating (a) improved fine-tuning performance especially in low-resource settings, and (b) high crosslingual transfer from Indian-SL to few other sign languages. We open-source all models and datasets in OpenHands with a hope that it makes research in sign languages reproducible and more accessible.",
 }
-% TODO: update this once the EACL citation is out.
-@article{kezar2023improving,
-  title={Improving Sign Recognition with Phonology},
-  author={Kezar, Lee and Thomason, Jesse and Sehyr, Zed Sevcikova},
-  journal={arXiv preprint arXiv:2302.05759},
-  year={2023}
+@inproceedings{kezar2023improving,
+    title = "Improving Sign Recognition with Phonology",
+    author = "Kezar, Lee  and
+      Thomason, Jesse  and
+      Sehyr, Zed",
+    booktitle = "Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics",
+    month = may,
+    year = "2023",
+    address = "Dubrovnik, Croatia",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.eacl-main.200",
+    pages = "2724--2729",
+    abstract = "We use insights from research on American Sign Language (ASL) phonology to train models for isolated sign language recognition (ISLR), a step towards automatic sign language understanding. Our key insight is to explicitly recognize the role of phonology in sign production to achieve more accurate ISLR than existing work which does not consider sign language phonology. We train ISLR models that take in pose estimations of a signer producing a single sign to predict not only the sign but additionally its phonological characteristics, such as the handshape. These auxiliary predictions lead to a nearly 9{\%} absolute gain in sign recognition accuracy on the WLASL benchmark, with consistent improvements in ISLR regardless of the underlying prediction model architecture. This work has the potential to accelerate linguistic research in the domain of signed languages and reduce communication barriers between deaf and hearing people.",
 }
 @inproceedings{tavella-etal-2022-wlasl,
     title = "{WLASL}-{LEX}: a Dataset for Recognising Phonological Properties in {A}merican {S}ign {L}anguage",
@@ -1065,11 +1071,20 @@
 	year         = 2022,
 	booktitle    = {LREC 2022},
 }
-@article{jiang2022machine,
-	title        = {Machine Translation between Spoken Languages and Signed Languages Represented in SignWriting},
-	author       = {Jiang, Zifan and Moryossef, Amit and M{\"u}ller, Mathias and Ebling, Sarah},
-	year         = 2022,
-	journal      = {arXiv preprint arXiv:2210.05404},
+@inproceedings{jiang2022machine,
+    title = "Machine Translation between Spoken Languages and Signed Languages Represented in {S}ign{W}riting",
+    author = {Jiang, Zifan  and
+      Moryossef, Amit  and
+      M{\"u}ller, Mathias  and
+      Ebling, Sarah},
+    booktitle = "Findings of the Association for Computational Linguistics: EACL 2023",
+    month = may,
+    year = "2023",
+    address = "Dubrovnik, Croatia",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.findings-eacl.127",
+    pages = "1661--1679",
+    abstract = "This paper presents work on novel machine translation (MT) systems between spoken and signed languages, where signed languages are represented in SignWriting, a sign language writing system. Our work seeks to address the lack of out-of-the-box support for signed languages in current MT systems and is based on the SignBank dataset, which contains pairs of spoken language text and SignWriting content. We introduce novel methods to parse, factorize, decode, and evaluate SignWriting, leveraging ideas from neural factored MT. In a bilingual setup{---}translating from American Sign Language to (American) English{---}our method achieves over 30 BLEU, while in two multilingual setups{---}translating in both directions between spoken languages and signed languages{---}we achieve over 20 BLEU. We find that common MT techniques used to improve spoken language translation similarly affect the performance of sign language translation. These findings validate our use of an intermediate text representation for signed languages to include them in natural language processing research.",
 }
 @inproceedings{sennrich-etal-2016-neural,
 	title        = {Neural Machine Translation of Rare Words with Subword Units},
