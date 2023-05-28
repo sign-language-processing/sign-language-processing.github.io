@@ -444,8 +444,7 @@
     address = "Virtual",
     publisher = "Association for Machine Translation in the Americas",
     url = "https://aclanthology.org/2021.mtsummit-at4ssl.11",
-    pages = "98--103",
-    abstract = "This paper addresses the tasks of sign segmentation and segment-meaning mapping in the context of sign language (SL) recognition. It aims to give an overview of the linguistic properties of SL, such as coarticulation and simultaneity, which make these tasks complex. A better understanding of SL structure is the necessary ground for the design and development of SL recognition and segmentation methodologies, which are fundamental for machine translation of these languages. Based on this preliminary exploration, a proposal for mapping segments to meaning in the form of an agglomerate of lexical and non-lexical information is introduced.",
+    pages = "98--103"
 }
 @book{writing:bergman1977tecknad,
 	title        = {Tecknad svenska:[Signed Swedish]},
@@ -969,7 +968,6 @@
 	year         = 2020,
 	journal      = {arXiv preprint arXiv:2007.12530},
 }
-% TODO: update this once the EACL citation is out.
 @article{jiang2021sign,
 	title        = {Sign language recognition via skeleton-aware multi-model ensemble},
 	author       = {Jiang, Songyao and Sun, Bin and Wang, Lichen and Bai, Yue and Li, Kunpeng and Fu, Yun},
@@ -995,15 +993,20 @@
     publisher = "Association for Computational Linguistics",
     url = "https://aclanthology.org/2022.acl-long.150",
     doi = "10.18653/v1/2022.acl-long.150",
-    pages = "2114--2133",
-    abstract = "AI technologies for Natural Languages have made tremendous progress recently. However, commensurate progress has not been made on Sign Languages, in particular, in recognizing signs as individual words or as complete sentences. We introduce OpenHands, a library where we take four key ideas from the NLP community for low-resource languages and apply them to sign languages for word-level recognition. First, we propose using pose extracted through pretrained models as the standard modality of data in this work to reduce training time and enable efficient inference, and we release standardized pose datasets for different existing sign language datasets. Second, we train and release checkpoints of 4 pose-based isolated sign language recognition models across 6 languages (American, Argentinian, Chinese, Greek, Indian, and Turkish), providing baselines and ready checkpoints for deployment. Third, to address the lack of labelled data, we propose self-supervised pretraining on unlabelled data. We curate and release the largest pose-based pretraining dataset on Indian Sign Language (Indian-SL). Fourth, we compare different pretraining strategies and for the first time establish that pretraining is effective for sign language recognition by demonstrating (a) improved fine-tuning performance especially in low-resource settings, and (b) high crosslingual transfer from Indian-SL to few other sign languages. We open-source all models and datasets in OpenHands with a hope that it makes research in sign languages reproducible and more accessible.",
+    pages = "2114--2133"
 }
-% TODO: update this once the EACL citation is out.
-@article{kezar2023improving,
-  title={Improving Sign Recognition with Phonology},
-  author={Kezar, Lee and Thomason, Jesse and Sehyr, Zed Sevcikova},
-  journal={arXiv preprint arXiv:2302.05759},
-  year={2023}
+@inproceedings{kezar2023improving,
+    title = "Improving Sign Recognition with Phonology",
+    author = "Kezar, Lee  and
+      Thomason, Jesse  and
+      Sehyr, Zed",
+    booktitle = "Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics",
+    month = may,
+    year = "2023",
+    address = "Dubrovnik, Croatia",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.eacl-main.200",
+    pages = "2724--2729"
 }
 @inproceedings{tavella-etal-2022-wlasl,
     title = "{WLASL}-{LEX}: a Dataset for Recognising Phonological Properties in {A}merican {S}ign {L}anguage",
@@ -1019,8 +1022,7 @@
     publisher = "Association for Computational Linguistics",
     url = "https://aclanthology.org/2022.acl-short.49",
     doi = "10.18653/v1/2022.acl-short.49",
-    pages = "453--463",
-    abstract = "Signed Language Processing (SLP) concerns the automated processing of signed languages, the main means of communication of Deaf and hearing impaired individuals. SLP features many different tasks, ranging from sign recognition to translation and production of signed speech, but has been overlooked by the NLP community thus far.In this paper, we bring to attention the task of modelling the phonology of sign languages. We leverage existing resources to construct a large-scale dataset of American Sign Language signs annotated with six different phonological properties. We then conduct an extensive empirical study to investigate whether data-driven end-to-end and feature-based approaches can be optimised to automatically recognise these properties. We find that, despite the inherent challenges of the task, graph-based neural networks that operate over skeleton features extracted from raw videos are able to succeed at the task to a varying degree. Most importantly, we show that this performance pertains even on signs unobserved during training.",
+    pages = "453--463"
 }
 @article{sehyr2021asl,
   title={The ASL-LEX 2.0 Project: A database of lexical and phonological properties for 2,723 signs in American Sign Language},
@@ -1083,11 +1085,19 @@
 	year         = 2022,
 	booktitle    = {LREC 2022},
 }
-@article{jiang2022machine,
-	title        = {Machine Translation between Spoken Languages and Signed Languages Represented in SignWriting},
-	author       = {Jiang, Zifan and Moryossef, Amit and M{\"u}ller, Mathias and Ebling, Sarah},
-	year         = 2022,
-	journal      = {arXiv preprint arXiv:2210.05404},
+@inproceedings{jiang2022machine,
+    title = "Machine Translation between Spoken Languages and Signed Languages Represented in {S}ign{W}riting",
+    author = {Jiang, Zifan  and
+      Moryossef, Amit  and
+      M{\"u}ller, Mathias  and
+      Ebling, Sarah},
+    booktitle = "Findings of the Association for Computational Linguistics: EACL 2023",
+    month = may,
+    year = "2023",
+    address = "Dubrovnik, Croatia",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.findings-eacl.127",
+    pages = "1661--1679"
 }
 @inproceedings{sennrich-etal-2016-neural,
 	title        = {Neural Machine Translation of Rare Words with Subword Units},
@@ -1567,8 +1577,7 @@
 	address      = {Online},
 	pages        = {381--393},
 	doi          = {10.18653/v1/2021.eacl-main.29},
-	url          = {https://aclanthology.org/2021.eacl-main.29},
-	abstract     = {Against the background of what has been termed a reproducibility crisis in science, the NLP field is becoming increasingly interested in, and conscientious about, the reproducibility of its results. The past few years have seen an impressive range of new initiatives, events and active research in the area. However, the field is far from reaching a consensus about how reproducibility should be defined, measured and addressed, with diversity of views currently increasing rather than converging. With this focused contribution, we aim to provide a wide-angle, and as near as possible complete, snapshot of current work on reproducibility in NLP,},
+	url          = {https://aclanthology.org/2021.eacl-main.29}
 }
 @inproceedings{post-2018-call,
 	title        = {A Call for Clarity in Reporting {BLEU} Scores},
@@ -1580,8 +1589,7 @@
 	address      = {Brussels, Belgium},
 	pages        = {186--191},
 	doi          = {10.18653/v1/W18-6319},
-	url          = {https://aclanthology.org/W18-6319},
-	abstract     = {The field of machine translation faces an under-recognized problem because of inconsistency in the reporting of scores from its dominant metric. Although people refer to {``}the{''} BLEU score, BLEU is in fact a parameterized metric whose values can vary wildly with changes to these parameters. These parameters are often not reported or are hard to find, and consequently, BLEU scores between papers cannot be directly compared. I quantify this variation, finding differences as high as 1.8 between commonly used configurations. The main culprit is different tokenization and normalization schemes applied to the reference. Pointing to the success of the parsing community, I suggest machine translation researchers settle upon the BLEU scheme used by the annual Conference on Machine Translation (WMT), which does not allow for user-supplied reference processing, and provide a new tool, SACREBLEU, to facilitate this.},
+	url          = {https://aclanthology.org/W18-6319}
 }
 @inproceedings{marie-etal-2021-scientific,
 	title        = {Scientific Credibility of Machine Translation Research: A Meta-Evaluation of 769 Papers},
@@ -1593,8 +1601,7 @@
 	address      = {Online},
 	pages        = {7297--7306},
 	doi          = {10.18653/v1/2021.acl-long.566},
-	url          = {https://aclanthology.org/2021.acl-long.566},
-	abstract     = {This paper presents the first large-scale meta-evaluation of machine translation (MT). We annotated MT evaluations conducted in 769 research papers published from 2010 to 2020. Our study shows that practices for automatic MT evaluation have dramatically changed during the past decade and follow concerning trends. An increasing number of MT evaluations exclusively rely on differences between BLEU scores to draw conclusions, without performing any kind of statistical significance testing nor human evaluation, while at least 108 metrics claiming to be better than BLEU have been proposed. MT evaluations in recent papers tend to copy and compare automatic metric scores from previous work to claim the superiority of a method or an algorithm without confirming neither exactly the same training, validating, and testing data have been used nor the metric scores are comparable. Furthermore, tools for reporting standardized metric scores are still far from being widely adopted by the MT community. After showing how the accumulation of these pitfalls leads to dubious evaluation, we propose a guideline to encourage better automatic MT evaluation along with a simple meta-evaluation scoring method to assess its credibility.},
+	url          = {https://aclanthology.org/2021.acl-long.566}
 }
 @article{lipton_troubling,
 	title        = {Troubling Trends in Machine Learning Scholarship: Some ML Papers Suffer from Flaws That Could Mislead the Public and Stymie Future Research.},
@@ -1611,7 +1618,6 @@
 	issn         = {1542-7730},
 	url          = {https://doi.org/10.1145/3317287.3328534},
 	issue_date   = {January-February 2019},
-	abstract     = {Flawed scholarship threatens to mislead the public and stymie future research by compromising ML’s intellectual foundations. Indeed, many of these problems have recurred cyclically throughout the history of AI and, more broadly, in scientific research. In 1976, Drew McDermott chastised the AI community for abandoning self-discipline, warning prophetically that "if we can’t criticize ourselves, someone else will save us the trouble." The current strength of machine learning owes to a large body of rigorous research to date, both theoretical and empirical. By promoting clear scientific thinking and communication, our community can sustain the trust and investment it currently enjoys.},
 	numpages     = 33,
 }
 @misc{who2021,
@@ -1664,8 +1670,7 @@
     address = "Abu Dhabi, United Arab Emirates (Hybrid)",
     publisher = "Association for Computational Linguistics",
     url = "https://aclanthology.org/2022.wmt-1.71",
-    pages = "744--772",
-    abstract = "This paper presents the results of the First WMT Shared Task on Sign Language Translation (WMT-SLT22).This shared task is concerned with automatic translation between signed and spoken languages. The task is novel in the sense that it requires processing visual information (such as video frames or human pose estimation) beyond the well-known paradigm of text-to-text machine translation (MT).The task featured two tracks, translating from Swiss German Sign Language (DSGS) to German and vice versa. Seven teams participated in this first edition of the task, all submitting to the DSGS-to-German track.Besides a system ranking and system papers describing state-of-the-art techniques, this shared task makes the following scientific contributions: novel corpora, reproducible baseline systems and new protocols and software for human evaluation. Finally, the task also resulted in the first publicly available set of system outputs and human evaluation scores for sign language translation.",
+    pages = "744--772"
 }
 @inproceedings{shi-etal-2022-open,
     title = "Open-Domain Sign Language Translation Learned from Online Video",
@@ -1679,8 +1684,7 @@
     address = "Abu Dhabi, United Arab Emirates",
     publisher = "Association for Computational Linguistics",
     url = "https://aclanthology.org/2022.emnlp-main.427",
-    pages = "6365--6379",
-    abstract = "Existing work on sign language translation {--} that is, translation from sign language videos into sentences in a written language {--} has focused mainly on (1) data collected in a controlled environment or (2) data in a specific domain, which limits the applicability to real-world settings. In this paper, we introduce OpenASL, a large-scale American Sign Language (ASL) - English dataset collected from online video sites (e.g., YouTube).OpenASL contains 288 hours of ASL videos in multiple domains from over 200 signers and is the largest publicly available ASL translation dataset to date. To tackle the challenges of sign language translation in realistic settings and without glosses, we propose a set of techniques including sign search as a pretext task for pre-training and fusion of mouthing and handshape features. The proposed techniques produce consistent and large improvements in translation quality, over baseline models basedon prior work.",
+    pages = "6365--6379"
 }
 @inproceedings{zhang2023sltunet,
   title={{SLTUNET}: A Simple Unified Model for Sign Language Translation},
@@ -1713,7 +1717,6 @@
 
 @inbook{kusters-et-al-2017,
     title = "Innovations in Deaf Studies: Critically Mapping the Field",
-    abstract = "In this introductory chapter, the editors critically map the field of Deaf Studies. Central in this discussion is an exploration of themes that have been investigated in the field and a critical examination of the theoretical frameworks and concepts that have been used including the deaf culture concept and the d/D writing convention. The editors then flag up current theoretical trends in the field and consider how the field can be strengthened. Subsequently, they discuss the hegemony of hearing scholars in Deaf Studies, and collaboration between deaf and hearing scholars. They explore experiences of deaf researchers within research contexts and within academia, followed by a discussion of ethical research practice. Having thus established the theoretical and socio-political context of the current state of the field of Deaf Studies, the editors introduce the main themes of the current volume and explicate the unifying threads that run through the following chapters. ",
     author = "Kusters, {Annelies Maria Jozef} and Dai O'Brien and {De Meulder}, Maartje",
     year = "2017",
     language = "English",
