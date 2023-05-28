@@ -524,16 +524,16 @@ Though some previous works have referred to this as "sign language translation,"
 without handling the syntax and morphology of the signed language [@padden1988interaction] to create a spoken language output.
 Instead, SLR has often been used as an intermediate step during translation to produce glosses from signed language videos.
 
-@jiang2021sign propose a novel Skeleton Aware Multi-modal Framework with a Global Ensemble Model (GEM) for isolated SLR (SAM-SLR-v2) to learn and fuse multimodal feature representations. Specifically, they use a Sign Language Graph Convolution Network (SL-GCN) to model the embedded dynamics of skeleton keypoints and a Separable Spatial-Temporal Convolution Network (SSTCN) to exploit skeleton features. The proposed late-fusion GEM fuses the skeleton-based predictions with other RGB and depth-based modalities to provide global information and make an accurate SLR prediction.
+@jiang2021sign proposed a novel Skeleton Aware Multi-modal Framework with a Global Ensemble Model (GEM) for isolated SLR (SAM-SLR-v2) to learn and fuse multimodal feature representations. Specifically, they use a Sign Language Graph Convolution Network (SL-GCN) to model the embedded dynamics of skeleton keypoints and a Separable Spatial-Temporal Convolution Network (SSTCN) to exploit skeleton features. The proposed late-fusion GEM fuses the skeleton-based predictions with other RGB and depth-based modalities to provide global information and make an accurate SLR prediction.
 
 @dafnis2022bidirectional work on the same modified WLASL dataset as @jiang2021sign, but do not require multimodal data input. Instead, they propose a bidirectional skeleton-based graph convolutional network framework with linguistically motivated parameters and attention to the start and end
 frames of signs. They cooperatively use forward and backward data streams, including various sub-streams, as input. They also use pre-training to leverage transfer learning.
 
-@selvaraj-etal-2022-openhands introduce an open-source [OpenHands](https://github.com/AI4Bharat/OpenHands) library, 
+@selvaraj-etal-2022-openhands introduced an open-source [OpenHands](https://github.com/AI4Bharat/OpenHands) library, 
 which consists of standardized pose datasets for different existing sign language datasets and trained checkpoints 
 of four pose-based isolated sign language recognition models across six languages (American, Argentinian, Chinese, Greek, Indian, and Turkish). 
 To address the lack of labeled data, they propose self-supervised pretraining on unlabeled data and curate the largest pose-based 
-pretraining dataset on Indian Sign Language (Indian-SL). They establish that pretraining is effective for sign language recognition by 
+pretraining dataset on Indian Sign Language (Indian-SL). They established that pretraining is effective for sign language recognition by 
 demonstrating improved fine-tuning performance especially in low-resource settings and high crosslingual transfer from Indian-SL to a few other sign languages.
 
 The work of @kezar2023improving, based on the [OpenHands](https://github.com/AI4Bharat/OpenHands) library, 
@@ -649,7 +649,7 @@ Gloss-to-Text, also known as sign language translation, is the natural language 
 between gloss text representing sign language signs and spoken language text. 
 These texts commonly differ in terminology, capitalization, and sentence structure.
 
-@cihan2018neural experimented with various machine-translation architectures and compared using an LSTM vs. GRU for the recurrent model,
+@cihan2018neural experimented with various machine-translation architectures and compared using an LSTM [@hochreiter1997long] vs. GRU for the recurrent model,
 as well as Luong attention [@luong2015effective] vs. Bahdanau attention [@bahdanau2014neural] and various batch sizes. 
 They concluded that on the RWTH-PHOENIX-Weather-2014T dataset, which was also presented in this work, 
 using GRUs, Luong attention, and a batch size of 1 outperforms all other configurations.
@@ -676,7 +676,9 @@ When pretraining, all augmentations show improvements over the baseline for RWTH
 
 #### Text-to-Gloss
 Text-to-gloss, an instantiation of sign language translation, is the task of translating between a spoken language text and sign language glosses.
-
+It is an appealing area of research because of its simplicity for integrating in existing NMT pipelines, 
+despite recent works such as @yin-read-2020-better and@muller2022considerations claim that glosses are an inefficient representation of sign language,
+and that glosses are not a complete representation of signs [@pizzuto:06001:sign-lang:lrec].
 @zhao2000machine used a Tree Adjoining Grammar (TAG)-based system to translate English sentences to American Sign Language (ASL) gloss sequences.
 They parsed the English text and simultaneously assembled an ASL gloss tree, using Synchronous TAGs [@shieber1990synchronous;@shieber1994restricting], 
 by associating the ASL elementary trees with the English elementary trees and associating the nodes at which subsequent substitutions or adjunctions can occur.
@@ -685,7 +687,14 @@ Synchronous TAGs have been used for machine translation between spoken languages
 For the automatic translation of gloss-to-text, @dataset:othman2012english identified the need for a large parallel sign language gloss and spoken language text corpus.
 They developed a part-of-speech-based grammar to transform English sentences from the Gutenberg Project ebooks collection [@lebert2008project] into American Sign Language gloss.
 Their final corpus contains over 100 million synthetic sentences and 800 million words and is the most extensive English-ASL gloss corpus we know of.
-Unfortunately, it is hard to attest to the quality of the corpus, as the authors did not evaluate their method on real English-ASL gloss pairs, and only a small sample of this corpus is available online.
+Unfortunately, it is hard to attest to the quality of the corpus, as the authors did not evaluate their method on real English-ASL gloss pairs.
+
+@egea-gomez-etal-2021-syntax presented a syntax-aware transformer for this task, 
+by injecting word dependency tags to augment the embeddings inputted to the encoder. 
+This involves minor modifications in the neural architecture leading to negligible impact on computational
+complexity of the model.
+Testing their model on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural], 
+they demonstrated that injecting this additional information results in better translation quality. 
 
 ---
 
