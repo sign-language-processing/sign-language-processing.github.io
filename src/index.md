@@ -250,8 +250,8 @@ While these recent detection models achieve high performance,
 we need well-annotated data that include interference and distractions with non-signing instances for proper real-world evaluation. 
 @detection:pal2023importance conducted a detailed analysis of the impact of signer overlap between the training and test sets 
 on two sign detection benchmark datasets (Signing in the Wild [@detection:borg2019sign] and the DGS corpus [@dataset:hanke-etal-2020-extending]) used by @detection:borg2019sign and @detection:moryossef2020real. 
-By comparing the accuracy with and without overlap, they noticed a relative decrease in performance. 
-As a result, they suggested new dataset partitions that eliminate overlap and facilitate a more accurate evaluation of performance.
+By comparing the accuracy with and without overlap, they noticed a relative decrease in performance for signers not present during training. 
+As a result, they suggested new dataset partitions that eliminate overlap between train and test set and facilitate a more accurate evaluation of performance.
 
 ### Sign Language Identification
 
