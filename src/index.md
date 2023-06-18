@@ -229,12 +229,12 @@ We survey common SLP tasks and current methods' limitations, drawing on signed l
 
 ### Sign Language Detection
 
-Sign language detection [@detection:borg2019sign;@detection:moryossef2020real;@detection:pal2023importance] is the binary classification task to determine whether a signed language is being used in a given video frame.
+Sign language detection [@detection:borg2019sign;@detection:moryossef2020real;@detection:pal2023importance] is the binary classification task of determining whether a signed language is being used in a given video frame.
 A similar task in spoken languages is voice activity detection (VAD) [@sohn1999statistical;@ramirez2004efficient],
 the detection of when a human voice is used in an audio signal.
 However, as VAD methods often rely on speech-specific representations such as spectrograms, they are not necessarily applicable to videos.
 
-@detection:borg2019sign introduced the classification of frames taken from YouTube videos as either signing or not. 
+@detection:borg2019sign introduced the classification of frames taken from YouTube videos as either signing or not signing. 
 They took a spatial and temporal approach based on VGG-16 [@simonyan2015very] CNN to encode each frame 
 and used a Gated Recurrent Unit (GRU) [@cho2014learning] 
 to encode the sequence of frames in a window of 20 frames at 5fps.
@@ -275,7 +275,9 @@ Segmentation consists of detecting the frame boundaries for signs or phrases in 
 While the most canonical way of dividing a spoken language text is into a linear sequence of words, 
 due to the simultaneity of sign language, the notion of a sign language "word" is ill-defined, and sign language cannot be fully linearly modeled.
 
-Current methods resort to segmenting units loosely mapped to signed language units [@segmentation:santemiz2009automatic;@segmentation:farag2019learning;@segmentation:bull2020automatic;@segmentation:renz2021signa;@segmentation:renz2021signb;@segmentation:bull2021aligning], and do not leverage reliable linguistic predictors of sentence boundaries such as prosody in signed languages (i.e., pauses, sign duration, facial expressions, eye apertures) [@sandler2010prosody;@ormel2012prosodic]. @segmentation:de-sisto-etal-2021-defining call for a better understanding of sign language structure, which they believe is the necessary ground for the design and development of sign language recognition and segmentation methodologies.
+Current methods resort to segmenting units loosely mapped to signed language units [@segmentation:santemiz2009automatic;@segmentation:farag2019learning;@segmentation:bull2020automatic;@segmentation:renz2021signa;@segmentation:renz2021signb;@segmentation:bull2021aligning], 
+and do not explicitly leverage reliable linguistic predictors of sentence boundaries such as prosody in signed languages (i.e., pauses, sign duration, facial expressions, eye apertures) [@sandler2010prosody;@ormel2012prosodic]. 
+@segmentation:de-sisto-etal-2021-defining call for a better understanding of sign language structure, which they believe is the necessary ground for the design and development of sign language recognition and segmentation methodologies.
 
 @segmentation:santemiz2009automatic automatically extracted isolated signs from continuous signing by aligning the sequences obtained via speech recognition, 
 modeled by Dynamic Time Warping (DTW) and Hidden Markov Models (HMMs) approaches. 
@@ -284,13 +286,14 @@ modeled by Dynamic Time Warping (DTW) and Hidden Markov Models (HMMs) approaches
 based on the composition of spatio-temporal angular and distance features between domain-specific pairs of joint segments.
 
 @segmentation:bull2020automatic segmented French Sign Language into subtitle units by detecting the temporal boundaries of subtitles aligned with sign language videos, 
-leveraging a spatio-temporal graph convolutional network with a BiLSTM on 2D skeleton data.
+leveraging a spatio-temporal graph convolutional network (STGCN; @Yu2017SpatioTemporalGC) with a BiLSTM on 2D skeleton data.
 
-@segmentation:renz2021signa determined the location of temporal boundaries between signs in continuous sign language videos by employing 
+@segmentation:renz2021signa located temporal boundaries between signs in continuous sign language videos by employing 
 3D convolutional neural network representations with iterative temporal segment refinement to resolve ambiguities between sign boundary cues. 
 @segmentation:renz2021signb further proposed the Changepoint-Modulated Pseudo-Labelling (CMPL) algorithm to solve the problem of source-free domain adaptation. 
 
-@segmentation:bull2021aligning presented a Transformer-based approach to segment sign language videos and align them with subtitles simultaneously, encoding subtitles by BERT and videos by CNN video representations.
+@segmentation:bull2021aligning presented a Transformer-based approach to segment sign language videos and align them with subtitles simultaneously, 
+encoding subtitles by BERT [@devlin-etal-2019-bert] and videos by CNN video representations.
 
 
 <!-- @segmentation:de-sisto-etal-2021-defining introduce a proposal for mapping segments to meaning in the form of an agglomerate of lexical and non-lexical information. -->
@@ -551,6 +554,7 @@ To alleviate the downsides of the previous work, @stoll2020text2sign constructed
 They built a Motion Graph [@min2012motion], which is a Markov process used to generate new motion sequences that are representative of natural motion,
 and selected the motion primitives (sequence of poses) per gloss with the highest transition probability.
 To smooth that sequence and reduce unnatural motion, they used a Savitzky–Golay motion transition smoothing filter [@savitzky1964smoothing].
+@moryossef2023baseline re-implemented their approach and made it open-source.
 
 @huang2021towards used a new non-autoregressive model to generate a sequence of poses for a sequence of glosses. 
 They argued that existing models like @saunders2020adversarial are prone to error accumulation and high inference latency due to their autoregressive nature. 

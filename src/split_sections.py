@@ -31,6 +31,7 @@ def write_section_to_file(output_dir, level, section, label, content, labels, se
     with open(f_name, "w") as f:
         # if len(level) > 0:
         f.write(f"% \\{level}section{{{section}}}\\label{{{new_label}}}\n")
+        content = content.replace('\\begin{center}\\rule{0.5\\linewidth}{0.5pt}\\end{center}', '')
         content_rows = content.splitlines()[:-1]
         f.write("\n".join(content_rows))
 
