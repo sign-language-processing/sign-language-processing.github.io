@@ -5,6 +5,7 @@ import regex as re
 def correct_latex_text(text):
     text = text.replace("assets/", "parts/background/assets/")
     text = text.replace(",height=\\textheight", "")  # remoe lineheight from figures
+    text = text.replace("\\tightlist", "")
     return text
 
 
