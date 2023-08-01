@@ -92,7 +92,7 @@ In the past, the failure to recognize signed languages as fully-fledged natural 
 and in an increasingly digitized world, NLP research should strive to enable a world in which all people,
 including the Deaf, have access to languages that fit their lived experience.
 
-[^deaf]: When capitalized, "Deaf" refers to a community of deaf people who share a language and a culture, whereas the lowercase "deaf" refers to the audiological condition of not hearing. We follow the more recent convention of abandoning a distinction between "Deaf" and "deaf", using the latter term also to refer to (deaf) members of the sign language community [@napier-leeson-2016;@kusters-et-al-2017].}
+[^deaf]: When capitalized, "Deaf" refers to a community of deaf people who share a language and a culture, whereas the lowercase "deaf" refers to the audiological condition of not hearing. We follow the more recent convention of abandoning a distinction between "Deaf" and "deaf", using the latter term also to refer to (deaf) members of the sign language community [@napier-leeson-2016;@kusters-et-al-2017].
 
 ## Sign Language Linguistics Overview
 
@@ -233,10 +233,10 @@ We survey common SLP tasks and current methods' limitations, drawing on signed l
 
 ### Sign Language Detection
 
-Sign language detection [@detection:borg2019sign;@detection:moryossef2020real;@detection:pal2023importance] is the binary classification task of determining whether a signed language is being used in a given video frame.
+Sign language detection [@detection:borg2019sign;@detection:moryossef2020real;@detection:pal2023importance] is the binary classification task of determining whether signing activity is present in a given video frame.
 A similar task in spoken languages is voice activity detection (VAD) [@sohn1999statistical;@ramirez2004efficient],
 the detection of when a human voice is used in an audio signal.
-However, as VAD methods often rely on speech-specific representations such as spectrograms, they are not necessarily applicable to videos.
+As VAD methods often rely on speech-specific representations such as spectrograms, they are not necessarily applicable to videos.
 
 @detection:borg2019sign introduced the classification of frames taken from YouTube videos as either signing or not signing. 
 They took a spatial and temporal approach based on VGG-16 [@simonyan2015very] CNN to encode each frame 
@@ -253,9 +253,9 @@ to predict for every frame whether the person is signing or not.
 While these recent detection models achieve high performance,
 we need well-annotated data that include interference and distractions with non-signing instances for proper real-world evaluation. 
 @detection:pal2023importance conducted a detailed analysis of the impact of signer overlap between the training and test sets 
-on two sign detection benchmark datasets (Signing in the Wild [@detection:borg2019sign] and the DGS corpus [@dataset:hanke-etal-2020-extending]) used by @detection:borg2019sign and @detection:moryossef2020real. 
+on two sign detection benchmark datasets (Signing in the Wild [@detection:borg2019sign] and the DGS Corpus [@dataset:hanke-etal-2020-extending]) used by @detection:borg2019sign and @detection:moryossef2020real. 
 By comparing the accuracy with and without overlap, they noticed a relative decrease in performance for signers not present during training. 
-As a result, they suggested new dataset partitions that eliminate overlap between train and test set and facilitate a more accurate evaluation of performance.
+As a result, they suggested new dataset partitions that eliminate overlap between train and test sets and facilitate a more accurate evaluation of performance.
 
 ### Sign Language Identification
 
@@ -279,17 +279,17 @@ Segmentation consists of detecting the frame boundaries for signs or phrases in 
 While the most canonical way of dividing a spoken language text is into a linear sequence of words, 
 due to the simultaneity of sign language, the notion of a sign language "word" is ill-defined, and sign language cannot be fully linearly modeled.
 
-Current methods resort to segmenting units loosely mapped to signed language units [@segmentation:santemiz2009automatic;@segmentation:farag2019learning;@segmentation:bull2020automatic;@segmentation:renz2021signa;@segmentation:renz2021signb;@segmentation:bull2021aligning], 
-and do not explicitly leverage reliable linguistic predictors of sentence boundaries such as prosody in signed languages (i.e., pauses, sign duration, facial expressions, eye apertures) [@sandler2010prosody;@ormel2012prosodic]. 
+Current methods resort to segmenting units loosely mapped to signed language units [@segmentation:santemiz2009automatic;@segmentation:farag2019learning;@segmentation:bull2020automatic;@segmentation:renz2021signa;@segmentation:renz2021signb;@segmentation:bull2021aligning]
+and do not explicitly leverage reliable linguistic predictors of sentence boundaries such as prosody in signed languages (i.e., pauses, extended sign duration, facial expressions) [@sandler2010prosody;@ormel2012prosodic]. 
 @segmentation:de-sisto-etal-2021-defining call for a better understanding of sign language structure, which they believe is the necessary ground for the design and development of sign language recognition and segmentation methodologies.
 
 @segmentation:santemiz2009automatic automatically extracted isolated signs from continuous signing by aligning the sequences obtained via speech recognition, 
 modeled by Dynamic Time Warping (DTW) and Hidden Markov Models (HMMs) approaches. 
 
-@segmentation:farag2019learning used a random forest classifier to distinguish frames containing words in Japanese Sign Language 
+@segmentation:farag2019learning used a random forest classifier to distinguish frames containing signs in Japanese Sign Language 
 based on the composition of spatio-temporal angular and distance features between domain-specific pairs of joint segments.
 
-@segmentation:bull2020automatic segmented French Sign Language into subtitle units by detecting the temporal boundaries of subtitles aligned with sign language videos, 
+@segmentation:bull2020automatic segmented French Sign Language into segments corresponding to subtitle units by relying on the alignment between subtitles and sign language videos, 
 leveraging a spatio-temporal graph convolutional network (STGCN; @Yu2017SpatioTemporalGC) with a BiLSTM on 2D skeleton data.
 
 @segmentation:renz2021signa located temporal boundaries between signs in continuous sign language videos by employing 
