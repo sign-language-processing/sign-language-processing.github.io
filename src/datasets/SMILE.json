@@ -11,6 +11,6 @@
   "#items": 100,
   "#samples": "9,000 Samples",
   "#signers": 30,
-  "license": "Not Published",
-  "licenseUrl": null
+  "license": "Custom",
+  "licenseUrl": "https://zenodo.org/record/7701457"
 }
