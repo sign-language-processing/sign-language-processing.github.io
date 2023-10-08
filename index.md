@@ -205,7 +205,7 @@ While various sign language corpus projects have provided guidelines for gloss a
 a standardized gloss annotation protocol has yet to be established.
 Linear gloss annotations have been criticized for their imprecise representation of signed language. 
 These annotations fail to capture all the information expressed simultaneously through different cues, 
-such as body posture, eye gaze, or spatial relations, leading to a loss of information that can significantly affect downstream performance on SLP tasks [@yin-read-2020-better].
+such as body posture, eye gaze, or spatial relations, leading to a loss of information that can significantly affect downstream performance on SLP tasks [@yin-read-2020-better;@muller-etal-2023-considerations].
 
 
 The following table additionally exemplifies the various representations for more isolated signs.
@@ -790,8 +790,8 @@ Understanding how distinctions in meaning are created in signed language may hel
 
 #### Notation-to-Text
 @jiang2022machine explore text-to-text sign to spoken language translation, with SignWriting as the chosen sign language notation system. 
-Despite SignWriting usually represented in 2D, they use the 1D Formal SignWriting specification and propose a neural factored machine translation approach to encode sequences of the SignWriting graphemes as well as their position in the 2D space. 
-They verify the proposed approach on the SignBank dataset in both a bilingual setup (American Sign Language to English) and two multilingual setups (4 and 21 signed-to-spoken language pairs, respectively). 
+Despite SignWriting usually represented in 2D, they use the 1D Formal SignWriting specification and propose a neural factored machine translation approach to encode sequences of SignWriting graphemes as well as their positions in the 2D space. 
+They verify the proposed approach on the SignBank dataset in both a bilingual setup (American Sign Language to English) and two multilingual setups (4 and 21 language pairs, respectively). 
 They apply several low-resource machine translation techniques used to improve spoken language translation to similarly improve the performance of sign language translation. 
 Their findings validate the use of an intermediate text representation for signed language translation, and pave the way for including sign language translation in natural language processing research.
 
@@ -800,7 +800,7 @@ Their findings validate the use of an intermediate text representation for signe
 They conduct experiments under a same condition of their multilingual SignWriting to text (4 language pairs) experiment, and again propose a neural factored machine translation approach to decode the graphemes and their position separately. 
 They borrow BLEU from spoken language translation to evaluate the predicted graphemes and mean absolute error to evaluate the positional numbers.
 
-@walsh2022changing explore Text to HamNoSys (T2H) translation, with HamNoSys as the target sign language notation system. They experiment with direct T2H and Text to Gloss to HamNoSys (T2G2H) on a subset of the data from the MEINE DGS dataset [@dataset:hanke-etal-2020-extending], where all glosses are mapped to HamNoSys by a dictionary look up. They find that direct T2H translation results in higher BLEU (it still needs to be clarified how well BLEU represents the quality of HamNoSys translations, though). They encode HamNoSys with BPE [@sennrich-etal-2016-neural], and it outperforms character-level and word-level tokenization. They also leverage BERT to create better sentence-level embeddings and use HamNoSys to extract the hand shape of a sign as additional supervision during training.
+@walsh2022changing explore Text to HamNoSys (T2H) translation, with HamNoSys as the target sign language notation system. They experiment with direct T2H and Text to Gloss to HamNoSys (T2G2H) on a subset of the data from the MEINE DGS dataset [@dataset:hanke-etal-2020-extending], where all glosses are mapped to HamNoSys by a dictionary lookup. They find that direct T2H translation results in higher BLEU (it still needs to be clarified how well BLEU represents the quality of HamNoSys translations, though). They encode HamNoSys with BPE [@sennrich-etal-2016-neural], outperforming character-level and word-level tokenization. They also leverage BERT to create better sentence-level embeddings and use HamNoSys to extract the hand shapes of a sign as additional supervision during training.
 
 ---
 
@@ -852,8 +852,8 @@ Their model outperformed previous methods like @saunders2020progressive, animati
 Fingerspelling is spelling a word letter-by-letter, borrowing from the spoken language alphabet [@battison1978lexical;@wilcox1992phonetics;@brentari2001language;@patrie2011fingerspelled].
 This phenomenon, found in most signed languages, often occurs when there is no previously agreed-upon sign for a concept,
 like in technical language, colloquial conversations involving names, conversations involving current events,
-emphatic forms, and the context of code-switching between the sign language and corresponding spoken language [@padden1998asl;@montemurro2018emphatic].
-The relative amount of fingerspelling varies between signed languages, and for American Sign Language (ASL), it accounts for 12-35% of the signed content [@padden2003alphabet].
+emphatic forms, and the context of code-switching between the signed language and the corresponding spoken language [@padden1998asl;@montemurro2018emphatic].
+The relative amount of fingerspelling varies between signed languages, and for American Sign Language (ASL), accounts for 12-35% of the signed content [@padden2003alphabet].
 
 @patrie2011fingerspelled described the following terminology to describe three different forms of fingerspelling:
 
@@ -931,13 +931,13 @@ Anvil installation is [available](https://www.anvil-software.org/download/index.
 
 ###### Bilingual dictionaries {-}
 for signed language [@dataset:mesch2012meaning;@fenlon2015building;@crasborn2016ngt;@dataset:gutierrez2016lse] map a spoken language word or short phrase to a signed language video.
-One notable dictionary is, SpreadTheSign\footnote{\url{https://www.spreadthesign.com/}} is a parallel dictionary containing around 23,000 words with up to 41 different spoken-signed language pairs and more than 600,000 videos in total. Unfortunately, while dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.
+One notable dictionary, SpreadTheSign\footnote{\url{https://www.spreadthesign.com/}} is a parallel dictionary containing around 25,000 words with up to 42 different spoken-signed language pairs and more than 600,000 videos in total. Unfortunately, while dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.
 
 ###### Fingerspelling corpora {-}
 usually consist of videos of words borrowed from spoken languages that are signed letter-by-letter. They can be synthetically created [@dataset:dreuw2006modeling] or mined from online resources [@dataset:fs18slt,@dataset:fs18iccv]. However, they only capture one aspect of signed languages.
 
 ###### Isolated sign corpora {-}
-are collections of annotated single signs. They are synthesized [@dataset:ebling2018smile;@dataset:huang2018video;@dataset:sincan2020autsl;@dataset:hassan-etal-2020-isolated] or mined from online resources [@dataset:joze2018ms;@dataset:li2020word], and can be used for isolated sign language recognition or contrastive analysis of minimal signing pairs [@dataset:imashev2020dataset]. However, like dictionaries, they do not describe relations between signs, nor do they capture coarticulation during the signing, and are often limited in vocabulary size (20-1000 signs)
+are collections of annotated single signs. They are synthesized [@dataset:ebling2018smile;@dataset:huang2018video;@dataset:sincan2020autsl;@dataset:hassan-etal-2020-isolated] or mined from online resources [@dataset:joze2018ms;@dataset:li2020word], and can be used for isolated sign language recognition or contrastive analysis of minimal signing pairs [@dataset:imashev2020dataset]. However, like dictionaries, they do not describe relations between signs, nor do they capture coarticulation during the signing, and are often limited in vocabulary size (20-1000 signs).
 
 ###### Continuous sign corpora {-}
 contain parallel sequences of signs and spoken language.
@@ -948,8 +948,9 @@ These datasets are usually synthesized [@dataset:databases2007volumes;@dataset:C
 
 ###### Availability {-}
 Unlike the vast amount and diversity of available spoken language resources that allow various applications,
-signed language resources are scarce and, currently only support translation and production.
-Unfortunately, most of the signed language corpora discussed in the literature are either not available for use or available under heavy restrictions and licensing terms. Furthermore, signed language data is especially challenging to anonymize due to the importance of facial and other physical features in signing videos, limiting its open distribution. Developing anonymization with minimal information loss or accurate anonymous representations is a promising research direction.
+sign language resources are scarce and, currently only support translation and production.
+Unfortunately, most of the sign language corpora discussed in the literature are either not available for use or available under heavy restrictions and licensing terms. 
+Furthermore, sign language data is especially challenging to anonymize due to the importance of facial and other physical features in signing videos, limiting its open distribution. Developing anonymization with minimal information loss or accurate anonymous representations is a promising research direction.
 
 
 ### Collect Real-World Data
@@ -978,7 +979,7 @@ One helpful research direction for collecting more data that enables the develop
 ### Practice Deaf Collaboration
 
 Finally, when working with signed languages, it is vital to keep in mind \emph{who} this technology should benefit and \emph{what} they need.
-Researchers in SLP must honor that signed languages belong to the Deaf community and avoid exploiting their language as a commodity [@bird-2020-decolonising].
+Researchers in SLP should acknowledge that signed languages belong to the Deaf community and avoid exploiting their language as a commodity [@bird-2020-decolonising].
 
 ###### Solving Real Needs {-}
 
@@ -987,7 +988,7 @@ Such efforts are often marketed to perform "sign language translation" when they
 
 ###### Building Collaboration {-}
 Deaf collaborations and leadership are essential for developing signed language technologies to ensure they address the community's needs and will be adopted, not relying on misconceptions or inaccuracies about signed language [@harris2009research;@kusters2017innovations].
-Hearing researchers cannot relate to the deaf experience or fully understand the context in which the tools being developed would be used, nor can they speak for the deaf. Therefore, we encourage creating a long-term collaborative environment between signed language researchers and users so that deaf users can identify meaningful challenges and provide insights on the considerations to take while researchers cater to the signers' needs as the field evolves. We also recommend reaching out to signing communities for reviewing papers on signed languages to ensure an adequate evaluation of this type of research results published at ACL venues. There are several ways to connect with Deaf communities for collaboration: one can seek deaf students in their local community, reach out to schools for the deaf, contact deaf linguists, join a network of researchers of sign-related technologies\footnote{\url{https://www.crest-network.com/}}, and/or participate in deaf-led projects.
+Hearing researchers cannot relate to the deaf experience or fully understand the context in which the tools being developed would be used, nor can they speak for the deaf. Therefore, we encourage creating a long-term collaborative environment between signed language researchers and users so that deaf users can identify meaningful challenges and provide insights on the considerations to take while researchers cater to the signers' needs as the field evolves. We also recommend reaching out to signing communities for reviewing papers on signed languages to ensure an adequate evaluation of this type of research results published at academic venues. There are several ways to connect with Deaf communities for collaboration: one can seek deaf students in their local community, reach out to schools for the deaf, contact deaf linguists, join a network of researchers of sign-related technologies\footnote{\url{https://www.crest-network.com/}}, and/or participate in deaf-led projects.
 
 
 ### Downloading
