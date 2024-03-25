@@ -9,7 +9,7 @@
       "video:RGB",
       "pose:OpenPose"
     ],
-    "language": "Bangla sign language (BdSL)",
+    "language": "Bangla",
     "#items": 200,
     "#samples": "6000 videos",
     "#signers": "16",

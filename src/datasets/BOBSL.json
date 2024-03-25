@@ -9,11 +9,11 @@
       "video:RGB",
       "text:English"
     ],
-    "language": "British Sign Language (BSL)",
+    "language": "British",
     "#items": 2281,
     "#samples": "1.2M Sentences",
     "#signers": 37,
     "license": "non-commercial authorized academics",
     "licenseUrl": "https://www.bbc.co.uk/rd/projects/extol-dataset",
-    "contact": "Samuel Albanie albanie[AT]robots.ox.ac.uk"
+    "contact": "albanie@robots.ox.ac.uk"
   }

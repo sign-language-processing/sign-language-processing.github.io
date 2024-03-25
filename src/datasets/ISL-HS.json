@@ -9,9 +9,9 @@
       "video:RGB",
       "gloss:ISL-HandShapes"
     ],
-    "language": "Irish Sign Language (ISL)",
+    "language": "Irish",
     "#items": 23,
-    "#samples": "468 videos available, 58,114 images extracted to show 23 handshapes",
+    "#samples": "468 videos->58,114 images->23 handshapes",
     "#signers": 6,
     "license": null,
     "licenseUrl": null
