@@ -1,0 +1,18 @@
+{
+    "pub": {
+      "name": "ISL-HS",
+      "year": 2017,
+      "publication": "dataset:oliveiraDatasetIrishSign2017",
+      "url": "https://github.com/marlondcu/ISL"
+    },
+    "features": [
+      "video:RGB",
+      "gloss:ISL-HandShapes"
+    ],
+    "language": "Irish",
+    "#items": 23,
+    "#samples": "468 videos->58,114 images->23 handshapes",
+    "#signers": 6,
+    "license": null,
+    "licenseUrl": null
+  }

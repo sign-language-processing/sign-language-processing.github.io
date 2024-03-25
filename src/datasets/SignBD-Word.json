@@ -1,0 +1,18 @@
+{
+    "pub": {
+      "name": "SignBD-Word",
+      "year": 2023,
+      "publication": "dataset:samsSignBDWordVideoBasedBangla2023",
+      "url": "https://zenodo.org/records/6779843"
+    },
+    "features": [
+      "video:RGB",
+      "pose:OpenPose"
+    ],
+    "language": "Bangla",
+    "#items": 200,
+    "#samples": "6000 videos",
+    "#signers": "16",
+    "license": null,
+    "licenseUrl": null
+  }

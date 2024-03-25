@@ -1,0 +1,19 @@
+{
+    "pub": {
+      "name": "BOBSL",
+      "year": 2022,
+      "publication": "dataset:momeniAutomaticDenseAnnotation2022",
+      "url": "https://www.robots.ox.ac.uk/~vgg/data/bobsl/"
+    },
+    "features": [
+      "video:RGB",
+      "text:English"
+    ],
+    "language": "British",
+    "#items": 2281,
+    "#samples": "1.2M Sentences",
+    "#signers": 37,
+    "license": "non-commercial authorized academics",
+    "licenseUrl": "https://www.bbc.co.uk/rd/projects/extol-dataset",
+    "contact": "albanie@robots.ox.ac.uk"
+  }
