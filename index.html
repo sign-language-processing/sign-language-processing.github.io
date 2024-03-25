@@ -335,7 +335,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <p>For this recognition, <span class="citation" data-cites="cui2017recurrent">Cui, Liu, and Zhang (<a href="#ref-cui2017recurrent" role="doc-biblioref">2017</a>)</span> constructs a three-step optimization model. First, they train a video-to-gloss end-to-end model, where they encode the video using a spatio-temporal CNN encoder and predict the gloss using a Connectionist Temporal Classification (CTC) <span class="citation" data-cites="graves2006connectionist">(Graves et al. <a href="#ref-graves2006connectionist" role="doc-biblioref">2006</a>)</span>. Then, from the CTC alignment and category proposal, they encode each gloss-level segment independently, trained to predict the gloss category, and use this gloss video segments encoding to optimize the sequence learning model.</p>
 <p><span class="citation" data-cites="cihan2018neural">Camgöz et al. (<a href="#ref-cihan2018neural" role="doc-biblioref">2018</a>)</span> fundamentally differ from that approach and formulate this problem as if it is a natural-language translation problem. They encode each video frame using AlexNet <span class="citation" data-cites="krizhevsky2012imagenet">(Krizhevsky, Sutskever, and Hinton <a href="#ref-krizhevsky2012imagenet" role="doc-biblioref">2012</a>)</span>, initialized using weights trained on ImageNet <span class="citation" data-cites="deng2009imagenet">(Deng et al. <a href="#ref-deng2009imagenet" role="doc-biblioref">2009</a>)</span>. Then they apply a GRU encoder-decoder architecture with Luong Attention <span class="citation" data-cites="luong2015effective">(Luong, Pham, and Manning <a href="#ref-luong2015effective" role="doc-biblioref">2015</a>)</span> to generate the gloss. In follow-up work, <span class="citation" data-cites="camgoz2020sign">N. C. Camgöz et al. (<a href="#ref-camgoz2020sign" role="doc-biblioref">2020</a><a href="#ref-camgoz2020sign" role="doc-biblioref">b</a>)</span> use a transformer encoder <span class="citation" data-cites="vaswani2017attention">(Vaswani et al. <a href="#ref-vaswani2017attention" role="doc-biblioref">2017</a>)</span> to replace the GRU and use a CTC to decode the gloss. They show a slight improvement with this approach on the video-to-gloss task.</p>
 <p><span class="citation" data-cites="adaloglou2020comprehensive">Adaloglou et al. (<a href="#ref-adaloglou2020comprehensive" role="doc-biblioref">2020</a>)</span> perform a comparative experimental assessment of computer vision-based methods for the video-to-gloss task. They implement various approaches from previous research <span class="citation" data-cites="camgoz2017subunets cui2019deep dataset:joze2018ms">(Camgöz et al. <a href="#ref-camgoz2017subunets" role="doc-biblioref">2017</a>; Cui, Liu, and Zhang <a href="#ref-cui2019deep" role="doc-biblioref">2019</a>; Vaezi Joze and Koller <a href="#ref-dataset:joze2018ms" role="doc-biblioref">2019</a>)</span> and test them on multiple datasets <span class="citation" data-cites="dataset:huang2018video cihan2018neural dataset:von2007towards dataset:joze2018ms">(Huang et al. <a href="#ref-dataset:huang2018video" role="doc-biblioref">2018</a>; Camgöz et al. <a href="#ref-cihan2018neural" role="doc-biblioref">2018</a>; Von Agris and Kraiss <a href="#ref-dataset:von2007towards" role="doc-biblioref">2007</a>; Vaezi Joze and Koller <a href="#ref-dataset:joze2018ms" role="doc-biblioref">2019</a>)</span> either for isolated sign recognition or continuous sign recognition. They conclude that 3D convolutional models outperform models using only recurrent networks to capture the temporal information, and that these models are more scalable given the restricted receptive field, which results from the CNN “sliding window” technique.</p>
-<p><span class="citation" data-cites="momeni2022automatic">Momeni et al. (<a href="#ref-momeni2022automatic" role="doc-biblioref">2022</a>)</span> developed a comprehensive pipeline that combines various models to densely annotate sign language videos. By leveraging the use of synonyms and subtitle-signing alignment, their approach demonstrates the value of pseudo-labeling from a sign recognition model for sign spotting. They propose a novel method to increase annotations for both known and unknown classes, relying on in-domain exemplars. As a result, their framework significantly expands the number of confident automatic annotations on the BOBSL BSL sign language corpus <span class="citation" data-cites="dataset:albanie2021bobsl">(Albanie et al. <a href="#ref-dataset:albanie2021bobsl" role="doc-biblioref">2021</a>)</span> from 670K to 5M, and they generously make these annotations publicly available.</p>
+<p><span class="citation" data-cites="momeni2022automatic">Momeni, Bull, Prajwal, et al. (<a href="#ref-momeni2022automatic" role="doc-biblioref">2022</a><a href="#ref-momeni2022automatic" role="doc-biblioref">a</a>)</span> developed a comprehensive pipeline that combines various models to densely annotate sign language videos. By leveraging the use of synonyms and subtitle-signing alignment, their approach demonstrates the value of pseudo-labeling from a sign recognition model for sign spotting. They propose a novel method to increase annotations for both known and unknown classes, relying on in-domain exemplars. As a result, their framework significantly expands the number of confident automatic annotations on the BOBSL BSL sign language corpus <span class="citation" data-cites="dataset:albanie2021bobsl">(Albanie et al. <a href="#ref-dataset:albanie2021bobsl" role="doc-biblioref">2021</a>)</span> from 670K to 5M, and they generously make these annotations publicly available.</p>
 <h4 id="gloss-to-video">Gloss-to-Video</h4>
 <p>Gloss-to-Video, also known as sign language production, is the task of producing a video that adequately represents a sequence of signs written as gloss.</p>
 <p>As of 2020, no research discusses the direct translation task between gloss and video. This lack of discussion results from the computational impracticality of the desired model, leading researchers to refrain from performing this task directly and instead rely on pipeline approaches using intermediate pose representations.</p>
@@ -594,6 +594,16 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td><a href="https://competitions.codalab.org/competitions/27901#participate">Codalab</a></td>
 </tr>
 <tr class="even">
+<td><a href="https://www.robots.ox.ac.uk/~vgg/data/bobsl/">BOBSL</a></td>
+<td><span class="citation" data-cites="dataset:momeniAutomaticDenseAnnotation2022">Momeni, Bull, Prajwal, et al. (<a href="#ref-dataset:momeniAutomaticDenseAnnotation2022" role="doc-biblioref">2022</a><a href="#ref-dataset:momeniAutomaticDenseAnnotation2022" role="doc-biblioref">b</a>)</span></td>
+<td>British</td>
+<td><span title="video:RGB">🎥</span><span title="text:English">📜</span></td>
+<td>2,281</td>
+<td>1.2M Sentences</td>
+<td>37</td>
+<td><a href="https://www.bbc.co.uk/rd/projects/extol-dataset">non-commercial authorized academics</a></td>
+</tr>
+<tr class="odd">
 <td><a href="https://www.cmpe.boun.edu.tr/pilab/BosphorusSign/bosphorusSign_en.html">BosphorusSign</a></td>
 <td><span class="citation" data-cites="dataset:camgoz-etal-2016-bosphorussign">Camgöz et al. (<a href="#ref-dataset:camgoz-etal-2016-bosphorussign" role="doc-biblioref">2016</a>)</span></td>
 <td>Turkish</td>
@@ -603,7 +613,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>6</td>
 <td>Not Published</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://bslcorpusproject.org/">BSL Corpus</a> <a href="https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/bsl_corpus">💾</a></td>
 <td><span class="citation" data-cites="dataset:schembri2013building">Schembri et al. (<a href="#ref-dataset:schembri2013building" role="doc-biblioref">2013</a>)</span></td>
 <td>British</td>
@@ -613,7 +623,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>249</td>
 <td><a href="https://bslcorpusproject.org/cava/restricted-access-data/">Partially Restricted</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://www.slownikpjm.uw.edu.pl/en">CDPSL</a></td>
 <td><span class="citation" data-cites="dataset:acheta2014ACD">Łacheta and PawełRutkowski (<a href="#ref-dataset:acheta2014ACD" role="doc-biblioref">2014</a>)</span></td>
 <td>Polish</td>
@@ -623,7 +633,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://ttic.uchicago.edu/~klivescu/ChicagoFSWild.htm">ChicagoFSWild</a> <a href="https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/chicagofswild">💾</a></td>
 <td><span class="citation" data-cites="dataset:fs18slt">Shi et al. (<a href="#ref-dataset:fs18slt" role="doc-biblioref">2018</a>)</span></td>
 <td>American</td>
@@ -633,7 +643,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>160</td>
 <td>Public</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://ttic.uchicago.edu/~klivescu/ChicagoFSWild.htm">ChicagoFSWild+</a> <a href="https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/chicagofswild">💾</a></td>
 <td><span class="citation" data-cites="dataset:fs18iccv">Shi et al. (<a href="#ref-dataset:fs18iccv" role="doc-biblioref">2019</a>)</span></td>
 <td>American</td>
@@ -643,7 +653,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>260</td>
 <td>Public</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://www.cvssp.org/data/c4a-news-corpus/">Content4All</a></td>
 <td><span class="citation" data-cites="dataset:camgoz2021content4all">Camgöz et al. (<a href="#ref-dataset:camgoz2021content4all" role="doc-biblioref">2021</a>)</span></td>
 <td>Swiss-German, Flemish</td>
@@ -653,7 +663,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td></td>
 <td><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="http://wearables.cc.gatech.edu/projects/copycat/">CopyCat</a></td>
 <td><span class="citation" data-cites="dataset:zafrulla2010novel">Zafrulla et al. (<a href="#ref-dataset:zafrulla2010novel" role="doc-biblioref">2010</a>)</span></td>
 <td>American</td>
@@ -663,7 +673,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>5</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://www.ru.nl/corpusngtuk/">Corpus NGT</a> <a href="https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/ngt_corpus">💾</a></td>
 <td><span class="citation" data-cites="dataset:Crasborn2008TheCN">Crasborn and Zwitserlood (<a href="#ref-dataset:Crasborn2008TheCN" role="doc-biblioref">2008</a>)</span></td>
 <td>Netherlands</td>
@@ -673,7 +683,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>92</td>
 <td><a href="https://creativecommons.org/licenses/by-nc-sa/3.0/nl/deed.en_GB">CC BY-NC-SA 3.0 NL</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="http://vipl.ict.ac.cn/homepage/ksl/data.html">DEVISIGN</a></td>
 <td><span class="citation" data-cites="dataset:chai2014devisign">Chai, Wang, and Chen (<a href="#ref-dataset:chai2014devisign" role="doc-biblioref">2014</a>)</span></td>
 <td>Chinese</td>
@@ -683,7 +693,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>8</td>
 <td><a href="http://vipl.ict.ac.cn/homepage/ksl/document/Agreement.pdf">Research purpose on request</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://www.sign-lang.uni-hamburg.de/dicta-sign/portal/">Dicta-Sign</a> <a href="https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/dicta_sign">💾</a></td>
 <td><span class="citation" data-cites="dataset:matthes2012dicta">Matthes et al. (<a href="#ref-dataset:matthes2012dicta" role="doc-biblioref">2012</a>)</span></td>
 <td>Multilingual</td>
@@ -693,7 +703,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>16-18 /Language</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://how2sign.github.io/">How2Sign</a> <a href="https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/how2sign">💾</a></td>
 <td><span class="citation" data-cites="dataset:duarte2020how2sign">Duarte et al. (<a href="#ref-dataset:duarte2020how2sign" role="doc-biblioref">2020</a>)</span></td>
 <td>American</td>
@@ -702,6 +712,16 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>79 hours (35,000 sentences)</td>
 <td>11</td>
 <td><a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/marlondcu/ISL">ISL-HS</a></td>
+<td><span class="citation" data-cites="dataset:oliveiraDatasetIrishSign2017">Oliveira et al. (<a href="#ref-dataset:oliveiraDatasetIrishSign2017" role="doc-biblioref">2017</a>)</span></td>
+<td>Irish</td>
+<td><span title="video:RGB">🎥</span><span title="gloss:ISL-HandShapes">📋</span></td>
+<td>23</td>
+<td>468 videos-&gt;58,114 images-&gt;23 handshapes</td>
+<td>6</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td><a href="https://krslproject.github.io/krsl20/">K-RSL</a></td>
@@ -844,6 +864,16 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td></td>
 </tr>
 <tr class="odd">
+<td><a href="https://zenodo.org/records/6779843">SignBD-Word</a></td>
+<td><span class="citation" data-cites="dataset:samsSignBDWordVideoBasedBangla2023">Sams, Akash, and Rahman (<a href="#ref-dataset:samsSignBDWordVideoBasedBangla2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Bangla</td>
+<td><span title="video:RGB">🎥</span><span title="pose:OpenPose">👋</span></td>
+<td>200</td>
+<td>6000 videos</td>
+<td>16</td>
+<td></td>
+</tr>
+<tr class="even">
 <td><a href="http://lojze.lugos.si/signor/">SIGNOR</a></td>
 <td><span class="citation" data-cites="dataset:vintar2012compiling">Vintar, Jerko, and Kulovec (<a href="#ref-dataset:vintar2012compiling" role="doc-biblioref">2012</a>)</span></td>
 <td>Slovene</td>
@@ -853,7 +883,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>80</td>
 <td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span> emailed Špela</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://www.phonetik.uni-muenchen.de/forschung/Bas/SIGNUM/">SIGNUM</a></td>
 <td><span class="citation" data-cites="dataset:von2007towards">Von Agris and Kraiss (<a href="#ref-dataset:von2007towards" role="doc-biblioref">2007</a>)</span></td>
 <td>German</td>
@@ -863,7 +893,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>20</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>SMILE</td>
 <td><span class="citation" data-cites="dataset:ebling2018smile">Ebling et al. (<a href="#ref-dataset:ebling2018smile" role="doc-biblioref">2018</a>)</span></td>
 <td>Swiss-German</td>
@@ -873,7 +903,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>30</td>
 <td><a href="https://zenodo.org/record/7701457">Custom</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://teckensprakskorpus.su.se">SSL Corpus</a></td>
 <td><span class="citation" data-cites="dataset:oqvist-etal-2020-sts">Öqvist, Riemer Kankkonen, and Mesch (<a href="#ref-dataset:oqvist-etal-2020-sts" role="doc-biblioref">2020</a>)</span></td>
 <td>Swedish</td>
@@ -883,7 +913,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://teckensprakslexikon.su.se/">SSL Lexicon</a></td>
 <td><span class="citation" data-cites="dataset:mesch2012meaning">Mesch and Wallin (<a href="#ref-dataset:mesch2012meaning" role="doc-biblioref">2012</a>)</span></td>
 <td>Swedish</td>
@@ -893,7 +923,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td></td>
 <td><a href="https://creativecommons.org/licenses/by-nc-sa/2.5/se/">CC BY-NC-SA 2.5 SE</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="http://home.ustc.edu.cn/~pjh/openresources/cslr-dataset-2015/index.html">Video-Based CSL</a></td>
 <td><span class="citation" data-cites="dataset:huang2018video">Huang et al. (<a href="#ref-dataset:huang2018video" role="doc-biblioref">2018</a>)</span></td>
 <td>Chinese</td>
@@ -903,7 +933,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>50</td>
 <td><a href="https://rec.ustc.edu.cn/share/475ac440-dab7-11ea-963e-ebae3cfe5012">Research Attribution</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://dxli94.github.io/WLASL/">WLASL</a> <a href="https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/wlasl">💾</a></td>
 <td><span class="citation" data-cites="dataset:li2020word">Li et al. (<a href="#ref-dataset:li2020word" role="doc-biblioref">2020</a>)</span></td>
 <td>American</td>
@@ -1315,7 +1345,10 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <p>Min, Jianyuan, and Jinxiang Chai. 2012. “Motion Graphs++ a Compact Generative Model for Semantic Motion Analysis and Synthesis.” <em>ACM Transactions on Graphics (TOG)</em> 31 (6): 1–12.</p>
 </div>
 <div id="ref-momeni2022automatic">
-<p>Momeni, Liliane, Hannah Bull, KR Prajwal, Samuel Albanie, Gül Varol, and Andrew Zisserman. 2022. “Automatic Dense Annotation of Large-Vocabulary Sign Language Videos.” In <em>Computer Vision–Eccv 2022: 17th European Conference, Tel Aviv, Israel, October 23–27, 2022, Proceedings, Part Xxxv</em>, 671–90. Springer.</p>
+<p>Momeni, Liliane, Hannah Bull, KR Prajwal, Samuel Albanie, Gül Varol, and Andrew Zisserman. 2022a. “Automatic Dense Annotation of Large-Vocabulary Sign Language Videos.” In <em>Computer Vision–Eccv 2022: 17th European Conference, Tel Aviv, Israel, October 23–27, 2022, Proceedings, Part Xxxv</em>, 671–90. Springer.</p>
+</div>
+<div id="ref-dataset:momeniAutomaticDenseAnnotation2022">
+<p>Momeni, Liliane, Hannah Bull, K. R. Prajwal, Samuel Albanie, Gül Varol, and Andrew Zisserman. 2022b. “Automatic Dense Annotation of Large-Vocabulary Sign Language Videos.” In <em>Computer Vision – ECCV 2022</em>, edited by Shai Avidan, Gabriel Brostow, Moustapha Cissé, Giovanni Maria Farinella, and Tal Hassner, 671–90. Cham: Springer Nature Switzerland. <a href="https://doi.org/10.1007/978-3-031-19833-5_39">https://doi.org/10.1007/978-3-031-19833-5_39</a>.</p>
 </div>
 <div id="ref-paula:moncrief2020extending">
 <p>Moncrief, Robyn. 2020. “Extending a Model for Animating Adverbs of Manner in American Sign Language.” In <em>Proceedings of the Lrec2020 9th Workshop on the Representation and Processing of Sign Languages: Sign Language Resources in the Service of the Language Community, Technological Challenges and Application Perspectives</em>, 151–56.</p>
@@ -1358,6 +1391,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 </div>
 <div id="ref-neidle2001signstream">
 <p>Neidle, Carol, Stan Sclaroff, and Vassilis Athitsos. 2001. “SignStream: A Tool for Linguistic and Computer Vision Research on Visual-Gestural Language Data.” <em>Behavior Research Methods, Instruments, &amp; Computers</em> 33 (3): 311–20.</p>
+</div>
+<div id="ref-dataset:oliveiraDatasetIrishSign2017">
+<p>Oliveira, Marlon, Houssem Chatbri, Ylva Ferstl, Mohamed Farouk, Suzanne Little, Noel O’Connor, and A. Sutherland. 2017. “A Dataset for Irish Sign Language Recognition.” In <em>Proceedings of the Irish Machine Vision and Image Processing Conference (IMVIP)</em>.</p>
 </div>
 <div id="ref-ormel2012prosodic">
 <p>Ormel, Ellen, and Onno Crasborn. 2012. “Prosodic Correlates of Sentences in Signed Languages: A Literature Review and Suggestions for New Types of Studies.” <em>Sign Language Studies</em> 12 (2): 279–315.</p>
@@ -1424,6 +1460,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 </div>
 <div id="ref-roy2011discourse">
 <p>Roy, Cynthia B. 2011. <em>Discourse in Signed Languages</em>. Gallaudet University Press.</p>
+</div>
+<div id="ref-dataset:samsSignBDWordVideoBasedBangla2023">
+<p>Sams, Ataher, Ahsan Habib Akash, and S. M. Mahbubur Rahman. 2023. “SignBD-Word: Video-Based Bangla Word-Level Sign Language and Pose Translation.” In <em>2023 14th International Conference on Computing Communication and Networking Technologies (ICCCNT)</em>, 1–7. <a href="https://doi.org/10.1109/ICCCNT56998.2023.10306914">https://doi.org/10.1109/ICCCNT56998.2023.10306914</a>.</p>
 </div>
 <div id="ref-sandler2010prosody">
 <p>Sandler, Wendy. 2010. “Prosody and Syntax in Sign Languages.” <em>Transactions of the Philological Society</em> 108 (3): 298–328.</p>
