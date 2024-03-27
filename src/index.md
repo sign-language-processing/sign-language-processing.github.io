@@ -539,7 +539,7 @@ demonstrating improved fine-tuning performance especially in low-resource settin
 The work of @kezar2023improving, based on the [OpenHands](https://github.com/AI4Bharat/OpenHands) library, 
 explicitly recognizes the role of phonology to achieve more accurate isolated sign language recognition (ISLR). 
 To allow additional predictions on phonological characteristics (such as handshape), 
-they combine the phonological annotations in ASL-LEX 2.0 [@sehyr2021asl] with signs in the WLASL 2000 ISLR benchmark [@dataset:li2020word]. 
+they combine the phonological annotations in ASL-LEX 2.0 [@dataset:sehyr2021asl] with signs in the WLASL 2000 ISLR benchmark [@dataset:li2020word]. 
 Interestingly, @tavella-etal-2022-wlasl construct a similar dataset aiming just for phonological property recognition in American Sign Language (ASL).
 
 #### Gloss-to-Pose
