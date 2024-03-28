@@ -1,0 +1,18 @@
+{
+    "pub": {
+      "name": "ASL-LEX",
+      "year": 2021,
+      "publication": "dataset:sehyr2021asl",
+      "url": "https://doi.org/10.1093/deafed/enaa038"
+    },
+    "features": [
+      "gloss:ASL"
+    ],
+    "language": "American",
+    "#items": 2723,
+    "#samples": "2723 glosses+linguistic annotations, video downloads not allowed",
+    "#signers": null,
+    "license": "CC BY-NC 4.0",
+    "licenseUrl": "https://asl-lex.org/download.html",
+    "contact": "asllexproject@gmail.com"
+  }

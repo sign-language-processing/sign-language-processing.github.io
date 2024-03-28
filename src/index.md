@@ -295,6 +295,7 @@ leveraging a spatio-temporal graph convolutional network (STGCN; @Yu2017SpatioTe
 @segmentation:bull2021aligning presented a Transformer-based approach to segment sign language videos and align them with subtitles simultaneously, 
 encoding subtitles by BERT [@devlin-etal-2019-bert] and videos by CNN video representations.
 
+@segmentation:moryossef-etal-2023-linguistically presented a method motivated by linguistic cues observed in sign language corpora, such as prosody (pauses, pace, etc) and handshape changes. They also find that using BIO, an annotation scheme that notes the beginning, inside and outside, makes a significant difference over previous ones that only note IO (inside or outside). They find that including optical flow and 3D hand normalization helps with out-of-domain generalization and other signed languages as well. 
 
 <!-- @segmentation:de-sisto-etal-2021-defining introduce a proposal for mapping segments to meaning in the form of an agglomerate of lexical and non-lexical information. -->
 
@@ -538,7 +539,7 @@ demonstrating improved fine-tuning performance especially in low-resource settin
 The work of @kezar2023improving, based on the [OpenHands](https://github.com/AI4Bharat/OpenHands) library, 
 explicitly recognizes the role of phonology to achieve more accurate isolated sign language recognition (ISLR). 
 To allow additional predictions on phonological characteristics (such as handshape), 
-they combine the phonological annotations in ASL-LEX 2.0 [@sehyr2021asl] with signs in the WLASL 2000 ISLR benchmark [@dataset:li2020word]. 
+they combine the phonological annotations in ASL-LEX 2.0 [@dataset:sehyr2021asl] with signs in the WLASL 2000 ISLR benchmark [@dataset:li2020word]. 
 Interestingly, @tavella-etal-2022-wlasl construct a similar dataset aiming just for phonological property recognition in American Sign Language (ASL).
 
 #### Gloss-to-Pose
