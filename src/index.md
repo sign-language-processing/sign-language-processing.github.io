@@ -168,7 +168,7 @@ In this demonstration, we deconstruct the video into its individual frames to ex
 \begin{figure*}
   \centering
   \includegraphics[width=\linewidth]{assets/representation/continuous.pdf}
-  \caption{Representations of an American Sign Language phrase with video frames, pose estimations, SignWriting, HamNoSys and glosses. English translation: “What is your name?” \citep{yin-etal-2021-including}}
+  \caption{Representations of an American Sign Language phrase with video frames, pose estimations, SignWriting, HamNoSys and glosses. English translation: “What is your name?” \cite{yin-etal-2021-including}}
   \label{fig:continuous}
 \end{figure*}
 \end{landscape}
@@ -193,7 +193,7 @@ However, they remain a continuous, multidimensional representation that is not a
 
 ###### Written notation systems {-}
 represent signs as discrete visual features. Some systems are written linearly, and others use graphemes in two dimensions.
-While various universal [@writing:sutton1990lessons;@writing:prillwitz1990hamburg] and language-specific notation systems [@writing:stokoe2005sign;@writing:kakumasu1968urubu;@writing:bergman1977tecknad] have been proposed,
+While various universal [@writing:sutton1990lessons;@writing:prillwitz1990hamburg] and language-specific notation systems [@writing:stokoe1960sign;@writing:kakumasu1968urubu;@writing:bergman1977tecknad] have been proposed,
 no writing system has been adopted widely by any sign language community, and the lack of standards hinders the exchange and unification of resources and applications between projects.
 The figure above depicts two universal notation systems:
 SignWriting [@writing:sutton1990lessons], a two-dimensional pictographic system,
@@ -286,7 +286,7 @@ modeled by Dynamic Time Warping (DTW) and Hidden Markov Models (HMMs) approaches
 based on the composition of spatio-temporal angular and distance features between domain-specific pairs of joint segments.
 
 @segmentation:bull2020automatic segmented French Sign Language into segments corresponding to subtitle units by relying on the alignment between subtitles and sign language videos, 
-leveraging a spatio-temporal graph convolutional network (STGCN; @Yu2017SpatioTemporalGC) with a BiLSTM on 2D skeleton data.
+leveraging a spatio-temporal graph convolutional network (ST-GCN; @Yu2017SpatioTemporalGC) with a BiLSTM on 2D skeleton data.
 
 @segmentation:renz2021signa located temporal boundaries between signs in continuous sign language videos by employing 
 3D convolutional neural network representations with iterative temporal segment refinement to resolve ambiguities between sign boundary cues. 
@@ -560,7 +560,7 @@ To smooth that sequence and reduce unnatural motion, they used a Savitzky–Gola
 @huang2021towards used a new non-autoregressive model to generate a sequence of poses for a sequence of glosses. 
 They argued that existing models like @saunders2020adversarial are prone to error accumulation and high inference latency due to their autoregressive nature. 
 Their model performs gradual upsampling of the poses, by starting with a pose including only two joints in the first layer, and gradually introducing more keypoints.
-They evaluated their model on the Phoenix-14T dataset [@dataset:camgnt2020phoenix] using 
+They evaluated their model on the Phoenix-14T dataset [@dataset:forster2014extensions] using 
 Dynamic Time Warping (DTW) [@Berndt1994UsingDT] to align the poses before computing Mean Joint Error (DTW-MJE).
 They demonstrated that their model outperforms existing methods in terms of accuracy and speed, making it a promising approach for fast and high-quality sign language production.
 
