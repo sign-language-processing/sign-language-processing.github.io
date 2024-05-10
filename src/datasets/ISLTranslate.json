@@ -7,7 +7,7 @@
     },
     
     "#items": 11000, 
-    "#samples": "31k ISL-English sentence/phrase pairs",
+    "#samples": "31k sentences",
     "#signers": null, 
     "features": ["video", "text:English", "pose:MediaPipe"],
     "language": "Indian", 
