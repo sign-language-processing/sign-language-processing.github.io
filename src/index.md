@@ -726,6 +726,8 @@ The model features shared representations for different modalities such as text 
 on several tasks such as video-to-gloss, gloss-to-text, and video-to-text. 
 The approach allows leveraging external data such as parallel data for spoken language machine translation.
 
+@dataset:joshi-etal-2023-isltranslate introduce ISLTranslate, a large translation dataset for Indian Sign Language based on publicly available educational videos intended for hard-of-hearing children, which happen to contain both ISL and English audio voiceover conveying the same content. They use a speech-to-text model to transcribe the audio content, which they later manually corrected with the help of accompanying books also containing the same content. They also use MediaPipe to extract pose features, and have a certified ISL signer validate a small portion of the sign-text pairs. They provide a baseline based on the architecture proposed in @camgoz2020sign, and provide code.
+
 <!-- TODO: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
 #### Text-to-Video
