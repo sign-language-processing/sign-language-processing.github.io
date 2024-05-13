@@ -930,6 +930,12 @@ Anvil installation is [available](https://www.anvil-software.org/download/index.
 
 ## Resources
 
+###### Dataset Papers
+
+Research papers which do not necessarily contribute new theory or architectures are actually important and useful enablers of other research. Furthermore, the advancement of the dataset creation process itself is important, and the pipeline of creation and curation is a potential target for improvements and advancements.
+
+@dataset:joshi-etal-2023-isltranslate introduce ISLTranslate, a large translation dataset for Indian Sign Language based on publicly available educational videos intended for hard-of-hearing children, which happen to contain both Indian Sign Language and English audio voiceover conveying the same content. They use a speech-to-text model to transcribe the audio content, which they later manually corrected with the help of accompanying books also containing the same content. They also use MediaPipe to extract pose features, and have a certified ISL signer validate a small portion of the sign-text pairs. They provide a baseline based on the architecture proposed in @camgoz2020sign, and provide code.
+
 ###### Bilingual dictionaries {-}
 for signed language [@dataset:mesch2012meaning;@fenlon2015building;@crasborn2016ngt;@dataset:gutierrez2016lse] map a spoken language word or short phrase to a signed language video.
 One notable dictionary, SpreadTheSign\footnote{\url{https://www.spreadthesign.com/}} is a parallel dictionary containing around 25,000 words with up to 42 different spoken-signed language pairs and more than 600,000 videos in total. Unfortunately, while dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.
@@ -1104,6 +1110,7 @@ Emailed Eleni and Evita; I need to make sure data is available.
 | [Dicta-Sign](https://www.sign-lang.uni-hamburg.de/dicta-sign/portal/) [💾](https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/dicta_sign) | @dataset:matthes2012dicta | Multilingual | <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> |  | 6-8 Hours (/Participant) | 16-18 /Language |  |
 | [How2Sign](https://how2sign.github.io/) [💾](https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/how2sign) | @dataset:duarte2020how2sign | American | <span title="video">🎥</span><span title="pose:OpenPose">👋</span><span title="gloss:ASL">📋</span><span title="text:English">📜</span><span title="speech:English">🔊</span> | 16,000 | 79 hours (35,000 sentences) | 11 | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) |
 | [ISL-HS](https://github.com/marlondcu/ISL) | @dataset:oliveiraDatasetIrishSign2017 | Irish | <span title="video:RGB">🎥</span><span title="gloss:ISL-HandShapes">📋</span> | 23 | 468 videos-\>58,114 images->23 handshapes | 6 |  |
+| [ISLTranslate](https://github.com/Exploration-Lab/ISLTranslate) | @dataset:joshi-etal-2023-isltranslate | Indian | <span title="video">🎥</span><span title="text:English">📜</span><span title="pose:MediaPipe">👋</span> | 11,000 | 31k sentences |  | [License: CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) |
 | [K-RSL](https://krslproject.github.io/krsl20/) | @dataset:imashev2020dataset | Kazakh-Russian | <span title="video">🎥</span><span title="pose:OpenPose">👋</span><span title="text:Russian">📜</span> | 600 | 28,250 Videos | 10 | Attribution |
 | KETI | @dataset:ko2019neural | Korean | <span title="video">🎥</span><span title="pose:OpenPose">👋</span><span title="gloss:KSL">📋</span><span title="text:Korean">📜</span> | 524 | 14,672 Videos | 14 | <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> (emailed Sang-Ki Ko) |
 | [KRSL-OnlineSchool](https://krslproject.github.io/online-school/) | @dataset:mukushev2022towards | Kazakh-Russian | <span title="video">🎥</span><span title="gloss">📋</span><span title="text:Kazakh-Russian">📜</span> |  | 890 Hours (1M sentences) | 7 |  |

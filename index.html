@@ -415,6 +415,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <h5 id="anvil---the-video-annotation-research-tool">Anvil - The Video Annotation Research Tool</h5>
 <p><a href="https://www.anvil-software.org/">Anvil</a> <span class="citation" data-cites="kipp2001anvil">(Kipp <a href="#ref-kipp2001anvil" role="doc-biblioref">2001</a>)</span> is a free video annotation tool, offering multi-layered annotation based on a user-defined coding scheme. In Anvil, the annotator can see color-coded elements on multiple tracks in time alignment. Some special features are cross-level links, non-temporal objects, timepoint tracks, coding agreement analysis, 3D viewing of motion capture data and a project tool for managing whole corpora of annotation files. Anvil installation is <a href="https://www.anvil-software.org/download/index.html">available</a> for Windows, macOS, and Linux.</p>
 <h2 id="resources">Resources</h2>
+<h6 id="dataset-papers">Dataset Papers</h6>
+<p>Research papers which do not necessarily contribute new theory or architectures are actually important and useful enablers of other research. Furthermore, the advancement of the dataset creation process itself is important, and the pipeline of creation and curation is a potential target for improvements and advancements.</p>
+<p><span class="citation" data-cites="dataset:joshi-etal-2023-isltranslate">Joshi, Agrawal, and Modi (<a href="#ref-dataset:joshi-etal-2023-isltranslate" role="doc-biblioref">2023</a>)</span> introduce ISLTranslate, a large translation dataset for Indian Sign Language based on publicly available educational videos intended for hard-of-hearing children, which happen to contain both Indian Sign Language and English audio voiceover conveying the same content. They use a speech-to-text model to transcribe the audio content, which they later manually corrected with the help of accompanying books also containing the same content. They also use MediaPipe to extract pose features, and have a certified ISL signer validate a small portion of the sign-text pairs. They provide a baseline based on the architecture proposed in <span class="citation" data-cites="camgoz2020sign">N. C. Camgöz et al. (<a href="#ref-camgoz2020sign" role="doc-biblioref">2020</a><a href="#ref-camgoz2020sign" role="doc-biblioref">b</a>)</span>, and provide code.</p>
 <section id="bilingual-dictionaries" class="unnumbered">
 <h6 class="unnumbered">Bilingual dictionaries</h6>
 <p>for signed language <span class="citation" data-cites="dataset:mesch2012meaning fenlon2015building crasborn2016ngt dataset:gutierrez2016lse">(Mesch and Wallin <a href="#ref-dataset:mesch2012meaning" role="doc-biblioref">2012</a>; Fenlon, Cormier, and Schembri <a href="#ref-fenlon2015building" role="doc-biblioref">2015</a>; Crasborn et al. <a href="#ref-crasborn2016ngt" role="doc-biblioref">2016</a>; Gutierrez-Sigut et al. <a href="#ref-dataset:gutierrez2016lse" role="doc-biblioref">2016</a>)</span> map a spoken language word or short phrase to a signed language video. One notable dictionary, SpreadTheSign is a parallel dictionary containing around 25,000 words with up to 42 different spoken-signed language pairs and more than 600,000 videos in total. Unfortunately, while dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.</p>
@@ -737,6 +740,16 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td></td>
 </tr>
 <tr class="even">
+<td><a href="https://github.com/Exploration-Lab/ISLTranslate">ISLTranslate</a></td>
+<td><span class="citation" data-cites="dataset:joshi-etal-2023-isltranslate">Joshi, Agrawal, and Modi (<a href="#ref-dataset:joshi-etal-2023-isltranslate" role="doc-biblioref">2023</a>)</span></td>
+<td>Indian</td>
+<td><span title="video">🎥</span><span title="text:English">📜</span><span title="pose:MediaPipe">👋</span></td>
+<td>11,000</td>
+<td>31k sentences</td>
+<td></td>
+<td><a href="https://creativecommons.org/licenses/by-nc/4.0/">License: CC BY-NC 4.0</a></td>
+</tr>
+<tr class="odd">
 <td><a href="https://krslproject.github.io/krsl20/">K-RSL</a></td>
 <td><span class="citation" data-cites="dataset:imashev2020dataset">Imashev et al. (<a href="#ref-dataset:imashev2020dataset" role="doc-biblioref">2020</a>)</span></td>
 <td>Kazakh-Russian</td>
@@ -746,7 +759,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>10</td>
 <td>Attribution</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>KETI</td>
 <td><span class="citation" data-cites="dataset:ko2019neural">Ko et al. (<a href="#ref-dataset:ko2019neural" role="doc-biblioref">2019</a>)</span></td>
 <td>Korean</td>
@@ -756,7 +769,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>14</td>
 <td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span> (emailed Sang-Ki Ko)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://krslproject.github.io/online-school/">KRSL-OnlineSchool</a></td>
 <td><span class="citation" data-cites="dataset:mukushev2022towards">Mukushev et al. (<a href="#ref-dataset:mukushev2022towards" role="doc-biblioref">2022</a>)</span></td>
 <td>Kazakh-Russian</td>
@@ -766,7 +779,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>7</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://link.springer.com/content/pdf/10.3758/s13428-014-0560-1.pdf">LSE-SIGN</a></td>
 <td><span class="citation" data-cites="dataset:gutierrez2016lse">Gutierrez-Sigut et al. (<a href="#ref-dataset:gutierrez2016lse" role="doc-biblioref">2016</a>)</span></td>
 <td>Spanish</td>
@@ -776,7 +789,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>2</td>
 <td><a href="http://lse-sign.bcbl.eu/web-busqueda/?page_id=8">Custom</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://www.microsoft.com/en-us/download/details.aspx?id=100121">MS-ASL</a></td>
 <td><span class="citation" data-cites="dataset:joze2018ms">Vaezi Joze and Koller (<a href="#ref-dataset:joze2018ms" role="doc-biblioref">2019</a>)</span></td>
 <td>American</td>
@@ -786,7 +799,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>200</td>
 <td>Public</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://www.bu.edu/asllrp/ncslgr.html">NCSLGR</a> <a href="https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/ncslgr">💾</a></td>
 <td><span class="citation" data-cites="dataset:databases2007volumes">Databases (<a href="#ref-dataset:databases2007volumes" role="doc-biblioref">2007</a>)</span></td>
 <td>American</td>
@@ -796,7 +809,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>4</td>
 <td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://www.sign-lang.uni-hamburg.de/dgs-korpus/index.php/welcome.html">Public DGS Corpus</a> <a href="https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/dgs_corpus">💾</a></td>
 <td><span class="citation" data-cites="dataset:prillwitz2008dgs">Prillwitz et al. (<a href="#ref-dataset:prillwitz2008dgs" role="doc-biblioref">2008</a>)</span></td>
 <td>German</td>
@@ -806,7 +819,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>330</td>
 <td><a href="https://www.sign-lang.uni-hamburg.de/meinedgs/ling/license_en.html">Custom</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://engineering.purdue.edu/RVL/Database/ASL/asl-database-front.htm">RVL-SLLL ASL</a></td>
 <td><span class="citation" data-cites="dataset:martinez2002purdue">Martínez et al. (<a href="#ref-dataset:martinez2002purdue" role="doc-biblioref">2002</a>)</span></td>
 <td>American</td>
@@ -816,7 +829,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>14</td>
 <td><a href="https://engineering.purdue.edu/RVL/Database/ASL/Agreement.pdf">Research Attribution</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://www-i6.informatik.rwth-aachen.de/aslr/fingerspelling.php">RWTH Fingerspelling</a></td>
 <td><span class="citation" data-cites="dataset:dreuw2006modeling">Dreuw et al. (<a href="#ref-dataset:dreuw2006modeling" role="doc-biblioref">2006</a>)</span></td>
 <td>German</td>
@@ -826,7 +839,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>20</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://www-i6.informatik.rwth-aachen.de/aslr/database-rwth-boston-104.php">RWTH-BOSTON-104</a></td>
 <td><span class="citation" data-cites="dataset:dreuw2008benchmark">Dreuw et al. (<a href="#ref-dataset:dreuw2008benchmark" role="doc-biblioref">2008</a>)</span></td>
 <td>American</td>
@@ -836,7 +849,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>3</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://www-i6.informatik.rwth-aachen.de/~koller/RWTH-PHOENIX-2014-T/">RWTH-PHOENIX-Weather T</a> <a href="https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/rwth_phoenix2014_t">💾</a></td>
 <td><span class="citation" data-cites="dataset:forster2014extensions">Forster et al. (<a href="#ref-dataset:forster2014extensions" role="doc-biblioref">2014</a>)</span>;<span class="citation" data-cites="cihan2018neural">Camgöz et al. (<a href="#ref-cihan2018neural" role="doc-biblioref">2018</a>)</span></td>
 <td>German</td>
@@ -846,7 +859,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>9</td>
 <td><a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://research.cs.aalto.fi/cbir/data/s-pot/">S-pot</a></td>
 <td><span class="citation" data-cites="dataset:viitaniemi-etal-2014-pot">Viitaniemi et al. (<a href="#ref-dataset:viitaniemi-etal-2014-pot" role="doc-biblioref">2014</a>)</span></td>
 <td>Finnish</td>
@@ -856,7 +869,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>5</td>
 <td><a href="mailto:leena.savolainen@kuurojenliitto.fi">Permission</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://sign2mint.de/">Sign2MINT</a> <a href="https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/sign2mint">💾</a></td>
 <td>2021</td>
 <td>German</td>
@@ -866,7 +879,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td></td>
 <td><a href="https://creativecommons.org/licenses/by-nc-sa/3.0/de/">CC BY-NC-SA 3.0 DE</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://www.signbank.org/signpuddle/">SignBank</a> <a href="https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/signbank">💾</a></td>
 <td></td>
 <td>Multilingual</td>
@@ -876,7 +889,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://zenodo.org/records/6779843">SignBD-Word</a></td>
 <td><span class="citation" data-cites="dataset:samsSignBDWordVideoBasedBangla2023">Sams, Akash, and Rahman (<a href="#ref-dataset:samsSignBDWordVideoBasedBangla2023" role="doc-biblioref">2023</a>)</span></td>
 <td>Bangla</td>
@@ -886,7 +899,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>16</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="http://lojze.lugos.si/signor/">SIGNOR</a></td>
 <td><span class="citation" data-cites="dataset:vintar2012compiling">Vintar, Jerko, and Kulovec (<a href="#ref-dataset:vintar2012compiling" role="doc-biblioref">2012</a>)</span></td>
 <td>Slovene</td>
@@ -896,7 +909,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>80</td>
 <td><span style="background-color: red; color: white; padding: 0 2px !important;"><strong>TODO</strong></span> emailed Špela</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://www.phonetik.uni-muenchen.de/forschung/Bas/SIGNUM/">SIGNUM</a></td>
 <td><span class="citation" data-cites="dataset:von2007towards">Von Agris and Kraiss (<a href="#ref-dataset:von2007towards" role="doc-biblioref">2007</a>)</span></td>
 <td>German</td>
@@ -906,7 +919,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>20</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>SMILE</td>
 <td><span class="citation" data-cites="dataset:ebling2018smile">Ebling et al. (<a href="#ref-dataset:ebling2018smile" role="doc-biblioref">2018</a>)</span></td>
 <td>Swiss-German</td>
@@ -916,7 +929,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>30</td>
 <td><a href="https://zenodo.org/record/7701457">Custom</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://teckensprakskorpus.su.se">SSL Corpus</a></td>
 <td><span class="citation" data-cites="dataset:oqvist-etal-2020-sts">Öqvist, Riemer Kankkonen, and Mesch (<a href="#ref-dataset:oqvist-etal-2020-sts" role="doc-biblioref">2020</a>)</span></td>
 <td>Swedish</td>
@@ -926,7 +939,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://teckensprakslexikon.su.se/">SSL Lexicon</a></td>
 <td><span class="citation" data-cites="dataset:mesch2012meaning">Mesch and Wallin (<a href="#ref-dataset:mesch2012meaning" role="doc-biblioref">2012</a>)</span></td>
 <td>Swedish</td>
@@ -936,7 +949,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td></td>
 <td><a href="https://creativecommons.org/licenses/by-nc-sa/2.5/se/">CC BY-NC-SA 2.5 SE</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="http://home.ustc.edu.cn/~pjh/openresources/cslr-dataset-2015/index.html">Video-Based CSL</a></td>
 <td><span class="citation" data-cites="dataset:huang2018video">Huang et al. (<a href="#ref-dataset:huang2018video" role="doc-biblioref">2018</a>)</span></td>
 <td>Chinese</td>
@@ -946,7 +959,7 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 <td>50</td>
 <td><a href="https://rec.ustc.edu.cn/share/475ac440-dab7-11ea-963e-ebae3cfe5012">Research Attribution</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="https://dxli94.github.io/WLASL/">WLASL</a> <a href="https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/wlasl">💾</a></td>
 <td><span class="citation" data-cites="dataset:li2020word">Li et al. (<a href="#ref-dataset:li2020word" role="doc-biblioref">2020</a>)</span></td>
 <td>American</td>
@@ -1266,6 +1279,9 @@ Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-
 </div>
 <div id="ref-johnston2007australian">
 <p>Johnston, Trevor, and Adam Schembri. 2007. <em>Australian Sign Language (Auslan): An Introduction to Sign Language Linguistics</em>. Cambridge University Press.</p>
+</div>
+<div id="ref-dataset:joshi-etal-2023-isltranslate">
+<p>Joshi, Abhinav, Susmit Agrawal, and Ashutosh Modi. 2023. “ISLTranslate: Dataset for Translating Indian Sign Language.” In <em>Findings of the Association for Computational Linguistics: ACL 2023</em>, 10466–75. Toronto, Canada: Association for Computational Linguistics. <a href="https://aclanthology.org/2023.findings-acl.665">https://aclanthology.org/2023.findings-acl.665</a>.</p>
 </div>
 <div id="ref-writing:kakumasu1968urubu">
 <p>Kakumasu, Jim. 1968. “Urubu Sign Language.” <em>International Journal of American Linguistics</em> 34 (4): 275–81.</p>
