@@ -726,8 +726,6 @@ The model features shared representations for different modalities such as text 
 on several tasks such as video-to-gloss, gloss-to-text, and video-to-text. 
 The approach allows leveraging external data such as parallel data for spoken language machine translation.
 
-@dataset:joshi-etal-2023-isltranslate introduce ISLTranslate, a large translation dataset for Indian Sign Language based on publicly available educational videos intended for hard-of-hearing children, which happen to contain both ISL and English audio voiceover conveying the same content. They use a speech-to-text model to transcribe the audio content, which they later manually corrected with the help of accompanying books also containing the same content. They also use MediaPipe to extract pose features, and have a certified ISL signer validate a small portion of the sign-text pairs. They provide a baseline based on the architecture proposed in @camgoz2020sign, and provide code.
-
 <!-- TODO: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
 #### Text-to-Video
@@ -927,6 +925,12 @@ Some special features are cross-level links, non-temporal objects, timepoint tra
 Anvil installation is [available](https://www.anvil-software.org/download/index.html) for Windows, macOS, and Linux.
 
 ## Resources
+
+###### Dataset Papers
+
+Research papers which do not necessarily contribute new theory or architectures are actually important and useful enablers of other research. Furthermore, the advancement of the dataset creation process itself is important, and the pipeline of creation and curation is a potential target for improvements and advancements.
+
+@dataset:joshi-etal-2023-isltranslate introduce ISLTranslate, a large translation dataset for Indian Sign Language based on publicly available educational videos intended for hard-of-hearing children, which happen to contain both Indian Sign Language and English audio voiceover conveying the same content. They use a speech-to-text model to transcribe the audio content, which they later manually corrected with the help of accompanying books also containing the same content. They also use MediaPipe to extract pose features, and have a certified ISL signer validate a small portion of the sign-text pairs. They provide a baseline based on the architecture proposed in @camgoz2020sign, and provide code.
 
 ###### Bilingual dictionaries {-}
 for signed language [@dataset:mesch2012meaning;@fenlon2015building;@crasborn2016ngt;@dataset:gutierrez2016lse] map a spoken language word or short phrase to a signed language video.
