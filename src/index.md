@@ -726,7 +726,7 @@ The model features shared representations for different modalities such as text 
 on several tasks such as video-to-gloss, gloss-to-text, and video-to-text. 
 The approach allows leveraging external data such as parallel data for spoken language machine translation.
 
-@zhaoConditionalVariationalAutoencoder2023 introduces CV-SLT, employing conditional variational autoencoders to address the modality gap between video and text.
+@zhaoConditionalVariationalAutoencoder2023 introduce CV-SLT, employing conditional variational autoencoders to address the modality gap between video and text.
 They assess the disparity using RWTH-PHOENIX-Weather-2014T data, correlating similar embeddings with improved BLEU scores.
 Their approach involves guiding the model to encode visual and textual data similarly through two paths: one with visual data alone and one with both modalities.
 Using KL divergences, they steer the model towards generating consistent embeddings and accurate outputs regardless of the path.
