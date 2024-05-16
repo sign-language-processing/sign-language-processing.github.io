@@ -862,15 +862,7 @@ Sign Language Retrieval is the task of finding a particular data item, given som
 <!-- with video -->
 #### Sign Video to Sign Video
 
-@costerQueryingSignLanguage2023 describe a proof of concept system which would allow users of an online dictionary of signs to search _by signing_, a more user-friendly method.
-That is, by recording and uploading a video of themselves signing, one can query the dictionary that way.
-They do this by essentially by finding the video with the most similar embeddings.
-They start by first pretraining a Sign Language Recognition (Pose sequence to Gloss) model, thus training their transformer encoder to embed sign inputs.
-<!-- Specifically a modified PoseFormer, according to the Repo. In the paper, Coster et al cite Sign Language Recognition with Transformer Networks (2020). https://aclanthology.org/2020.lrec-1.737/ -->
-Once the encoder is trained, then they can use it to generate embeddings for all the signs in the dictionary.
-When a user input query video arrives they can then compare the embeddings of the input to those of dictionary entries using Euclidean distance.
-[A prototype repository is provided](https://github.com/m-decoster/VGT-SL-Dictionary), including scripts to generate a database for a dictionary as well as documentation for installation or training of new models.
-<!-- TODO: De Coster cites Fink et al aka Dictionnaire contextuel langue des signes belge francophone vers français and says they have one working? Transformer-based. https://dico.corpus-lsfb.be/-->
+@costerQueryingSignLanguage2023 present a proof of concept for a sign language dictionary that allows users to search by signing. Users can record a video of themselves signing and upload it to query the dictionary. This system works by finding the video with the most similar embeddings. The process begins with pretraining a [Sign Language Recognition model](#pose-to-gloss) to embed sign inputs. Once the encoder is trained, it generates embeddings for all dictionary signs. When a user submits a query video, the system compares the input embeddings with those of the dictionary entries using Euclidean distance. Tests on a Flemish Sign Language dictionary show that the system can successfully retrieve a limited vocabulary of signs, including some not in the training set. A prototype repository is available, including scripts for database generation and documentation for model installation or training.
 
 ### Fingerspelling
 
