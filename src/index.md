@@ -299,6 +299,7 @@ encoding subtitles by BERT [@devlin-etal-2019-bert] and videos by CNN video repr
 
 <!-- @segmentation:de-sisto-etal-2021-defining introduce a proposal for mapping segments to meaning in the form of an agglomerate of lexical and non-lexical information. -->
 
+
 ### Sign Language Recognition, Translation, and Production
 
 Sign language translation (SLT) commonly refers to the translation of signed language to spoken language [@de2022machine;@muller-etal-2022-findings].
@@ -851,6 +852,25 @@ TODO
 
 ```
 
+### Sign Language Retrieval
+
+Sign Language Retrieval is the task of finding a particular data item, given some input. In contrast to translation or generation or production tasks, there exists a correct corresponding piece of data already, the task is simply to find the correct one out of many.
+
+<!-- TODO: text-to-sign-video (T2V) section, sign-video-to-text (V2T) retrieval -->
+<!-- TODO: CiCo: Domain-Aware Sign Language Retrieval via Cross-Lingual Contrastive Learning -->
+
+<!-- with video -->
+#### Sign Video to Sign Video
+
+@costerQueryingSignLanguage2023 describe a proof of concept system which would allow users of an online dictionary of signs to search _by signing_, a more user-friendly method.
+That is, by recording and uploading a video of themselves signing, one can query the dictionary that way.
+They do this by essentially by finding the video with the most similar embeddings.
+They start by first pretraining a Sign Language Recognition (Pose sequence to Gloss) model, thus training their transformer encoder to embed sign inputs.
+<!-- Specifically a modified PoseFormer, according to the Repo. In the paper, Coster et al cite Sign Language Recognition with Transformer Networks (2020). https://aclanthology.org/2020.lrec-1.737/ -->
+Once the encoder is trained, then they can use it to generate embeddings for all the signs in the dictionary.
+When a user input query video arrives they can then compare the embeddings of the input to those of dictionary entries using Euclidean distance.
+[A prototype repository is provided](https://github.com/m-decoster/VGT-SL-Dictionary), including scripts to generate a database for a dictionary as well as documentation for installation or training of new models.
+<!-- TODO: De Coster cites Fink et al aka Dictionnaire contextuel langue des signes belge francophone vers français and says they have one working? Transformer-based. https://dico.corpus-lsfb.be/-->
 
 ### Fingerspelling
 
