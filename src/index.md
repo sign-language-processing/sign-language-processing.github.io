@@ -730,7 +730,7 @@ The approach allows leveraging external data such as parallel data for spoken la
 Their approach involves guiding the model to encode visual and textual data similarly through two paths: one with visual data alone and one with both modalities.
 Using KL divergences, they steer the model towards generating consistent embeddings and accurate outputs regardless of the path.
 Once the model achieves consistent performance across paths, it can be utilized for translation without gloss supervision.
-Evaluation on RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets demonstrates its efficacy.
+Evaluation on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets demonstrates its efficacy.
 They provide a [code implementation](https://github.com/rzhao-zhsq/CV-SLT) based largely on @chenSimpleMultiModalityTransfer2022a.
 
 <!-- The code looks pretty nice! Conda env file, data prep, not too old, paths in .yaml files, checkpoints provided (including the ones for replication), commands to train and evaluate, very nice -->
