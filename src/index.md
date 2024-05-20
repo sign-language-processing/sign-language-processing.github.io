@@ -734,6 +734,10 @@ Evaluation on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@
 They provide a [code implementation](https://github.com/rzhao-zhsq/CV-SLT) based largely on @chenSimpleMultiModalityTransfer2022a.
 <!-- The CV-SLT code looks pretty nice! Conda env file, data prep, not too old, paths in .yaml files, checkpoints provided (including the ones for replication), commands to train and evaluate, very nice -->
 
+@gongLLMsAreGood2024 Task is SLT. Harness off-the-shelf LLM knowledge. You give it a video. They use a Vector-Quantized Visual Sign Module to tokenize the signs into "character-level" tokens (what does this mean?). This is then passed to a Codebook Reconstruction and Alignment Module which takes in the character-level sign tokens and groups them into "words" (what do they mean?). So instead of S2 S3 S4 SM S5 S1 it will group them into words like "S2S3S4 SMS5 S1". Then you have essentially got tokens much more in the style of what LLMs are used to. Then it seems they do a cross-lingual alignment between LLM's token space and the Sign Token Space spaces using Maximum Mean Discrepancy (MMD), which lets them "narrow the gap" between the distributions. Tested on RWTH-PHOENIX-2014T and CSL-Daily, showing improvements on all metrics. Gloss-free framework, that is nice, they "follow previous". No code released.
+<!-- TODO: the "previous gloss-free frameworks are: Gloss Attention for Gloss-free Sign Language Translation (2023) and Gloss-free sign language translation: Improving from visual-language pretraining, 2023 -->
+
+
 <!-- TODO: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
 #### Text-to-Video
