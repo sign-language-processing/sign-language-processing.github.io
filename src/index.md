@@ -859,14 +859,11 @@ Sign Language Retrieval is the task of finding a particular data item, given som
 <!-- TODO: text-to-sign-video (T2V) section, sign-video-to-text (V2T) retrieval -->
 <!-- TODO: CiCo: Domain-Aware Sign Language Retrieval via Cross-Lingual Contrastive Learning -->
 
-@costerQueryingSignLanguage2023 present a proof of concept for a sign language dictionary that allows users to search by signing.
-Users can record a video of themselves signing and upload it to query the dictionary.
-This system works by finding the video with the most similar embeddings.
-The process begins with pretraining a [Sign Language Recognition model](#pose-to-gloss) to embed sign inputs.
-Once the encoder is trained, it generates embeddings for all dictionary signs.
+@costerQueryingSignLanguage2023 present a method to query sign language dictionaries using dense vector search.
+They pretrain a [Sign Language Recognition model](#pose-to-gloss) on a subset of the VGT corpus to embed sign inputs.
+Once the encoder is trained, they use it to generate embeddings for all dictionary signs.
 When a user submits a query video, the system compares the input embeddings with those of the dictionary entries using Euclidean distance.
-Tests on a Flemish Sign Language dictionary show that the system can successfully retrieve a limited vocabulary of signs, including some not in the training set.
-[A prototype repository](https://github.com/m-decoster/VGT-SL-Dictionary) is available, including scripts for database generation and documentation for model installation or training.
+Tests on a [proof-of-concept Flemish Sign Language dictionary](https://github.com/m-decoster/VGT-SL-Dictionary) show that the system can successfully retrieve a limited vocabulary of signs, including some not in the training set.
 
 ### Fingerspelling
 
