@@ -737,7 +737,7 @@ They provide a [code implementation](https://github.com/rzhao-zhsq/CV-SLT) based
 
 <!-- TODO: the "previous gloss-free frameworks" that gongLLMsAreGood2024 cite are: Gloss Attention for Gloss-free Sign Language Translation (2023) and Gloss-free sign language translation: Improving from visual-language pretraining, 2023 aka GFSLT-VLP. Could be good to lead into it with explanations of those? -->
 
-@gongLLMsAreGood2024 introduce SignLLM, a framework for Gloss-Free Sign Language Translation that leverages the strengths of large language models (LLMs).
+@gongLLMsAreGood2024 introduce SignLLM, a framework for gloss-free sign language translation that leverages the strengths of Large Language Models (LLMs).
 SignLLM converts sign videos into language-like representations compatible with LLMs through two modules: (1) The Vector-Quantized Visual Sign (VQ-Sign) module, which translates sign videos into discrete character-level tokens, and (2) the Codebook Reconstruction and Alignment (CRA) module, which restructures these tokens into word-level representations.
 During inference, the word-level tokens are projected into the LLM's embedding space, which is then prompted for translation.
 The LLM itself can be taken "off the shelf" and does not need to be trained.
