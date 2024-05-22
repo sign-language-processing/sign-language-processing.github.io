@@ -854,7 +854,7 @@ TODO
 
 ### Sign Language Retrieval
 
-Sign Language Retrieval is the task of finding a particular data item, given some input. In contrast to translation or generation or production tasks, there exists a correct corresponding piece of data already, the task is simply to find the correct one out of many.
+Sign Language Retrieval is the task of finding a particular data item, given some input. In contrast to translation, generation or production tasks, there can exist a correct corresponding piece of data already, and the task is to find it out of many, if it exists.
 
 <!-- TODO: text-to-sign-video (T2V) section, sign-video-to-text (V2T) retrieval -->
 <!-- TODO: CiCo: Domain-Aware Sign Language Retrieval via Cross-Lingual Contrastive Learning -->
