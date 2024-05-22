@@ -860,11 +860,11 @@ Sign Language Retrieval is the task of finding a particular data item, given som
 <!-- TODO: CiCo: Domain-Aware Sign Language Retrieval via Cross-Lingual Contrastive Learning -->
 
 @costerQueryingSignLanguage2023 present a method to query sign language dictionaries using dense vector search.
-They pretrain a [Sign Language Recognition model](#pose-to-gloss) on a subset of the [VGT corpus](https://corpusvgt.be/) to embed sign inputs.
+They pretrain a [Sign Language Recognition model](#pose-to-gloss) on a subset of the VGT corpus [@dataset:herreweghe2015VGTCorpus] to embed sign inputs.
 Once the encoder is trained, they use it to generate embeddings for all dictionary signs.
 When a user submits a query video, the system compares the input embeddings with those of the dictionary entries using Euclidean distance.
 Tests on a [proof-of-concept Flemish Sign Language dictionary](https://github.com/m-decoster/VGT-SL-Dictionary) show that the system can successfully retrieve a limited vocabulary of signs, including some not in the training set.
-<!-- TODO: add VGT Corpus to list of datasets -->
+<!-- TODO: add VGT Corpus (dataset:herreweghe2015VGTCorpus) to list of datasets -->
 
 ### Fingerspelling
 
