@@ -726,6 +726,25 @@ The model features shared representations for different modalities such as text 
 on several tasks such as video-to-gloss, gloss-to-text, and video-to-text. 
 The approach allows leveraging external data such as parallel data for spoken language machine translation.
 
+@Zhao_Zhang_Fu_Hu_Su_Chen_2024 introduce CV-SLT, employing conditional variational autoencoders to address the modality gap between video and text.
+Their approach involves guiding the model to encode visual and textual data similarly through two paths: one with visual data alone and one with both modalities.
+Using KL divergences, they steer the model towards generating consistent embeddings and accurate outputs regardless of the path.
+Once the model achieves consistent performance across paths, it can be utilized for translation without gloss supervision.
+Evaluation on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets demonstrates its efficacy.
+They provide a [code implementation](https://github.com/rzhao-zhsq/CV-SLT) based largely on @chenSimpleMultiModalityTransfer2022a.
+<!-- The CV-SLT code looks pretty nice! Conda env file, data prep, not too old, paths in .yaml files, checkpoints provided (including the ones for replication), commands to train and evaluate, very nice -->
+
+
+<!-- TODO: the "previous gloss-free frameworks" that gongLLMsAreGood2024 cite are: Gloss Attention for Gloss-free Sign Language Translation (2023) and Gloss-free sign language translation: Improving from visual-language pretraining, 2023 aka GFSLT-VLP. Could be good to lead into it with explanations of those? -->
+
+@gongLLMsAreGood2024 introduce SignLLM, a framework for gloss-free sign language translation that leverages the strengths of Large Language Models (LLMs).
+SignLLM converts sign videos into discrete and hierarchical representations compatible with LLMs through two modules: (1) The Vector-Quantized Visual Sign (VQ-Sign) module, which translates sign videos into discrete "character-level" tokens, and (2) the Codebook Reconstruction and Alignment (CRA) module, which restructures these tokens into "word-level" representations.
+During inference, the "word-level" tokens are projected into the LLM's embedding space, which is then prompted for translation.
+The LLM itself can be taken "off the shelf" and does not need to be trained.
+In training, the VQ-Sign "character-level" module is trained with a context prediction task, the CRA "word-level" module with an optimal transport technique, and a sign-text alignment loss further enhances the semantic alignment between sign and text tokens.
+The framework achieves state-of-the-art results on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets without relying on gloss annotations.
+<!-- TODO: c.f. SignLLM with https://github.com/sign-language-processing/sign-vq? -->
+
 <!-- TODO: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
 #### Text-to-Video
@@ -926,6 +945,12 @@ Anvil installation is [available](https://www.anvil-software.org/download/index.
 
 ## Resources
 
+###### Dataset Papers
+
+Research papers which do not necessarily contribute new theory or architectures are actually important and useful enablers of other research. Furthermore, the advancement of the dataset creation process itself is important, and the pipeline of creation and curation is a potential target for improvements and advancements.
+
+@dataset:joshi-etal-2023-isltranslate introduce ISLTranslate, a large translation dataset for Indian Sign Language based on publicly available educational videos intended for hard-of-hearing children, which happen to contain both Indian Sign Language and English audio voiceover conveying the same content. They use a speech-to-text model to transcribe the audio content, which they later manually corrected with the help of accompanying books also containing the same content. They also use MediaPipe to extract pose features, and have a certified ISL signer validate a small portion of the sign-text pairs. They provide a baseline based on the architecture proposed in @camgoz2020sign, and provide code.
+
 ###### Bilingual dictionaries {-}
 for signed language [@dataset:mesch2012meaning;@fenlon2015building;@crasborn2016ngt;@dataset:gutierrez2016lse] map a spoken language word or short phrase to a signed language video.
 One notable dictionary, SpreadTheSign\footnote{\url{https://www.spreadthesign.com/}} is a parallel dictionary containing around 25,000 words with up to 42 different spoken-signed language pairs and more than 600,000 videos in total. Unfortunately, while dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.
@@ -1046,6 +1071,7 @@ Furthermore, we follow a unified interface when possible, making attributes the 
 }
 ```
 
+## List of Datasets
 
 The following table contains a curated list of datasets, including various signed languages and data formats:
 
