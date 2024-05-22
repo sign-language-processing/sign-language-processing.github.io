@@ -738,11 +738,7 @@ and so they have broken the dependency upon costly annotated gloss information i
 
 <!-- Really should put MMTLB here, a number of papers cite it including chen2022, which actually builds on it directly, cites it as a source for "mBART is good for SLT", etc. -->
 
-@chen2022TwoStreamNetworkSign introduce a two-stream network for sign language recognition and translation which uses a dual visual encoder architecture to embed both video frames and pose keypoints into separate "streams", 
-which then exchange information via lateral connections. 
-They then provide the output of their visual encoders as the input of a multilingual translation network. 
-Their visual encoders are based on an S3D backbone [@xie2018SpatiotemporalS3D], and their translation network on mBART [@liu-etal-2020-multilingual-denoising].
-They achieve state-of-the-art results on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets.
+@chen2022TwoStreamNetworkSign present a two-stream network for sign language recognition (SLR) and translation (SLT), utilizing a dual visual encoder architecture to encode RGB video frames and pose keypoints in separate streams. These streams interact via bidirectional lateral connections. For SLT the visual encoders, based on an S3D backbone [@xie2018SpatiotemporalS3D], output to a multilingual translation network built on mBART[@liu-etal-2020-multilingual-denoising]. The model achieves state-of-the-art performance on the RWTH-PHOENIX-Weather-2014 [@dataset:forster2014extensions], RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets.
 
 @zhang2023sltunet propose a multi-modal, multi-task learning approach to end-to-end sign language translation. 
 The model features shared representations for different modalities such as text and video and is trained jointly 
