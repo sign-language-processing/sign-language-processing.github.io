@@ -24,7 +24,7 @@ jobs:
         run: pip install -e git+https://github.com/yuchenlin/rebiber.git#egg=rebiber -U
 
       - name: Format bib
-        run: rebiber -i ../../src/references.bib -o ../../src/references.bib
+        run: rebiber -i src/references.bib -o src/references.bib
 
       # Commit all changed files back to the repository
       - uses: stefanzweifel/git-auto-commit-action@v5
