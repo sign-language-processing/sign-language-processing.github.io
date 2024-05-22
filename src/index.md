@@ -207,6 +207,18 @@ Linear gloss annotations have been criticized for their imprecise representation
 These annotations fail to capture all the information expressed simultaneously through different cues, 
 such as body posture, eye gaze, or spatial relations, leading to a loss of information that can significantly affect downstream performance on SLP tasks [@yin-read-2020-better;@muller-etal-2023-considerations].
 
+@muller-etal-2023-considerations conduct an extensive review of the use of glosses in sign language translation research and make the following recommendations for research using glosses:
+* Demonstrate awareness of limitations of gloss approaches and explicitly discuss them.
+* Focus on datasets beyond RWTH-PHOENIX-Weather-2014T [@cihan2018neural]. 
+Openly discuss the limited size and linguistic domain of this dataset.
+* Use metrics that are well-established in MT.
+If BLEU is used, compute it with SacreBLEU,
+report metric signatures and disable internal
+tokenization for gloss outputs. 
+Do not compare to scores produced with a different or unknown evaluation procedure.
+* Given that glossing is corpus-specific, process glosses in a corpus-specific way, informed by transcription conventions.
+* Optimize gloss translation baselines with methods shown to be effective for low-resource MT.
+
 
 The following table additionally exemplifies the various representations for more isolated signs.
 For this example, we use SignWriting as the notation system.
@@ -678,8 +690,11 @@ When pretraining, all augmentations show improvements over the baseline for RWTH
 #### Text-to-Gloss
 Text-to-gloss, an instantiation of sign language translation, is the task of translating between a spoken language text and sign language glosses.
 It is an appealing area of research because of its simplicity for integrating in existing NMT pipelines, 
-despite recent works such as @yin-read-2020-better and@muller2022considerations claim that glosses are an inefficient representation of sign language,
+despite recent works such as @yin-read-2020-better and @muller-etal-2023-considerations claim that glosses are an inefficient representation of sign language,
 and that glosses are not a complete representation of signs [@pizzuto:06001:sign-lang:lrec].
+
+
+
 @zhao2000machine used a Tree Adjoining Grammar (TAG)-based system to translate English sentences to American Sign Language (ASL) gloss sequences.
 They parsed the English text and simultaneously assembled an ASL gloss tree, using Synchronous TAGs [@shieber1990synchronous;@shieber1994restricting], 
 by associating the ASL elementary trees with the English elementary trees and associating the nodes at which subsequent substitutions or adjunctions can occur.
@@ -720,6 +735,14 @@ They conclude that this approach is on-par with previous approaches requiring gl
 and so they have broken the dependency upon costly annotated gloss information in the video-to-text task.
 
 @shi-etal-2022-open introduce OpenASL, a large-scale American Sign Language (ASL) - English dataset collected from online video sites (e.g., YouTube), and then propose a set of techniques including sign search as a pretext task for pre-training and fusion of mouthing and handshape features to improve translation quality in the absence of glosses and in the presence of visually challenging data.
+
+<!-- Really should put MMTLB here, a number of papers cite it including chen2022, which actually builds on it directly, cites it as a source for "mBART is good for SLT", etc. -->
+
+@chen2022TwoStreamNetworkSign introduce a two-stream network for sign language recognition and translation which uses a dual visual encoder architecture to embed both video frames and pose keypoints into separate "streams", 
+which then exchange information via lateral connections. 
+They then provide the output of their visual encoders as the input of a multilingual translation network. 
+Their visual encoders are based on an S3D backbone [@xie2018SpatiotemporalS3D], and their translation network on mBART [@liu-etal-2020-multilingual-denoising].
+They achieve state-of-the-art results on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets.
 
 @zhang2023sltunet propose a multi-modal, multi-task learning approach to end-to-end sign language translation. 
 The model features shared representations for different modalities such as text and video and is trained jointly 
