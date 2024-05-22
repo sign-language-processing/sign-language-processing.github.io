@@ -738,6 +738,17 @@ Evaluation on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@
 They provide a [code implementation](https://github.com/rzhao-zhsq/CV-SLT) based largely on @chenSimpleMultiModalityTransfer2022a.
 <!-- The CV-SLT code looks pretty nice! Conda env file, data prep, not too old, paths in .yaml files, checkpoints provided (including the ones for replication), commands to train and evaluate, very nice -->
 
+
+<!-- <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span>: the "previous gloss-free frameworks" that gongLLMsAreGood2024 cite are: Gloss Attention for Gloss-free Sign Language Translation (2023) and Gloss-free sign language translation: Improving from visual-language pretraining, 2023 aka GFSLT-VLP. Could be good to lead into it with explanations of those? -->
+
+@gongLLMsAreGood2024 introduce SignLLM, a framework for gloss-free sign language translation that leverages the strengths of Large Language Models (LLMs).
+SignLLM converts sign videos into discrete and hierarchical representations compatible with LLMs through two modules: (1) The Vector-Quantized Visual Sign (VQ-Sign) module, which translates sign videos into discrete "character-level" tokens, and (2) the Codebook Reconstruction and Alignment (CRA) module, which restructures these tokens into "word-level" representations.
+During inference, the "word-level" tokens are projected into the LLM's embedding space, which is then prompted for translation.
+The LLM itself can be taken "off the shelf" and does not need to be trained.
+In training, the VQ-Sign "character-level" module is trained with a context prediction task, the CRA "word-level" module with an optimal transport technique, and a sign-text alignment loss further enhances the semantic alignment between sign and text tokens.
+The framework achieves state-of-the-art results on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets without relying on gloss annotations.
+<!-- <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span>: c.f. SignLLM with https://github.com/sign-language-processing/sign-vq? -->
+
 <!-- <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span>: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
 #### Text-to-Video
