@@ -745,6 +745,14 @@ In training, the VQ-Sign "character-level" module is trained with a context pred
 The framework achieves state-of-the-art results on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets without relying on gloss annotations.
 <!-- TODO: c.f. SignLLM with https://github.com/sign-language-processing/sign-vq? -->
 
+<!-- TODO: YoutubeASL explanation would fit nicely here before Rust et al 2024. They don't just do data IIRC. -->
+
+<!-- Colin's original rough draft summary: In Rust et al's 2024 work \cite{rustPrivacyAwareSignLanguage2024}, they propose a self-supervised method based on Masked Auto-encoding as well as a new Linguistic-Supervised Pretraining, that makes no assumptions about model architecture.  They use this in conjunction with a Hierarchichal transformer,  pretrained on a number of large-scale sign language datasets including Youtube-ASL\cite{uthusYouTubeASLLargeScaleOpenDomain2023}, How2Sign\cite{duarteHow2SignLargeScaleMultimodal2021}, and a new dataset they release known as DailyMoth-70h. Results on How2Sign were significantly increased from previous SOTA such as \cite{tarres_sign_2023} and \cite{uthusYouTubeASLLargeScaleOpenDomain2023} ]\cite{linGlossFreeEndtoEndSign2023} -->
+<!-- Semantic Scholar's tl;dr: SSVP-SLT is introduced, which leverages self-supervised video pretraining on anonymized and unannotated videos, followed by supervised SLT finetuning on a curated parallel dataset, which achieves state-of-the-art finetuned and zero-shot gloss-free SLT performance on the How2Sign dataset -->
+<!-- Colin's Commentary: big kudos for mentioning *how* they calculate BLEU (SacreBLEU). -->
+@rust2024PrivacyAwareSign introduce SSVP-SLT, a privacy-aware framework for training sign language translation at scale. They first do a video transformer on a number of large-scale sign language datasets [@dataset:uthus2023YoutubeASL,dataset:duarte2020how2sign] without parallel, then finetune on target parllel translation dataset. They release SignHiera, a Hiera vision transformer [@ryali2023HieraVisionTransformer] pretrained. For the text translation task they leverage T5 (T5; @raffel2020T5Transformer) In addition they release a new dataset they call DailyMoth-70h.
+<!-- TODO: BLEURT explanation -->
+
 <!-- TODO: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
 #### Text-to-Video
