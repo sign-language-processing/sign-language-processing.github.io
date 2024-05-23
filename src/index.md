@@ -299,6 +299,7 @@ encoding subtitles by BERT [@devlin-etal-2019-bert] and videos by CNN video repr
 
 <!-- @segmentation:de-sisto-etal-2021-defining introduce a proposal for mapping segments to meaning in the form of an agglomerate of lexical and non-lexical information. -->
 
+
 ### Sign Language Recognition, Translation, and Production
 
 Sign language translation (SLT) commonly refers to the translation of signed language to spoken language [@de2022machine;@muller-etal-2022-findings].
@@ -873,6 +874,19 @@ TODO
 
 ```
 
+### Sign Language Retrieval
+
+Sign Language Retrieval is the task of finding a particular data item, given some input. In contrast to translation, generation or production tasks, there can exist a correct corresponding piece of data already, and the task is to find it out of many, if it exists.
+
+<!-- TODO: text-to-sign-video (T2V) section, sign-video-to-text (V2T) retrieval -->
+<!-- TODO: CiCo: Domain-Aware Sign Language Retrieval via Cross-Lingual Contrastive Learning -->
+
+@costerQueryingSignLanguage2023 present a method to query sign language dictionaries using dense vector search.
+They pretrain a [Sign Language Recognition model](#pose-to-gloss) on a subset of the VGT corpus [@dataset:herreweghe2015VGTCorpus] to embed sign inputs.
+Once the encoder is trained, they use it to generate embeddings for all dictionary signs.
+When a user submits a query video, the system compares the input embeddings with those of the dictionary entries using Euclidean distance.
+Tests on a [proof-of-concept Flemish Sign Language dictionary](https://github.com/m-decoster/VGT-SL-Dictionary) show that the system can successfully retrieve a limited vocabulary of signs, including some not in the training set.
+<!-- TODO: add VGT Corpus (dataset:herreweghe2015VGTCorpus) to list of datasets -->
 
 ### Fingerspelling
 
