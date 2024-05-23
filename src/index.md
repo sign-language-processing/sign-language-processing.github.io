@@ -747,13 +747,12 @@ The framework achieves state-of-the-art results on the RWTH-PHOENIX-Weather-2014
 
 <!-- TODO: YoutubeASL explanation would fit nicely here before Rust et al 2024. They don't just do data IIRC. -->
 
-@rust2024PrivacyAwareSign introduce a privacy-aware method for sign language translation at scale which they call Self Supervised Video Pretraining for Sign Language Translation (SSVP-SLT). 
-SSVP-SLT is a two-stage method: they first pretrain a vision transformer [@ryali2023HieraVisionTransformer] with a self-supervised task on large unannotated video datasets [@dataset:uthus2023YoutubeASL,@dataset:duarte2020how2sign]. 
-In the second stage they freeze their vision model and project its outputs into a multingual LLM (T5; @raffel2020T5Transformer), which they finetune for translation on the How2Sign dataset [@dataset:duarte2020how2sign]. 
-They address privacy concerns by face-blurring during training. 
-They release their pretrained vision model, SignHiera, based on a Hiera vision transformer [@ryali2023HieraVisionTransformer]. 
-In addition they release a new dataset they call DailyMoth-70h, containing video data from the Daily Moth, a Deaf News site. 
-The model achieves state-of-the-art results on the How2Sign dataset [@dataset:duarte2020how2sign].
+@rust2024PrivacyAwareSign introduce a two-stage privacy-aware method for sign language translation (SLT) at scale, termed Self-Supervised Video Pretraining for Sign Language Translation (SSVP-SLT). 
+The first stage involves self-supervised pretraining of a Hiera vision transformer on large unannotated video datasets [@ryali2023HieraVisionTransformer; @dataset:uthus2023YoutubeASL]. 
+In the second stage, the vision model's outputs are fed into a multilingual language model (T5) for finetuning on the How2Sign dataset [@raffel2020T5Transformer; @dataset:duarte2020how2sign].
+To mitigate privacy risks, the framework employs facial obfuscation. 
+Additionally, the authors release DailyMoth-70h, a new 70-hour ASL dataset from [The Daily Moth](https://www.dailymoth.com/). 
+SSVP-SLT achieves state-of-the-art performance on How2Sign [@dataset:duarte2020how2sign].
 <!-- TODO: BLEURT explanation -->
 <!-- TODO: add DailyMoth to datasets list. Table 8 has stats: 497 videos, 70 hours, 1 signer, vocabulary of words 19 740, segmented video clips, -->
 
