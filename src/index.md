@@ -747,11 +747,15 @@ The framework achieves state-of-the-art results on the RWTH-PHOENIX-Weather-2014
 
 <!-- TODO: YoutubeASL explanation would fit nicely here before Rust et al 2024. They don't just do data IIRC. -->
 
-<!-- Colin's original rough draft summary: In Rust et al's 2024 work \cite{rustPrivacyAwareSignLanguage2024}, they propose a self-supervised method based on Masked Auto-encoding as well as a new Linguistic-Supervised Pretraining, that makes no assumptions about model architecture.  They use this in conjunction with a Hierarchichal transformer,  pretrained on a number of large-scale sign language datasets including Youtube-ASL\cite{uthusYouTubeASLLargeScaleOpenDomain2023}, How2Sign\cite{duarteHow2SignLargeScaleMultimodal2021}, and a new dataset they release known as DailyMoth-70h. Results on How2Sign were significantly increased from previous SOTA such as \cite{tarres_sign_2023} and \cite{uthusYouTubeASLLargeScaleOpenDomain2023} ]\cite{linGlossFreeEndtoEndSign2023} -->
-<!-- Semantic Scholar's tl;dr: SSVP-SLT is introduced, which leverages self-supervised video pretraining on anonymized and unannotated videos, followed by supervised SLT finetuning on a curated parallel dataset, which achieves state-of-the-art finetuned and zero-shot gloss-free SLT performance on the How2Sign dataset -->
-<!-- Colin's Commentary: big kudos for mentioning *how* they calculate BLEU (SacreBLEU). -->
-@rust2024PrivacyAwareSign introduce SSVP-SLT, a privacy-aware framework for training sign language translation at scale. They first do a video transformer on a number of large-scale sign language datasets [@dataset:uthus2023YoutubeASL,dataset:duarte2020how2sign] without parallel, then finetune on target parllel translation dataset. They release SignHiera, a Hiera vision transformer [@ryali2023HieraVisionTransformer] pretrained. For the text translation task they leverage T5 (T5; @raffel2020T5Transformer) In addition they release a new dataset they call DailyMoth-70h.
+@rust2024PrivacyAwareSign introduce a privacy-aware method for sign language translation at scale which they call Self Supervised Video Pretraining for Sign Language Translation (SSVP-SLT). 
+SSVP-SLT is a two-stage method: they first pretrain a vision transformer [@ryali2023HieraVisionTransformer] with a self-supervised task on large unannotated video datasets [@dataset:uthus2023YoutubeASL,@dataset:duarte2020how2sign]. 
+In the second stage they freeze their vision model and project its outputs into a multingual LLM (T5; @raffel2020T5Transformer), which they finetune for translation on the How2Sign dataset [@dataset:duarte2020how2sign]. 
+They address privacy concerns by face-blurring during training. 
+They release their pretrained vision model, SignHiera, based on a Hiera vision transformer [@ryali2023HieraVisionTransformer]. 
+In addition they release a new dataset they call DailyMoth-70h, containing video data from the Daily Moth, a Deaf News site. 
+The model achieves state-of-the-art results on the How2Sign dataset [@dataset:duarte2020how2sign].
 <!-- TODO: BLEURT explanation -->
+<!-- TODO: add DailyMoth to datasets list. Table 8 has stats: 497 videos, 70 hours, 1 signer, vocabulary of words 19 740, segmented video clips, -->
 
 <!-- TODO: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
@@ -982,6 +986,7 @@ sign language resources are scarce and, currently only support translation and p
 Unfortunately, most of the sign language corpora discussed in the literature are either not available for use or available under heavy restrictions and licensing terms. 
 Furthermore, sign language data is especially challenging to anonymize due to the importance of facial and other physical features in signing videos, limiting its open distribution. Developing anonymization with minimal information loss or accurate anonymous representations is a promising research direction.
 
+<!-- TODO: a discussion on anonymization methods, including the thoughts of @rust2024PrivacyAwareSign, who mention a few approaches and cite them. They also argue that poses "do not offer meaningful privacy protection either" (Appendix A).  -->
 
 ### Collect Real-World Data
 
