@@ -3,12 +3,12 @@
     "name": "Video-Based CSL",
     "year": 2018,
     "publication": "dataset:huang2018video",
-    "url": "http://home.ustc.edu.cn/~pjh/openresources/cslr-dataset-2015/index.html"
+    "url": "http://home.ustc.edu.cn/~hagjie/"
   },
-  "features": [],
+  "features": ["video:RGBD","gloss", "pose:Kinect"],
   "language": "Chinese",
   "#items": 500,
-  "#samples": "125,000 Videos",
+  "#samples": "25,000 Videos",
   "#signers": 50,
   "license": "Research Attribution",
   "licenseUrl": "https://rec.ustc.edu.cn/share/475ac440-dab7-11ea-963e-ebae3cfe5012"
