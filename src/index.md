@@ -788,20 +788,12 @@ and showed similar performance, with the transformer underperforming on the vali
 They experimented with various normalization schemes, mainly subtracting the mean and dividing by the standard deviation of every individual keypoint
 either concerning the entire frame or the relevant "object" (Body, Face, and Hand).
 
-@hu2023SignBertPlus introduce SignBERT+, a hand-model-aware self-supervised pretraining method which they validate on sign language recognition (SLR) and sign language translation (SLT).
-Collecting over 230k videos from a number of datasets, they extract pose sequences using MMPose [@mmpose2020].
-They then treat these pose sequences as sequences of visual tokens, and pretrain their encoder through masking of joints, frames, and short clips.
-When embedding pose sequences they use temporal positional encodings.
-They incorporate a statistical hand model [@romero2017MANOHandModel] to constrain their decoder.
-They finetune and validate on a number of downstream tasks:
-
-- isolated SLR on MS-ASL [@dataset:joze2018ms], WLASL [@dataset:li2020word], and SLR500 [@huang2019attention3DCNNsSLR].
-- Continuous SLR using RWTH-PHOENIX-Weather [koller2015ContinuousSLR] and RWTH-PHOENIX-Weather 2014T [dataset:forster2014extensions;@cihan2018neural].
-- SLT using RWTH-PHOENIX-Weather 2014T [dataset:forster2014extensions;@cihan2018neural].
-
-Results show state-of-the-art performance on these tasks.
+@hu2023SignBertPlus introduce SignBERT+, a self-supervised pretraining method for sign language understanding (SLU) incorporating a hand-model-aware approach.
+They extract pose sequences from over 230k videos using MMPose [@mmpose2020], treating these as visual tokens embedded with temporal positional encodings.
+They pretrain using multi-level masked modeling (joints, frames, clips) and integrate a statistical hand model [@romero2017MANOHandModel] to enhance the decoder's accuracy and constrain its predictions for anatomical realism.
+Validation on isolated SLR (MS-ASL [@dataset:joze2018ms], WLASL [@dataset:li2020word], SLR500 [@huang2019attention3DCNNsSLR].), continuous SLR (RWTH-PHOENIX-Weather [@koller2015ContinuousSLR]), and SLT (RWTH-PHOENIX-Weather 2014T [@dataset:forster2014extensions;@cihan2018neural]) demonstrates state-of-the-art performance.
 <!-- TODO: SLR500 to list of datasets -->
-<!-- TODO: RWTH-PHOENIX-WEATHER to list of datasets -->
+<!-- TODO: RWTH-PHOENIX-WEATHER (the 2015 continuous SLR set, koller2015ContinuousSLR, not the translation set!) to list of datasets -->
 
 #### Text-to-Pose
 Text-to-Pose, also known as sign language production, is the task of producing a sequence of poses that adequately represent
