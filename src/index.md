@@ -970,12 +970,12 @@ iLex binaries are [available](https://www.sign-lang.uni-hamburg.de/ilex/ilex.xml
 SignStream installation is [available](http://www.bu.edu/asllrp/SignStream/3/download-newSS.html) for macOS and is distributed under an MIT license.
 
 ##### Anvil - The Video Annotation Research Tool
-[Anvil](https://www.anvil-software.org/) [@kipp2001anvil] is a free video annotation tool,
+[Anvil](http://www.anvil-software.de/) [@kipp2001anvil] is a free video annotation tool,
 offering multi-layered annotation based on a user-defined coding scheme.
 In Anvil, the annotator can see color-coded elements on multiple tracks in time alignment. 
 Some special features are cross-level links, non-temporal objects, timepoint tracks, coding agreement analysis, 
 3D viewing of motion capture data and a project tool for managing whole corpora of annotation files.
-Anvil installation is [available](https://www.anvil-software.org/download/index.html) for Windows, macOS, and Linux.
+Anvil installation is [available](http://www.anvil-software.de/download/index.html) for Windows, macOS, and Linux.
 
 ## Resources
 
