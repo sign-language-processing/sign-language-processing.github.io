@@ -790,10 +790,11 @@ either concerning the entire frame or the relevant "object" (Body, Face, and Han
 
 @hu2023SignBertPlus introduce SignBERT+, a self-supervised pretraining method for sign language understanding (SLU) incorporating a hand-model-aware approach.
 They extract pose sequences from over 230k videos using MMPose [@mmpose2020], treating these as visual tokens embedded with temporal positional encodings.
-They pretrain using multi-level masked modeling (joints, frames, clips) and integrate a statistical hand model [@romero2017MANOHandModel] to enhance the decoder's accuracy and constrain its predictions for anatomical realism.
+They pretrain using multi-level masked modeling (joints, frames, clips) and integrate a statistical hand model [@romero2017MANOHandModel] to constrain the decoder's predictions for anatomical realism and enhance its accuracy.
 Validation on isolated SLR (MS-ASL [@dataset:joze2018ms], WLASL [@dataset:li2020word], SLR500 [@huang2019attention3DCNNsSLR].), continuous SLR (RWTH-PHOENIX-Weather [@koller2015ContinuousSLR]), and SLT (RWTH-PHOENIX-Weather 2014T [@dataset:forster2014extensions;@cihan2018neural]) demonstrates state-of-the-art performance.
 <!-- TODO: SLR500 to list of datasets -->
 <!-- TODO: RWTH-PHOENIX-WEATHER (the 2015 continuous SLR set, koller2015ContinuousSLR, not the translation set!) to list of datasets -->
+<!-- TODO: FHAD dataset (https://guiggh.github.io/publications/first-person-hands/) -->
 
 #### Text-to-Pose
 Text-to-Pose, also known as sign language production, is the task of producing a sequence of poses that adequately represent
