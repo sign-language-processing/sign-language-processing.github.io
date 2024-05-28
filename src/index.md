@@ -773,9 +773,10 @@ The first stage involves self-supervised pretraining of a Hiera vision transform
 In the second stage, the vision model's outputs are fed into a multilingual language model [@raffel2020T5Transformer] for finetuning on the How2Sign dataset [@dataset:duarte2020how2sign].
 To mitigate privacy risks, the framework employs facial blurring during pretraining.
 They find that while pretraining with blurring hurts performance, some can be recovered when finetuning with unblurred data.
+SSVP-SLT achieves state-of-the-art performance on How2Sign [@dataset:duarte2020how2sign].
 They conclude that SLT models can be pretrained in a privacy-aware manner without sacrificing too much performance.
 Additionally, the authors release DailyMoth-70h, a new 70-hour ASL dataset from [The Daily Moth](https://www.dailymoth.com/).
-SSVP-SLT achieves state-of-the-art performance on How2Sign [@dataset:duarte2020how2sign].
+
 <!-- TODO: BLEURT explanation -->
 <!-- TODO: add DailyMoth to datasets list. Table 8 has stats: 497 videos, 70 hours, 1 signer, vocabulary of words 19 740, segmented video clips, -->
 
