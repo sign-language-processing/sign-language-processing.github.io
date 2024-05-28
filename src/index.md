@@ -208,14 +208,15 @@ These annotations fail to capture all the information expressed simultaneously t
 such as body posture, eye gaze, or spatial relations, leading to a loss of information that can significantly affect downstream performance on SLP tasks [@yin-read-2020-better;@muller-etal-2023-considerations].
 
 @muller-etal-2023-considerations conduct an extensive review of the use of glosses in sign language translation research and make the following recommendations for research using glosses:
-* Demonstrate awareness of limitations of gloss approaches and explicitly discuss them.
-* Focus on datasets beyond RWTH-PHOENIX-Weather-2014T [@cihan2018neural]. 
+
+- Demonstrate awareness of limitations of gloss approaches and explicitly discuss them.
+- Focus on datasets beyond RWTH-PHOENIX-Weather-2014T [@cihan2018neural]. 
 Openly discuss the limited size and linguistic domain of this dataset.
-* Use metrics that are well-established in MT.
+- Use metrics that are well-established in MT.
 If BLEU [@papineni-etal-2002-bleu] is used, compute it with SacreBLEU [@post-2018-call-sacrebleu], report metric signatures and disable internal tokenization for gloss outputs. 
 Do not compare to scores produced with a different or unknown evaluation procedure.
-* Given that glossing is corpus-specific, process glosses in a corpus-specific way, informed by transcription conventions.
-* Optimize gloss translation baselines with methods shown to be effective for low-resource MT.
+- Given that glossing is corpus-specific, process glosses in a corpus-specific way, informed by transcription conventions.
+- Optimize gloss translation baselines with methods shown to be effective for low-resource MT.
 
 
 The following table additionally exemplifies the various representations for more isolated signs.
