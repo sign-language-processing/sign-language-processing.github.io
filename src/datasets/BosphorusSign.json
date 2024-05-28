@@ -8,9 +8,10 @@
   "features": ["video:RGBD", "pose:Kinectv2", "gloss"],
   "notes": "Kinect v2",
   "language": "Turkish",
-  "#items": 595,
-  "#samples": "22,670 Samples",
+  "#items": "855 (595 public)",
+  "#samples": "22k+ (22,670 public)",
   "#signers": 6,
-  "license": "Not Published",
-  "licenseUrl": null
+  "license": "Research purpose on request",
+  "licenseUrl": "https://ogulcanozdemir.github.io/bosphorussign22k/#description",
+  "contact": "ogulcan.ozdemir@boun.edu.tr;alp.kindiroglu@boun.edu.tr"
 }
