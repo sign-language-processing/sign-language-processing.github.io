@@ -5,11 +5,11 @@
     "publication": "dataset:joze2018ms",
     "url": "https://www.microsoft.com/en-us/download/details.aspx?id=100121"
   },
-  "features": [],
+  "features": ["video:RGB", "gloss"],
   "language": "American",
   "#items": 1000,
-  "#samples": "25,000 (25 hours)",
-  "#signers": 200,
+  "#samples": "25,513 (~25 hours)",
+  "#signers": 222,
   "license": "Public",
   "licenseUrl": null
 }
