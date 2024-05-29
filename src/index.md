@@ -767,6 +767,20 @@ In training, the VQ-Sign "character-level" module is trained with a context pred
 The framework achieves state-of-the-art results on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets without relying on gloss annotations.
 <!-- TODO: c.f. SignLLM with https://github.com/sign-language-processing/sign-vq? -->
 
+<!-- TODO: YoutubeASL explanation would fit nicely here before Rust et al 2024. They don't just do data IIRC. -->
+
+@rust2024PrivacyAwareSign introduce a two-stage privacy-aware method for sign language translation (SLT) at scale, termed Self-Supervised Video Pretraining for Sign Language Translation (SSVP-SLT). 
+The first stage involves self-supervised pretraining of a Hiera vision transformer [@ryali2023HieraVisionTransformer] on large unannotated video datasets [@dataset:duarte2020how2sign, @dataset:uthus2023YoutubeASL]. 
+In the second stage, the vision model's outputs are fed into a multilingual language model [@raffel2020T5Transformer] for finetuning on the How2Sign dataset [@dataset:duarte2020how2sign].
+To mitigate privacy risks, the framework employs facial blurring during pretraining.
+They find that while pretraining with blurring hurts performance, some can be recovered when finetuning with unblurred data.
+SSVP-SLT achieves state-of-the-art performance on How2Sign [@dataset:duarte2020how2sign].
+They conclude that SLT models can be pretrained in a privacy-aware manner without sacrificing too much performance.
+Additionally, the authors release DailyMoth-70h, a new 70-hour ASL dataset from [The Daily Moth](https://www.dailymoth.com/).
+
+<!-- TODO: BLEURT explanation -->
+<!-- TODO: add DailyMoth to datasets list. Table 8 has stats: 497 videos, 70 hours, 1 signer, vocabulary of words 19 740, segmented video clips, -->
+
 <!-- TODO: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
 #### Text-to-Video
@@ -1009,6 +1023,7 @@ sign language resources are scarce and, currently only support translation and p
 Unfortunately, most of the sign language corpora discussed in the literature are either not available for use or available under heavy restrictions and licensing terms. 
 Furthermore, sign language data is especially challenging to anonymize due to the importance of facial and other physical features in signing videos, limiting its open distribution. Developing anonymization with minimal information loss or accurate anonymous representations is a promising research direction.
 
+<!-- TODO: a discussion on anonymization methods, including the thoughts of @rust2024PrivacyAwareSign, who mention a few approaches and cite them. They also argue that poses "do not offer meaningful privacy protection either" (Appendix A).  -->
 
 ### Collect Real-World Data
 
