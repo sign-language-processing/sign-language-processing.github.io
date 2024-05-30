@@ -7,7 +7,7 @@
     },
     "#loader": null,
     "#items": 1067,
-    "#samples": "32010 videos",
+    "#samples": "32,010 videos",
     "#signers": 10,
     "features": ["gloss","video:RGB"],
     "language": "Chinese",
