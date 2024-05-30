@@ -207,6 +207,17 @@ Linear gloss annotations have been criticized for their imprecise representation
 These annotations fail to capture all the information expressed simultaneously through different cues, 
 such as body posture, eye gaze, or spatial relations, leading to a loss of information that can significantly affect downstream performance on SLP tasks [@yin-read-2020-better;@muller-etal-2023-considerations].
 
+@muller-etal-2023-considerations conduct an extensive review of the use of glosses in sign language translation research and make the following recommendations for research using glosses:
+
+- Demonstrate awareness of limitations of gloss approaches and explicitly discuss them.
+- Focus on datasets beyond RWTH-PHOENIX-Weather-2014T [@cihan2018neural]. 
+Openly discuss the limited size and linguistic domain of this dataset.
+- Use metrics that are well-established in MT.
+If BLEU [@papineni-etal-2002-bleu] is used, compute it with SacreBLEU [@post-2018-call-sacrebleu], report metric signatures and disable internal tokenization for gloss outputs. 
+Do not compare to scores produced with a different or unknown evaluation procedure.
+- Given that glossing is corpus-specific, process glosses in a corpus-specific way, informed by transcription conventions.
+- Optimize gloss translation baselines with methods shown to be effective for low-resource MT.
+
 
 The following table additionally exemplifies the various representations for more isolated signs.
 For this example, we use SignWriting as the notation system.
@@ -298,6 +309,7 @@ encoding subtitles by BERT [@devlin-etal-2019-bert] and videos by CNN video repr
 @segmentation:moryossef-etal-2023-linguistically presented a method motivated by linguistic cues observed in sign language corpora, such as prosody (pauses, pace, etc) and handshape changes. They also find that using BIO, an annotation scheme that notes the beginning, inside and outside, makes a significant difference over previous ones that only note IO (inside or outside). They find that including optical flow and 3D hand normalization helps with out-of-domain generalization and other signed languages as well. 
 
 <!-- @segmentation:de-sisto-etal-2021-defining introduce a proposal for mapping segments to meaning in the form of an agglomerate of lexical and non-lexical information. -->
+
 
 ### Sign Language Recognition, Translation, and Production
 
@@ -678,8 +690,11 @@ When pretraining, all augmentations show improvements over the baseline for RWTH
 #### Text-to-Gloss
 Text-to-gloss, an instantiation of sign language translation, is the task of translating between a spoken language text and sign language glosses.
 It is an appealing area of research because of its simplicity for integrating in existing NMT pipelines, 
-despite recent works such as @yin-read-2020-better and@muller2022considerations claim that glosses are an inefficient representation of sign language,
+despite recent works such as @yin-read-2020-better and @muller-etal-2023-considerations claim that glosses are an inefficient representation of sign language,
 and that glosses are not a complete representation of signs [@pizzuto:06001:sign-lang:lrec].
+
+
+
 @zhao2000machine used a Tree Adjoining Grammar (TAG)-based system to translate English sentences to American Sign Language (ASL) gloss sequences.
 They parsed the English text and simultaneously assembled an ASL gloss tree, using Synchronous TAGs [@shieber1990synchronous;@shieber1994restricting], 
 by associating the ASL elementary trees with the English elementary trees and associating the nodes at which subsequent substitutions or adjunctions can occur.
@@ -721,10 +736,50 @@ and so they have broken the dependency upon costly annotated gloss information i
 
 @shi-etal-2022-open introduce OpenASL, a large-scale American Sign Language (ASL) - English dataset collected from online video sites (e.g., YouTube), and then propose a set of techniques including sign search as a pretext task for pre-training and fusion of mouthing and handshape features to improve translation quality in the absence of glosses and in the presence of visually challenging data.
 
+<!-- Really should put MMTLB here, a number of papers cite it including chen2022, which actually builds on it directly, cites it as a source for "mBART is good for SLT", etc. -->
+
+@chen2022TwoStreamNetworkSign present a two-stream network for sign language recognition (SLR) and translation (SLT), utilizing a dual visual encoder architecture to encode RGB video frames and pose keypoints in separate streams. 
+These streams interact via bidirectional lateral connections. 
+For SLT, the visual encoders based on an S3D backbone [@xie2018SpatiotemporalS3D] output to a multilingual translation network using mBART [@liu-etal-2020-multilingual-denoising]. 
+The model achieves state-of-the-art performance on the RWTH-PHOENIX-Weather-2014 [@dataset:forster2014extensions], RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets.
+
 @zhang2023sltunet propose a multi-modal, multi-task learning approach to end-to-end sign language translation. 
 The model features shared representations for different modalities such as text and video and is trained jointly 
 on several tasks such as video-to-gloss, gloss-to-text, and video-to-text. 
 The approach allows leveraging external data such as parallel data for spoken language machine translation.
+
+@Zhao_Zhang_Fu_Hu_Su_Chen_2024 introduce CV-SLT, employing conditional variational autoencoders to address the modality gap between video and text.
+Their approach involves guiding the model to encode visual and textual data similarly through two paths: one with visual data alone and one with both modalities.
+Using KL divergences, they steer the model towards generating consistent embeddings and accurate outputs regardless of the path.
+Once the model achieves consistent performance across paths, it can be utilized for translation without gloss supervision.
+Evaluation on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets demonstrates its efficacy.
+They provide a [code implementation](https://github.com/rzhao-zhsq/CV-SLT) based largely on @chenSimpleMultiModalityTransfer2022a.
+<!-- The CV-SLT code looks pretty nice! Conda env file, data prep, not too old, paths in .yaml files, checkpoints provided (including the ones for replication), commands to train and evaluate, very nice -->
+
+
+<!-- TODO: the "previous gloss-free frameworks" that gongLLMsAreGood2024 cite are: Gloss Attention for Gloss-free Sign Language Translation (2023) and Gloss-free sign language translation: Improving from visual-language pretraining, 2023 aka GFSLT-VLP. Could be good to lead into it with explanations of those? -->
+
+@gongLLMsAreGood2024 introduce SignLLM, a framework for gloss-free sign language translation that leverages the strengths of Large Language Models (LLMs).
+SignLLM converts sign videos into discrete and hierarchical representations compatible with LLMs through two modules: (1) The Vector-Quantized Visual Sign (VQ-Sign) module, which translates sign videos into discrete "character-level" tokens, and (2) the Codebook Reconstruction and Alignment (CRA) module, which restructures these tokens into "word-level" representations.
+During inference, the "word-level" tokens are projected into the LLM's embedding space, which is then prompted for translation.
+The LLM itself can be taken "off the shelf" and does not need to be trained.
+In training, the VQ-Sign "character-level" module is trained with a context prediction task, the CRA "word-level" module with an optimal transport technique, and a sign-text alignment loss further enhances the semantic alignment between sign and text tokens.
+The framework achieves state-of-the-art results on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets without relying on gloss annotations.
+<!-- TODO: c.f. SignLLM with https://github.com/sign-language-processing/sign-vq? -->
+
+<!-- TODO: YoutubeASL explanation would fit nicely here before Rust et al 2024. They don't just do data IIRC. -->
+
+@rust2024PrivacyAwareSign introduce a two-stage privacy-aware method for sign language translation (SLT) at scale, termed Self-Supervised Video Pretraining for Sign Language Translation (SSVP-SLT). 
+The first stage involves self-supervised pretraining of a Hiera vision transformer [@ryali2023HieraVisionTransformer] on large unannotated video datasets [@dataset:duarte2020how2sign, @dataset:uthus2023YoutubeASL]. 
+In the second stage, the vision model's outputs are fed into a multilingual language model [@raffel2020T5Transformer] for finetuning on the How2Sign dataset [@dataset:duarte2020how2sign].
+To mitigate privacy risks, the framework employs facial blurring during pretraining.
+They find that while pretraining with blurring hurts performance, some can be recovered when finetuning with unblurred data.
+SSVP-SLT achieves state-of-the-art performance on How2Sign [@dataset:duarte2020how2sign].
+They conclude that SLT models can be pretrained in a privacy-aware manner without sacrificing too much performance.
+Additionally, the authors release DailyMoth-70h, a new 70-hour ASL dataset from [The Daily Moth](https://www.dailymoth.com/).
+
+<!-- TODO: BLEURT explanation -->
+<!-- TODO: add DailyMoth to datasets list. Table 8 has stats: 497 videos, 70 hours, 1 signer, vocabulary of words 19 740, segmented video clips, -->
 
 <!-- TODO: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
@@ -843,6 +898,19 @@ TODO
 
 ```
 
+### Sign Language Retrieval
+
+Sign Language Retrieval is the task of finding a particular data item, given some input. In contrast to translation, generation or production tasks, there can exist a correct corresponding piece of data already, and the task is to find it out of many, if it exists.
+
+<!-- TODO: text-to-sign-video (T2V) section, sign-video-to-text (V2T) retrieval -->
+<!-- TODO: CiCo: Domain-Aware Sign Language Retrieval via Cross-Lingual Contrastive Learning -->
+
+@costerQueryingSignLanguage2023 present a method to query sign language dictionaries using dense vector search.
+They pretrain a [Sign Language Recognition model](#pose-to-gloss) on a subset of the VGT corpus [@dataset:herreweghe2015VGTCorpus] to embed sign inputs.
+Once the encoder is trained, they use it to generate embeddings for all dictionary signs.
+When a user submits a query video, the system compares the input embeddings with those of the dictionary entries using Euclidean distance.
+Tests on a [proof-of-concept Flemish Sign Language dictionary](https://github.com/m-decoster/VGT-SL-Dictionary) show that the system can successfully retrieve a limited vocabulary of signs, including some not in the training set.
+<!-- TODO: add VGT Corpus (dataset:herreweghe2015VGTCorpus) to list of datasets -->
 
 ### Fingerspelling
 
@@ -917,14 +985,20 @@ iLex binaries are [available](https://www.sign-lang.uni-hamburg.de/ilex/ilex.xml
 SignStream installation is [available](http://www.bu.edu/asllrp/SignStream/3/download-newSS.html) for macOS and is distributed under an MIT license.
 
 ##### Anvil - The Video Annotation Research Tool
-[Anvil](https://www.anvil-software.org/) [@kipp2001anvil] is a free video annotation tool,
+[Anvil](http://www.anvil-software.de/) [@kipp2001anvil] is a free video annotation tool,
 offering multi-layered annotation based on a user-defined coding scheme.
 In Anvil, the annotator can see color-coded elements on multiple tracks in time alignment. 
 Some special features are cross-level links, non-temporal objects, timepoint tracks, coding agreement analysis, 
 3D viewing of motion capture data and a project tool for managing whole corpora of annotation files.
-Anvil installation is [available](https://www.anvil-software.org/download/index.html) for Windows, macOS, and Linux.
+Anvil installation is [available](http://www.anvil-software.de/download/index.html) for Windows, macOS, and Linux.
 
 ## Resources
+
+###### Dataset Papers
+
+Research papers which do not necessarily contribute new theory or architectures are actually important and useful enablers of other research. Furthermore, the advancement of the dataset creation process itself is important, and the pipeline of creation and curation is a potential target for improvements and advancements.
+
+@dataset:joshi-etal-2023-isltranslate introduce ISLTranslate, a large translation dataset for Indian Sign Language based on publicly available educational videos intended for hard-of-hearing children, which happen to contain both Indian Sign Language and English audio voiceover conveying the same content. They use a speech-to-text model to transcribe the audio content, which they later manually corrected with the help of accompanying books also containing the same content. They also use MediaPipe to extract pose features, and have a certified ISL signer validate a small portion of the sign-text pairs. They provide a baseline based on the architecture proposed in @camgoz2020sign, and provide code.
 
 ###### Bilingual dictionaries {-}
 for signed language [@dataset:mesch2012meaning;@fenlon2015building;@crasborn2016ngt;@dataset:gutierrez2016lse] map a spoken language word or short phrase to a signed language video.
@@ -949,6 +1023,7 @@ sign language resources are scarce and, currently only support translation and p
 Unfortunately, most of the sign language corpora discussed in the literature are either not available for use or available under heavy restrictions and licensing terms. 
 Furthermore, sign language data is especially challenging to anonymize due to the importance of facial and other physical features in signing videos, limiting its open distribution. Developing anonymization with minimal information loss or accurate anonymous representations is a promising research direction.
 
+<!-- TODO: a discussion on anonymization methods, including the thoughts of @rust2024PrivacyAwareSign, who mention a few approaches and cite them. They also argue that poses "do not offer meaningful privacy protection either" (Appendix A).  -->
 
 ### Collect Real-World Data
 
@@ -1046,6 +1121,7 @@ Furthermore, we follow a unified interface when possible, making attributes the 
 }
 ```
 
+## List of Datasets
 
 The following table contains a curated list of datasets, including various signed languages and data formats:
 

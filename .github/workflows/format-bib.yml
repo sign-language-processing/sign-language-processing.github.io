@@ -15,6 +15,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
       - uses: actions/setup-python@v5
         with:
@@ -24,7 +26,12 @@ jobs:
         run: pip install -e git+https://github.com/yuchenlin/rebiber.git#egg=rebiber -U
 
       - name: Format bib
-        run: rebiber -i ../../src/references.bib -o ../../src/references.bib
+        run: rebiber -i src/references.bib -o src/references.bib
 
       # Commit all changed files back to the repository
       - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          # Optional. Skip internal call to `git fetch`
+          skip_fetch: true
+          # Optional. Skip internal call to `git checkout`
+          skip_checkout: true
