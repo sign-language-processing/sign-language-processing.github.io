@@ -803,11 +803,10 @@ and showed similar performance, with the transformer underperforming on the vali
 They experimented with various normalization schemes, mainly subtracting the mean and dividing by the standard deviation of every individual keypoint
 either concerning the entire frame or the relevant "object" (Body, Face, and Hand).
 
-@hu2023SignBertPlus introduce SignBERT+, a self-supervised pretraining method for sign language understanding (SLU) that is aware of and informed by a hand model in its predictions.
-They extract pose sequences from over 230k videos using MMPose [@mmpose2020], treating these as visual tokens.
+@hu2023SignBertPlus introduce SignBERT+, a self-supervised pretraining method for sign language understanding (SLU) based on masked modeling of pose sequences.
 This is an extension of their earlier SignBERT [@hu2021SignBert], with several improvements.
-Notably, on SignBERT+, they embed these tokens with temporal positional encodings.
-They then pretrain using multi-level masked modeling (joints, frames, clips) and integrate a statistical hand model [@romero2017MANOHandModel] to constrain the decoder's predictions for anatomical realism and enhance its accuracy.
+For pretraining they extract pose sequences from over 230k videos using MMPose [@mmpose2020].
+They then perform multi-level masked modeling (joints, frames, clips) on these sequences, integrating a statistical hand model [@romero2017MANOHandModel] to constrain the decoder's predictions for anatomical realism and enhanced accuracy.
 Validation on isolated SLR (MS-ASL [@dataset:joze2018ms], WLASL [@dataset:li2020word], SLR500 [@huang2019attention3DCNNsSLR]), continuous SLR (RWTH-PHOENIX-Weather [@koller2015ContinuousSLR]), and SLT (RWTH-PHOENIX-Weather 2014T [@dataset:forster2014extensions;@cihan2018neural]) demonstrates state-of-the-art performance.
 <!-- TODO: SLR500 to list of datasets -->
 <!-- TODO: RWTH-PHOENIX-WEATHER (the 2015 continuous SLR set, koller2015ContinuousSLR, not the translation set!) to list of datasets -->
