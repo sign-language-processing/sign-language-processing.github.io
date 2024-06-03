@@ -912,6 +912,23 @@ When a user submits a query video, the system compares the input embeddings with
 Tests on a [proof-of-concept Flemish Sign Language dictionary](https://github.com/m-decoster/VGT-SL-Dictionary) show that the system can successfully retrieve a limited vocabulary of signs, including some not in the training set.
 <!-- TODO: add VGT Corpus (dataset:herreweghe2015VGTCorpus) to list of datasets -->
 
+@Cheng2023CiCoSignLanguageRetrieval introduce retrieval method based on cross-lingual contrastive learning. There's also something with pseudo-labeling. 
+They adapt the pretrained I3D encoder of @Varol2021ReadAndAttend as a "domain-agnostic sign encoder". 
+This lets them use transfer learning to help with data issues. 
+Sliding window on the encoder to pre-extract features helps with long context window. 
+There's a sign to word mapping. Section 3.3. talks about the cross-lingual constrastive learning. 
+Task: Text to Video retrieval, Video to Text retrieval, Contrastive Learning.
+Training in: video, text, "feature sequence". 
+Sign Encoder: Single-Ag, a domain-agnostic sign encoder based on @Varol2021ReadAndAttend, a I3D pretrained on BSL-1K. Single-Aw, a domain-aware sign encoder, identical arch but finetuned with pseudo-labeling. Weighted sum of the two.
+Training out: 
+Inference in: 
+Inference out: 
+Part of a lineage/family of approaches from the Chen folks. 
+"the thing to know about this is, they extend the CLIP idea to SL videos."
+
+<!-- TODO: write about SPOT-ALIGN. Cheng2023CiCoSignLanguageRetrieval say retrival is "recently introduced... by SPOT-ALIGN" and cite Amanda Duarte, Samuel Albanie, Xavier Gir ́ o-i Nieto, and G ̈ ul Varol. Sign language video retrieval with free-form textual queries. -->
+<!-- TODO: add BSL-1K dataset, cited in Cheng2023CiCoSignLanguageRetrieval. https://github.com/gulvarol/bsl1k -->
+
 ### Fingerspelling
 
 Fingerspelling is spelling a word letter-by-letter, borrowing from the spoken language alphabet [@battison1978lexical;@wilcox1992phonetics;@brentari2001language;@patrie2011fingerspelled].
