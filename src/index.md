@@ -902,12 +902,16 @@ TODO
 
 Sign Language Retrieval is the task of finding a particular data item, given some input. In contrast to translation, generation or production tasks, there can exist a correct corresponding piece of data already, and the task is to find it out of many, if it exists.
 
+Metrics used include retrieval at Rank K and (R@K, higher is better) and median rank (MedR, lower is better).
+
 <!-- TODO: text-to-sign-video (T2V) section, sign-video-to-text (V2T) retrieval? -->
 @athitsos2010LargeLexiconIndexingRetrieval present one of the early works in this task, using a method based on hand centroids and dynamic time warping to enable users to submit videos of a sign and thus query within the ASL Lexicon Video Dataset [@dataset:athitsos2008american].
 
 @Zhang2010RevisedEditDistanceSignVideoRetrieval provide another early method for video-based querying.
 They use classical image feature extraction methods to calculate movement trajectories.
 They then use modified string edit distances between these trajectories as a way to find similar videos.
+
+<!-- TODO: write about SPOT-ALIGN. Cheng2023CiCoSignLanguageRetrieval say retrival is "recently introduced... by SPOT-ALIGN" and cite Amanda Duarte, Samuel Albanie, Xavier Gir ́ o-i Nieto, and G ̈ ul Varol. Sign language video retrieval with free-form textual queries. -->
 
 @costerQueryingSignLanguage2023 present a method to query sign language dictionaries using dense vector search.
 They pretrain a [Sign Language Recognition model](#pose-to-gloss) on a subset of the VGT corpus [@dataset:herreweghe2015VGTCorpus] to embed sign inputs.
@@ -916,12 +920,17 @@ When a user submits a query video, the system compares the input embeddings with
 Tests on a [proof-of-concept Flemish Sign Language dictionary](https://github.com/m-decoster/VGT-SL-Dictionary) show that the system can successfully retrieve a limited vocabulary of signs, including some not in the training set.
 <!-- TODO: add VGT Corpus (dataset:herreweghe2015VGTCorpus) to list of datasets -->
 
+<!-- TODO: Sign language video retrieval with free-form textual queries was the only other paper that Cheng2023CiCoSignLanguageRetrieval compared with. -->
 
 <!-- TODO: CiCo: Domain-Aware Sign Language Retrieval via Cross-Lingual Contrastive Learning -->
-@Cheng2023CiCoSignLanguageRetrieval introduce a retrieval method based on cross-lingual contrastive learning.
+@Cheng2023CiCoSignLanguageRetrieval introduce a video-to-text (V2T) and text-to-video (t2V) retrieval method based on cross-lingual contrastive learning.
+Using a "domain-agnostic" I3D encoder pretrained on large-scale sign datasets [@Varol2021ReadAndAttend] they generate pseudo-labels on target datasets and finetune a "domain-aware" encoder.
+Combining the two encoders they then pre-extract features from sign language videos.
+They then use cross-lingual contrastive learning [@Radford2021LearningTV] in order to contrast feature/text pairs, mapping them to a shared embedding space. 
+Embeddings of matched pairs are pulled together and non-matched pairs pushed apart.
+They evaluate on How2Sign [@dataset:duarte2020how2sign] and RWTH-PHOENIX-Weather 2014T dataset [@cihan2018neural], improving by a substantial portion over the previous state of the art method [@Duarte2022SignVideoRetrivalWithTextQueries].
 
 
-<!-- TODO: write about SPOT-ALIGN. Cheng2023CiCoSignLanguageRetrieval say retrival is "recently introduced... by SPOT-ALIGN" and cite Amanda Duarte, Samuel Albanie, Xavier Gir ́ o-i Nieto, and G ̈ ul Varol. Sign language video retrieval with free-form textual queries. -->
 <!-- TODO: add BSL-1K dataset, cited in Cheng2023CiCoSignLanguageRetrieval. https://github.com/gulvarol/bsl1k -->
 
 ### Fingerspelling
