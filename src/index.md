@@ -902,8 +902,12 @@ TODO
 
 Sign Language Retrieval is the task of finding a particular data item, given some input. In contrast to translation, generation or production tasks, there can exist a correct corresponding piece of data already, and the task is to find it out of many, if it exists.
 
-<!-- TODO: text-to-sign-video (T2V) section, sign-video-to-text (V2T) retrieval -->
-<!-- TODO: CiCo: Domain-Aware Sign Language Retrieval via Cross-Lingual Contrastive Learning -->
+<!-- TODO: text-to-sign-video (T2V) section, sign-video-to-text (V2T) retrieval? -->
+@athitsos2010LargeLexiconIndexingRetrieval present one of the early works in this task, using a method based on hand centroids and dynamic time warping to enable users to submit videos of a sign and thus query within the ASL Lexicon Video Dataset [@dataset:athitsos2008american].
+
+@Zhang2010RevisedEditDistanceSignVideoRetrieval provide another early method for video-based querying.
+They use classical image feature extraction methods to calculate movement trajectories.
+They then use modified string edit distances between these trajectories as a way to find similar videos.
 
 @costerQueryingSignLanguage2023 present a method to query sign language dictionaries using dense vector search.
 They pretrain a [Sign Language Recognition model](#pose-to-gloss) on a subset of the VGT corpus [@dataset:herreweghe2015VGTCorpus] to embed sign inputs.
@@ -912,19 +916,10 @@ When a user submits a query video, the system compares the input embeddings with
 Tests on a [proof-of-concept Flemish Sign Language dictionary](https://github.com/m-decoster/VGT-SL-Dictionary) show that the system can successfully retrieve a limited vocabulary of signs, including some not in the training set.
 <!-- TODO: add VGT Corpus (dataset:herreweghe2015VGTCorpus) to list of datasets -->
 
-@Cheng2023CiCoSignLanguageRetrieval introduce retrieval method based on cross-lingual contrastive learning. There's also something with pseudo-labeling. 
-They adapt the pretrained I3D encoder of @Varol2021ReadAndAttend as a "domain-agnostic sign encoder". 
-This lets them use transfer learning to help with data issues. 
-Sliding window on the encoder to pre-extract features helps with long context window. 
-There's a sign to word mapping. Section 3.3. talks about the cross-lingual constrastive learning. 
-Task: Text to Video retrieval, Video to Text retrieval, Contrastive Learning.
-Training in: video, text, "feature sequence". 
-Sign Encoder: Single-Ag, a domain-agnostic sign encoder based on @Varol2021ReadAndAttend, a I3D pretrained on BSL-1K. Single-Aw, a domain-aware sign encoder, identical arch but finetuned with pseudo-labeling. Weighted sum of the two.
-Training out: 
-Inference in: 
-Inference out: 
-Part of a lineage/family of approaches from the Chen folks. 
-"the thing to know about this is, they extend the CLIP idea to SL videos."
+
+<!-- TODO: CiCo: Domain-Aware Sign Language Retrieval via Cross-Lingual Contrastive Learning -->
+@Cheng2023CiCoSignLanguageRetrieval introduce a retrieval method based on cross-lingual contrastive learning.
+
 
 <!-- TODO: write about SPOT-ALIGN. Cheng2023CiCoSignLanguageRetrieval say retrival is "recently introduced... by SPOT-ALIGN" and cite Amanda Duarte, Samuel Albanie, Xavier Gir ́ o-i Nieto, and G ̈ ul Varol. Sign language video retrieval with free-form textual queries. -->
 <!-- TODO: add BSL-1K dataset, cited in Cheng2023CiCoSignLanguageRetrieval. https://github.com/gulvarol/bsl1k -->
