@@ -922,14 +922,12 @@ Tests on a [proof-of-concept Flemish Sign Language dictionary](https://github.co
 
 <!-- TODO: Sign language video retrieval with free-form textual queries was the only other paper that Cheng2023CiCoSignLanguageRetrieval compared with. -->
 
-<!-- TODO: CiCo: Domain-Aware Sign Language Retrieval via Cross-Lingual Contrastive Learning -->
 @Cheng2023CiCoSignLanguageRetrieval introduce a video-to-text (V2T) and text-to-video (t2V) retrieval method based on cross-lingual contrastive learning.
 Using a "domain-agnostic" I3D encoder pretrained on large-scale sign datasets [@Varol2021ReadAndAttend] they generate pseudo-labels on target datasets and finetune a "domain-aware" encoder.
 Combining the two encoders they then pre-extract features from sign language videos.
-They then use cross-lingual contrastive learning [@Radford2021LearningTV] in order to contrast feature/text pairs, mapping them to a shared embedding space. 
+They then use cross-lingual contrastive learning [@Radford2021LearningTV] in order to contrast feature/text pairs, mapping them to a shared embedding space.
 Embeddings of matched pairs are pulled together and non-matched pairs pushed apart.
 They evaluate on How2Sign [@dataset:duarte2020how2sign] and RWTH-PHOENIX-Weather 2014T dataset [@cihan2018neural], improving by a substantial portion over the previous state of the art method [@Duarte2022SignVideoRetrivalWithTextQueries].
-
 
 <!-- TODO: add BSL-1K dataset, cited in Cheng2023CiCoSignLanguageRetrieval. https://github.com/gulvarol/bsl1k -->
 
