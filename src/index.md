@@ -961,6 +961,19 @@ They found that for both forms of fingerspelling, on average, the longer the wor
 Furthermore, they found that less time is spent on middle letters on average, and the last letter is held on average for longer than the other letters in the word.
 Finally, they used this information to construct an animation system using letter pose interpolation and controlled the timing using a data-driven statistical model.
 
+### Pretraining and Representation-Learning
+
+<!-- BEST seems to be **B**ERT pre-training for **S**ign language recognition with coupling **T**okenization -->
+@Zhao2023BESTPretrainingSignLanguageRecognition introduce BEST, a pretraining method based on masked modeling of pose sequences using a coupled tokenization scheme.
+The method takes in pose triplet units (left hand, right hand, and upper-body with arms) as inputs.
+The pose for each part of the triplet is tokenized into discrete codes [@van_den_Oord_2017NeuralDiscreteRepresentationLearning].
+Then masked modeling is employed: any or all of the three parts may be masked, e.g. left hand, or right hand, or body+hand, or all of them...
+Unlike @hu2023SignBertPlus, they do not mask multi-frame sequnces ("clips") or sub-frame portions of a pose unit (joints).
+They validate their pretraining method isolated ISR (MS-ASL [@dataset:joze2018ms], WLASL [@dataset:li2020word], SLR500 [@huang2019attention3DCNNsSLR] and NMFs-CSL [@hu2021NMFAwareSLR]).
+They experiment with both pose-to-gloss and video-to-gloss via fusion with I3D [@carreira2017quo].
+Results on these datasets are SOTA compared to previous methods, and quite similar to those of SignBERT+ [@hu2023SignBertPlus]
+
+
 ## Annotation Tools
 
 ##### ELAN - EUDICO Linguistic Annotator
