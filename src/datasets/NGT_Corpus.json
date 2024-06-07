@@ -3,14 +3,14 @@
     "name": "Corpus NGT",
     "year": 2008,
     "publication": "dataset:Crasborn2008TheCN",
-    "url": "https://www.ru.nl/corpusngtuk/"
+    "url": "https://corpusngt.nl/"
   },
   "loader": "ngt_corpus",
-  "features": [],
+  "features": ["video:SignerA","video:SignerB", "gloss", "text:Dutch"],
   "language": "Netherlands",
-  "#items": null,
-  "#samples": "15 Hours",
-  "#signers": 92,
-  "license": "CC BY-NC-SA 3.0 NL",
-  "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/nl/deed.en_GB"
+  "#items": "~3k",
+  "#samples": "~2375 sessions",
+  "#signers": "~90",
+  "license": "CC BY-NC-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 }
