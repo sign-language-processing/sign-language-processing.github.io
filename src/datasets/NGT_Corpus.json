@@ -9,7 +9,7 @@
   "features": ["video:SignerA","video:SignerB", "gloss", "text:Dutch"],
   "language": "Netherlands",
   "#items": "~3k",
-  "#samples": "~2375 multi-camera, multi-signer sessions",
+  "#samples": "~2375 sessions",
   "#signers": "~90",
   "license": "CC BY-NC-SA 4.0",
   "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
