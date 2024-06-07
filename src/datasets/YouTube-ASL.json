@@ -1,0 +1,16 @@
+{
+    "pub": {
+      "name": "Youtube-ASL", 
+      "year": 2023,
+      "publication":"dataset:uthus2023YoutubeASL", 
+      "url": "https://github.com/google-research/google-research/tree/master/youtube_asl"
+    },
+    "#loader": null,
+    "#items": "~60K",
+    "#samples": "984 hours",
+    "#signers": ">2519", 
+    "features": ["video", "text:English"],
+    "language": "American",
+    "license": null,
+    "licenseUrl": null
+  }
