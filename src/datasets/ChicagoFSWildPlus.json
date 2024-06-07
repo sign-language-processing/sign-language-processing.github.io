@@ -10,7 +10,7 @@
     "video",
     "text:Fingerspelling"
   ],
-  "loader": "chicagofswild",
+  "loader": "chicago_fs_wild",
   "language": "American",
   "#items": 26,
   "#samples": "55,232 Sequences",

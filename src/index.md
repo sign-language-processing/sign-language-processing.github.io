@@ -347,6 +347,7 @@ Every path between two nodes might or might not be valid, depending on how lossy
 
 ---
 
+
 #### Video-to-Pose
 
 Video-to-Pose—commonly known as pose estimation—is the task of detecting human figures in images and videos, 
@@ -960,6 +961,23 @@ as those can affect how intelligible fingerspelling motions are to an interlocut
 They found that for both forms of fingerspelling, on average, the longer the word, the shorter the transition and hold time.
 Furthermore, they found that less time is spent on middle letters on average, and the last letter is held on average for longer than the other letters in the word.
 Finally, they used this information to construct an animation system using letter pose interpolation and controlled the timing using a data-driven statistical model.
+
+### Pretraining and Representation-learning
+
+<!-- SignBERT, SignBERT+, BEST. Possibly also Sign-VQ or CV-SLT can be discussed here -->
+
+In this paradigm, rather than targeting a specific task (e.g. pose-to-text), the aim is to learn a generally-useful Sign Language Understanding model or representation which can be applied or finetuned to specific downstream tasks.
+
+<!-- TODO: talk about BEST here. Results are not as good as SignBERT+ but the do some things differently. Compare/contrast things like: left+right+body triplets in BEST vs left+right only in SignBERT+ -->
+
+@hu2023SignBertPlus introduce SignBERT+, a self-supervised pretraining method for sign language understanding (SLU) based on masked modeling of pose sequences.
+This is an extension of their earlier SignBERT [@hu2021SignBert], with several improvements.
+For pretraining they extract pose sequences from over 230k videos using MMPose [@mmpose2020].
+They then perform multi-level masked modeling (joints, frames, clips) on these sequences, integrating a statistical hand model [@romero2017MANOHandModel] to constrain the decoder's predictions for anatomical realism and enhanced accuracy.
+Validation on isolated SLR (MS-ASL [@dataset:joze2018ms], WLASL [@dataset:li2020word], SLR500 [@huang2019attention3DCNNsSLR]), continuous SLR (RWTH-PHOENIX-Weather [@koller2015ContinuousSLR]), and SLT (RWTH-PHOENIX-Weather 2014T [@dataset:forster2014extensions;@cihan2018neural]) demonstrates state-of-the-art performance.
+<!-- TODO: SLR500 to list of datasets -->
+<!-- TODO: RWTH-PHOENIX-WEATHER (the 2015 continuous SLR set, koller2015ContinuousSLR, not the translation set!) to list of datasets -->
+<!-- TODO: FHAD dataset (https://guiggh.github.io/publications/first-person-hands/) -->
 
 ## Annotation Tools
 
