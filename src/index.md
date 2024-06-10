@@ -920,15 +920,13 @@ Once the encoder is trained, they use it to generate embeddings for all dictiona
 When a user submits a query video, the system compares the input embeddings with those of the dictionary entries using Euclidean distance.
 Tests on a [proof-of-concept Flemish Sign Language dictionary](https://github.com/m-decoster/VGT-SL-Dictionary) show that the system can successfully retrieve a limited vocabulary of signs, including some not in the training set.
 
-@Cheng2023CiCoSignLanguageRetrieval introduce a video-to-text and text-to-video retrieval method based on cross-lingual contrastive learning.
-Inspired by previous work in transfer learning from sign-spotting/segmenting models [jui-etal-2022-machine;Duarte2022SignVideoRetrivalWithTextQueries], they adopt a "domain-agnostic" I3D encoder pretrained on large-scale sign language datasets for the sign-spotting task[@Varol2021ReadAndAttend].
-Then on target datasets with continuous signing videos, they use that sign-spotter model with a sliding window to find high-confidence predictions.
-Those predictions then are used to finetune a "domain-aware" sign-spotting encoder for the target dataset.
-Combining the two encoders, they pre-extract features from sign language videos.
-Cross-lingual contrastive learning [@Radford2021LearningTV] is then used in order to contrast feature/text pairs, mapping them to a shared embedding space.
-Embeddings of matched pairs are pulled together and non-matched pairs pushed apart.
-They evaluate on the How2Sign [@dataset:duarte2020how2sign] and RWTH-PHOENIX-Weather 2014T datasets [@cihan2018neural], improving substantially over the previous state of the art method [@Duarte2022SignVideoRetrivalWithTextQueries].
-In addition, they provide baseline retrieval results for the CSL-Daily dataset [@dataset:Zhou2021_SignBackTranslation_CSLDaily].
+@Cheng2023CiCoSignLanguageRetrieval introduce a video-to-text and text-to-video retrieval method using cross-lingual contrastive learning.
+Inspired by transfer learning from sign-spotting/segmenting models [@jui-etal-2022-machine;@Duarte2022SignVideoRetrivalWithTextQueries], the authors employ a domain-agnostic I3D encoder, pretrained on large-scale sign language datasets  for the sign-spotting task [@Varol2021ReadAndAttend].
+On target datasets with continuous signing videos, they use this model with a sliding window to identify high confidence predictions, which are then used to finetune a "domain-aware" sign-spotting encoder.
+The combined encoders pre-extract features from sign language videos.
+Cross-lingual contrastive learning [@Radford2021LearningTV] is applied to align feature-text pairs within a shared embedding space.
+Evaluations on How2Sign [@dataset:duarte2020how2sign] and RWTH-PHOENIX-Weather 2014T datasets [@cihan2018neural] demonstrate significant improvment over the previous state of the art method [@Duarte2022SignVideoRetrivalWithTextQueries].
+Baseline retrieval results are also provided for the CSL-Daily dataset [@dataset:Zhou2021_SignBackTranslation_CSLDaily].
 
 <!-- TODO: tie in with Automatic Dense Annotation of Large-Vocabulary Sign Language Videos, mentioned in video-to-gloss? Also uses Pseudo-labeling -->
 
