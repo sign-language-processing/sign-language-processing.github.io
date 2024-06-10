@@ -742,7 +742,7 @@ and so they have broken the dependency upon costly annotated gloss information i
 @chen2022TwoStreamNetworkSign present a two-stream network for sign language recognition (SLR) and translation (SLT), utilizing a dual visual encoder architecture to encode RGB video frames and pose keypoints in separate streams. 
 These streams interact via bidirectional lateral connections. 
 For SLT, the visual encoders based on an S3D backbone [@xie2018SpatiotemporalS3D] output to a multilingual translation network using mBART [@liu-etal-2020-multilingual-denoising]. 
-The model achieves state-of-the-art performance on the RWTH-PHOENIX-Weather-2014 [@dataset:forster2014extensions], RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets.
+The model achieves state-of-the-art performance on the RWTH-PHOENIX-Weather-2014 [@dataset:forster2014extensions], RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:Zhou2021_SignBackTranslation_CSLDaily] datasets.
 
 @zhang2023sltunet propose a multi-modal, multi-task learning approach to end-to-end sign language translation. 
 The model features shared representations for different modalities such as text and video and is trained jointly 
@@ -753,7 +753,7 @@ The approach allows leveraging external data such as parallel data for spoken la
 Their approach involves guiding the model to encode visual and textual data similarly through two paths: one with visual data alone and one with both modalities.
 Using KL divergences, they steer the model towards generating consistent embeddings and accurate outputs regardless of the path.
 Once the model achieves consistent performance across paths, it can be utilized for translation without gloss supervision.
-Evaluation on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets demonstrates its efficacy.
+Evaluation on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:Zhou2021_SignBackTranslation_CSLDaily] datasets demonstrates its efficacy.
 They provide a [code implementation](https://github.com/rzhao-zhsq/CV-SLT) based largely on @chenSimpleMultiModalityTransfer2022a.
 <!-- The CV-SLT code looks pretty nice! Conda env file, data prep, not too old, paths in .yaml files, checkpoints provided (including the ones for replication), commands to train and evaluate, very nice -->
 
@@ -765,7 +765,7 @@ SignLLM converts sign videos into discrete and hierarchical representations comp
 During inference, the "word-level" tokens are projected into the LLM's embedding space, which is then prompted for translation.
 The LLM itself can be taken "off the shelf" and does not need to be trained.
 In training, the VQ-Sign "character-level" module is trained with a context prediction task, the CRA "word-level" module with an optimal transport technique, and a sign-text alignment loss further enhances the semantic alignment between sign and text tokens.
-The framework achieves state-of-the-art results on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:huang2018video] datasets without relying on gloss annotations.
+The framework achieves state-of-the-art results on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:Zhou2021_SignBackTranslation_CSLDaily] datasets without relying on gloss annotations.
 <!-- TODO: c.f. SignLLM with https://github.com/sign-language-processing/sign-vq? -->
 
 <!-- TODO: YoutubeASL explanation would fit nicely here before Rust et al 2024. They don't just do data IIRC. -->
@@ -901,36 +901,36 @@ TODO
 
 ### Sign Language Retrieval
 
-Sign Language Retrieval is the task of finding a particular data item, given some input. In contrast to translation, generation or production tasks, there can exist a correct corresponding piece of data already, and the task is to find it out of many, if it exists.
-
-Metrics used include retrieval at Rank K and (R@K, higher is better) and median rank (MedR, lower is better).
+Sign Language Retrieval is the task of finding a particular data item, given some input. In contrast to translation, generation or production tasks, there can exist a correct corresponding piece of data already, and the task is to find it out of many, if it exists. Metrics used include retrieval at Rank K and (R@K, higher is better) and median rank (MedR, lower is better).
 
 <!-- TODO: text-to-sign-video (T2V) section, sign-video-to-text (V2T) retrieval? -->
-@athitsos2010LargeLexiconIndexingRetrieval present one of the early works in this task, using a method based on hand centroids and dynamic time warping to enable users to submit videos of a sign and thus query within the ASL Lexicon Video Dataset [@dataset:athitsos2008american].
+@athitsos2010LargeLexiconIndexingRetrieval present one of the early works on this task, using a method based on hand centroids and dynamic time warping to enable users to submit videos of a sign and thus query within the ASL Lexicon Video Dataset [@dataset:athitsos2008american].
 
 @Zhang2010RevisedEditDistanceSignVideoRetrieval provide another early method for video-based querying.
 They use classical image feature extraction methods to calculate movement trajectories.
 They then use modified string edit distances between these trajectories as a way to find similar videos.
 
-<!-- TODO: write about SPOT-ALIGN. Cheng2023CiCoSignLanguageRetrieval say retrival is "recently introduced... by SPOT-ALIGN" and cite Amanda Duarte, Samuel Albanie, Xavier Gir ́ o-i Nieto, and G ̈ ul Varol. Sign language video retrieval with free-form textual queries. -->
+<!-- TODO: write here about SPOT-ALIGN aka Duarte2022SignVideoRetrivalWithTextQueries. Cheng2023CiCoSignLanguageRetrieval say retrival is "recently introduced... by SPOT-ALIGN" and cite Amanda Duarte, Samuel Albanie, Xavier Gir ́ o-i Nieto, and G ̈ ul Varol. Sign language video retrieval with free-form textual queries. Also Sign language video retrieval with free-form textual queries was the only other paper that Cheng2023CiCoSignLanguageRetrieval compared with. -->
+
+<!-- TODO: write here also about jui-etal-2022-machine, the other paper cited by Cheng2023CiCoSignLanguageRetrieval for "Previous methods [16, 18] have demonstrated the feasibility of transferring a sign encoder pre-trained on large-scale sign-spotting data into downstream tasks." -->
 
 @costerQueryingSignLanguage2023 present a method to query sign language dictionaries using dense vector search.
 They pretrain a [Sign Language Recognition model](#pose-to-gloss) on a subset of the VGT corpus [@dataset:herreweghe2015VGTCorpus] to embed sign inputs.
 Once the encoder is trained, they use it to generate embeddings for all dictionary signs.
 When a user submits a query video, the system compares the input embeddings with those of the dictionary entries using Euclidean distance.
 Tests on a [proof-of-concept Flemish Sign Language dictionary](https://github.com/m-decoster/VGT-SL-Dictionary) show that the system can successfully retrieve a limited vocabulary of signs, including some not in the training set.
-<!-- TODO: add VGT Corpus (dataset:herreweghe2015VGTCorpus) to list of datasets -->
 
-<!-- TODO: Sign language video retrieval with free-form textual queries was the only other paper that Cheng2023CiCoSignLanguageRetrieval compared with. -->
-
-@Cheng2023CiCoSignLanguageRetrieval introduce a video-to-text (V2T) and text-to-video (t2V) retrieval method based on cross-lingual contrastive learning.
-Using a "domain-agnostic" I3D encoder pretrained on large-scale sign datasets [@Varol2021ReadAndAttend] they generate pseudo-labels on target datasets and finetune a "domain-aware" encoder.
-Combining the two encoders they then pre-extract features from sign language videos.
-They then use cross-lingual contrastive learning [@Radford2021LearningTV] in order to contrast feature/text pairs, mapping them to a shared embedding space.
+@Cheng2023CiCoSignLanguageRetrieval introduce a video-to-text and text-to-video retrieval method based on cross-lingual contrastive learning.
+Inspired by previous work in transfer learning from sign-spotting/segmenting models [jui-etal-2022-machine;Duarte2022SignVideoRetrivalWithTextQueries], they adopt a "domain-agnostic" I3D encoder pretrained on large-scale sign language datasets for the sign-spotting task[@Varol2021ReadAndAttend].
+Then on target datasets with continuous signing videos, they use that sign-spotter model with a sliding window to find high-confidence predictions.
+Those predictions then are used to finetune a "domain-aware" sign-spotting encoder for the target dataset.
+Combining the two encoders, they pre-extract features from sign language videos.
+Cross-lingual contrastive learning [@Radford2021LearningTV] is then used in order to contrast feature/text pairs, mapping them to a shared embedding space.
 Embeddings of matched pairs are pulled together and non-matched pairs pushed apart.
-They evaluate on How2Sign [@dataset:duarte2020how2sign] and RWTH-PHOENIX-Weather 2014T dataset [@cihan2018neural], improving by a substantial portion over the previous state of the art method [@Duarte2022SignVideoRetrivalWithTextQueries].
+They evaluate on the How2Sign [@dataset:duarte2020how2sign] and RWTH-PHOENIX-Weather 2014T datasets [@cihan2018neural], improving substantially over the previous state of the art method [@Duarte2022SignVideoRetrivalWithTextQueries].
+In addition, they provide baseline retrieval results for the CSL-Daily dataset [@dataset:Zhou2021_SignBackTranslation_CSLDaily].
 
-<!-- TODO: add BSL-1K dataset, cited in Cheng2023CiCoSignLanguageRetrieval. https://github.com/gulvarol/bsl1k -->
+<!-- TODO: tie in with Automatic Dense Annotation of Large-Vocabulary Sign Language Videos, mentioned in video-to-gloss? Also uses Pseudo-labeling -->
 
 ### Fingerspelling
 
