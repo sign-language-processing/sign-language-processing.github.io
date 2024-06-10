@@ -347,6 +347,7 @@ Every path between two nodes might or might not be valid, depending on how lossy
 
 ---
 
+
 #### Video-to-Pose
 
 Video-to-Pose—commonly known as pose estimation—is the task of detecting human figures in images and videos, 
@@ -493,7 +494,7 @@ the need for expensive film studios and complex video technology typically assoc
 
 Most recently in the field of image and video generation, 
 there have been notable advances in methods such as 
-Style-Based Generator Architecture for Generative Adversarial Networks [@style-to-image:Karras2018ASG,@style-to-image:Karras2019stylegan2,@style-to-image:Karras2021], 
+Style-Based Generator Architecture for Generative Adversarial Networks [@style-to-image:Karras2018ASG;@style-to-image:Karras2019stylegan2;@style-to-image:Karras2021], 
 Variational Diffusion Models [@text-to-image:Kingma2021VariationalDM], 
 High-Resolution Image Synthesis with Latent Diffusion Models [@text-to-image:Rombach2021HighResolutionIS], 
 High Definition Video Generation with Diffusion Models [@text-to-video:Ho2022ImagenVH], and 
@@ -770,7 +771,7 @@ The framework achieves state-of-the-art results on the RWTH-PHOENIX-Weather-2014
 <!-- TODO: YoutubeASL explanation would fit nicely here before Rust et al 2024. They don't just do data IIRC. -->
 
 @rust2024PrivacyAwareSign introduce a two-stage privacy-aware method for sign language translation (SLT) at scale, termed Self-Supervised Video Pretraining for Sign Language Translation (SSVP-SLT). 
-The first stage involves self-supervised pretraining of a Hiera vision transformer [@ryali2023HieraVisionTransformer] on large unannotated video datasets [@dataset:duarte2020how2sign, @dataset:uthus2023YoutubeASL]. 
+The first stage involves self-supervised pretraining of a Hiera vision transformer [@ryali2023HieraVisionTransformer] on large unannotated video datasets [@dataset:duarte2020how2sign;@dataset:uthus2023YoutubeASL]. 
 In the second stage, the vision model's outputs are fed into a multilingual language model [@raffel2020T5Transformer] for finetuning on the How2Sign dataset [@dataset:duarte2020how2sign].
 To mitigate privacy risks, the framework employs facial blurring during pretraining.
 They find that while pretraining with blurring hurts performance, some can be recovered when finetuning with unblurred data.
@@ -980,6 +981,23 @@ They found that for both forms of fingerspelling, on average, the longer the wor
 Furthermore, they found that less time is spent on middle letters on average, and the last letter is held on average for longer than the other letters in the word.
 Finally, they used this information to construct an animation system using letter pose interpolation and controlled the timing using a data-driven statistical model.
 
+### Pretraining and Representation-learning
+
+<!-- SignBERT, SignBERT+, BEST. Possibly also Sign-VQ or CV-SLT can be discussed here -->
+
+In this paradigm, rather than targeting a specific task (e.g. pose-to-text), the aim is to learn a generally-useful Sign Language Understanding model or representation which can be applied or finetuned to specific downstream tasks.
+
+<!-- TODO: talk about BEST here. Results are not as good as SignBERT+ but the do some things differently. Compare/contrast things like: left+right+body triplets in BEST vs left+right only in SignBERT+ -->
+
+@hu2023SignBertPlus introduce SignBERT+, a self-supervised pretraining method for sign language understanding (SLU) based on masked modeling of pose sequences.
+This is an extension of their earlier SignBERT [@hu2021SignBert], with several improvements.
+For pretraining they extract pose sequences from over 230k videos using MMPose [@mmpose2020].
+They then perform multi-level masked modeling (joints, frames, clips) on these sequences, integrating a statistical hand model [@romero2017MANOHandModel] to constrain the decoder's predictions for anatomical realism and enhanced accuracy.
+Validation on isolated SLR (MS-ASL [@dataset:joze2018ms], WLASL [@dataset:li2020word], SLR500 [@huang2019attention3DCNNsSLR]), continuous SLR (RWTH-PHOENIX-Weather [@koller2015ContinuousSLR]), and SLT (RWTH-PHOENIX-Weather 2014T [@dataset:forster2014extensions;@cihan2018neural]) demonstrates state-of-the-art performance.
+<!-- TODO: SLR500 to list of datasets -->
+<!-- TODO: RWTH-PHOENIX-WEATHER (the 2015 continuous SLR set, koller2015ContinuousSLR, not the translation set!) to list of datasets -->
+<!-- TODO: FHAD dataset (https://guiggh.github.io/publications/first-person-hands/) -->
+
 ## Annotation Tools
 
 ##### ELAN - EUDICO Linguistic Annotator
@@ -1024,7 +1042,7 @@ for signed language [@dataset:mesch2012meaning;@fenlon2015building;@crasborn2016
 One notable dictionary, SpreadTheSign\footnote{\url{https://www.spreadthesign.com/}} is a parallel dictionary containing around 25,000 words with up to 42 different spoken-signed language pairs and more than 600,000 videos in total. Unfortunately, while dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.
 
 ###### Fingerspelling corpora {-}
-usually consist of videos of words borrowed from spoken languages that are signed letter-by-letter. They can be synthetically created [@dataset:dreuw2006modeling] or mined from online resources [@dataset:fs18slt,@dataset:fs18iccv]. However, they only capture one aspect of signed languages.
+usually consist of videos of words borrowed from spoken languages that are signed letter-by-letter. They can be synthetically created [@dataset:dreuw2006modeling] or mined from online resources [@dataset:fs18slt;@dataset:fs18iccv]. However, they only capture one aspect of signed languages.
 
 ###### Isolated sign corpora {-}
 are collections of annotated single signs. They are synthesized [@dataset:ebling2018smile;@dataset:huang2018video;@dataset:sincan2020autsl;@dataset:hassan-etal-2020-isolated] or mined from online resources [@dataset:joze2018ms;@dataset:li2020word], and can be used for isolated sign language recognition or contrastive analysis of minimal signing pairs [@dataset:imashev2020dataset]. However, like dictionaries, they do not describe relations between signs, nor do they capture coarticulation during the signing, and are often limited in vocabulary size (20-1000 signs).

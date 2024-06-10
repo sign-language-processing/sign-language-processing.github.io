@@ -1,0 +1,16 @@
+{
+    "pub": {
+      "name": "PopSign ASL v1.0", 
+      "year": 2023,
+      "publication":"dataset:starner_et_al_2023_PopSignASL_v1", 
+      "url": "https://www.kaggle.com/competitions/asl-signs/data"
+    },
+    "#loader": null,
+    "#items": 250,
+    "#samples": 175023,
+    "#signers": 47,
+    "features": ["video", "gloss"],
+    "language": "American",
+    "license": null,
+    "licenseUrl": null
+  }
