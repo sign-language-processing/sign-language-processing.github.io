@@ -680,14 +680,6 @@ They try three different approaches for data augmentation:
 (3) Language-pair-specific rules augmenting the spoken language syntax to its corresponding sign language syntax.
 When pretraining, all augmentations show improvements over the baseline for RWTH-PHOENIX-Weather-2014T (DGS) and NCSLGR (ASL). 
 
-<!-- TODO: gloss translation (Mathias) -->
-<!-- @article{muller2022considerations,
-  title={Considerations for meaningful sign language machine translation based on glosses},
-  author={M{\"u}ller, Mathias and Jiang, Zifan and Moryossef, Amit and Rios, Annette and Ebling, Sarah},
-  journal={arXiv preprint arXiv:2211.15464},
-  year={2022}
-} -->
-
 #### Text-to-Gloss
 Text-to-gloss, an instantiation of sign language translation, is the task of translating between a spoken language text and sign language glosses.
 It is an appealing area of research because of its simplicity for integrating in existing NMT pipelines, 
@@ -778,11 +770,6 @@ They find that while pretraining with blurring hurts performance, some can be re
 SSVP-SLT achieves state-of-the-art performance on How2Sign [@dataset:duarte2020how2sign].
 They conclude that SLT models can be pretrained in a privacy-aware manner without sacrificing too much performance.
 Additionally, the authors release DailyMoth-70h, a new 70-hour ASL dataset from [The Daily Moth](https://www.dailymoth.com/).
-
-<!-- TODO: BLEURT explanation -->
-<!-- TODO: add DailyMoth to datasets list. Table 8 has stats: 497 videos, 70 hours, 1 signer, vocabulary of words 19 740, segmented video clips, -->
-
-<!-- TODO: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
 #### Text-to-Video
 Text-to-Video, also known as sign language production, is the task of producing a video that adequately represents
@@ -993,9 +980,6 @@ This is an extension of their earlier SignBERT [@hu2021SignBert], with several i
 For pretraining they extract pose sequences from over 230k videos using MMPose [@mmpose2020].
 They then perform multi-level masked modeling (joints, frames, clips) on these sequences, integrating a statistical hand model [@romero2017MANOHandModel] to constrain the decoder's predictions for anatomical realism and enhanced accuracy.
 Validation on isolated SLR (MS-ASL [@dataset:joze2018ms], WLASL [@dataset:li2020word], SLR500 [@huang2019attention3DCNNsSLR]), continuous SLR (RWTH-PHOENIX-Weather [@koller2015ContinuousSLR]), and SLT (RWTH-PHOENIX-Weather 2014T [@dataset:forster2014extensions;@cihan2018neural]) demonstrates state-of-the-art performance.
-<!-- TODO: SLR500 to list of datasets -->
-<!-- TODO: RWTH-PHOENIX-WEATHER (the 2015 continuous SLR set, koller2015ContinuousSLR, not the translation set!) to list of datasets -->
-<!-- TODO: FHAD dataset (https://guiggh.github.io/publications/first-person-hands/) -->
 
 ## Annotation Tools
 
@@ -1050,7 +1034,7 @@ are collections of annotated single signs. They are synthesized [@dataset:ebling
 contain parallel sequences of signs and spoken language.
 Available continuous sign corpora are extremely limited, containing 4-6 orders of magnitude fewer sentence pairs than similar corpora for spoken language machine translation [@arivazhagan2019massively].
 Moreover, while automatic speech recognition (ASR) datasets contain up to 50,000 hours of recordings [@pratap2020mls], the most extensive continuous sign language corpus contains only 1,150 hours, and only 50 of them are publicly available [@dataset:hanke-etal-2020-extending].
-These datasets are usually synthesized [@dataset:databases2007volumes;@dataset:Crasborn2008TheCN;@dataset:ko2019neural;@dataset:hanke-etal-2020-extending] or recorded in studio conditions [@dataset:forster2014extensions,@cihan2018neural], which does not account for noise in real-life conditions. Moreover, some contain signed interpretations of spoken language rather than naturally-produced signs, which may not accurately represent native signing since translation is now a part of the discourse event.
+These datasets are usually synthesized [@dataset:databases2007volumes;@dataset:Crasborn2008TheCN;@dataset:ko2019neural;@dataset:hanke-etal-2020-extending] or recorded in studio conditions [@dataset:forster2014extensions;@cihan2018neural], which does not account for noise in real-life conditions. Moreover, some contain signed interpretations of spoken language rather than naturally-produced signs, which may not accurately represent native signing since translation is now a part of the discourse event.
 
 
 ###### Availability {-}
@@ -1162,17 +1146,6 @@ Furthermore, we follow a unified interface when possible, making attributes the 
 The following table contains a curated list of datasets, including various signed languages and data formats:
 
 ```{=ignore}
-TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6477&context=etd) page 26 has more datasets.
-- Spanish Sign Language: María del Carmen Cabeza-Pereiro (cabeza@uvigo.es)
-- Estonian Sign Language: ?
-- Finnish Sign Language: Juhana Salonen, Antti Kronqvist (juhana.salonen@jyu.fi, antti.r.kronqvist@jyu.fi)
-- Danish Sign  Language: Jette H. Kristoffersen, Thomas Troelsgård (jehk@ucc.dk, ttro@ucc.dk)
-- GSL - https://arxiv.org/pdf/2007.12530.pdf
-- Phoenix SD / SI - J. Forster, C. Schmidt, O. Koller, M. Bellgardt, and H. Ney, "Extensions of the sign language recognition and translation corpus rwth-phoenixweather." in LREC, 2014, pp. 1911–1916.
-- Noema+ GSL dictionary (Efthimiou et al., 2016), 
-- BSL signbank (Jordan et al., 2014), 
-- NGT global signbank (Crasborn et al., 2020)
-
 
 GSLC - https://www.academia.edu/1990408/GSLC_creation_and_annotation_of_a_Greek_sign_language_corpus_for_HCI
 Emailed Eleni and Evita; I need to make sure data is available.
