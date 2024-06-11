@@ -14,6 +14,9 @@ function sanitize(text) {
     if (!text) {
         return text;
     }
+    if(typeof text === 'number') {
+        return String(text);
+    }
     return text.replace(/>/, "\\>")
 }
 
