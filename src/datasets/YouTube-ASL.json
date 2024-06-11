@@ -11,6 +11,6 @@
     "#signers": ">2519", 
     "features": ["video", "text:English"],
     "language": "American",
-    "license": null,
-    "licenseUrl": null
+    "license": "CC-By-SA (video IDs)",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
   }
