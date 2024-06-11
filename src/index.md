@@ -901,7 +901,7 @@ TODO
 
 ### Sign Language Retrieval
 
-Sign Language Retrieval is the task of finding a particular data item, given some input. In contrast to translation, generation or production tasks, there can exist a correct corresponding piece of data already, and the task is to find it out of many, if it exists. Metrics used include retrieval at Rank K and (R@K, higher is better) and median rank (MedR, lower is better).
+Sign Language Retrieval is the task of finding a particular data item, given some input. In contrast to translation, generation or production tasks, there can exist a correct corresponding piece of data already, and the task is to find it out of many, if it exists. Metrics used include retrieval at Rank K (R@K, higher is better) and median rank (MedR, lower is better).
 
 <!-- TODO: text-to-sign-video (T2V) section, sign-video-to-text (V2T) retrieval? -->
 @athitsos2010LargeLexiconIndexingRetrieval present one of the early works on this task, using a method based on hand centroids and dynamic time warping to enable users to submit videos of a sign and thus query within the ASL Lexicon Video Dataset [@dataset:athitsos2008american].
