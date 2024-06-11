@@ -1007,6 +1007,8 @@ One notable dictionary, SpreadTheSign\footnote{\url{https://www.spreadthesign.co
 ###### Fingerspelling corpora {-}
 usually consist of videos of words borrowed from spoken languages that are signed letter-by-letter. They can be synthetically created [@dataset:dreuw2006modeling] or mined from online resources [@dataset:fs18slt;@dataset:fs18iccv]. However, they only capture one aspect of signed languages.
 
+<!-- this is a draft pull request. It should not be merged -->
+
 ###### Isolated sign corpora {-}
 are collections of annotated single signs. They are synthesized [@dataset:ebling2018smile;@dataset:huang2018video;@dataset:sincan2020autsl;@dataset:hassan-etal-2020-isolated] or mined from online resources [@dataset:joze2018ms;@dataset:li2020word], and can be used for isolated sign language recognition or contrastive analysis of minimal signing pairs [@dataset:imashev2020dataset]. However, like dictionaries, they do not describe relations between signs, nor do they capture coarticulation during the signing, and are often limited in vocabulary size (20-1000 signs).
 
