@@ -347,6 +347,7 @@ Every path between two nodes might or might not be valid, depending on how lossy
 
 ---
 
+
 #### Video-to-Pose
 
 Video-to-Pose—commonly known as pose estimation—is the task of detecting human figures in images and videos, 
@@ -493,7 +494,7 @@ the need for expensive film studios and complex video technology typically assoc
 
 Most recently in the field of image and video generation, 
 there have been notable advances in methods such as 
-Style-Based Generator Architecture for Generative Adversarial Networks [@style-to-image:Karras2018ASG,@style-to-image:Karras2019stylegan2,@style-to-image:Karras2021], 
+Style-Based Generator Architecture for Generative Adversarial Networks [@style-to-image:Karras2018ASG;@style-to-image:Karras2019stylegan2;@style-to-image:Karras2021], 
 Variational Diffusion Models [@text-to-image:Kingma2021VariationalDM], 
 High-Resolution Image Synthesis with Latent Diffusion Models [@text-to-image:Rombach2021HighResolutionIS], 
 High Definition Video Generation with Diffusion Models [@text-to-video:Ho2022ImagenVH], and 
@@ -679,14 +680,6 @@ They try three different approaches for data augmentation:
 (3) Language-pair-specific rules augmenting the spoken language syntax to its corresponding sign language syntax.
 When pretraining, all augmentations show improvements over the baseline for RWTH-PHOENIX-Weather-2014T (DGS) and NCSLGR (ASL). 
 
-<!-- TODO: gloss translation (Mathias) -->
-<!-- @article{muller2022considerations,
-  title={Considerations for meaningful sign language machine translation based on glosses},
-  author={M{\"u}ller, Mathias and Jiang, Zifan and Moryossef, Amit and Rios, Annette and Ebling, Sarah},
-  journal={arXiv preprint arXiv:2211.15464},
-  year={2022}
-} -->
-
 #### Text-to-Gloss
 Text-to-gloss, an instantiation of sign language translation, is the task of translating between a spoken language text and sign language glosses.
 It is an appealing area of research because of its simplicity for integrating in existing NMT pipelines, 
@@ -770,18 +763,13 @@ The framework achieves state-of-the-art results on the RWTH-PHOENIX-Weather-2014
 <!-- TODO: YoutubeASL explanation would fit nicely here before Rust et al 2024. They don't just do data IIRC. -->
 
 @rust2024PrivacyAwareSign introduce a two-stage privacy-aware method for sign language translation (SLT) at scale, termed Self-Supervised Video Pretraining for Sign Language Translation (SSVP-SLT). 
-The first stage involves self-supervised pretraining of a Hiera vision transformer [@ryali2023HieraVisionTransformer] on large unannotated video datasets [@dataset:duarte2020how2sign, @dataset:uthus2023YoutubeASL]. 
+The first stage involves self-supervised pretraining of a Hiera vision transformer [@ryali2023HieraVisionTransformer] on large unannotated video datasets [@dataset:duarte2020how2sign;@dataset:uthus2023YoutubeASL]. 
 In the second stage, the vision model's outputs are fed into a multilingual language model [@raffel2020T5Transformer] for finetuning on the How2Sign dataset [@dataset:duarte2020how2sign].
 To mitigate privacy risks, the framework employs facial blurring during pretraining.
 They find that while pretraining with blurring hurts performance, some can be recovered when finetuning with unblurred data.
 SSVP-SLT achieves state-of-the-art performance on How2Sign [@dataset:duarte2020how2sign].
 They conclude that SLT models can be pretrained in a privacy-aware manner without sacrificing too much performance.
 Additionally, the authors release DailyMoth-70h, a new 70-hour ASL dataset from [The Daily Moth](https://www.dailymoth.com/).
-
-<!-- TODO: BLEURT explanation -->
-<!-- TODO: add DailyMoth to datasets list. Table 8 has stats: 497 videos, 70 hours, 1 signer, vocabulary of words 19 740, segmented video clips, -->
-
-<!-- TODO: AFRISIGN (Shester and Mathias at AfricaNLP, ICLR 2023 workshop) -->
 
 #### Text-to-Video
 Text-to-Video, also known as sign language production, is the task of producing a video that adequately represents
@@ -903,14 +891,12 @@ TODO
 Sign Language Retrieval is the task of finding a particular data item, given some input. In contrast to translation, generation or production tasks, there can exist a correct corresponding piece of data already, and the task is to find it out of many, if it exists.
 
 <!-- TODO: text-to-sign-video (T2V) section, sign-video-to-text (V2T) retrieval -->
-<!-- TODO: CiCo: Domain-Aware Sign Language Retrieval via Cross-Lingual Contrastive Learning -->
 
 @costerQueryingSignLanguage2023 present a method to query sign language dictionaries using dense vector search.
 They pretrain a [Sign Language Recognition model](#pose-to-gloss) on a subset of the VGT corpus [@dataset:herreweghe2015VGTCorpus] to embed sign inputs.
 Once the encoder is trained, they use it to generate embeddings for all dictionary signs.
 When a user submits a query video, the system compares the input embeddings with those of the dictionary entries using Euclidean distance.
 Tests on a [proof-of-concept Flemish Sign Language dictionary](https://github.com/m-decoster/VGT-SL-Dictionary) show that the system can successfully retrieve a limited vocabulary of signs, including some not in the training set.
-<!-- TODO: add VGT Corpus (dataset:herreweghe2015VGTCorpus) to list of datasets -->
 
 ### Fingerspelling
 
@@ -961,7 +947,17 @@ They found that for both forms of fingerspelling, on average, the longer the wor
 Furthermore, they found that less time is spent on middle letters on average, and the last letter is held on average for longer than the other letters in the word.
 Finally, they used this information to construct an animation system using letter pose interpolation and controlled the timing using a data-driven statistical model.
 
-### Pretraining and Representation-Learning
+### Pretraining and Representation-learning
+
+<!-- SignBERT, SignBERT+, BEST. Possibly also Sign-VQ or CV-SLT can be discussed here -->
+
+In this paradigm, rather than targeting a specific task (e.g. pose-to-text), the aim is to learn a generally-useful Sign Language Understanding model or representation which can be applied or finetuned to specific downstream tasks.
+
+@hu2023SignBertPlus introduce SignBERT+, a self-supervised pretraining method for sign language understanding (SLU) based on masked modeling of pose sequences.
+This is an extension of their earlier SignBERT [@hu2021SignBert], with several improvements.
+For pretraining they extract pose sequences from over 230k videos using MMPose [@mmpose2020].
+They then perform multi-level masked modeling (joints, frames, clips) on these sequences, integrating a statistical hand model [@romero2017MANOHandModel] to constrain the decoder's predictions for anatomical realism and enhanced accuracy.
+Validation on isolated SLR (MS-ASL [@dataset:joze2018ms], WLASL [@dataset:li2020word], SLR500 [@huang2019attention3DCNNsSLR]), continuous SLR (RWTH-PHOENIX-Weather [@koller2015ContinuousSLR]), and SLT (RWTH-PHOENIX-Weather 2014T [@dataset:forster2014extensions;@cihan2018neural]) demonstrates state-of-the-art performance.
 
 <!-- BEST seems to be **B**ERT pre-training for **S**ign language recognition with coupling **T**okenization -->
 @Zhao2023BESTPretrainingSignLanguageRecognition introduce BEST, a pretraining method based on masked modeling of pose sequences using a coupled tokenization scheme.
@@ -1018,7 +1014,7 @@ for signed language [@dataset:mesch2012meaning;@fenlon2015building;@crasborn2016
 One notable dictionary, SpreadTheSign\footnote{\url{https://www.spreadthesign.com/}} is a parallel dictionary containing around 25,000 words with up to 42 different spoken-signed language pairs and more than 600,000 videos in total. Unfortunately, while dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.
 
 ###### Fingerspelling corpora {-}
-usually consist of videos of words borrowed from spoken languages that are signed letter-by-letter. They can be synthetically created [@dataset:dreuw2006modeling] or mined from online resources [@dataset:fs18slt,@dataset:fs18iccv]. However, they only capture one aspect of signed languages.
+usually consist of videos of words borrowed from spoken languages that are signed letter-by-letter. They can be synthetically created [@dataset:dreuw2006modeling] or mined from online resources [@dataset:fs18slt;@dataset:fs18iccv]. However, they only capture one aspect of signed languages.
 
 ###### Isolated sign corpora {-}
 are collections of annotated single signs. They are synthesized [@dataset:ebling2018smile;@dataset:huang2018video;@dataset:sincan2020autsl;@dataset:hassan-etal-2020-isolated] or mined from online resources [@dataset:joze2018ms;@dataset:li2020word], and can be used for isolated sign language recognition or contrastive analysis of minimal signing pairs [@dataset:imashev2020dataset]. However, like dictionaries, they do not describe relations between signs, nor do they capture coarticulation during the signing, and are often limited in vocabulary size (20-1000 signs).
@@ -1027,7 +1023,7 @@ are collections of annotated single signs. They are synthesized [@dataset:ebling
 contain parallel sequences of signs and spoken language.
 Available continuous sign corpora are extremely limited, containing 4-6 orders of magnitude fewer sentence pairs than similar corpora for spoken language machine translation [@arivazhagan2019massively].
 Moreover, while automatic speech recognition (ASR) datasets contain up to 50,000 hours of recordings [@pratap2020mls], the most extensive continuous sign language corpus contains only 1,150 hours, and only 50 of them are publicly available [@dataset:hanke-etal-2020-extending].
-These datasets are usually synthesized [@dataset:databases2007volumes;@dataset:Crasborn2008TheCN;@dataset:ko2019neural;@dataset:hanke-etal-2020-extending] or recorded in studio conditions [@dataset:forster2014extensions,@cihan2018neural], which does not account for noise in real-life conditions. Moreover, some contain signed interpretations of spoken language rather than naturally-produced signs, which may not accurately represent native signing since translation is now a part of the discourse event.
+These datasets are usually synthesized [@dataset:databases2007volumes;@dataset:Crasborn2008TheCN;@dataset:ko2019neural;@dataset:hanke-etal-2020-extending] or recorded in studio conditions [@dataset:forster2014extensions;@cihan2018neural], which does not account for noise in real-life conditions. Moreover, some contain signed interpretations of spoken language rather than naturally-produced signs, which may not accurately represent native signing since translation is now a part of the discourse event.
 
 
 ###### Availability {-}
@@ -1139,17 +1135,6 @@ Furthermore, we follow a unified interface when possible, making attributes the 
 The following table contains a curated list of datasets, including various signed languages and data formats:
 
 ```{=ignore}
-TODO [this thesis](https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=6477&context=etd) page 26 has more datasets.
-- Spanish Sign Language: María del Carmen Cabeza-Pereiro (cabeza@uvigo.es)
-- Estonian Sign Language: ?
-- Finnish Sign Language: Juhana Salonen, Antti Kronqvist (juhana.salonen@jyu.fi, antti.r.kronqvist@jyu.fi)
-- Danish Sign  Language: Jette H. Kristoffersen, Thomas Troelsgård (jehk@ucc.dk, ttro@ucc.dk)
-- GSL - https://arxiv.org/pdf/2007.12530.pdf
-- Phoenix SD / SI - J. Forster, C. Schmidt, O. Koller, M. Bellgardt, and H. Ney, "Extensions of the sign language recognition and translation corpus rwth-phoenixweather." in LREC, 2014, pp. 1911–1916.
-- Noema+ GSL dictionary (Efthimiou et al., 2016), 
-- BSL signbank (Jordan et al., 2014), 
-- NGT global signbank (Crasborn et al., 2020)
-
 
 GSLC - https://www.academia.edu/1990408/GSLC_creation_and_annotation_of_a_Greek_sign_language_corpus_for_HCI
 Emailed Eleni and Evita; I need to make sure data is available.
