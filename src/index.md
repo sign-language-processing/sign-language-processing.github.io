@@ -960,15 +960,13 @@ They then perform multi-level masked modeling (joints, frames, clips) on these s
 Validation on isolated SLR (MS-ASL [@dataset:joze2018ms], WLASL [@dataset:li2020word], SLR500 [@huang2019attention3DCNNsSLR]), continuous SLR (RWTH-PHOENIX-Weather [@koller2015ContinuousSLR]), and SLT (RWTH-PHOENIX-Weather 2014T [@dataset:forster2014extensions;@cihan2018neural]) demonstrates state-of-the-art performance.
 
 <!-- BEST seems to be **B**ERT pre-training for **S**ign language recognition with coupling **T**okenization -->
-@Zhao2023BESTPretrainingSignLanguageRecognition introduce BEST, a pretraining method based on masked modeling of pose sequences using a coupled tokenization scheme.
-The method takes in pose triplet units (left hand, right hand, and upper-body with arms) as inputs.
-The pose for each part of the triplet is tokenized into discrete codes [@van_den_Oord_2017NeuralDiscreteRepresentationLearning].
-Then masked modeling is employed: any or all of the three parts may be masked, e.g. left hand, or right hand, or body+hand, or all of them...
-Unlike @hu2023SignBertPlus, they do not mask multi-frame sequnces ("clips") or sub-frame portions of a pose unit (joints).
-They validate their pretraining method isolated ISR (MS-ASL [@dataset:joze2018ms], WLASL [@dataset:li2020word], SLR500 [@huang2019attention3DCNNsSLR] and NMFs-CSL [@hu2021NMFAwareSLR]).
-They experiment with both pose-to-gloss and video-to-gloss via fusion with I3D [@carreira2017quo].
-Results on these datasets are SOTA compared to previous methods, and quite similar to those of SignBERT+ [@hu2023SignBertPlus]
-
+@Zhao2023BESTPretrainingSignLanguageRecognition introduce BEST (BERT Pre-training for Sign Language Recognition with Coupling Tokenization), a pre-training method based on masked modeling of pose sequences using a coupled tokenization scheme.
+This method takes pose triplet units (left hand, right hand, and upper-body with arms) as inputs, each tokenized into discrete codes [@van_den_Oord_2017NeuralDiscreteRepresentationLearning] that are then coupled together.
+Masked modeling is then applied, where any or all components of the triplet (left hand, right hand, or upper-body) may be masked, to learn hierarchical correlations among them.
+Unlike @hu2023SignBertPlus, BEST does not mask multi-frame pose sequences or individual joints.
+The authors validate their pre-training method on isolated sign recognition (ISR) tasks using MS-ASL [@dataset:joze2018ms], WLASL [@dataset:li2020word], SLR500 [@huang2019attention3DCNNsSLR], and NMFs-CSL [@hu2021NMFAwareSLR].
+Besides pose-to-gloss, they also experiment with video-to-gloss tasks via fusion with I3D [@carreira2017quo].
+Results on these datasets demonstrate state-of-the-art performance compared to previous methods and are comparable to those of SignBERT+ [@hu2023SignBertPlus].
 
 ## Annotation Tools
 
