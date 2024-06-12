@@ -913,7 +913,7 @@ On target datasets with continuous signing videos, they use this model with a sl
 The two encoders each pre-extract features from videos, which are then fused via a weighted sum.
 Cross-lingual contrastive learning [@Radford2021LearningTV] is then applied to align the extracted features with paired texts within a shared embedding space.
 This allows the calculation of similarity scores between text and video embeddings, and thus retrieval in either direction.
-Evaluations on How2Sign [@dataset:duarte2020how2sign] and RWTH-PHOENIX-Weather 2014T datasets [@cihan2018neural] demonstrate  improvment over the previous state of the art method [@Duarte2022SignVideoRetrivalWithTextQueries].
+Evaluations on the How2Sign [@dataset:duarte2020how2sign] and RWTH-PHOENIX-Weather 2014T [@cihan2018neural] datasets demonstrate improvement over the previous state-of-the-art [@Duarte2022SignVideoRetrivalWithTextQueries].
 Baseline retrieval results are also provided for the CSL-Daily dataset [@dataset:Zhou2021_SignBackTranslation_CSLDaily].
 
 <!-- TODO: tie in with Automatic Dense Annotation of Large-Vocabulary Sign Language Videos, mentioned in video-to-gloss? Also uses Pseudo-labeling -->
