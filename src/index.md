@@ -306,7 +306,7 @@ leveraging a spatio-temporal graph convolutional network (ST-GCN; @Yu2017SpatioT
 @segmentation:bull2021aligning presented a Transformer-based approach to segment sign language videos and align them with subtitles simultaneously, 
 encoding subtitles by BERT [@devlin-etal-2019-bert] and videos by CNN video representations.
 
-@segmentation:moryossef-etal-2023-linguistically presented a method motivated by linguistic cues observed in sign language corpora, such as prosody (pauses, pace, etc) and handshape changes. They also find that using BIO, an annotation scheme that notes the beginning, inside and outside, makes a significant difference over previous ones that only note IO (inside or outside). They find that including optical flow and 3D hand normalization helps with out-of-domain generalization and other signed languages as well. 
+@segmentation:moryossef-etal-2023-linguistically presented a method motivated by linguistic cues observed in sign language corpora, such as prosody (pauses, pace, etc) and handshape changes. They also find that using BIO, an annotation scheme that notes the beginning, inside and outside, makes a difference over previous ones that only note IO (inside or outside). They find that including optical flow and 3D hand normalization helps with out-of-domain generalization and other signed languages as well. 
 
 <!-- @segmentation:de-sisto-etal-2021-defining introduce a proposal for mapping segments to meaning in the form of an agglomerate of lexical and non-lexical information. -->
 
@@ -1004,7 +1004,7 @@ Research papers which do not necessarily contribute new theory or architectures 
 They use an iterative process to first automatically identify candidate videos, and then filter for quality using native signers.
 From over 88,000 candidate videos they filter down to about 11k with well-aligned English translations and comprehensible ASL content.
 They train a baseline translation model leveraging this data, pretraining on YouTube data by estimating poses with MediaPipe [@mediapipe2020holistic] and projecting into a multilingual language model [@raffel2020T5Transformer].
-Results on the How2Sign dataset [@dataset:duarte2020how2sign] show significant improvements over previous methods.
+Results on the How2Sign dataset [@dataset:duarte2020how2sign] show improvements over previous methods.
 They conclude that further mining of large-scale datasets with wide signer variety may be useful for sign language recognition and translation.
 
 <!-- Later seemingly borne out by Rust et al 2024 -->
