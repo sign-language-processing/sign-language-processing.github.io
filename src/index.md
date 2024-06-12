@@ -1004,7 +1004,7 @@ Research papers which do not necessarily contribute new theory or architectures 
 They use an iterative process to first automatically identify candidate videos, and then filter for quality using native signers.
 From over 88,000 candidate videos they filter down to about 11k with well-aligned English translations and comprehensible ASL content.
 They train a baseline translation model leveraging this data, pretraining on YouTube data by estimating poses with MediaPipe [@mediapipe2020holistic] and projecting into a multilingual language model [@raffel2020T5Transformer].
-Results on the How2Sign dataset [@dataset:duarte2020how2sign] show significant improvements over previous methods.
+Results on the How2Sign dataset [@dataset:duarte2020how2sign] show improvements over previous methods.
 They conclude that further mining of large-scale datasets with wide signer variety may be useful for sign language recognition and translation.
 
 <!-- Later seemingly borne out by Rust et al 2024 -->
