@@ -852,7 +852,23 @@ Then, starting from a still frame they used an iterative non-autoregressive deco
 In each time step $t$ from $T$ to $1$, the model predicts the required change from step $t$ to step $t-1$. After $T$ steps, the pose generator outputs the final pose sequence.
 Their model outperformed previous methods like @saunders2020progressive, animating HamNoSys into more realistic sign language sequences. 
 
+#### Translation Metrics
 
+For translation from sign languages to spoken languages, the output is spoken language text and standard machine translation metrics such as BLEU or ROUGE are therefore commonly used.
+<!-- TODO: examples -->
+
+For translation from spoken languages to sign languages, automatic evaluation metrics are an open line of research, though some metrics involving back-translation have been developed (see Text-to-Pose, above).
+
+Gloss outputs can be automatically scored as well, though not without issues.
+In particular, @muller-etal-2023-considerations analyse this and provide a series of recommendations (see the section on "Glosses", above).
+
+@kim-etal-2024-signbleu-automatic propose SignBLEU, a method for automatic BLEU-like scoring of multichannel sign language outputs.
+That is, they break sign language output into multiple linear channels, each with a series of discrete "blocks".
+For example, one channel for each hand, and one for each different non-manual signal such as eyebrow, eyelid, etc.
+These blocks are then converted to n-grams: temporal grams capturing sequential blocks within one channel, and channel grams capturing co-occurrences of features.
+For example a series of hand movements with the dominant hand is converted to temporal grams.
+A simultaneous movement of the dominant hand with a movement of eyebrow is represented as a channel gram.
+The BLEU score can then be calculated for these n-grams of different order.
 
 ```{=ignore}
 #### Pose-to-Notation
