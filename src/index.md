@@ -864,16 +864,18 @@ For translation from spoken languages to sign languages, automatic evaluation me
 Gloss outputs can be automatically scored as well, though not without issues.
 In particular, @muller-etal-2023-considerations analyse this and provide a series of recommendations (see the section on "Glosses", above).
 
-@kim-etal-2024-signbleu-automatic introduce Multi Channel Sign Language Translation (MCSLT), and propose SignBLEU, a method for automatic BLEU-like scoring of MCSLT outputs.
-Instead of glosses, in MCSLT they break sign language output into multiple linear channels, each with a series of discrete "blocks".
-For example, one channel for each hand, and one for each different non-manual signal such as eyebrow, eyelid, etc.
-These blocks are then converted to n-grams: temporal grams capturing sequential blocks within one channel, and channel grams capturing co-occurrences of features.
-For example a series of hand movements with the dominant hand are converted to _temporal_ grams, or simultaneous co-movements of the dominant hand and eyebrow are represented as _channel_ grams.
-The BLEU score can then be calculated for these n-grams of different order.
-They evaluate the metric on the DGS Corpus v3.0 [@dataset:Konrad_2020_dgscorpus_3;@dataset:prillwitz2008dgs], NIASL2021 [@dataset:huerta-enochian-etal-2022-kosign] and NCSLGR [dataset:Neidle_2020_NCSLGR_ISLRN;@Vogler2012ASLLRP_data_access_interface] datasets, comparing it with single-channel (gloss) metrics such as BLEU, TER, chrF, METEOR and ROUGE-L $F_1$, as well as human evaluations by native signers.
-The authors conclude that SignBLEU consistently corresponds better to human evaluation than these alternatives.
-The source code for SignBLEU is released at https://github.com/eq4all-projects/SignBLEU.
-As with SacreBLEU [@post-2018-call-sacrebleu], the code can "version signature" strings summarizing key parameters, to enhance reproducibility.
+@kim-etal-2024-signbleu-automatic introduced Multi-Channel Sign Language Translation (MCSLT) and proposed SignBLEU, a BLEU-like scoring method for MCSLT outputs.
+MCSLT segments sign language output into multiple linear channels, each containing discrete "blocks" instead of glosses.
+This approach contrasts with traditional single-channel sign language translation (SCSLT), which focused only on manual glosses.
+MCSLT includes both manual and non-manual signals, providing a more comprehensive representation of sign language.
+Each channel represents different aspects, such as one for each hand and others for various non-manual signals like eyebrow movements.
+These blocks are converted to n-grams: temporal grams capture sequences within a channel, and channel grams capture co-occurrences across channels.
+The BLEU score is then calculated for these n-grams of varying orders.
+They evaluated SignBLEU on the DGS Corpus v3.0 [@dataset:Konrad_2020_dgscorpus_3; @dataset:prillwitz2008dgs], NIASL2021 [@dataset:huerta-enochian-etal-2022-kosign], and NCSLGR [@dataset:Neidle_2020_NCSLGR_ISLRN; @Vogler2012ASLLRP_data_access_interface] datasets, comparing it with single-channel (gloss) metrics such as BLEU, TER, chrF, METEOR, and ROUGE-L $F_1$, as well as human evaluations by native signers.
+The authors concluded that SignBLEU consistently corresponded better to human evaluation than these alternatives.
+The [source code for SignBLEU](https://github.com/eq4all-projects/SignBLEU) is available.
+As with SacreBLEU [@post-2018-call-sacrebleu], the code can generate "version signature" strings summarizing key parameters, to enhance reproducibility.
+
 <!-- (and it can be installed and run! https://colab.research.google.com/drive/1mRCSBQSvjkoSOz5MFiOko1CgtamuCVYO?usp=sharing) -->
 
 ```{=ignore}
