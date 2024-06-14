@@ -870,29 +870,11 @@ For example, one channel for each hand, and one for each different non-manual si
 These blocks are then converted to n-grams: temporal grams capturing sequential blocks within one channel, and channel grams capturing co-occurrences of features.
 For example a series of hand movements with the dominant hand are converted to _temporal_ grams, or simultaneous co-movements of the dominant hand and eyebrow are represented as _channel_ grams.
 The BLEU score can then be calculated for these n-grams of different order.
-As with SacreBLEU [@post-2018-call-sacrebleu], "version signature" strings summarizing metric parameters used for calculation can be generated.
-Sharing these signatures with results can enhance reproducibility.
-They evaluate the metric on the DGS Corpus v3.0 [@dataset:Konrad_2020_dgscorpus_3;@dataset:prillwitz2008dgs], NIASL2021 [@dataset:huerta-enochian-etal-2022-kosign] and NCSLGR [dataset:Neidle_2020_NCSLGR_ISLRN;@Vogler2012ASLLRP_data_access_interface] datasets, comparing it with single-channel (gloss) metrics such as BLEU, TER, chrF, METEOR and ROUGE-L $F_1$, as well as human evaluations by native signers. 
+They evaluate the metric on the DGS Corpus v3.0 [@dataset:Konrad_2020_dgscorpus_3;@dataset:prillwitz2008dgs], NIASL2021 [@dataset:huerta-enochian-etal-2022-kosign] and NCSLGR [dataset:Neidle_2020_NCSLGR_ISLRN;@Vogler2012ASLLRP_data_access_interface] datasets, comparing it with single-channel (gloss) metrics such as BLEU, TER, chrF, METEOR and ROUGE-L $F_1$, as well as human evaluations by native signers.
 The authors conclude that SignBLEU consistently corresponds better to human evaluation than these alternatives.
 The source code for SignBLEU is released at https://github.com/eq4all-projects/SignBLEU.
-<!-- (and it can be installed and run: https://colab.research.google.com/drive/1mRCSBQSvjkoSOz5MFiOko1CgtamuCVYO?usp=sharing) -->
-
-
-<!-- SacreBLEU 
-"prints out a version
-string recording all the parameters as ’+’ de-
-limited KEY.VALUE pairs (here shortened with
---short):
-BLEU+c.mixed+l.en-de+#.1+s.exp
-+t.wmt14+tok.13a+v.1.2.10
-recording:
-• mixed case evaluation
-• on EN-DE
-• with one reference
-• and exponential smoothing
-• on the WMT14 dataset
-• using the WMT standard ’13a’ tokenization
-• with SACREBLEU 1.2.10. "-->
+As with SacreBLEU [@post-2018-call-sacrebleu], the code can "version signature" strings summarizing key parameters, to enhance reproducibility.
+<!-- (and it can be installed and run! https://colab.research.google.com/drive/1mRCSBQSvjkoSOz5MFiOko1CgtamuCVYO?usp=sharing) -->
 
 ```{=ignore}
 #### Pose-to-Notation
