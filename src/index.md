@@ -852,9 +852,11 @@ Then, starting from a still frame they used an iterative non-autoregressive deco
 In each time step $t$ from $T$ to $1$, the model predicts the required change from step $t$ to step $t-1$. After $T$ steps, the pose generator outputs the final pose sequence.
 Their model outperformed previous methods like @saunders2020progressive, animating HamNoSys into more realistic sign language sequences. 
 
-#### Translation Metrics
+#### Evaluation Metrics
 
-For translation from sign languages to spoken languages, the output is spoken language text and standard machine translation metrics such as BLEU or ROUGE are therefore commonly used.
+Methods for automatic evaluation of sign language processing are typically output-dependent. 
+
+For tasks which output in the form of spoken language text, standard machine translation metrics such as BLEU or ROUGE commonly used. 
 <!-- TODO: examples -->
 
 For translation from spoken languages to sign languages, automatic evaluation metrics are an open line of research, though some metrics involving back-translation have been developed (see Text-to-Pose, above).
@@ -862,13 +864,35 @@ For translation from spoken languages to sign languages, automatic evaluation me
 Gloss outputs can be automatically scored as well, though not without issues.
 In particular, @muller-etal-2023-considerations analyse this and provide a series of recommendations (see the section on "Glosses", above).
 
-@kim-etal-2024-signbleu-automatic propose SignBLEU, a method for automatic BLEU-like scoring of multichannel sign language outputs.
-That is, they break sign language output into multiple linear channels, each with a series of discrete "blocks".
+@kim-etal-2024-signbleu-automatic introduce Multi Channel Sign Language Translation (MCSLT), and propose SignBLEU, a method for automatic BLEU-like scoring of MCSLT outputs.
+Instead of glosses, in MCSLT they break sign language output into multiple linear channels, each with a series of discrete "blocks".
 For example, one channel for each hand, and one for each different non-manual signal such as eyebrow, eyelid, etc.
 These blocks are then converted to n-grams: temporal grams capturing sequential blocks within one channel, and channel grams capturing co-occurrences of features.
-For example a series of hand movements with the dominant hand is converted to temporal grams.
-A simultaneous movement of the dominant hand with a movement of eyebrow is represented as a channel gram.
+For example a series of hand movements with the dominant hand are converted to _temporal_ grams, or simultaneous co-movements of the dominant hand and eyebrow are represented as _channel_ grams.
 The BLEU score can then be calculated for these n-grams of different order.
+As with SacreBLEU [@post-2018-call-sacrebleu], "version signature" strings summarizing metric parameters used for calculation can be generated.
+Sharing these signatures with results can enhance reproducibility.
+They evaluate the metric on the DGS Corpus v3.0 [@dataset:Konrad_2020_dgscorpus_3;@dataset:prillwitz2008dgs], NIASL2021 [@dataset:huerta-enochian-etal-2022-kosign] and NCSLGR [dataset:Neidle_2020_NCSLGR_ISLRN;@Vogler2012ASLLRP_data_access_interface] datasets, comparing it with single-channel (gloss) metrics such as BLEU, TER, chrF, METEOR and ROUGE-L $F_1$, as well as human evaluations by native signers. 
+The authors conclude that SignBLEU consistently corresponds better to human evaluation than these alternatives.
+The source code for SignBLEU is released at https://github.com/eq4all-projects/SignBLEU.
+<!-- (and it can be installed and run: https://colab.research.google.com/drive/1mRCSBQSvjkoSOz5MFiOko1CgtamuCVYO?usp=sharing) -->
+
+
+<!-- SacreBLEU 
+"prints out a version
+string recording all the parameters as ’+’ de-
+limited KEY.VALUE pairs (here shortened with
+--short):
+BLEU+c.mixed+l.en-de+#.1+s.exp
++t.wmt14+tok.13a+v.1.2.10
+recording:
+• mixed case evaluation
+• on EN-DE
+• with one reference
+• and exponential smoothing
+• on the WMT14 dataset
+• using the WMT standard ’13a’ tokenization
+• with SACREBLEU 1.2.10. "-->
 
 ```{=ignore}
 #### Pose-to-Notation
