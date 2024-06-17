@@ -854,29 +854,29 @@ Their model outperformed previous methods like @saunders2020progressive, animati
 
 #### Evaluation Metrics
 
-Methods for automatic evaluation of sign language processing are typically output-dependent. 
+Methods for automatic evaluation of sign language processing are typically output-dependent only, and input-independent.
 
-For tasks which output in the form of spoken language text, standard machine translation metrics such as BLEU or ROUGE commonly used. 
+For tasks which output in the form of spoken language text, standard machine translation metrics such as BLEU, chrF, or COMET are commonly used.
 <!-- TODO: examples -->
 
-For translation from spoken languages to sign languages, automatic evaluation metrics are an open line of research, though some metrics involving back-translation have been developed (see Text-to-Pose, above).
+For translation from spoken languages to sign languages, automatic evaluation metrics are an open line of research, though some metrics involving back-translation have been developed (see Text-to-Pose and Notation-to-Pose, above).
 
 Gloss outputs can be automatically scored as well, though not without issues.
-In particular, @muller-etal-2023-considerations analyse this and provide a series of recommendations (see the section on "Glosses", above).
+In particular, @muller-etal-2023-considerations analysed this and provide a series of recommendations (see the section on "Glosses", above).
 
-@kim-etal-2024-signbleu-automatic introduced Multi-Channel Sign Language Translation (MCSLT) and proposed SignBLEU, a BLEU-like scoring method for MCSLT outputs.
-MCSLT segments sign language output into multiple linear channels, each containing discrete "blocks" instead of glosses.
-This approach contrasts with traditional single-channel sign language translation (SCSLT), which focused only on manual glosses.
-MCSLT includes both manual and non-manual signals, providing a more comprehensive representation of sign language.
-Each channel represents different aspects, such as one for each hand and others for various non-manual signals like eyebrow movements.
-These blocks are converted to n-grams: temporal grams capture sequences within a channel, and channel grams capture co-occurrences across channels.
-The BLEU score is then calculated for these n-grams of varying orders.
-They evaluated SignBLEU on the DGS Corpus v3.0 [@dataset:Konrad_2020_dgscorpus_3; @dataset:prillwitz2008dgs], NIASL2021 [@dataset:huerta-enochian-etal-2022-kosign], and NCSLGR [@dataset:Neidle_2020_NCSLGR_ISLRN; @Vogler2012ASLLRP_data_access_interface] datasets, comparing it with single-channel (gloss) metrics such as BLEU, TER, chrF, METEOR, and ROUGE-L $F_1$, as well as human evaluations by native signers.
-The authors concluded that SignBLEU consistently corresponded better to human evaluation than these alternatives.
+As an alternative to gloss sequences, @kim-etal-2024-signbleu-automatic proposed a multi-channel output representation for sign languages and introduced SignBLEU, a BLEU-like scoring method for these outputs.
+Instead of a single linear sequence of glosses, the representation segmented sign language output into multiple linear channels, each containing discrete "blocks".
+These blocks represented both manual and non-manual signals, for example, one for each hand and others for various non-manual signals like eyebrow movements.
+The blocks were then converted to n-grams: temporal grams captured sequences within a channel, and channel grams captured co-occurrences across channels.
+The SignBLEU score was then calculated for these n-grams of varying orders.
+They evaluated SignBLEU on the DGS Corpus v3.0 [@dataset:Konrad_2020_dgscorpus_3; @dataset:prillwitz2008dgs], NIASL2021 [@dataset:huerta-enochian-etal-2022-kosign], and NCSLGR [@dataset:Neidle_2020_NCSLGR_ISLRN; @Vogler2012ASLLRP_data_access_interface] datasets, comparing it with single-channel (gloss) metrics such as BLEU, TER, chrF, and METEOR, as well as human evaluations by native signers.
+The authors concluded that SignBLEU consistently correlated better to human evaluation than these alternatives.
+However, one limitation of this approach is the lack of suitable datasets.
+The authors reviewed a number of sign language corpora, noting the relative scarcity of multi-channel annotations.
 The [source code for SignBLEU](https://github.com/eq4all-projects/SignBLEU) is available.
 As with SacreBLEU [@post-2018-call-sacrebleu], the code can generate "version signature" strings summarizing key parameters, to enhance reproducibility.
 
-<!-- (and it can be installed and run! https://colab.research.google.com/drive/1mRCSBQSvjkoSOz5MFiOko1CgtamuCVYO?usp=sharing) -->
+<!-- (and SignBLEU can be installed and run! https://colab.research.google.com/drive/1mRCSBQSvjkoSOz5MFiOko1CgtamuCVYO?usp=sharing) -->
 
 ```{=ignore}
 #### Pose-to-Notation
