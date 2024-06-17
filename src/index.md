@@ -861,6 +861,9 @@ For tasks which output in the form of spoken language text, standard machine tra
 
 For translation from spoken languages to sign languages, automatic evaluation metrics are an open line of research, though some metrics involving back-translation have been developed (see Text-to-Pose and Notation-to-Pose, above).
 
+@shalev2022ham2pose introduced a metric for pose sequence outputs based on measuring the distance between generated and reference pose sequences.
+<!-- TODO: expand on Ham2Pose and DTW-MJE -->
+
 Gloss outputs can be automatically scored as well, though not without issues.
 In particular, @muller-etal-2023-considerations analysed this and provide a series of recommendations (see the section on "Glosses", above).
 
