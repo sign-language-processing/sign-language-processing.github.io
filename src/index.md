@@ -870,7 +870,10 @@ In particular, @muller-etal-2023-considerations analysed this and provide a seri
 
 ##### Pose Output
 
-For translation from spoken languages to sign languages, automatic evaluation metrics are an open line of research, though some metrics involving back-translation have been developed (see Text-to-Pose and Notation-to-Pose, above).
+For translation from spoken languages to signed languages, automatic evaluation metrics are an open line of research, though some metrics involving back-translation have been developed (see Text-to-Pose and Notation-to-Pose, above).
+
+Naively, works in this domain have used mean squared error (MSE). However, this metric is flawed as signs are not reproduced on the exact frame level, but are more free over time.
+To address that, @shalev2022ham2pose experimented with multiple methods, and introduced a metric for pose sequence outputs based on measuring the distance between generated and reference pose sequences on the joint level using dynamic time warping which they call DTW-MJE (Dynamic Time Warping - Mean Joint Error).
 
 @shalev2022ham2pose introduced a metric for pose sequence outputs based on measuring the distance between generated and reference pose sequences.
 <!-- TODO: expand on Ham2Pose and DTW-MJE -->
