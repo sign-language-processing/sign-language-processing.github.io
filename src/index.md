@@ -836,6 +836,7 @@ They apply several low-resource machine translation techniques used to improve s
 Their findings validate the use of an intermediate text representation for signed language translation, and pave the way for including sign language translation in natural language processing research.
 
 #### Text-to-Notation
+
 @jiang2022machine also explore the reverse translation direction, i.e., text to SignWriting translation. 
 They conduct experiments under a same condition of their multilingual SignWriting to text (4 language pairs) experiment, and again propose a neural factored machine translation approach to decode the graphemes and their position separately. 
 They borrow BLEU from spoken language translation to evaluate the predicted graphemes and mean absolute error to evaluate the positional numbers.
@@ -845,35 +846,44 @@ They borrow BLEU from spoken language translation to evaluate the predicted grap
 ---
 
 #### Notation-to-Pose
+
 @shalev2022ham2pose proposed Ham2Pose, a model to animate HamNoSys into a sequence of poses.
 They first encode the HamNoSys into a meaningful "context" representation using a transform encoder, 
 and use it to predict the length of the pose sequence to be generated.
 Then, starting from a still frame they used an iterative non-autoregressive decoder to gradually refine the sign over $T$ steps,
 In each time step $t$ from $T$ to $1$, the model predicts the required change from step $t$ to step $t-1$. After $T$ steps, the pose generator outputs the final pose sequence.
-Their model outperformed previous methods like @saunders2020progressive, animating HamNoSys into more realistic sign language sequences. 
+Their model outperformed previous methods like @saunders2020progressive, animating HamNoSys into more realistic sign language sequences.
 
 #### Evaluation Metrics
 
-Methods for automatic evaluation of sign language processing are typically output-dependent only, and input-independent.
+Methods for automatic evaluation of sign language processing are typically dependent only on the output and independent of the input.
 
-For tasks which output in the form of spoken language text, standard machine translation metrics such as BLEU, chrF, or COMET are commonly used.
+##### Text output
+
+For tasks that output spoken language text, standard machine translation metrics such as BLEU, chrF, or COMET are commonly used.
 <!-- TODO: examples -->
+
+##### Gloss Output
+
+Gloss outputs can be automatically scored as well, though not without issues.
+In particular, @muller-etal-2023-considerations analysed this and provide a series of recommendations (see the section on "Glosses", above).
+
+##### Pose Output
 
 For translation from spoken languages to sign languages, automatic evaluation metrics are an open line of research, though some metrics involving back-translation have been developed (see Text-to-Pose and Notation-to-Pose, above).
 
 @shalev2022ham2pose introduced a metric for pose sequence outputs based on measuring the distance between generated and reference pose sequences.
 <!-- TODO: expand on Ham2Pose and DTW-MJE -->
 
-Gloss outputs can be automatically scored as well, though not without issues.
-In particular, @muller-etal-2023-considerations analysed this and provide a series of recommendations (see the section on "Glosses", above).
+##### Multi-Channel Block output
 
 As an alternative to gloss sequences, @kim-etal-2024-signbleu-automatic proposed a multi-channel output representation for sign languages and introduced SignBLEU, a BLEU-like scoring method for these outputs.
-Instead of a single linear sequence of glosses, the representation segmented sign language output into multiple linear channels, each containing discrete "blocks".
-These blocks represented both manual and non-manual signals, for example, one for each hand and others for various non-manual signals like eyebrow movements.
-The blocks were then converted to n-grams: temporal grams captured sequences within a channel, and channel grams captured co-occurrences across channels.
-The SignBLEU score was then calculated for these n-grams of varying orders.
+Instead of a single linear sequence of glosses, the representation segments sign language output into multiple linear channels, each containing discrete "blocks".
+These blocks represent both manual and non-manual signals, for example, one for each hand and others for various non-manual signals like eyebrow movements.
+The blocks are then converted to n-grams: temporal grams capture sequences within a channel, and channel grams capture co-occurrences across channels.
+The SignBLEU score is then calculated for these n-grams of varying orders.
 They evaluated SignBLEU on the DGS Corpus v3.0 [@dataset:Konrad_2020_dgscorpus_3; @dataset:prillwitz2008dgs], NIASL2021 [@dataset:huerta-enochian-etal-2022-kosign], and NCSLGR [@dataset:Neidle_2020_NCSLGR_ISLRN; @Vogler2012ASLLRP_data_access_interface] datasets, comparing it with single-channel (gloss) metrics such as BLEU, TER, chrF, and METEOR, as well as human evaluations by native signers.
-The authors concluded that SignBLEU consistently correlated better to human evaluation than these alternatives.
+The authors found that SignBLEU consistently correlated better to human evaluation than these alternatives.
 However, one limitation of this approach is the lack of suitable datasets.
 The authors reviewed a number of sign language corpora, noting the relative scarcity of multi-channel annotations.
 The [source code for SignBLEU](https://github.com/eq4all-projects/SignBLEU) is available.
