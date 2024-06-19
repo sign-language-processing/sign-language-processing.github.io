@@ -483,7 +483,8 @@ implementing hierarchical phrase transitions [@paula:mcdonald2021natural],
 creating more realistic facial muscle control [@paula:mcdonald2022novel], 
 and supporting geometric relocations [@paula:filhol2022representation].
 
-###### SiMAX [@SiMAX_2020] {-}
+###### SiMAX [@SiMAX2020SignLanguage] {-}
+
 is a software application developed to transform textual input into 3D animated sign language representations.
 Utilizing a comprehensive database and the expertise of deaf sign language professionals, SiMAX ensures accurate translations of both written and spoken content.
 The process begins with the generation of a translation suggestion, which is subsequently reviewed and, if necessary, 
