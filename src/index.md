@@ -871,12 +871,20 @@ In particular, @muller-etal-2023-considerations analysed this and provide a seri
 ##### Pose Output
 
 For translation from spoken languages to signed languages, automatic evaluation metrics are an open line of research, though some metrics involving back-translation have been developed (see Text-to-Pose and Notation-to-Pose, above).
+<!-- TODO: "Progressive Transformers for End-to-End Sign Language Production" is the one cited in Towards Fast and High-Quality Sign Language Production as a "widely-used setting" for backtranslation. -->
+<!-- TODO: Towards Fast and High-Quality Sign Language Production uses back-translation. Discuss results and issues. -->
 
-Naively, works in this domain have used mean squared error (MSE). However, this metric is flawed as signs are not reproduced on the exact frame level, but are more free over time.
-To address that, @shalev2022ham2pose experimented with multiple methods, and introduced a metric for pose sequence outputs based on measuring the distance between generated and reference pose sequences on the joint level using dynamic time warping which they call DTW-MJE (Dynamic Time Warping - Mean Joint Error).
+<!-- These three papers are cited in @shalev2022ham2pose as previous work using APE -->
+Naively, works in this domain have used metrics such as mean squared error (MSE) or Average Position Error (APE) for pose outputs [ahuja2019Language2PoseNaturalLanguage;ghosh2021SynthesisCompositionalAnimations;petrovich2022TEMOSGeneratingDiverse].
+However, these metrics have significant issues for Sign Language Production.
 
-@shalev2022ham2pose introduced a metric for pose sequence outputs based on measuring the distance between generated and reference pose sequences.
-<!-- TODO: expand on Ham2Pose and DTW-MJE -->
+For example, MSE and APE do not take into account variations in sequence length, for cases where the same sign might take more or less time to produce.
+To address time variation, @huang2021towards introduced a metric for pose sequence outputs based on measuring the distance between generated and reference pose sequences on the joint level using dynamic time warping, which they call DTW-MJE (Dynamic Time Warping - Mean Joint Error).
+
+However, this metric did not make it clear how to deal with missing keypoints.
+@shalev2022ham2pose experimented with multiple evaluation methods, and proposed adding a distance function that took these missing keypoints into account.
+They applied this function with normalization of keypoints, calling their metric nDTW-MJE.
+<!-- They don't explicitly explain that the lowercase n is for "normalized keypoints" but that's my guess. -Colin -->
 
 ##### Multi-Channel Block output
 
