@@ -876,12 +876,12 @@ For translation from spoken languages to signed languages, automatic evaluation 
 <!-- TODO: Towards Fast and High-Quality Sign Language Production uses back-translation. Discuss results and issues. -->
 
 <!-- These three papers are cited in @shalev2022ham2pose as previous work using APE -->
-Naively, works in this domain have used metrics such as mean squared error (MSE) or Average Position Error (APE) for pose outputs [ahuja2019Language2PoseNaturalLanguage;ghosh2021SynthesisCompositionalAnimations;petrovich2022TEMOSGeneratingDiverse].
+Naively, works in this domain have used metrics such as Mean Squared Error (MSE) or Average Position Error (APE) for pose outputs [ahuja2019Language2PoseNaturalLanguage;ghosh2021SynthesisCompositionalAnimations;petrovich2022TEMOSGeneratingDiverse].
 However, these metrics have significant limitations for Sign Language Production.
 
-For example, MSE and APE do not account for variations in sequence length, for cases where where the same sign might take different amounts of time to produce.
+For example, MSE and APE do not account for variations in sequence length.
+In practice, the same sign will not always take exactly the same amount of time to produce, even by the same signer.
 To address time variation, @huang2021towards introduced a metric for pose sequence outputs based on measuring the distance between generated and reference pose sequences at the joint level using dynamic time warping, termed DTW-MJE (Dynamic Time Warping - Mean Joint Error).
-
 However, this metric did not clearly address how to handle missing keypoints.
 @shalev2022ham2pose experimented with multiple evaluation methods, and proposed adding a distance function that accounts for these missing keypoints.
 They applied this function with normalization of keypoints, naming their metric nDTW-MJE.
