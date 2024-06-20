@@ -8,8 +8,8 @@
   "features": ["video:RGB","text:es","pose:AlphaPose"],
   "language": "Argentina",
   "#items": null,
-  "#samples": "14,880 sentence-level videos",
+  "#samples": "14,880 sentences",
   "#signers": 103,
-  "license": "Public (MIT)",
-  "licenseUrl": "https://github.com/midusi/LSA-T/blob/d030c752e5b258f61a225612ce1767e5301ac790/LICENCE"
+  "license": "MIT",
+  "licenseUrl": "https://github.com/midusi/LSA-T/blob/main/LICENCE"
 }
