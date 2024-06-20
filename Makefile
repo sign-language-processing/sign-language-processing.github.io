@@ -2,6 +2,10 @@ markdown: dst dst/index.html dst/style.css
 
 server: dst dst/style.css dst/index.md dst/sitemap.xml
 
+# CDL: this is where the bibliography @ citations are transformed, I believe, to things like (Someone 2024)
+# also, requires a newer version of pandoc, in order to use --citeproc
+# https://pandoc.org/releases.html#pandoc-2.11-2020-10-11 or greater,
+# which means that on Ubuntu you may need to go directly to the source repo and download/install the .deb
 dst/index.html: dst/index.md src/references.bib src/template/index.html dst/style.css
 	pandoc dst/index.md --template src/template/index.html -s --table-of-contents --bibliography=src/references.bib --citeproc --columns 1000 -H src/header.html -V lang=en -o $@
 

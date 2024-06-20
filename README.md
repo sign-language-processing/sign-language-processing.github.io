@@ -12,7 +12,7 @@ The hosted github page is automatically built on push to master.
 
 To build the page locally, run `make`.
 
-Make sure you have [pandoc](https://pandoc.org/) installed.
+Make sure you have [pandoc](https://pandoc.org/) installed, version 2.11 or greater.
 
 ## Development
 To continuously build the page locally, listening to changes, run:
