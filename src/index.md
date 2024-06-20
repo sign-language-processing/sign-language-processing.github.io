@@ -679,7 +679,7 @@ They try three different approaches for data augmentation:
 (1) Back-translation;
 (2) General text-to-gloss rules, including lemmatization, word reordering, and dropping of words; 
 (3) Language-pair-specific rules augmenting the spoken language syntax to its corresponding sign language syntax.
-When pretraining, all augmentations show improvements over the baseline for RWTH-PHOENIX-Weather-2014T [@cihan2018neural] (DGS) and NCSLGR (ASL).
+When pretraining, all augmentations show improvements over the baseline for RWTH-PHOENIX-Weather-2014T (DGS) and NCSLGR (ASL).
 
 #### Text-to-Gloss
 Text-to-gloss, an instantiation of sign language translation, is the task of translating between a spoken language text and sign language glosses.
