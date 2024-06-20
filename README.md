@@ -12,7 +12,8 @@ The hosted github page is automatically built on push to master.
 
 To build the page locally, run `make`.
 
-Make sure you have [pandoc](https://pandoc.org/) installed, version 2.11 or greater.
+Make sure you have [pandoc](https://pandoc.org/) installed. 
+If you see "unknown option: --citeproc", you may need to install [the latest version directly](https://github.com/jgm/pandoc/releases/latest) rather than with `apt`.
 
 ## Development
 To continuously build the page locally, listening to changes, run:
