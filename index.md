@@ -578,7 +578,7 @@ To smooth that sequence and reduce unnatural motion, they used a Savitzky–Gola
 @huang2021towards used a new non-autoregressive model to generate a sequence of poses for a sequence of glosses. 
 They argued that existing models like @saunders2020adversarial are prone to error accumulation and high inference latency due to their autoregressive nature. 
 Their model performs gradual upsampling of the poses, by starting with a pose including only two joints in the first layer, and gradually introducing more keypoints.
-They evaluated their model on the Phoenix-14T dataset [@dataset:forster2014extensions] using 
+They evaluated their model on the RWTH-PHOENIX-WEATHER 2014T dataset [@cihan2018neural] using 
 Dynamic Time Warping (DTW) [@Berndt1994UsingDT] to align the poses before computing Mean Joint Error (DTW-MJE).
 They demonstrated that their model outperforms existing methods in terms of accuracy and speed, making it a promising approach for fast and high-quality sign language production.
 
@@ -679,11 +679,11 @@ Interestingly, in gloss-to-text, they show that using the sign language recognit
 
 Building on the code published by @yin-read-2020-better, @moryossef-etal-2021-data show it is beneficial to pre-train these translation models
 using augmented monolingual spoken language corpora.
-They try three different approaches for data augmentation: 
-(1) Back-translation; 
+They try three different approaches for data augmentation:
+(1) Back-translation;
 (2) General text-to-gloss rules, including lemmatization, word reordering, and dropping of words; 
 (3) Language-pair-specific rules augmenting the spoken language syntax to its corresponding sign language syntax.
-When pretraining, all augmentations show improvements over the baseline for RWTH-PHOENIX-Weather-2014T (DGS) and NCSLGR (ASL). 
+When pretraining, all augmentations show improvements over the baseline for RWTH-PHOENIX-Weather-2014T (DGS) and NCSLGR (ASL).
 
 #### Text-to-Gloss
 Text-to-gloss, an instantiation of sign language translation, is the task of translating between a spoken language text and sign language glosses.
@@ -739,7 +739,7 @@ and so they have broken the dependency upon costly annotated gloss information i
 @chen2022TwoStreamNetworkSign present a two-stream network for sign language recognition (SLR) and translation (SLT), utilizing a dual visual encoder architecture to encode RGB video frames and pose keypoints in separate streams. 
 These streams interact via bidirectional lateral connections. 
 For SLT, the visual encoders based on an S3D backbone [@xie2018SpatiotemporalS3D] output to a multilingual translation network using mBART [@liu-etal-2020-multilingual-denoising]. 
-The model achieves state-of-the-art performance on the RWTH-PHOENIX-Weather-2014 [@dataset:forster2014extensions], RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:Zhou2021_SignBackTranslation_CSLDaily] datasets.
+The model achieves state-of-the-art performance on the RWTH-PHOENIX-Weather-2014 [@koller2015ContinuousSLR], RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:Zhou2021_SignBackTranslation_CSLDaily] datasets.
 
 @zhang2023sltunet propose a multi-modal, multi-task learning approach to end-to-end sign language translation. 
 The model features shared representations for different modalities such as text and video and is trained jointly 
@@ -806,7 +806,7 @@ discrete spoken language sentences to continuous 3D sign pose sequences in an au
 Unlike symbolic transformers [@vaswani2017attention], which use a discrete vocabulary and thus can predict an end-of-sequence (`EOS`) token in every step, the progressive transformer predicts a 
 $counter ∈ [0,1]$ in addition to the pose.
 In inference time, $counter=1$ is considered the end of the sequence.
-They tested their approach on the RWTH-PHOENIX-Weather-2014T dataset using OpenPose 2D pose estimation,
+They tested their approach on the RWTH-PHOENIX-Weather-2014T dataset [@cihan2018neural] using OpenPose 2D pose estimation,
 uplifted to 3D [@pose:zelinka2020neural], and showed favorable results when evaluating using back-translation 
 from the generated poses to spoken language.
 They further showed [@saunders2020adversarial] that using an adversarial discriminator between 
@@ -982,7 +982,7 @@ In this paradigm, rather than targeting a specific task (e.g. pose-to-text), the
 This is an extension of their earlier SignBERT [@hu2021SignBert], with several improvements.
 For pretraining they extract pose sequences from over 230k videos using MMPose [@mmpose2020].
 They then perform multi-level masked modeling (joints, frames, clips) on these sequences, integrating a statistical hand model [@romero2017MANOHandModel] to constrain the decoder's predictions for anatomical realism and enhanced accuracy.
-Validation on isolated SLR (MS-ASL [@dataset:joze2018ms], WLASL [@dataset:li2020word], SLR500 [@huang2019attention3DCNNsSLR]), continuous SLR (RWTH-PHOENIX-Weather [@koller2015ContinuousSLR]), and SLT (RWTH-PHOENIX-Weather 2014T [@dataset:forster2014extensions;@cihan2018neural]) demonstrates state-of-the-art performance.
+Validation on isolated SLR (MS-ASL [@dataset:joze2018ms], WLASL [@dataset:li2020word], SLR500 [@huang2019attention3DCNNsSLR]), continuous SLR (RWTH-PHOENIX-Weather 2014 [@koller2015ContinuousSLR]), and SLT (RWTH-PHOENIX-Weather 2014T [@cihan2018neural]) demonstrates state-of-the-art performance.
 
 <!-- BEST seems to be **B**ERT pre-training for **S**ign language recognition with coupling **T**okenization -->
 @Zhao2023BESTPretrainingSignLanguageRecognition introduce BEST (BERT Pre-training for Sign Language Recognition with Coupling Tokenization), a pre-training method based on masked modeling of pose sequences using a coupled tokenization scheme.
@@ -1214,7 +1214,7 @@ Emailed Eleni and Evita; I need to make sure data is available.
 | [RVL-SLLL ASL](https://engineering.purdue.edu/RVL/Database/ASL/asl-database-front.htm) | @dataset:martinez2002purdue | American | <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> | 104 | 2,576 Videos | 14 | [Research Attribution](https://engineering.purdue.edu/RVL/Database/ASL/Agreement.pdf) |
 | [RWTH Fingerspelling](https://www-i6.informatik.rwth-aachen.de/aslr/fingerspelling.php) | @dataset:dreuw2006modeling | German | <span title="video">🎥</span><span title="text:German">📜</span> | 35 | 1,400 single-char videos | 20 |  |
 | [RWTH-BOSTON-104](https://www-i6.informatik.rwth-aachen.de/aslr/database-rwth-boston-104.php) | @dataset:dreuw2008benchmark | American | <span title="video">🎥</span><span title="text:English">📜</span> | 104 | 201 Sentences | 3 |  |
-| [RWTH-PHOENIX-Weather T](https://www-i6.informatik.rwth-aachen.de/~koller/RWTH-PHOENIX-2014-T/) [💾](https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/rwth_phoenix2014_t) | @dataset:forster2014extensions;@cihan2018neural | German | <span title="video">🎥</span><span title="gloss:DGS">📋</span><span title="text:German">📜</span> | 1,231 | 8,257 Sentences | 9 | [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) |
+| [RWTH-PHOENIX-Weather T](https://www-i6.informatik.rwth-aachen.de/~koller/RWTH-PHOENIX-2014-T/) [💾](https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/rwth_phoenix2014_t) | @cihan2018neural | German | <span title="video">🎥</span><span title="gloss:DGS">📋</span><span title="text:German">📜</span> | 1,231 | 8,257 Sentences | 9 | [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) |
 | [S-pot](https://research.cs.aalto.fi/cbir/data/s-pot/) | @dataset:viitaniemi-etal-2014-pot | Finnish | <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span> | 1,211 | 5,539 Videos | 5 | [Permission](mailto:leena.savolainen@kuurojenliitto.fi) |
 | [Sign2MINT](https://sign2mint.de/) [💾](https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/sign2mint) | 2021 | German | <span title="video">🎥</span><span title="writing:SignWriting">✍</span><span title="text:German">📜</span> | 740 | 1135 |  | [CC BY-NC-SA 3.0 DE](https://creativecommons.org/licenses/by-nc-sa/3.0/de/) |
 | [SignBank](https://www.signbank.org/signpuddle/) [💾](https://github.com/sign-language-processing/datasets/tree/master/sign_language_datasets/datasets/signbank) |  | Multilingual | <span title="video">🎥</span><span title="writing:SignWriting">✍</span><span title="text:Multilingual">📜</span> |  | 222148 |  |  |
