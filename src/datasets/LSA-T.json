@@ -1,0 +1,15 @@
+{
+  "pub": {
+    "name": "LSA-T",
+    "year": 2022,
+    "publication": "dataset:dal2022lsa",
+    "url": "https://midusi.github.io/LSA-T/"
+  },
+  "features": ["video:RGB","text:es","pose:AlphaPose"],
+  "language": "Argentina",
+  "#items": null,
+  "#samples": "14,880 sentences",
+  "#signers": 103,
+  "license": "MIT",
+  "licenseUrl": "https://github.com/midusi/LSA-T/blob/main/LICENCE"
+}
