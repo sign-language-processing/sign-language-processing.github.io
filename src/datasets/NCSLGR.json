@@ -2,7 +2,7 @@
   "pub": {
     "name": "NCSLGR",
     "year": 2007,
-    "publication": "dataset:databases2007volumes",
+    "publication": "dataset:Neidle_2020_NCSLGR_ISLRN",
     "url": "https://www.bu.edu/asllrp/ncslgr.html"
   },
   "loader": "ncslgr",
