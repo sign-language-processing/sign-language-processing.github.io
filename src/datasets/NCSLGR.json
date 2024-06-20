@@ -15,7 +15,7 @@
   "#items": null,
   "#samples": "1,875 sentences",
   "#signers": 4,
-  "license": "TODO",
-  "licenseUrl": null,
+  "license": "Research Attribution",
+  "licenseUrl": "https://www.bu.edu/asllrp/data-credits.html",
   "contact": "carol@bu.edu"
 }
