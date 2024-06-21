@@ -841,6 +841,7 @@ They apply several low-resource machine translation techniques used to improve s
 Their findings validate the use of an intermediate text representation for signed language translation, and pave the way for including sign language translation in natural language processing research.
 
 #### Text-to-Notation
+
 @jiang2022machine also explore the reverse translation direction, i.e., text to SignWriting translation. 
 They conduct experiments under a same condition of their multilingual SignWriting to text (4 language pairs) experiment, and again propose a neural factored machine translation approach to decode the graphemes and their position separately. 
 They borrow BLEU from spoken language translation to evaluate the predicted graphemes and mean absolute error to evaluate the positional numbers.
@@ -850,14 +851,61 @@ They borrow BLEU from spoken language translation to evaluate the predicted grap
 ---
 
 #### Notation-to-Pose
+
 @shalev2022ham2pose proposed Ham2Pose, a model to animate HamNoSys into a sequence of poses.
 They first encode the HamNoSys into a meaningful "context" representation using a transform encoder, 
 and use it to predict the length of the pose sequence to be generated.
 Then, starting from a still frame they used an iterative non-autoregressive decoder to gradually refine the sign over $T$ steps,
 In each time step $t$ from $T$ to $1$, the model predicts the required change from step $t$ to step $t-1$. After $T$ steps, the pose generator outputs the final pose sequence.
-Their model outperformed previous methods like @saunders2020progressive, animating HamNoSys into more realistic sign language sequences. 
+Their model outperformed previous methods like @saunders2020progressive, animating HamNoSys into more realistic sign language sequences.
 
+#### Evaluation Metrics
 
+Methods for automatic evaluation of sign language processing are typically dependent only on the output and independent of the input.
+
+##### Text output
+
+For tasks that output spoken language text, standard machine translation metrics such as BLEU, chrF, or COMET are commonly used.
+<!-- <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span>: examples -->
+
+##### Gloss Output
+
+Gloss outputs can be automatically scored as well, though not without issues.
+In particular, @muller-etal-2023-considerations analysed this and provide a series of recommendations (see the section on "Glosses", above).
+
+##### Pose Output
+
+For translation from spoken languages to signed languages, automatic evaluation metrics are an open line of research, though some metrics involving back-translation have been developed (see Text-to-Pose and Notation-to-Pose, above).
+<!-- <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span>: "Progressive Transformers for End-to-End Sign Language Production" is the one cited in Towards Fast and High-Quality Sign Language Production as a "widely-used setting" for backtranslation. -->
+<!-- <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span>: Towards Fast and High-Quality Sign Language Production uses back-translation. Discuss results and issues. -->
+
+<!-- These three papers are cited in @shalev2022ham2pose as previous work using APE -->
+Naively, works in this domain have used metrics such as Mean Squared Error (MSE) or Average Position Error (APE) for pose outputs [ahuja2019Language2PoseNaturalLanguage;ghosh2021SynthesisCompositionalAnimations;petrovich2022TEMOSGeneratingDiverse].
+However, these metrics have significant limitations for Sign Language Production.
+
+For example, MSE and APE do not account for variations in sequence length.
+In practice, the same sign will not always take exactly the same amount of time to produce, even by the same signer.
+To address time variation, @huang2021towards introduced a metric for pose sequence outputs based on measuring the distance between generated and reference pose sequences at the joint level using dynamic time warping, termed DTW-MJE (Dynamic Time Warping - Mean Joint Error).
+However, this metric did not clearly address how to handle missing keypoints.
+@shalev2022ham2pose experimented with multiple evaluation methods, and proposed adding a distance function that accounts for these missing keypoints.
+They applied this function with normalization of keypoints, naming their metric nDTW-MJE.
+<!-- They don't explicitly explain that the lowercase n is for "normalized keypoints" but that's my guess. -Colin -->
+
+##### Multi-Channel Block output
+
+As an alternative to gloss sequences, @kim-etal-2024-signbleu-automatic proposed a multi-channel output representation for sign languages and introduced SignBLEU, a BLEU-like scoring method for these outputs.
+Instead of a single linear sequence of glosses, the representation segments sign language output into multiple linear channels, each containing discrete "blocks".
+These blocks represent both manual and non-manual signals, for example, one for each hand and others for various non-manual signals like eyebrow movements.
+The blocks are then converted to n-grams: temporal grams capture sequences within a channel, and channel grams capture co-occurrences across channels.
+The SignBLEU score is then calculated for these n-grams of varying orders.
+They evaluated SignBLEU on the DGS Corpus v3.0 [@dataset:Konrad_2020_dgscorpus_3; @dataset:prillwitz2008dgs], NIASL2021 [@dataset:huerta-enochian-etal-2022-kosign], and NCSLGR [@dataset:Neidle_2020_NCSLGR_ISLRN; @Vogler2012ASLLRP_data_access_interface] datasets, comparing it with single-channel (gloss) metrics such as BLEU, TER, chrF, and METEOR, as well as human evaluations by native signers.
+The authors found that SignBLEU consistently correlated better to human evaluation than these alternatives.
+However, one limitation of this approach is the lack of suitable datasets.
+The authors reviewed a number of sign language corpora, noting the relative scarcity of multi-channel annotations.
+The [source code for SignBLEU](https://github.com/eq4all-projects/SignBLEU) is available.
+As with SacreBLEU [@post-2018-call-sacrebleu], the code can generate "version signature" strings summarizing key parameters, to enhance reproducibility.
+
+<!-- (and SignBLEU can be installed and run! https://colab.research.google.com/drive/1mRCSBQSvjkoSOz5MFiOko1CgtamuCVYO?usp=sharing) -->
 
 ```{=ignore}
 #### Pose-to-Notation
