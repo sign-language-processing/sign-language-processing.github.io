@@ -49,7 +49,7 @@ For attribution in academic contexts, please cite this work as:
 - **Hyphenation**: Use hyphens (-) for compound adjectives (e.g., video-to-pose).
 - **Lists**: Use "-" for list items, followed by a space.
 - **Code**: Use backticks (`) for inline code, and triple backticks (```) for code blocks.
-- **Numbers**: Spell out numbers less than 10, and use numerals for 10 and greater.
+- **Numbers**: Spell out numbers less than 10, and use numerals for 10 and greater. For large numbers, separate with commas and do not abbreviate with suffixes such as "k" (11,000, not 11k)
 - **Contractions**: Avoid contractions (e.g., use "do not" instead of "don't").
 - **Compound Words**: Use a forward slash (/) to separate alternative compound words (e.g., 2D / 3D).
 - **Phrasing**: Prefer active voice over passive voice (e.g., "The authors used..." instead of "The work was used by the authors...").
