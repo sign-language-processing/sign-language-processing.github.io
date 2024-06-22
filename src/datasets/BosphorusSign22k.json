@@ -1,0 +1,16 @@
+{
+    "pub": {
+      "name": "BosphorusSign22k",
+      "year": 2020,
+      "publication": "dataset:ozdemir2020bosphorussign22k",
+      "url": "https://ogulcanozdemir.github.io/bosphorussign22k/"
+    },
+    "#loader": null,
+    "#items": 744,
+    "#samples": 22542,
+    "#signers": 6,
+    "features": ["video:RGB", "gloss","pose:Kinect", "pose:OpenPose"],
+    "language": "Turkish",
+    "license": "Research purpose on request",
+    "licenseUrl": "https://ogulcanozdemir.github.io/bosphorussign22k/#description"
+  }
