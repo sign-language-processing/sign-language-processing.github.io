@@ -24,10 +24,9 @@ function sanitize(text) {
     return text.replace(/>/, "\\>");
 }
 
-// Colin: gets the proper emoji icon for dataset features.
 function getIcon(feature) {
-    // Split the feature into type and specificity
-    // CDL: this means that things like pose:OpenPose and pose:MediaPipe get the same icon.
+    // Split the feature (e.g. "pose:OpenPose") into type and specificity ("pose" and "OpenPose")
+    // allows various specific features with the same type (pose:OpenPose and pose:MediaPipe) to get the same icon.
     const [type, specificity] = feature.split(":");
 
     const featureEmojiDict = {
@@ -68,7 +67,7 @@ const downloadEmoji = '💾';
 for (const dataset of datasets) {
 
     if (dataset.status === "deprecated") {
-        continue; //skip to the next one
+        continue;
     }
 
     let title = createMarkdownLink(dataset.pub.name, dataset.pub.url);
