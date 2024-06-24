@@ -1,0 +1,16 @@
+{
+    "pub": {
+      "name": "VGT Corpus",
+      "year": 2015,
+      "publication": "dataset:herreweghe2015VGTCorpus",
+      "url": "https://www.corpusvgt.be/"
+    },
+    "#loader": null,
+    "#items": null,
+    "#samples": "140 hours",
+    "#signers": 120,
+    "features":["video","gloss"],
+    "language": "Flemish",
+    "license": "CC BY-NC-SA",
+    "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/"
+  }
