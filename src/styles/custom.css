@@ -93,3 +93,7 @@ iframe {
     padding-top: 66px;
     margin-top: -66px;
 }
+
+#refs a {
+    word-wrap: break-word;
+}
