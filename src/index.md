@@ -730,6 +730,11 @@ and so they have broken the dependency upon costly annotated gloss information i
 
 @shi-etal-2022-open introduce OpenASL, a large-scale American Sign Language (ASL) - English dataset collected from online video sites (e.g., YouTube), and then propose a set of techniques including sign search as a pretext task for pre-training and fusion of mouthing and handshape features to improve translation quality in the absence of glosses and in the presence of visually challenging data.
 
+In the First WMT Shared Task [@muller-etal-2022-findings], they found that about half of the participants chose to epresent sign language data as video frames using a visual feature extractor on the encoder side. 
+All submitted systems were sequence-to-sequence models based on Transformers [@vaswani2017attention].
+<!-- TODO: which? -->
+
+
 <!-- Really should put MMTLB here, a number of papers cite it including chen2022, which actually builds on it directly, cites it as a source for "mBART is good for SLT", etc. -->
 
 @chen2022TwoStreamNetworkSign present a two-stream network for sign language recognition (SLR) and translation (SLT), utilizing a dual visual encoder architecture to encode RGB video frames and pose keypoints in separate streams. 
@@ -791,6 +796,10 @@ They experimented both with GRU and various types of attention [@luong2015effect
 and showed similar performance, with the transformer underperforming on the validation set and overperforming on the test set, which consists of unseen signers.
 They experimented with various normalization schemes, mainly subtracting the mean and dividing by the standard deviation of every individual keypoint
 either concerning the entire frame or the relevant "object" (Body, Face, and Hand).
+
+In the First WMT Shared Task [@muller-etal-2022-findings], the baseline system [@mueller2022sign-sockeye-baselines] used pose inputs.
+In addition, they found that about half of the participants [@tarres-etal-2022-tackling;@hufe-avramidis-2022-experimental] chose to represent signed language data as poses.
+All submitted systems were sequence-to-sequence models based on Transformers [@vaswani2017attention].
 
 #### Text-to-Pose
 Text-to-Pose, also known as sign language production, is the task of producing a sequence of poses that adequately represent
