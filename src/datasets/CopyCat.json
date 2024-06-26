@@ -5,7 +5,8 @@
     "publication": "dataset:zafrulla2010novel",
     "url": "http://wearables.cc.gatech.edu/projects/copycat/"
   },
-  "features": [],
+  "status": "deprecated",
+  "features": ["video", "gloss"],
   "language": "American",
   "#items": 22,
   "#samples": "420 Phrases",
