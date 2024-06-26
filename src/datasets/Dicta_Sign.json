@@ -5,8 +5,9 @@
     "publication": "dataset:matthes2012dicta",
     "url": "https://www.sign-lang.uni-hamburg.de/dicta-sign/portal/"
   },
+  "status": "deprecated",
   "loader": "dicta_sign",
-  "features": [],
+  "features": ["writing:HamNoSys", "gloss", "video"],
   "language": "Multilingual",
   "#items": null,
   "#samples": "6-8 Hours (/Participant)",
