@@ -1,15 +1,15 @@
 {
   "pub": {
     "name": "AUSLAN",
-    "year": 2010,
-    "publication": "dataset:johnston2010archive",
-    "url": "https://elar.soas.ac.uk/Collection/MPI55247"
+    "year": 2008,
+    "publication": "dataset:johnston2008archive",
+    "url": "http://hdl.handle.net/2196/00-0000-0000-0000-D7CF-8"
   },
-  "features": [],
+  "features": ["video", "gloss"],
   "language": "Australian",
   "#items": null,
   "#samples": "1,100 Videos",
   "#signers": 100,
-  "license": null,
-  "licenseUrl": null
+  "license": "Attribution",
+  "licenseUrl": "http://hdl.handle.net/2196/d8a991a5-d8cc-4f85-a5ff-c37279ebb625"
 }
