@@ -5,7 +5,7 @@
     "publication": "dataset:chai2014devisign",
     "url": "http://vipl.ict.ac.cn/homepage/ksl/data.html"
   },
-  "features": [],
+  "features": ["pose:Kinectv1","video:RGBD","gloss"],
   "notes": "Kinect v1",
   "language": "Chinese",
   "#items": 2000,
