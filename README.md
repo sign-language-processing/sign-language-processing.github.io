@@ -73,3 +73,17 @@ Respond in a Markdown code block, conserving \n characters.
 Respond in a Markdown code block.
 Conserve \n characters (new-line characters).
 i.e., break line before "They parse the English text..."
+
+
+### Code Style
+
+Some guidelines for good code and commenting style.
+
+#### Commenting
+
+- Comments should not be redundant. Meaning, that if someone with a basic knowledge of the programming languaged can tell at a glance what it does, there's no need to explain. For example, the JavaScript `const fs = require('fs');` does not need to be explained.
+- Don't use personal sign-offs or openings, the code should exist regardless of authors. For example `// maps to emoji`, not `//Colin: maps to emoji`.
+
+#### Further Reading
+
+Google has a [Javascript Style guide](https://google.github.io/styleguide/jsguide.html).

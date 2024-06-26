@@ -2,7 +2,7 @@
   "pub": {
     "name": "NCSLGR",
     "year": 2007,
-    "publication": "dataset:databases2007volumes",
+    "publication": "dataset:Neidle_2020_NCSLGR_ISLRN",
     "url": "https://www.bu.edu/asllrp/ncslgr.html"
   },
   "loader": "ncslgr",
@@ -15,7 +15,7 @@
   "#items": null,
   "#samples": "1,875 sentences",
   "#signers": 4,
-  "license": "TODO",
-  "licenseUrl": null,
+  "license": "Research Attribution",
+  "licenseUrl": "https://www.bu.edu/asllrp/data-credits.html",
   "contact": "carol@bu.edu"
 }
