@@ -5,7 +5,7 @@
     "publication": "dataset:matthes2012dicta",
     "url": "https://www.sign-lang.uni-hamburg.de/dicta-sign/portal/"
   },
-  "status": "deprecated",
+  "status": null,
   "loader": "dicta_sign",
   "features": ["writing:HamNoSys", "gloss", "video"],
   "language": "Multilingual",
