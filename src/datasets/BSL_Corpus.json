@@ -6,7 +6,7 @@
     "url": "https://bslcorpusproject.org/"
   },
   "loader": "bsl_corpus",
-  "features": [],
+  "features": ["video", "gloss:BSL", "text:English"],
   "language": "British",
   "#items": null,
   "#samples": "40,000 Lexical Items",
