@@ -3,7 +3,7 @@
     "name": "Video-Based CSL",
     "year": 2018,
     "publication": "dataset:huang2018video",
-    "url": "http://home.ustc.edu.cn/~hagjie/"
+    "url": "https://ustc-slr.github.io/datasets/2015_csl/"
   },
   "features": ["video:RGBD","gloss", "pose:Kinect"],
   "language": "Chinese",
