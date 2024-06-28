@@ -1,8 +1,9 @@
 # Find bare citation keys, e.g. shalev2022ham2pose, and add "@" e.g @shalev2022ham2pose
 # Does this by reading the citation keys from references.bib and checking the markdown for matches.
 # Written with ChatGPT assistance
-# https://chatgpt.com/share/8e6057f1-f654-4d04-8528-652fa0392d49
+# https://chatgpt.com/share/68cde216-5aeb-41e1-a4b2-93e0855f6b98
 import re
+import sys
 
 def extract_citation_keys(bib_file_path):
     citation_keys = []
@@ -38,11 +39,13 @@ def update_markdown_with_citations(markdown_file_path, citation_keys):
     
     return issues
 
+if __name__ == '__main__':
+    if len(sys.argv) != 3:
+        print(f"Usage: {sys.argv[0]} <bib_file_path> <markdown_file_path>")
+        sys.exit(1)
 
-if __name__ == "__main__":
-    # Example usage
-    bib_file_path = 'references.bib'
-    markdown_file_path = 'index.md'
+    bib_file_path = sys.argv[1]
+    markdown_file_path = sys.argv[2]
 
     citation_keys = extract_citation_keys(bib_file_path)
     issues = update_markdown_with_citations(markdown_file_path, citation_keys)
