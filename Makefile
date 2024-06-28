@@ -2,9 +2,7 @@ markdown: dst dst/index.html dst/style.css
 
 server: dst dst/style.css dst/index.md dst/sitemap.xml
 
-# set up custom docker image based on https://hub.docker.com/r/pandoc/extra
-docker:
-	cd docker && docker build . -t pandoc/extra/slp
+
 
 dst/index.html: dst/index.md src/references.bib src/template/index.html dst/style.css
 	pandoc dst/index.md --template src/template/index.html -s --table-of-contents --bibliography=src/references.bib --citeproc --columns 1000 -H src/header.html -V lang=en -o $@
@@ -13,16 +11,6 @@ dst/index_shortcode.md: dst/index.md
 	node addons/emoji-to-shortcode/main.js dst/index.md > $@
 
 dst/index.pdf: dst/index_shortcode.md src/references.bib
-	cd dst && pandoc -f markdown+emoji -L../addons/latex-emoji.lua index_shortcode.md -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=../src/references.bib --citeproc -o index.pdf
-
-
-
-#attempting to use pandoc docker.
-dst/index_pandock.pdf: dst/index_shortcode.md src/references.bib docker
-	cd dst && docker run --volume "$(shell pwd):/data" --user $(shell id -u):$(shell id -g) pandoc/extra/slp -f markdown+emoji -L/data/addons/latex-emoji.lua /data/dst/index_shortcode.md -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=/data/src/references.bib --citeproc -o index_pandock.pdf
-
-# 
-dst/index_ieee.pdf: dst/index_shortcode.md src/references.bib
 	cd dst && pandoc -f markdown+emoji -L../addons/latex-emoji.lua index_shortcode.md -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=../src/references.bib --citeproc -o index.pdf
 
 dst/thesis.pdf: dst/index_shortcode.md src/references.bib
@@ -88,7 +76,39 @@ dst/index_emoji.tex: dst dst/index_shortcode.md src/references.bib
 dst/index.tex: dst/index_emoji.tex src/replace_gifs.py
 	python src/replace_gifs.py dst/index_emoji.tex $@
 
+# index to .tex, then compile to PDF
+dst/index_tex.pdf:
+	cp src/references.bib dst 
+	cd dst && rm index.*
+	cd dst && cat bak_index.tex > index.tex
+	cd dst && lualatex index.tex
+	cd dst && biber index.aux
+	cd dst && lualatex index.tex
+	cd dst && lualatex index.tex
+
+
+# set up custom docker image based on https://hub.docker.com/r/pandoc/extra
+# docker:
+# 	cd docker && docker build . -t pandoc/extra/slp
+
+# attempting to use pandoc docker.
+# dst/index_pandock.pdf: dst/index_shortcode.md src/references.bib docker
+# 	cd dst && docker run --volume "$(shell pwd):/data" --user $(shell id -u):$(shell id -g) pandoc/extra/slp -f markdown+emoji -L/data/addons/latex-emoji.lua /data/dst/index_shortcode.md -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=/data/src/references.bib --citeproc -o index_pandock.pdf
+
+# TODO: output in IEEE format.
+# IEEE requires latex format. 
+# dst/ieee_format.tex:
+
+# dst/index_ieee.pdf: dst/index_shortcode.md src/references.bib
+# 	cp src/template/bare_jrnl_new_sample4.tex dst
+# 	cd dst && pandoc --template=bare_jrnl_new_sample4.tex -f markdown+emoji -L../addons/latex-emoji.lua index_shortcode.md -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=../src/references.bib --citeproc -o index.pdf
+
+
+clean:
+	rm -r dst
+	rm -r tmp
 #
 #
 #tex/references.bib: src/references.bib tex
 #	cp src/references.bib $@
+
