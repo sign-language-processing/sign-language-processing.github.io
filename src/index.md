@@ -876,7 +876,7 @@ For translation from spoken languages to signed languages, automatic evaluation 
 <!-- TODO: Towards Fast and High-Quality Sign Language Production uses back-translation. Discuss results and issues. -->
 
 <!-- These three papers are cited in @shalev2022ham2pose as previous work using APE -->
-Naively, works in this domain have used metrics such as Mean Squared Error (MSE) or Average Position Error (APE) for pose outputs [ahuja2019Language2PoseNaturalLanguage;ghosh2021SynthesisCompositionalAnimations;petrovich2022TEMOSGeneratingDiverse].
+Naively, works in this domain have used metrics such as Mean Squared Error (MSE) or Average Position Error (APE) for pose outputs [@ahuja2019Language2PoseNaturalLanguage;@ghosh2021SynthesisCompositionalAnimations;@petrovich2022TEMOSGeneratingDiverse].
 However, these metrics have significant limitations for Sign Language Production.
 
 For example, MSE and APE do not account for variations in sequence length.

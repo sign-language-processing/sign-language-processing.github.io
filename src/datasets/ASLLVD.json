@@ -2,7 +2,7 @@
   "pub": {
     "name": "ASLLVD",
     "year": 2008,
-    "publication": "dataset:athitsos2008american;athitsos2010LargeLexiconIndexingRetrieval",
+    "publication": "dataset:athitsos2008american",
     "url": "https://crystal.uta.edu/~athitsos/projects/asl_lexicon/"
   },
   "features": ["gloss:ASL", "video:RGB"],
