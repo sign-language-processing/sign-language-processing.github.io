@@ -75,7 +75,7 @@ overleaf: dst/sections tmp
 #	mkdir $@
 #
 dst/index_emoji.tex: dst dst/index_shortcode.md src/references.bib
-	pandoc -f markdown+emoji -L addons/latex-emoji.lua dst/index_shortcode.md --shift-heading-level-by=-1 -s -N --natbib -o $@
+	pandoc -f markdown+emoji -L addons/latex-emoji.lua dst/index_shortcode.md --shift-heading-level-by=-1 -s -N --natbib --bibliography=references.bib -o $@
 
 dst/index.tex: dst/index_emoji.tex src/replace_gifs.py
 	python src/replace_gifs.py dst/index_emoji.tex $@
@@ -91,7 +91,9 @@ dst/index_tex.pdf: dst/index.tex
 
 # TODO: output in IEEE format.
 # IEEE requires latex format. 
-# dst/ieee_2024.tex:
+# dst/ieee_2024.tex: dst/index.tex
+
+
 
 # dst/index_ieee.pdf: dst/index_shortcode.md src/references.bib
 # 	cp src/template/bare_jrnl_new_sample4.tex dst

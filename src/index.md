@@ -1248,7 +1248,5 @@ For attribution in academic contexts, please cite this work as:
 ```
 
 ## References
-```{=latex}
-\bibliography{references}
-```
+
 <div id="refs"></div>
