@@ -79,7 +79,6 @@ dst/index.tex: dst/index_emoji.tex src/replace_gifs.py
 # index to .tex, then compile to PDF
 dst/index_tex.pdf: dst/index.tex
 	cp src/references.bib dst 
-	cd dst && cat bak_index.tex > index.tex
 	cd dst && lualatex index.tex
 	cd dst && biber index.aux
 	cd dst && lualatex index.tex
@@ -88,7 +87,7 @@ dst/index_tex.pdf: dst/index.tex
 
 # TODO: output in IEEE format.
 # IEEE requires latex format. 
-# dst/ieee_format.tex:
+# dst/ieee_2024.tex:
 
 # dst/index_ieee.pdf: dst/index_shortcode.md src/references.bib
 # 	cp src/template/bare_jrnl_new_sample4.tex dst
