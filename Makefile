@@ -18,7 +18,6 @@ dst/thesis.pdf: dst/index_shortcode.md src/references.bib
 
 dst/index.md: src/index.md src/markdown_fix.sh src/formats.md dst tmp/datasets.md dst/assets
 	cat src/index.md > $@
-	python src/fix_bare_citations.py src/references.bib $@
 	bash src/markdown_fix.sh $@
 
 dst/style.css: dst src/styles/custom.css
