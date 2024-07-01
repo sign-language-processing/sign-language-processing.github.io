@@ -79,10 +79,10 @@ dst/index.tex: dst/index_emoji.tex src/replace_gifs.py
 # index to .tex, then compile to PDF
 dst/index_tex.pdf: dst/index.tex
 	cp src/references.bib dst 
-	cd dst && lualatex index.tex
-	cd dst && biber index.aux
-	cd dst && lualatex index.tex
-	cd dst && lualatex index.tex
+	cd dst && lualatex index
+	cd dst && bibtex index
+	cd dst && lualatex index
+	cd dst && lualatex index
 
 
 # TODO: output in IEEE format.
