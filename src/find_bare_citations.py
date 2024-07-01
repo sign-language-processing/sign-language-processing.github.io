@@ -5,42 +5,56 @@
 import re
 import sys
 
+
 def extract_citation_keys(bib_file_path):
     citation_keys = []
-    with open(bib_file_path, 'r') as file:
+    with open(bib_file_path, "r") as file:
         for line in file:
-            match = re.match(r'@\w+\{([^,]+),', line)
+            match = re.match(r"@\w+\{([^,]+),", line)
             if match:
                 citation_keys.append(match.group(1))
     return citation_keys
 
+
 def find_bare_citations(markdown_file_path, citation_keys):
-    with open(markdown_file_path, 'r') as file:
+    with open(markdown_file_path, "r") as file:
         content = file.readlines()
-    
+
     # updated_content = []
     issues = []
     in_code_block = False
+    in_comment = False
 
     for i, line in enumerate(content):
         # Check if we are entering or exiting a code block
+        if line.strip().startswith("<!--"):
+            in_comment = True
+
         if line.strip().startswith("```"):
             in_code_block = not in_code_block
-        if not in_code_block:
+
+        if not in_code_block and not in_comment:
             for key in citation_keys:
-                pattern = re.compile(r'(?<!@)\b' + re.escape(key) + r'\b')
+                pattern = re.compile(r"(?<!@)\b" + re.escape(key) + r"\b")
                 if pattern.search(line):
-                    issues.append((i + 1, key))  # Record the line number and citation key
-                    line = pattern.sub('@' + key, line)
+                    issues.append(
+                        (i + 1, key)
+                    )  # Record the line number and citation key
+                    line = pattern.sub("@" + key, line)
+
+        if line.strip().endswith("-->"):
+            in_comment = False
+
         # updated_content.append(line)
-    
+
     # don't fix, just notify
-    # with open(markdown_file_path, 'w') as file:
+    # with open(markdown_file_path, "w") as file:
     #     file.writelines(updated_content)
-    
+
     return issues
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     if len(sys.argv) != 3:
         print(f"Usage: {sys.argv[0]} <bib_file_path> <markdown_file_path>")
         sys.exit(1)
@@ -51,11 +65,10 @@ if __name__ == '__main__':
     citation_keys = extract_citation_keys(bib_file_path)
     issues = find_bare_citations(markdown_file_path, citation_keys)
 
-    if(issues):
+    if issues:
 
         for line_num, key in issues:
             print(f"Line {line_num}: has missing '@' in citation key '{key}'")
-        sys.exit(1) # exit with an error
-    
+        sys.exit(1)  # exit with an error
 
     # print(f"Updated {markdown_file_path} with citation keys from {bib_file_path}.")
