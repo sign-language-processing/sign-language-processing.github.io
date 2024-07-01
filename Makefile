@@ -10,8 +10,12 @@ dst/index.html: dst/index.md src/references.bib src/template/index.html dst/styl
 dst/index_shortcode.md: dst/index.md
 	node addons/emoji-to-shortcode/main.js dst/index.md > $@
 
-dst/index.pdf: dst/index_shortcode.md src/references.bib
-	cd dst && pandoc -f markdown+emoji -L../addons/latex-emoji.lua index_shortcode.md -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=../src/references.bib --citeproc -o index.pdf
+# use index_tex.pdf instead.
+# This has a bug, citations in raw LaTeX blocks show up as ?
+# (e.g. \cite{yin-etal-2021-including} in fig:continuous)
+# https://github.com/cleong110/sign-language-processing.github.io/issues/26#issuecomment-2192220912
+# dst/index.pdf: dst/index_shortcode.md src/references.bib
+# 	cd dst && pandoc -f markdown+emoji -L../addons/latex-emoji.lua index_shortcode.md -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=../src/references.bib --citeproc -o index.pdf
 
 dst/thesis.pdf: dst/index_shortcode.md src/references.bib
 	#pandoc -f markdown+emoji -L addons/latex-emoji.lua src/thesis/main.tex -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=src/references.bib --citeproc -o index.pdf
@@ -61,7 +65,7 @@ overleaf: dst/sections tmp
 	rm -f tmp/overleaf/parts/background/assets/.DS_Store
 	cd tmp/overleaf && \
 		git add -A && \
-		git commit -am "autoamtic sections upload" && \
+		git commit -am "automatic sections upload" && \
 		git push
 
 #
