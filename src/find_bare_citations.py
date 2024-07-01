@@ -38,7 +38,7 @@ def find_bare_citations(markdown_file_path, citation_keys):
     # with open(markdown_file_path, 'w') as file:
     #     file.writelines(updated_content)
     
-    return issues,
+    return issues
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
