@@ -77,9 +77,8 @@ dst/index.tex: dst/index_emoji.tex src/replace_gifs.py
 	python src/replace_gifs.py dst/index_emoji.tex $@
 
 # index to .tex, then compile to PDF
-dst/index_tex.pdf:
+dst/index_tex.pdf: dst/index.tex
 	cp src/references.bib dst 
-	cd dst && rm index.*
 	cd dst && cat bak_index.tex > index.tex
 	cd dst && lualatex index.tex
 	cd dst && biber index.aux
