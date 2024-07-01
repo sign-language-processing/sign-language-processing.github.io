@@ -18,4 +18,4 @@ jobs:
           python-version: '3.10'
 
       - name: Run checker script
-        run: python src/fix_bare_citations.py
+        run: python src/find_bare_citations.py

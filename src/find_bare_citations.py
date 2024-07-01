@@ -14,11 +14,11 @@ def extract_citation_keys(bib_file_path):
                 citation_keys.append(match.group(1))
     return citation_keys
 
-def update_markdown_with_citations(markdown_file_path, citation_keys):
+def find_bare_citations(markdown_file_path, citation_keys):
     with open(markdown_file_path, 'r') as file:
         content = file.readlines()
     
-    updated_content = []
+    # updated_content = []
     issues = []
     in_code_block = False
 
@@ -32,12 +32,13 @@ def update_markdown_with_citations(markdown_file_path, citation_keys):
                 if pattern.search(line):
                     issues.append((i + 1, key))  # Record the line number and citation key
                     line = pattern.sub('@' + key, line)
-        updated_content.append(line)
+        # updated_content.append(line)
     
-    with open(markdown_file_path, 'w') as file:
-        file.writelines(updated_content)
+    # don't fix, just notify
+    # with open(markdown_file_path, 'w') as file:
+    #     file.writelines(updated_content)
     
-    return issues
+    return issues,
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
@@ -48,9 +49,13 @@ if __name__ == '__main__':
     markdown_file_path = sys.argv[2]
 
     citation_keys = extract_citation_keys(bib_file_path)
-    issues = update_markdown_with_citations(markdown_file_path, citation_keys)
+    issues = find_bare_citations(markdown_file_path, citation_keys)
 
-    for line_num, key in issues:
-        print(f"Line {line_num}: added '@' to citation key '{key}'")
+    if(issues):
 
-    print(f"Updated {markdown_file_path} with citation keys from {bib_file_path}.")
+        for line_num, key in issues:
+            print(f"Line {line_num}: has missing '@' in citation key '{key}'")
+        sys.exit(1) # exit with an error
+    
+
+    # print(f"Updated {markdown_file_path} with citation keys from {bib_file_path}.")
