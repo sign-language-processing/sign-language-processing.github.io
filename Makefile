@@ -86,14 +86,6 @@ dst/index_tex.pdf: dst/index.tex
 	cd dst && lualatex index.tex
 
 
-# set up custom docker image based on https://hub.docker.com/r/pandoc/extra
-# docker:
-# 	cd docker && docker build . -t pandoc/extra/slp
-
-# attempting to use pandoc docker.
-# dst/index_pandock.pdf: dst/index_shortcode.md src/references.bib docker
-# 	cd dst && docker run --volume "$(shell pwd):/data" --user $(shell id -u):$(shell id -g) pandoc/extra/slp -f markdown+emoji -L/data/addons/latex-emoji.lua /data/dst/index_shortcode.md -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=/data/src/references.bib --citeproc -o index_pandock.pdf
-
 # TODO: output in IEEE format.
 # IEEE requires latex format. 
 # dst/ieee_format.tex:
