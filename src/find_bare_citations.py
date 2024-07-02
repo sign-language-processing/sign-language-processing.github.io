@@ -33,29 +33,17 @@ def find_bare_citations(markdown_file_path:Path, citation_keys:list)->list:
 
     content = markdown_code_block_pattern.sub('', content)
 
-
-
-
-    issues = []
-
-
     for citation_key in citation_keys:
 
         # magical regex from ChatGPT: captures the whole line that has a bare citation.
         pattern = re.compile(r'^.*(?<!@)(?:' + re.escape(citation_key) + r').*$', re.MULTILINE)
 
         # Find all matching lines
-        matches = pattern.findall(content)
-
-        # Print the matches
-        # for match in matches:
-        #     print(match)
-
-        if matches:
+        if pattern.search(content) is not None:
+            matches = pattern.finditer(content)
             issue_tuple = citation_key, matches
-            issues.append(issue_tuple)
-
-    return issues
+            yield issue_tuple
+            
 
 if __name__ == "__main__":
 
@@ -75,14 +63,13 @@ if __name__ == "__main__":
 
     citation_keys = extract_citation_keys(args.bib_file_path)
 
+    # for i in range(50):
+    #     citation_keys.extend([str(uuid.uuid4) for _ in range(100)])
+
     print(f"Bibliography had {len(citation_keys)} citations, checking for bare citations:")
 
     start_time = timeit.default_timer()
     issues = find_bare_citations(args.markdown_file_path, citation_keys)
-    elapsed_time = timeit.default_timer() - start_time
-
-    print(f"Bare-citation check complete after ~{elapsed_time:.2f} seconds")
-
 
     if issues:
         print("Found the following lines with bare citations:")
@@ -92,8 +79,11 @@ if __name__ == "__main__":
             print(f"Citation key: {citation_key}")
 
             for match in matches:
-                print(f"* {match}")
+                print(f"* {match.group(0)}")
             print()
+    elapsed_time = timeit.default_timer() - start_time
+    print(f"Bare-citation check complete after ~{elapsed_time:.2f} seconds")
+    if issues:
         sys.exit(1)  # exit with an error
 
     
