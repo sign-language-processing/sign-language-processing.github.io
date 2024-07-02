@@ -2,10 +2,13 @@
 # Does this by reading the citation keys from references.bib and checking the markdown for matches.
 # Written with ChatGPT assistance
 # https://chatgpt.com/share/68cde216-5aeb-41e1-a4b2-93e0855f6b98
+# https://chatgpt.com/share/00b023dc-74b8-4cd1-8b78-eadf39658688
 import re
 import sys
 from pathlib import Path
 import argparse
+import timeit
+import uuid
 
 
 def extract_citation_keys(bib_file_path):
@@ -18,53 +21,43 @@ def extract_citation_keys(bib_file_path):
     return citation_keys
 
 
-def find_bare_citations(markdown_file_path, citation_keys):
-    with open(markdown_file_path, "r") as file:
-        content = file.readlines()
+def find_bare_citations(markdown_file_path:Path, citation_keys:list)->list:
+    
+    content = markdown_file_path.read_text()
 
-    # updated_content = []
+    # Remove HTML comments. regex from https://stackoverflow.com/a/28208465
+    content = re.sub("(<!--.*?-->)", "", content, flags=re.DOTALL)
+
+    # Remove Markdown code blocks, regex from https://stackoverflow.com/a/64116935
+    markdown_code_block_pattern = re.compile(r'```[^`]*```', re.DOTALL)
+
+    content = markdown_code_block_pattern.sub('', content)
+
+
+
+
     issues = []
-    in_code_block = False
-    in_comment = False
 
-    for i, line in enumerate(content):
-        # Check if we are entering or exiting a code block
-        if line.strip().startswith("<!--"):
-            in_comment = True
 
-        if line.strip().startswith("```"):
-            in_code_block = not in_code_block
+    for citation_key in citation_keys:
 
-        if not in_code_block and not in_comment:
-            for key in citation_keys:
-                pattern = re.compile(r"(?<!@)\b" + re.escape(key) + r"\b")
-                if pattern.search(line):
-                    issues.append(
-                        (i + 1, key)
-                    )  # Record the line number and citation key
-                    line = pattern.sub("@" + key, line)
+        # magical regex from ChatGPT: captures the whole line that has a bare citation.
+        pattern = re.compile(r'^.*(?<!@)(?:' + re.escape(citation_key) + r').*$', re.MULTILINE)
 
-        if line.strip().endswith("-->"):
-            in_comment = False
+        # Find all matching lines
+        matches = pattern.findall(content)
 
-        # updated_content.append(line)
+        # Print the matches
+        # for match in matches:
+        #     print(match)
 
-    # don't fix, just notify
-    # with open(markdown_file_path, "w") as file:
-    #     file.writelines(updated_content)
+        if matches:
+            issue_tuple = citation_key, matches
+            issues.append(issue_tuple)
 
     return issues
 
-
 if __name__ == "__main__":
-    # if len(sys.argv) != 3:
-    #     print(f"Usage: {sys.argv[0]} <bib_file_path> <markdown_file_path>")
-    #     sys.exit(1)
-
-    # bib_file_path = sys.argv[1]
-    # markdown_file_path = sys.argv[2]
-
-    # python find_bare_citations.py references.bib index.md
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -81,12 +74,26 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     citation_keys = extract_citation_keys(args.bib_file_path)
+
+    print(f"Bibliography had {len(citation_keys)} citations, checking for bare citations:")
+
+    start_time = timeit.default_timer()
     issues = find_bare_citations(args.markdown_file_path, citation_keys)
+    elapsed_time = timeit.default_timer() - start_time
+
+    print(f"Bare-citation check complete after ~{elapsed_time:.2f} seconds")
+
 
     if issues:
+        print("Found the following lines with bare citations:")
+        print()
 
-        for line_num, key in issues:
-            print(f"Line {line_num}: has missing '@' in citation key '{key}'")
+        for citation_key, matches in issues:
+            print(f"Citation key: {citation_key}")
+
+            for match in matches:
+                print(f"* {match}")
+            print()
         sys.exit(1)  # exit with an error
 
-    # print(f"Updated {markdown_file_path} with citation keys from {bib_file_path}.")
+    
