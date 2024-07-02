@@ -4,6 +4,8 @@
 # https://chatgpt.com/share/68cde216-5aeb-41e1-a4b2-93e0855f6b98
 import re
 import sys
+from pathlib import Path
+import argparse
 
 
 def extract_citation_keys(bib_file_path):
@@ -55,15 +57,31 @@ def find_bare_citations(markdown_file_path, citation_keys):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print(f"Usage: {sys.argv[0]} <bib_file_path> <markdown_file_path>")
-        sys.exit(1)
+    # if len(sys.argv) != 3:
+    #     print(f"Usage: {sys.argv[0]} <bib_file_path> <markdown_file_path>")
+    #     sys.exit(1)
 
-    bib_file_path = sys.argv[1]
-    markdown_file_path = sys.argv[2]
+    # bib_file_path = sys.argv[1]
+    # markdown_file_path = sys.argv[2]
 
-    citation_keys = extract_citation_keys(bib_file_path)
-    issues = find_bare_citations(markdown_file_path, citation_keys)
+    # python find_bare_citations.py references.bib index.md
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "bib_file_path",
+        type=Path
+    )
+
+    parser.add_argument(
+        "markdown_file_path",
+        type=Path
+    )
+
+
+    args = parser.parse_args()
+
+    citation_keys = extract_citation_keys(args.bib_file_path)
+    issues = find_bare_citations(args.markdown_file_path, citation_keys)
 
     if issues:
 
