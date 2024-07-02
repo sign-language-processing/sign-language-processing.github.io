@@ -71,19 +71,24 @@ if __name__ == "__main__":
     start_time = timeit.default_timer()
     issues = find_bare_citations(args.markdown_file_path, citation_keys)
 
-    if issues:
-        print("Found the following lines with bare citations:")
+
+    print("Found the following lines with bare citations:")
+    print()
+
+    # we cannot simply check "if issues" due to using yield
+    issues_exist = False 
+    for citation_key, matches in issues:
+        print(f"Citation key: {citation_key}")
+
+        for match in matches:
+            print(f"* {match.group(0)}")
+
+            # iff we've gotten here then issues exist and we should set return value to 1 at the end. 
+            issues_exist = True
         print()
-
-        for citation_key, matches in issues:
-            print(f"Citation key: {citation_key}")
-
-            for match in matches:
-                print(f"* {match.group(0)}")
-            print()
     elapsed_time = timeit.default_timer() - start_time
     print(f"Bare-citation check complete after ~{elapsed_time:.2f} seconds")
-    if issues:
+    if issues_exist:
         sys.exit(1)  # exit with an error
 
     
