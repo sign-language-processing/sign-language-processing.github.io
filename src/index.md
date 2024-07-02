@@ -1135,6 +1135,12 @@ Researchers in SLP should acknowledge that signed languages belong to the Deaf c
 
 ###### Solving Real Needs {-}
 
+
+<!-- This is a bare citation in a comment: kusters2017innovations-->
+```
+This is a bare citation in a code block kusters2017innovations
+
+```
 Many efforts in SLP have developed intrusive methods (e.g., requiring signers to wear special gloves), which are often rejected by signing communities and therefore have limited real-world value.
 Such efforts are often marketed to perform "sign language translation" when they, in fact, only identify fingerspelling or recognize a minimal set of isolated signs at best. These approaches oversimplify the rich grammar of signed languages, promote the misconception that signs are solely expressed through the hands, and are considered by the Deaf community as a manifestation of audism, where it is the signers who must make the extra effort to wear additional sensors to be understood by non-signers [@erard2017sign]. To avoid such mistakes, we encourage close Deaf involvement throughout the research process to ensure that we direct our efforts toward applications that will be adopted by signers and do not make false assumptions about signed languages or the needs of signing communities.
 
