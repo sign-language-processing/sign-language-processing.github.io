@@ -75,13 +75,14 @@ overleaf: dst/sections tmp
 #	mkdir $@
 #
 dst/index_emoji.tex: dst dst/index_shortcode.md src/references.bib
-	pandoc -f markdown+emoji -L addons/latex-emoji.lua dst/index_shortcode.md --shift-heading-level-by=-1 -s -N --natbib --bibliography=references.bib -o $@
+	pandoc -f markdown+emoji \
+	-L addons/latex-emoji.lua dst/index_shortcode.md --shift-heading-level-by=-1 -s -N --natbib --bibliography=references.bib -o $@
 
 dst/index.tex: dst/index_emoji.tex src/replace_gifs.py
 	python src/replace_gifs.py dst/index_emoji.tex $@
 
 # index to .tex, then compile to PDF
-dst/index_tex.pdf: dst/index.tex
+dst/index.pdf: dst/index.tex
 	cp src/references.bib dst 
 	cd dst && lualatex index
 	cd dst && bibtex index
@@ -90,14 +91,32 @@ dst/index_tex.pdf: dst/index.tex
 
 
 # TODO: output in IEEE format.
-# IEEE requires latex format. 
-# dst/ieee_2024.tex: dst/index.tex
+# IEEE requires LaTeX format. 
+dst/ieee_journal_2024_emoji.tex: dst dst/index_shortcode.md src/references.bib
+	cp addons/ieee_journal_2024_template.latex dst
+	cp addons/bibliography.csl dst
+	# cp src/styles/ieee-transactions-on-emerging-topics-in-computing.csl dst
+	pandoc -f markdown+emoji \
+		-L addons/latex-emoji.lua dst/index_shortcode.md \
+		--shift-heading-level-by=-1 \
+		-s \
+		-N \
+		--bibliography=dst/references.bib \
+		--template=dst/ieee_journal_2024_template.latex \
+		--csl=dst/bibliography.csl \
+		-o $@
+
+# requires imageio library
+dst/ieee_journal_2024.tex: dst/ieee_journal_2024_emoji.tex
+	python src/replace_gifs.py dst/ieee_journal_2024_emoji.tex $@
 
 
-
-# dst/index_ieee.pdf: dst/index_shortcode.md src/references.bib
-# 	cp src/template/bare_jrnl_new_sample4.tex dst
-# 	cd dst && pandoc --template=bare_jrnl_new_sample4.tex -f markdown+emoji -L../addons/latex-emoji.lua index_shortcode.md -s -N --pdf-engine=lualatex --shift-heading-level-by=-1 --bibliography=../src/references.bib --citeproc -o index.pdf
+dst/ieee_journal_2024.pdf: dst/ieee_journal_2024.tex
+	cp src/references.bib dst 
+	cd dst && lualatex ieee_journal_2024
+	cd dst && bibtex ieee_journal_2024
+	cd dst && lualatex ieee_journal_2024
+	cd dst && lualatex ieee_journal_2024
 
 
 clean:
