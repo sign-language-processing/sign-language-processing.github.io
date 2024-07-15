@@ -20,30 +20,36 @@ def extract_citation_keys(bib_file_path):
                 citation_keys.append(match.group(1))
     return citation_keys
 
-
-def find_bare_citations(markdown_file_path:Path, citation_keys:list)->list:
-    
+def find_bare_citations(markdown_file_path: Path, citation_keys: list) -> list:
     content = markdown_file_path.read_text()
 
     # Remove HTML comments. regex from https://stackoverflow.com/a/28208465
-    content = re.sub("(<!--.*?-->)", "", content, flags=re.DOTALL)
+    content = re.sub(r"<!--.*?-->", "", content, flags=re.DOTALL)
 
     # Remove Markdown code blocks, regex from https://stackoverflow.com/a/64116935
     markdown_code_block_pattern = re.compile(r'```[^`]*```', re.DOTALL)
-
     content = markdown_code_block_pattern.sub('', content)
 
     for citation_key in citation_keys:
+        # Find all positions of the citation key without the @ symbol
+        key_pattern = re.compile(re.escape(citation_key))
+        matches = []
+        for match in key_pattern.finditer(content):
+            start_index = match.start()
+            line_start = content.rfind('\n', 0, start_index) + 1
+            line_end = content.find('\n', start_index)
+            if line_end == -1:
+                line_end = len(content)
+            line = content[line_start:line_end]
 
-        # magical regex from ChatGPT: captures the whole line that has a bare citation.
-        pattern = re.compile(r'^.*(?<!@)(?:' + re.escape(citation_key) + r').*$', re.MULTILINE)
+            # Ensure the citation key is not immediately preceded by an @ symbol
+            if '@' not in content[start_index-1:start_index]:
+                matches.append(line)
 
-        # Find all matching lines
-        if pattern.search(content) is not None:
-            matches = pattern.finditer(content)
+        if matches:
             issue_tuple = citation_key, matches
             yield issue_tuple
-            
+
 
 if __name__ == "__main__":
 
@@ -61,12 +67,16 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    print(f"Parsing {args.bib_file_path} for citations")
+    extract_citations_start = timeit.default_timer()
     citation_keys = extract_citation_keys(args.bib_file_path)
+    extract_citations_time = timeit.default_timer() - extract_citations_start
+    print(f"Finding citations took {extract_citations_time} seconds")
 
-    # for i in range(50):
-    #     citation_keys.extend([str(uuid.uuid4) for _ in range(100)])
 
-    print(f"Bibliography had {len(citation_keys)} citations, checking for bare citations:")
+    print(f"Bibliography had {len(citation_keys)} citations")
+
+    print(f"Beginning bare-citations check: checking {args.markdown_file_path}")
 
     start_time = timeit.default_timer()
     issues = find_bare_citations(args.markdown_file_path, citation_keys)
@@ -81,7 +91,8 @@ if __name__ == "__main__":
         print(f"Citation key: {citation_key}")
 
         for match in matches:
-            print(f"* {match.group(0)}")
+            print(match)
+            # print(f"* {match.group(0)}")
 
             # iff we've gotten here then issues exist and we should set return value to 1 at the end. 
             issues_exist = True
