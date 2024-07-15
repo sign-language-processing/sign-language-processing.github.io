@@ -13,11 +13,7 @@ import uuid
 
 def extract_citation_keys(bib_file_path):
     content = bib_file_path.read_text()
-    # with open(bib_file_path, "r") as file:
-        # for line in file:
     citation_keys = re.findall(r"@\w+\{([^,]+),", content)
-            # if match:
-            #     citation_keys.append(match.group(1))
     return citation_keys
 
 def find_bare_citations(markdown_file_path: Path, citation_keys: list) -> list:
@@ -88,17 +84,16 @@ if __name__ == "__main__":
     # we cannot simply check "if issues" due to using yield
     issues_exist = False 
     for citation_key, matches in issues:
-        print(f"Citation key: {citation_key}")
+        print(f"Citation key: {citation_key}: {len(matches)} bare citations")
 
-        for match in matches:
-            print(match)
-            # print(f"* {match.group(0)}")
+        for i, match in enumerate(matches):
+            print(f"{i}: {match}")
 
             # iff we've gotten here then issues exist and we should set return value to 1 at the end. 
             issues_exist = True
         print()
     elapsed_time = timeit.default_timer() - start_time
-    print(f"Bare-citation check complete after ~{elapsed_time:.2f} seconds")
+    print(f"Bare-citation check complete after ~{elapsed_time} seconds")
     if issues_exist:
         sys.exit(1)  # exit with an error
 
