@@ -12,12 +12,12 @@ import uuid
 
 
 def extract_citation_keys(bib_file_path):
-    citation_keys = []
-    with open(bib_file_path, "r") as file:
-        for line in file:
-            match = re.match(r"@\w+\{([^,]+),", line)
-            if match:
-                citation_keys.append(match.group(1))
+    content = bib_file_path.read_text()
+    # with open(bib_file_path, "r") as file:
+        # for line in file:
+    citation_keys = re.findall(r"@\w+\{([^,]+),", content)
+            # if match:
+            #     citation_keys.append(match.group(1))
     return citation_keys
 
 def find_bare_citations(markdown_file_path: Path, citation_keys: list) -> list:
