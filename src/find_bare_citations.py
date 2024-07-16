@@ -10,7 +10,7 @@ from pathlib import Path
 import argparse
 import timeit
 import uuid
-from typing import Generator, List
+from typing import Generator, List, Tuple
 
 
 def extract_citation_keys(bib_file_path:Path) ->List[str]:
@@ -18,7 +18,7 @@ def extract_citation_keys(bib_file_path:Path) ->List[str]:
     citation_keys = re.findall(r"@\w+\{([^,]+),", content)
     return citation_keys
 
-def find_bare_citations(markdown_file_path: Path, citation_keys: List) -> Generator[str, List[str]]:
+def find_bare_citations(markdown_file_path: Path, citation_keys: List) -> Generator[Tuple[str, List[str]], None, None ]:
     content = markdown_file_path.read_text()
 
     # Remove HTML comments. regex from https://stackoverflow.com/a/28208465
