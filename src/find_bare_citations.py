@@ -43,8 +43,7 @@ def find_bare_citations(markdown_file_path: Path, citation_keys: list) -> list:
                 matches.append(line)
 
         if matches:
-            issue_tuple = citation_key, matches
-            yield issue_tuple
+            yield citation_key, matches
 
 
 if __name__ == "__main__":
