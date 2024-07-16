@@ -3,6 +3,7 @@
 # Written with ChatGPT assistance
 # https://chatgpt.com/share/68cde216-5aeb-41e1-a4b2-93e0855f6b98
 # https://chatgpt.com/share/00b023dc-74b8-4cd1-8b78-eadf39658688
+# https://chatgpt.com/share/3c145c68-dc38-43f0-a2b1-27d3cd1d43f5
 import re
 import sys
 from pathlib import Path
