@@ -32,15 +32,17 @@ def find_bare_citations(markdown_file_path: Path, citation_keys: list) -> list:
         matches = []
         for match in key_pattern.finditer(content):
             start_index = match.start()
-            line_start = content.rfind('\n', 0, start_index) + 1
-            line_end = content.find('\n', start_index)
-            if line_end == -1:
-                line_end = len(content)
-            line = content[line_start:line_end]
-
-            # Ensure the citation key is not immediately preceded by an @ symbol
+            # Check if the citation key is not immediately preceded by an @ symbol
             if '@' not in content[start_index-1:start_index]:
+                # if the @ is missing, pull out the whole line and return it. 
+                line_start = content.rfind('\n', 0, start_index) + 1
+                line_end = content.find('\n', start_index)
+                if line_end == -1:
+                    line_end = len(content)
+                line = content[line_start:line_end]
                 matches.append(line)
+            
+            
 
         if matches:
             yield citation_key, matches
