@@ -9,14 +9,15 @@ from pathlib import Path
 import argparse
 import timeit
 import uuid
+from typing import Generator, List
 
 
-def extract_citation_keys(bib_file_path):
+def extract_citation_keys(bib_file_path:Path) ->List[str]:
     content = bib_file_path.read_text()
     citation_keys = re.findall(r"@\w+\{([^,]+),", content)
     return citation_keys
 
-def find_bare_citations(markdown_file_path: Path, citation_keys: list) -> list:
+def find_bare_citations(markdown_file_path: Path, citation_keys: List) -> Generator[str, List[str]]:
     content = markdown_file_path.read_text()
 
     # Remove HTML comments. regex from https://stackoverflow.com/a/28208465
