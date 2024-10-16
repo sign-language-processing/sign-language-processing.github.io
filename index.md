@@ -542,10 +542,12 @@ Though some previous works have referred to this as "sign language translation,"
 without handling the syntax and morphology of the signed language [@padden1988interaction] to create a spoken language output.
 Instead, SLR has often been used as an intermediate step during translation to produce glosses from signed language videos.
 
-@jiang2021sign proposed a novel Skeleton Aware Multi-modal Framework with a Global Ensemble Model (GEM) for isolated SLR (SAM-SLR-v2) to learn and fuse multimodal feature representations. Specifically, they use a Sign Language Graph Convolution Network (SL-GCN) to model the embedded dynamics of skeleton keypoints and a Separable Spatial-Temporal Convolution Network (SSTCN) to exploit skeleton features. The proposed late-fusion GEM fuses the skeleton-based predictions with other RGB and depth-based modalities to provide global information and make an accurate SLR prediction.
+@jiang2021sign proposed a novel Skeleton Aware Multi-modal Framework with a Global Ensemble Model (GEM) for isolated SLR (SAM-SLR-v2) to learn and fuse multimodal feature representations. Specifically, they use a Sign Language Graph Convolution Network (SL-GCN) to model the embedded dynamics of skeleton keypoints and a Separable Spatial-Temporal Convolution Network (SSTCN) to exploit skeleton features. The proposed late-fusion GEM fuses the skeleton-based predictions with other RGB and depth-based modalities to provide global information and make an accurate SLR prediction. 
+@jiao2023cosign explore co-occurence signals in skeleton data to better exploit the knowledge of each signal for continuous SLR.  Specifically, they use Group-specific GCN to abstract skeleton features from co-occurence signals (Body, Hand, Mouth and Hand) and introduce complementary regularization to ensure consistency between predictions based on two complementary subsets of signals. 
+Additionally, they propose a two-stream framework to fuse static and dynamic information. 
+The model demonstrates competitive performance cpmpared to video-to-gloss methods on the RWTH-PHOENIX-Weather-2014 [@koller2015ContinuousSLR], RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:Zhou2021_SignBackTranslation_CSLDaily] datasets.
 
-@dafnis2022bidirectional work on the same modified WLASL dataset as @jiang2021sign, but do not require multimodal data input. Instead, they propose a bidirectional skeleton-based graph convolutional network framework with linguistically motivated parameters and attention to the start and end
-frames of signs. They cooperatively use forward and backward data streams, including various sub-streams, as input. They also use pre-training to leverage transfer learning.
+@dafnis2022bidirectional work on the same modified WLASL dataset as @jiang2021sign, but do not require multimodal data input. Instead, they propose a bidirectional skeleton-based graph convolutional network framework with linguistically motivated parameters and attention to the start and end frames of signs. They cooperatively use forward and backward data streams, including various sub-streams, as input. They also use pre-training to leverage transfer learning.
 
 @selvaraj-etal-2022-openhands introduced an open-source [OpenHands](https://github.com/AI4Bharat/OpenHands) library, 
 which consists of standardized pose datasets for different existing sign language datasets and trained checkpoints 
@@ -591,7 +593,11 @@ For this recognition, @cui2017recurrent constructs a three-step optimization mod
 First, they train a video-to-gloss end-to-end model, where they encode the video using a spatio-temporal CNN encoder
 and predict the gloss using a Connectionist Temporal Classification (CTC) [@graves2006connectionist].
 Then, from the CTC alignment and category proposal, they encode each gloss-level segment independently, trained to predict the gloss category,
-and use this gloss video segments encoding to optimize the sequence learning model.
+and use this gloss video segments encoding to optimize the sequence learning model. 
+@cheng2020fully propose a fully convolutional network for continuous SLR, moving away from LSTM-based methods to achieve end-to-end learning. 
+They introduce a Gloss Feature Enhancement (GFE) module to provide additional rectified supervision and accelerate the training process. 
+@min2021visual attribute the success of iterative training to its ability to reduce overfitting. They propose Visual Enhancement Constraint (VEC) and Visual Alignment Constraint (VAC) to strengthen the visual extractor and align long- and short-term predictions, enabling LSTM-based methods to be trained in an end-to-end manner. 
+They provide a [code implementation](https://github.com/VIPL-SLP/VAC_CSLR).
 
 @cihan2018neural fundamentally differ from that approach and formulate this problem as if it is a natural-language translation problem.
 They encode each video frame using AlexNet [@krizhevsky2012imagenet], initialized using weights trained on ImageNet [@deng2009imagenet].
@@ -746,6 +752,11 @@ The model features shared representations for different modalities such as text 
 on several tasks such as video-to-gloss, gloss-to-text, and video-to-text. 
 The approach allows leveraging external data such as parallel data for spoken language machine translation.
 
+@zhou2023gloss propose Gloss-Free Sign Language Translation with Visual Alignment Pretraining (GFSLT-VLP) to improve SLT performance through visual-alignment pretraining. 
+In the pretraining stage, they design a pretext task that aligns visual and textual representations within a joint multimodal semantic space, enabling the Visual Encoder to learn language-indicated visual representations. 
+Additionally, they incorporate masked self-supervised learning into the pre-training process to help the text decoder capture the syntactic and semantic properties of sign language sentences more effectively. 
+The approach achieves competitive results on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:Zhou2021_SignBackTranslation_CSLDaily] datasets. They provide a [code implementation](https://github.com/zhoubenjia/GFSLT-VLP).
+
 @Zhao_Zhang_Fu_Hu_Su_Chen_2024 introduce CV-SLT, employing conditional variational autoencoders to address the modality gap between video and text.
 Their approach involves guiding the model to encode visual and textual data similarly through two paths: one with visual data alone and one with both modalities.
 Using KL divergences, they steer the model towards generating consistent embeddings and accurate outputs regardless of the path.
@@ -753,7 +764,6 @@ Once the model achieves consistent performance across paths, it can be utilized 
 Evaluation on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:Zhou2021_SignBackTranslation_CSLDaily] datasets demonstrates its efficacy.
 They provide a [code implementation](https://github.com/rzhao-zhsq/CV-SLT) based largely on @chenSimpleMultiModalityTransfer2022a.
 <!-- The CV-SLT code looks pretty nice! Conda env file, data prep, not too old, paths in .yaml files, checkpoints provided (including the ones for replication), commands to train and evaluate, very nice -->
-
 
 <!-- <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span>: the "previous gloss-free frameworks" that gongLLMsAreGood2024 cite are: Gloss Attention for Gloss-free Sign Language Translation (2023) and Gloss-free sign language translation: Improving from visual-language pretraining, 2023 aka GFSLT-VLP. Could be good to lead into it with explanations of those? -->
 
@@ -795,6 +805,12 @@ They experimented both with GRU and various types of attention [@luong2015effect
 and showed similar performance, with the transformer underperforming on the validation set and overperforming on the test set, which consists of unseen signers.
 They experimented with various normalization schemes, mainly subtracting the mean and dividing by the standard deviation of every individual keypoint
 either concerning the entire frame or the relevant "object" (Body, Face, and Hand).
+
+@jiao2024visual propose a visual alignment pre-training framework for gloss-free sign language translation. 
+Specifically, they adopt CoSign-1s [@jiao2023cosign] to obtain skeleton features from estimated pose sequences and a pretrained text encoder to obtain corresponding textual features. 
+During pretraining, these visual and textual features are aligned in a greedy manner. 
+In the finetuning stage, they replace the shallow translation module used in pretraining with a pretrained translation module. 
+This skeleton-based approach achieves state-of-the-art results on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural], CSL-Daily [@dataset:Zhou2021_SignBackTranslation_CSLDaily], OpenASL [@shi-etal-2022-open], and How2Sign [@dataset:duarte2020how2sign] datasets without relying on gloss annotations.
 
 #### Text-to-Pose
 Text-to-Pose, also known as sign language production, is the task of producing a sequence of poses that adequately represent
