@@ -306,7 +306,7 @@ leveraging a spatio-temporal graph convolutional network (ST-GCN; @Yu2017SpatioT
 @segmentation:bull2021aligning presented a Transformer-based approach to segment sign language videos and align them with subtitles simultaneously, 
 encoding subtitles by BERT [@devlin-etal-2019-bert] and videos by CNN video representations.
 
-@segmentation:moryossef-etal-2023-linguistically presented a method motivated by linguistic cues observed in sign language corpora, such as prosody (pauses, pace, etc) and handshape changes. They also find that using BIO, an annotation scheme that notes the beginning, inside and outside, makes a significant difference over previous ones that only note IO (inside or outside). They find that including optical flow and 3D hand normalization helps with out-of-domain generalization and other signed languages as well. 
+@segmentation:moryossef-etal-2023-linguistically presented a method motivated by linguistic cues observed in sign language corpora, such as prosody (pauses, pace, etc) and handshape changes. They also find that using BIO, an annotation scheme that notes the beginning, inside and outside, makes a difference over previous ones that only note IO (inside or outside). They find that including optical flow and 3D hand normalization helps with out-of-domain generalization and other signed languages as well. 
 
 <!-- @segmentation:de-sisto-etal-2021-defining introduce a proposal for mapping segments to meaning in the form of an agglomerate of lexical and non-lexical information. -->
 
@@ -771,9 +771,11 @@ In training, the VQ-Sign "character-level" module is trained with a context pred
 The framework achieves state-of-the-art results on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:Zhou2021_SignBackTranslation_CSLDaily] datasets without relying on gloss annotations.
 <!-- TODO: c.f. SignLLM with https://github.com/sign-language-processing/sign-vq? -->
 
-<!-- TODO: YoutubeASL explanation would fit nicely here before Rust et al 2024. They don't just do data IIRC. -->
+<!-- TODO: YoutubeASL explanation would fit nicely here before Rust et al 2024. Rust et al leverage it, improve on it, cite it. However Uthus et al's baseline is actually video-to-pose-to-text. Not sure how to work that in  -->
+<!-- @dataset:uthus2023YoutubeASL, as part of experiments with a large-scale data-mining process, train a baseline translation model, achieving SOTA results on How2Sign [@dataset:duarte2020how2sign].
+This is based on a 2-step video-to-pose-to-text process using MediaPipe to estimate poses, then projection into a T5 multilingual language model for translation to English. -->
 
-@rust2024PrivacyAwareSign introduce a two-stage privacy-aware method for sign language translation (SLT) at scale, termed Self-Supervised Video Pretraining for Sign Language Translation (SSVP-SLT). 
+@rust2024PrivacyAwareSign introduce a two-stage privacy-aware method for sign language translation (SLT) at scale, termed Self-Supervised Video Pretraining for Sign Language Translation (SSVP-SLT).
 The first stage involves self-supervised pretraining of a Hiera vision transformer [@ryali2023HieraVisionTransformer] on large unannotated video datasets [@dataset:duarte2020how2sign;@dataset:uthus2023YoutubeASL]. 
 In the second stage, the vision model's outputs are fed into a multilingual language model [@raffel2020T5Transformer] for finetuning on the How2Sign dataset [@dataset:duarte2020how2sign].
 To mitigate privacy risks, the framework employs facial blurring during pretraining.
@@ -1089,6 +1091,17 @@ Anvil installation is [available](http://www.anvil-software.de/download/index.ht
 ###### Dataset Papers
 
 Research papers which do not necessarily contribute new theory or architectures are actually important and useful enablers of other research. Furthermore, the advancement of the dataset creation process itself is important, and the pipeline of creation and curation is a potential target for improvements and advancements.
+
+@dataset:uthus2023YoutubeASL introduce YouTube-ASL, a large-scale dataset of American Sign Language videos with accompanying English captions mined from YouTube.
+They use an iterative process to first automatically identify candidate videos, and then filter for quality using native signers.
+From over 88,000 candidate videos they filter down to about 11,000 with well-aligned English translations and comprehensible ASL content.
+They train a baseline translation model leveraging this data, pretraining on YouTube data by estimating poses with MediaPipe [@mediapipe2020holistic] and projecting into a multilingual language model [@raffel2020T5Transformer].
+Results on the How2Sign dataset [@dataset:duarte2020how2sign] show improvements over previous methods.
+They conclude that further mining of large-scale datasets with wide signer variety may be useful for sign language recognition and translation.
+
+<!-- TODO: YouTube-SL-25, continuing on from YouTube-ASL, something like "therefore, in later work, they mine 25 languages...." -->
+
+<!-- Later seemingly borne out by Rust et al 2024 -->
 
 @dataset:joshi-etal-2023-isltranslate introduce ISLTranslate, a large translation dataset for Indian Sign Language based on publicly available educational videos intended for hard-of-hearing children, which happen to contain both Indian Sign Language and English audio voiceover conveying the same content. They use a speech-to-text model to transcribe the audio content, which they later manually corrected with the help of accompanying books also containing the same content. They also use MediaPipe to extract pose features, and have a certified ISL signer validate a small portion of the sign-text pairs. They provide a baseline based on the architecture proposed in @camgoz2020sign, and provide code.
 
