@@ -8,6 +8,7 @@ secnumdepth: 3
 header-includes:
 - |
   \usepackage{pdflscape}
+  \usepackage{graphicx}
 author:
 - Amit Moryossef ([amitmoryossef@gmail.com](mailto:amitmoryossef@gmail.com))
 - Yoav Goldberg ([yoav.goldberg@biu.ac.il](mailto:yoav.goldberg@biu.ac.il))
@@ -835,8 +836,8 @@ or aligned to the spoken language captions, and showed their DTW is advantageous
 
 @xiao2020skeleton closed the loop by proposing a text-to-pose-to-text model for the case of isolated sign language recognition.
 They first trained a classifier to take a sequence of poses encoded by a BiLSTM and classify the relevant sign, then proposed a production system to take a single sign and sample a constant length sequence of 50 poses from a Gaussian Mixture Model.
-These components are combined such that given a sign class $y$, a pose sequence is generated, then classified back into a sign class $ŷ$,
-and the loss is applied between $y$ and $ŷ$, and not directly on the generated pose sequence.
+These components are combined such that given a sign class $y$, a pose sequence is generated, then classified back into a sign class $\hat{y}$,
+and the loss is applied between $y$ and $\hat{y}$, and not directly on the generated pose sequence.
 They evaluate their approach on the CSL dataset [@dataset:huang2018video] and show that their generated pose sequences 
 almost reach the same classification performance as the reference sequences.
 
