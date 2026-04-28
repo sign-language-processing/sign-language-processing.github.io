@@ -189,9 +189,12 @@ This technique has been extensively used in the field of computer vision to esti
 where the goal is to determine the spatial configuration of the body at each point in time. 
 Although high-quality pose estimation can be achieved using motion capture equipment, such methods are often expensive and intrusive. 
 As a result, estimating pose from videos has become the preferred method in recent years [@pose:pishchulin2012articulated;@pose:chen2017adversarial;@pose:cao2018openpose;@pose:alp2018densepose].
-As a non-intrusive alternative, @malaia-etal-2024-capturing argue that radar sensing can capture 3D articulator motion at high spatial and temporal resolution, preserving depth information lost in 2D video while only recording kinematic parameters and thus inherently protecting signer identity.
 Compared to video representations, accurate skeletal poses have a lower complexity and provide a semi-anonymized representation of the human body, while observing relatively low information loss. 
 However, they remain a continuous, multidimensional representation that is not adapted to most NLP models.
+
+###### Radar Sensing {-}
+captures 3D articulator motion through electromagnetic returns rather than visual frames, recording only kinematic parameters and thus inherently protecting signer identity.
+@malaia-etal-2024-capturing argue that radar can capture sign language motion at high spatial and temporal resolution, preserving depth information lost in 2D video as a non-intrusive alternative to motion capture.
 
 ###### Written notation systems {-}
 represent signs as discrete visual features. Some systems are written linearly, and others use graphemes in two dimensions.
