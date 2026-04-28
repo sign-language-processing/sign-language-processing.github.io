@@ -110,7 +110,6 @@ palm orientation, placement, contact, path movement, local movement,
 as well as non-manual features including eye aperture, head movement, and torso positioning [@liddell1989american;@johnson2011toward;@brentari2011sign;@sandler2012phonological].
 Not all possible phonemes are realized in both signed and spoken languages, and inventories of two languages' phonemes/features may not overlap completely.
 Different languages are also subject to rules for the allowed combinations of features.
-@sahin-gokgoz-2024-decoding introduce SL-FE, a framework that derives continuous phonological feature signals from pose estimation, enabling automated ELAN annotation as well as quantitative tests of theoretical phonological claims on Turkish Sign Language (TID).
 
 ###### Simultaneity {-}
 Though an ASL sign takes about twice as long to produce than an English word,
@@ -1219,6 +1218,8 @@ Therefore, data collection often requires significant efforts and costs of on-si
 ###### Automating Annotation {-}
 One helpful research direction for collecting more data that enables the development of deployable SLP models is creating tools that can simplify or automate parts of the collection and annotation process. One of the most significant bottlenecks in obtaining more adequate signed language data is the time and scarcity of experts required to perform annotation. Therefore, tools that perform automatic parsing, detection of frame boundaries, extraction of articulatory features, suggestions for lexical annotations, and allow parts of the annotation process to be crowdsourced to non-experts, to name a few, have a high potential to facilitate and accelerate the availability of good data.
 Targeting prosodic non-manual annotation specifically, @susman-kimmelman-2024-eye trained a CNN classifier of eye openness (open, in-between, closed) on French Sign Language data and combined it with rule-based temporal aggregation to detect linguistically defined eye blinks, outperforming an Eye Aspect Ratio (EAR) baseline computed from MediaPipe landmarks.
+
+@sahin-gokgoz-2024-decoding introduce SL-FE, a framework that derives continuous phonological feature signals from pose estimation, enabling automated ELAN annotation as well as quantitative tests of theoretical phonological claims on Turkish Sign Language (TID).
 
 ### Practice Deaf Collaboration
 
