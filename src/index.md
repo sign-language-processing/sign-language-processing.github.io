@@ -1143,6 +1143,8 @@ The Public DGS Corpus also saw multiple SignLang 2024 contributions: @konrad-eta
 
 @klomp-etal-2024-extension describe an ongoing extension of the Sign Language of the Netherlands (NGT) dataset in Global Signbank, aiming to add approximately 11,000 new glosses, 3,000 example sentences, multi-angle videos with non-manual expressions, phonological annotations, and motion capture data to support both linguistic research and automatic recognition.
 
+@mesch-etal-2024-swedish surveyed 249 users of the Swedish Sign Language Dictionary and STS-korpus, finding that while the dictionary is widely used, most users are unaware of the reciprocal links between the dictionary and the corpus, highlighting the importance of evaluating such resources from a user's perspective.
+
 <!-- TODO: LSA-T aka dataset:dal2022lsa, they use AlphaPose "with the Halpe full-body keypoints format", a visualizer tool, and a baseline SLT model. Especially might be good to mention FiftyOne https://docs.voxel51.com/, "which
 provides useful features such as allowing to filter samples by label, video, playlist,
 or by the confidence score of the signer inference." -->
