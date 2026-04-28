@@ -1279,6 +1279,7 @@ datasets.md
 ## Other Resources
 
 - iReviews had compiled a list of [Top Resources for Learning (American) Sign Language](https://www.ireviews.com/sign-language-resources)
+- @rathmann-etal-2024-visuolab present [VisuoLab](https://visuolab.levantelab.com.br/), an open-source multilingual, multimodal, and multifunctional platform built around sign-language-first interfaces for producing video-books and didactic materials, indexing sign language content, and supporting collaborative learning, assessment, and translation/interpretation training.
 
 ## Citation
 
