@@ -1165,6 +1165,7 @@ usually consist of videos of words borrowed from spoken languages that are signe
 
 ###### Isolated sign corpora {-}
 are collections of annotated single signs. They are synthesized [@dataset:ebling2018smile;@dataset:huang2018video;@dataset:sincan2020autsl;@dataset:hassan-etal-2020-isolated] or mined from online resources [@dataset:joze2018ms;@dataset:li2020word], and can be used for isolated sign language recognition or contrastive analysis of minimal signing pairs [@dataset:imashev2020dataset]. However, like dictionaries, they do not describe relations between signs, nor do they capture coarticulation during the signing, and are often limited in vocabulary size (20-1000 signs).
+@ranum-etal-2024-3d introduce 3D-LEX v1.0, a 3D-motion-capture lexicon of 1,000 isolated signs each in ASL and NGT (combining Vicon body pose, StretchSense glove handshapes, and Live Link Face features) and use it to derive semi-automatic handshape annotations that match expert labels on a WLASL ISLR benchmark.
 
 ###### Continuous sign corpora {-}
 contain parallel sequences of signs and spoken language.
