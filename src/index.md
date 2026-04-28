@@ -1162,6 +1162,8 @@ The Public DGS Corpus also saw multiple SignLang 2024 contributions: @konrad-eta
 
 @dataset:reverdy-etal-2024-stk introduce STK LSF, a one-hour bilingual French / French Sign Language (LSF) motion-capture corpus signed by a deaf signer covering targeted grammatical phenomena and three children's tales, used to drive a signing avatar for the SignToKids project.
 
+@lascar-etal-2024-annotation build a bilingual LSF/French lexicon from the subtitled Mediapi-RGB corpus without any pre-existing dictionary, combining weakly-supervised sign spotting with expert review and a supervised MLP classifier on Video Swin Transformer features to automatically annotate lexical units in continuous video.
+
 <!-- TODO: LSA-T aka dataset:dal2022lsa, they use AlphaPose "with the Halpe full-body keypoints format", a visualizer tool, and a baseline SLT model. Especially might be good to mention FiftyOne https://docs.voxel51.com/, "which
 provides useful features such as allowing to filter samples by label, video, playlist,
 or by the confidence score of the signer inference." -->
