@@ -1093,6 +1093,8 @@ This sub-area covers experimental studies of sign language structure that use co
 
 @martinez-guevara-curiel-2024-quantitative analyse hand locations across BSL, NGT, and LSM and find that signers organize the signing space into a Zipfian spatial hierarchy, concentrating articulation in cohesive regions more systematically than non-linguistic gesturers.
 
+@sahin-gokgoz-2024-decoding introduce SL-FE, a framework that derives continuous phonological feature signals from pose estimation, enabling automated ELAN annotation as well as quantitative tests of theoretical phonological claims on Turkish Sign Language (TID).
+
 ## Annotation Tools
 
 ##### ELAN - EUDICO Linguistic Annotator
