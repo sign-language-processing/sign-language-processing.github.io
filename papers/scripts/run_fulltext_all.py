@@ -30,9 +30,11 @@ def candidates() -> list[str]:
     return out
 
 
-def main() -> None:
+def process_round(round_idx: int) -> int:
     todo = candidates()
-    print(f"Full-text candidates: {len(todo)}")
+    print(f"\n=== round {round_idx}: {len(todo)} new candidates ===")
+    if not todo:
+        return 0
     t0 = time.time()
     for i, pid in enumerate(todo, 1):
         try:
@@ -44,10 +46,24 @@ def main() -> None:
             print(f"[{i}/{len(todo)}] {pid}: {len(text):>7} chars from {src}")
         else:
             print(f"[{i}/{len(todo)}] {pid}: no full text ({src})")
-        # Be polite to ar5iv.
-        time.sleep(0.5)
-    print(f"Done in {time.time() - t0:.1f}s")
+        time.sleep(0.3)
+    print(f"round {round_idx} done in {time.time() - t0:.1f}s")
+    return len(todo)
+
+
+def main(loop: bool = True, idle_sleep: int = 90) -> None:
+    rd = 0
+    while True:
+        rd += 1
+        n = process_round(rd)
+        if not loop:
+            break
+        if n == 0:
+            print(f"no new candidates; sleeping {idle_sleep}s")
+            time.sleep(idle_sleep)
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    loop = "--once" not in sys.argv
+    main(loop=loop)
