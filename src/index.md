@@ -744,8 +744,6 @@ On this encoding, they use a Connectionist Temporal Classification (CTC) [@grave
 Using the same encoding, they use a transformer decoder to decode the spoken language text one token at a time.
 They show that adding gloss supervision improves the model over not using it and that it outperforms previous video-to-gloss-to-text pipeline approaches [@cihan2018neural].
 
-@tan-etal-2024-seda extend this sign language transformer with SEDA, a data augmentation framework that augments sign features through multiple sign embeddings and augments spoken text via lemmatization, achieving competitive WER, BLEU, and ROUGE on RWTH-PHOENIX-Weather-2014T.
-
 Following up, @camgoz2020multi propose a new architecture that does not require the supervision of glosses, named "Multi-channel Transformers for Multi-articulatory Sign Language Translation".
 In this approach, they crop the signing hand and the face and perform 3D pose estimation to obtain three separate data channels.
 They encode each data channel separately using a transformer, then encode all channels together and concatenate the separate channels for each frame.
@@ -803,6 +801,8 @@ They find that while pretraining with blurring hurts performance, some can be re
 SSVP-SLT achieves state-of-the-art performance on How2Sign [@dataset:duarte2020how2sign].
 They conclude that SLT models can be pretrained in a privacy-aware manner without sacrificing too much performance.
 Additionally, the authors release DailyMoth-70h, a new 70-hour ASL dataset from [The Daily Moth](https://www.dailymoth.com/).
+
+@tan-etal-2024-seda extend this sign language transformer with SEDA, a data augmentation framework that augments sign features through multiple sign embeddings and augments spoken text via lemmatization, achieving competitive WER, BLEU, and ROUGE on RWTH-PHOENIX-Weather-2014T.
 
 #### Text-to-Video
 Text-to-Video, also known as sign language production, is the task of producing a video that adequately represents
