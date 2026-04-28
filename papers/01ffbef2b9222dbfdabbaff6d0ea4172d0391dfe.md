@@ -6,7 +6,7 @@ title: "Real-Time Sign Language Recognition and Translation: A Survey of Deep Le
 doi: "10.22214/ijraset.2025.75069"
 arxivId: null
 isSignLanguage: true
-expanded: false
+expanded: true
 topics: ["Computer Science", "Linguistics"]
 fullText: "none"
 fullTextSource: "none"
@@ -16,8 +16,8 @@ sources:
   abstract: semanticscholar
   authors: semanticscholar
   topics: semanticscholar
-  references: none
-  citations: none
+  references: semanticscholar
+  citations: semanticscholar
   fullText: none
   bibtex: semanticscholar
 ---
@@ -64,7 +64,7 @@ development of fully end-to-end, real-time, and multilingual sign language inter
 - abstract: semanticscholar
 - authors: semanticscholar
 - topics: semanticscholar
-- references: none
-- citations: none
+- references: semanticscholar
+- citations: semanticscholar
 - fullText: none
 - bibtex: semanticscholar

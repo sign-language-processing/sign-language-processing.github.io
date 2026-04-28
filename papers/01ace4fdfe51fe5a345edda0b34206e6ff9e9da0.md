@@ -6,7 +6,7 @@ title: "Motion Editing Tool for Reproducing Grammatical Elements of Japanese Sig
 doi: "10.1109/ICASSPW59220.2023.10193198"
 arxivId: null
 isSignLanguage: true
-expanded: false
+expanded: true
 topics: ["Computer Science", "Linguistics"]
 fullText: "none"
 fullTextSource: "none"
@@ -16,8 +16,8 @@ sources:
   abstract: semanticscholar
   authors: semanticscholar
   topics: semanticscholar
-  references: none
-  citations: none
+  references: semanticscholar
+  citations: semanticscholar
   fullText: none
   bibtex: semanticscholar
 ---
@@ -49,13 +49,21 @@ For deaf and hard of hearing people whose native language is sign language, it i
 }
 ```
 
+## Cited by
+
+- [[57696b9f8d14edad87f825eb5413d85ac11e8b73]] — Towards an AI-based Sign Language Video Editing Interface (2025)
+- [[bae3806822dd847aec097623424ddb21f685421f]] — Placement Control Method for Sign Language Translation System (2025)
+- [[b9a5afd74b7aafb9208dd0a05bbbbf466f62639b]] — Customizing Generated Signs and Voices of AI Avatars: Deaf-Centric Mixed-Reality Design for Deaf-Hearing Communication (2024)
+- [[b50a2f44cbade77bcf8f79ba6d3f7ec57a162ecf]] — Sign Motion Generation by Motion Diffusion Model (2024)
+- [[58059cfcffd14c7143ec577fc72acb0c4ba3508a]] — HamNoSys-based Motion Editing Method for Sign Language (2024)
+
 ## Sources
 
 - title: semanticscholar
 - abstract: semanticscholar
 - authors: semanticscholar
 - topics: semanticscholar
-- references: none
-- citations: none
+- references: semanticscholar
+- citations: semanticscholar
 - fullText: none
 - bibtex: semanticscholar
