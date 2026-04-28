@@ -196,6 +196,7 @@ However, they remain a continuous, multidimensional representation that is not a
 represent signs as discrete visual features. Some systems are written linearly, and others use graphemes in two dimensions.
 While various universal [@writing:sutton1990lessons;@writing:prillwitz1990hamburg] and language-specific notation systems [@writing:stokoe1960sign;@writing:kakumasu1968urubu;@writing:bergman1977tecknad] have been proposed,
 no writing system has been adopted widely by any sign language community, and the lack of standards hinders the exchange and unification of resources and applications between projects.
+AZVD [@filhol-von-ascheberg-2024-software] is a graphical sign language representation system that combines 2D symbols based on observed spontaneous productions with AZee expression mappings to keep diagrams synthesizable through avatar rendering.
 The figure above depicts two universal notation systems:
 SignWriting [@writing:sutton1990lessons], a two-dimensional pictographic system,
 and HamNoSys [@writing:prillwitz1990hamburg], a linear stream of graphemes designed to be machine-readable.
@@ -1108,6 +1109,9 @@ In Anvil, the annotator can see color-coded elements on multiple tracks in time 
 Some special features are cross-level links, non-temporal objects, timepoint tracks, coding agreement analysis, 
 3D viewing of motion capture data and a project tool for managing whole corpora of annotation files.
 Anvil installation is [available](http://www.anvil-software.de/download/index.html) for Windows, macOS, and Linux.
+
+##### AZVD Editor
+@filhol-von-ascheberg-2024-software introduced a web-based software editor for AZVD diagrams that produces AZee output for avatar rendering.
 
 ##### Other {-}
 @battisti-etal-2024-advancing presented a transcription and annotation scheme for continuous L1 and L2 data in Swiss German Sign Language (DSGS), introducing conventions for non-manual components and L2 learner errors, and outlined an initial inter-annotator agreement validation approach.
