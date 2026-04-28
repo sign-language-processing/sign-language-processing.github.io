@@ -438,6 +438,7 @@ retaining the original sign language content.
 Using a conditional variational autoencoder framework, they first extracted pose information from the source video to remove the original signer appearance,
 then generated a photo-realistic sign language video of a novel appearance from the pose sequence. 
 The authors proposed a novel style loss that ensures style consistency in the anonymized sign language videos. 
+Extending this line of work, @xia-etal-2024-diffusion proposed DiffSLVA, which leverages pre-trained large-scale text-guided latent diffusion models with ControlNet conditioned on Holistically-Nested Edge (HED) maps to circumvent the need for accurate pose estimation, and adds a dedicated facial expression enhancement module to preserve linguistically essential non-manual features.
 
 ##### Sign Language Avatars
 
