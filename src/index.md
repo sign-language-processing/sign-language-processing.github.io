@@ -192,6 +192,10 @@ As a result, estimating pose from videos has become the preferred method in rece
 Compared to video representations, accurate skeletal poses have a lower complexity and provide a semi-anonymized representation of the human body, while observing relatively low information loss. 
 However, they remain a continuous, multidimensional representation that is not adapted to most NLP models.
 
+###### Radar Sensing {-}
+captures 3D articulator motion through electromagnetic returns rather than visual frames, recording only kinematic parameters and thus inherently protecting signer identity.
+@malaia-etal-2024-capturing argue that radar can capture sign language motion at high spatial and temporal resolution, preserving depth information lost in 2D video as a non-intrusive alternative to motion capture.
+
 ###### Written notation systems {-}
 represent signs as discrete visual features. Some systems are written linearly, and others use graphemes in two dimensions.
 While various universal [@writing:sutton1990lessons;@writing:prillwitz1990hamburg] and language-specific notation systems [@writing:stokoe1960sign;@writing:kakumasu1968urubu;@writing:bergman1977tecknad] have been proposed,
