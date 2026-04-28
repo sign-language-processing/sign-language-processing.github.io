@@ -725,7 +725,7 @@ complexity of the model.
 Testing their model on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural], 
 they demonstrated that injecting this additional information results in better translation quality. 
 
-@miyazaki-etal-2024-sign propose Gloss Pair Encoding (GPE), a BPE-inspired tokenization that merges frequently co-occurring gloss pairs (e.g., "book"+"building" $\to$ "library") into single tokens to match granularity between spoken and signed languages, and show on a Japanese-JSL news corpus that combining GPE-augmented and original training data improves text-to-gloss translation while merging non-manual markers (head-nods, pointing) hurts performance.
+@miyazaki-etal-2024-sign propose Gloss Pair Encoding (GPE), a BPE-inspired tokenization that merges frequent gloss pairs into single tokens to better match granularity between spoken and signed languages, and show that combining GPE-augmented data with the original training data improves text-to-gloss translation on a Japanese-JSL corpus.
 
 ---
 
