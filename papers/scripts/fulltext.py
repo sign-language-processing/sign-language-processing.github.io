@@ -51,12 +51,21 @@ def _strip_ar5iv_chrome(md: str) -> str:
     return md.strip() + "\n"
 
 
+_converter = None
+
+
+def _get_converter():
+    global _converter
+    if _converter is None:
+        from docling.document_converter import DocumentConverter
+        _converter = DocumentConverter()
+    return _converter
+
+
 def from_ar5iv(arxiv_id: str) -> str | None:
-    from docling.document_converter import DocumentConverter
-    converter = DocumentConverter()
     url = f"https://ar5iv.labs.arxiv.org/html/{arxiv_id}"
     try:
-        result = converter.convert(url)
+        result = _get_converter().convert(url)
     except Exception as e:
         print(f"  ar5iv {arxiv_id}: convert failed: {e}")
         return None
@@ -65,10 +74,8 @@ def from_ar5iv(arxiv_id: str) -> str | None:
 
 
 def from_pdf(pdf_url: str) -> str | None:
-    from docling.document_converter import DocumentConverter
-    converter = DocumentConverter()
     try:
-        result = converter.convert(pdf_url)
+        result = _get_converter().convert(pdf_url)
     except Exception as e:
         print(f"  pdf {pdf_url}: convert failed: {e}")
         return None
