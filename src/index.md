@@ -1091,6 +1091,9 @@ Some special features are cross-level links, non-temporal objects, timepoint tra
 3D viewing of motion capture data and a project tool for managing whole corpora of annotation files.
 Anvil installation is [available](http://www.anvil-software.de/download/index.html) for Windows, macOS, and Linux.
 
+##### MY DGS -- ANNIS Query Wizard
+@isard-2024-building presented a web-based Query Wizard that guided users through the construction of valid ANNIS Query Language expressions over the Public DGS Corpus [@dataset:hanke-etal-2020-extending] by composing context-sensitive blocks for annotation tiers, metadata, and inter-tier connections, which could then be opened directly in the MY DGS -- ANNIS portal.
+
 ## Resources
 
 ###### Dataset Papers
