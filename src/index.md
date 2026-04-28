@@ -1097,6 +1097,8 @@ Research papers which do not necessarily contribute new theory or architectures 
 
 @dataset:joshi-etal-2023-isltranslate introduce ISLTranslate, a large translation dataset for Indian Sign Language based on publicly available educational videos intended for hard-of-hearing children, which happen to contain both Indian Sign Language and English audio voiceover conveying the same content. They use a speech-to-text model to transcribe the audio content, which they later manually corrected with the help of accompanying books also containing the same content. They also use MediaPipe to extract pose features, and have a certified ISL signer validate a small portion of the sign-text pairs. They provide a baseline based on the architecture proposed in @camgoz2020sign, and provide code.
 
+@dataset:halbout-etal-2024-matignon presented Matignon-LSF, an open 39-hour corpus of live-interpreted Langue des Signes Française (LSF) compiled from weekly French government Council of Ministers debriefings, comprising 67 videos with aligned French audio, subtitles, and pre-computed I3D features.
+
 <!-- TODO: LSA-T aka dataset:dal2022lsa, they use AlphaPose "with the Halpe full-body keypoints format", a visualizer tool, and a baseline SLT model. Especially might be good to mention FiftyOne https://docs.voxel51.com/, "which
 provides useful features such as allowing to filter samples by label, video, playlist,
 or by the confidence score of the signer inference." -->
