@@ -119,6 +119,7 @@ Signed languages use multiple visual cues to convey different information simult
 For example, the signer may produce the sign for "cup" on one hand while simultaneously pointing to the actual cup with the other to express "that cup."
 Similarly to tone in spoken languages, the face and torso can convey additional affective information [@liddell2003grammar;@johnston2007australian].
 Facial expressions can modify adjectives, adverbs, and verbs; a head shake can negate a phrase or sentence; eye direction can help indicate referents.
+@kimmelman-etal-2024-headshakes apply OpenFace to corpus data from Sign Language of the Netherlands, showing that the linguistic function of a headshake (lexical, morphological, or prosodic) systematically affects its phonetic properties such as amplitude and peak velocity.
 
 ###### Referencing {-}
 The signer can introduce referents in discourse either by pointing to their actual locations in space or by assigning a region in the signing space to a non-present referent and by pointing to this region to refer to it [@rathmann2011featural;@schembri2018indicating].
