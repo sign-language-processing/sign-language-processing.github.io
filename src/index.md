@@ -121,8 +121,6 @@ Similarly to tone in spoken languages, the face and torso can convey additional 
 Facial expressions can modify adjectives, adverbs, and verbs; a head shake can negate a phrase or sentence; eye direction can help indicate referents.
 @kimmelman-etal-2024-headshakes apply OpenFace to corpus data from Sign Language of the Netherlands, showing that the linguistic function of a headshake (lexical, morphological, or prosodic) systematically affects its phonetic properties such as amplitude and peak velocity.
 
-@gavrilescu-etal-2024-content compared corpus, elicitation, and fieldwork methods across Greek, French, and Swedish Sign Languages to characterize the distribution of wh-signs and their non-manual markers.
-
 ###### Referencing {-}
 The signer can introduce referents in discourse either by pointing to their actual locations in space or by assigning a region in the signing space to a non-present referent and by pointing to this region to refer to it [@rathmann2011featural;@schembri2018indicating].
 Signers can also establish relations between referents grounded in signing space by using directional signs or embodying the referents using body shift or eye gaze [@dudis2004body;@liddell1998gesture].
@@ -1092,6 +1090,7 @@ PyMPI [@pympi-1.69] allows for simple python interaction with Elan files.
 @esselink-etal-2024-evaluating evaluated inter-annotator agreement for non-manual markers in Sign Language of the Netherlands using complementary event-based and frame-based approaches on ELAN annotations, reporting low Cohen's kappa scores on several tiers and proposing concrete revisions to the annotation guidelines.
 @kimmelman-etal-2024-nonmanual combine ELAN annotations with OpenFace-based head pose estimation to show that Balinese homesigners and their hearing interlocutors consistently mark polar questions with downward head pitch and other question types with upward pitch, demonstrating how computer vision tools can quantitatively support linguistic analysis of non-manual markers.
 @martinod-filhol-2024-formal performed a corpus-based AZee analysis of French Sign Language (LSF) and found that chin advancement, rather than eyebrow position, is the consistent marker of information requests, challenging the widely reported open- vs. closed-question eyebrow contrast.
+@gavrilescu-etal-2024-content compared corpus, elicitation, and fieldwork methods across Greek, French, and Swedish Sign Languages to characterize the distribution of wh-signs and their non-manual markers.
 
 ##### iLex
 [iLex](https://www.sign-lang.uni-hamburg.de/ilex/) [@hanke2002ilex] is a tool for sign language lexicography and corpus analysis, 
