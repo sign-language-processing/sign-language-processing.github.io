@@ -1150,6 +1150,8 @@ The Public DGS Corpus also saw multiple SignLang 2024 contributions: @konrad-eta
 
 @vazquez-enriquez-etal-2024-signamed present SignaMed, a domain-specific bilingual LSE-Spanish dictionary for healthcare that supports webcam-based sign lookup via an isolated sign recognition model and grows iteratively through curated Deaf-community sign donations.
 
+@de-quadros-etal-2024-signbank present Signbank 2.0, an open-source, corpus-linked sign documentation platform with linguistic and visual search (e.g., a handshape-similarity scroller) that links each sign entry to its EAF-aligned occurrences in the underlying corpus, currently deployed for Libras with planned support for IntSL, DGS, MJNY, and ÖGS.
+
 <!-- TODO: LSA-T aka dataset:dal2022lsa, they use AlphaPose "with the Halpe full-body keypoints format", a visualizer tool, and a baseline SLT model. Especially might be good to mention FiftyOne https://docs.voxel51.com/, "which
 provides useful features such as allowing to filter samples by label, video, playlist,
 or by the confidence score of the signer inference." -->
