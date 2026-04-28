@@ -1026,6 +1026,8 @@ Looking through this dataset, we note that the videos in the dataset were taken 
 This context relates to language modeling, where at first, one fingerspells a word carefully, and when repeating it, might fingerspell it rapidly, 
 but the interlocutors can infer they are fingerspelling the same word.
 
+@khan-etal-2024-investigating investigated isolated Irish Sign Language (ISL) fingerspelling recognition by converting clips from the ISL-HS hand-shape dataset into Motion History Images and training several pretrained CNN architectures (DenseNet, ResNet, Xception, and Inception variants) on the resulting frames, with DenseNet-121 achieving the highest classification accuracy of 90.38%.
+
 #### Production
 
 Fingerspelling production, a sub-task of sign language production, is the task of producing a fingerspelling video for words.
