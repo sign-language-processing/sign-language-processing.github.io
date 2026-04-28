@@ -1175,6 +1175,7 @@ Therefore, data collection often requires significant efforts and costs of on-si
 
 ###### Automating Annotation {-}
 One helpful research direction for collecting more data that enables the development of deployable SLP models is creating tools that can simplify or automate parts of the collection and annotation process. One of the most significant bottlenecks in obtaining more adequate signed language data is the time and scarcity of experts required to perform annotation. Therefore, tools that perform automatic parsing, detection of frame boundaries, extraction of articulatory features, suggestions for lexical annotations, and allow parts of the annotation process to be crowdsourced to non-experts, to name a few, have a high potential to facilitate and accelerate the availability of good data.
+Targeting prosodic non-manual annotation specifically, @susman-kimmelman-2024-eye trained a CNN classifier of eye openness (open, in-between, closed) on French Sign Language data and combined it with rule-based temporal aggregation to detect linguistically defined eye blinks, outperforming an EAR-based baseline using MediaPipe landmarks.
 
 ### Practice Deaf Collaboration
 
