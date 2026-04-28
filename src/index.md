@@ -110,6 +110,7 @@ palm orientation, placement, contact, path movement, local movement,
 as well as non-manual features including eye aperture, head movement, and torso positioning [@liddell1989american;@johnson2011toward;@brentari2011sign;@sandler2012phonological].
 Not all possible phonemes are realized in both signed and spoken languages, and inventories of two languages' phonemes/features may not overlap completely.
 Different languages are also subject to rules for the allowed combinations of features.
+Quantitative analyses of hand locations across BSL, NGT, and LSM further reveal that signers organize the signing space into a Zipfian spatial hierarchy, concentrating articulation in cohesive regions more systematically than non-linguistic gesturers [@martinez-guevara-curiel-2024-quantitative].
 
 ###### Simultaneity {-}
 Though an ASL sign takes about twice as long to produce than an English word,
