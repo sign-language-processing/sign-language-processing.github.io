@@ -1131,6 +1131,9 @@ Anvil installation is [available](http://www.anvil-software.de/download/index.ht
 ##### AZVD Editor
 @filhol-von-ascheberg-2024-software introduced a web-based software editor for AZVD diagrams that produces AZee output for avatar rendering.
 
+##### SignCollect
+@otterspeer-etal-2024-signcollect introduce SignCollect, a 'touchless' multi-view recording pipeline using MediaPipe gesture recognition to let a lone signer capture lexical entries and publish them to Global Signbank without assisting staff.
+
 ##### Other {-}
 @battisti-etal-2024-advancing presented a transcription and annotation scheme for continuous L1 and L2 data in Swiss German Sign Language (DSGS), introducing conventions for non-manual components and L2 learner errors, and outlined an initial inter-annotator agreement validation approach.
 
@@ -1217,11 +1220,7 @@ Therefore, data collection often requires significant efforts and costs of on-si
 
 ###### Automating Annotation {-}
 One helpful research direction for collecting more data that enables the development of deployable SLP models is creating tools that can simplify or automate parts of the collection and annotation process. One of the most significant bottlenecks in obtaining more adequate signed language data is the time and scarcity of experts required to perform annotation. Therefore, tools that perform automatic parsing, detection of frame boundaries, extraction of articulatory features, suggestions for lexical annotations, and allow parts of the annotation process to be crowdsourced to non-experts, to name a few, have a high potential to facilitate and accelerate the availability of good data.
-<<<<<<< HEAD
 Targeting prosodic non-manual annotation specifically, @susman-kimmelman-2024-eye trained a CNN classifier of eye openness (open, in-between, closed) on French Sign Language data and combined it with rule-based temporal aggregation to detect linguistically defined eye blinks, outperforming an Eye Aspect Ratio (EAR) baseline computed from MediaPipe landmarks.
-=======
-In this direction, @otterspeer-etal-2024-signcollect introduce SignCollect, a 'touchless' multi-view recording pipeline using MediaPipe gesture recognition to let a lone signer capture 60--120 lexical entries per hour and publish them to Global Signbank without assisting staff.
->>>>>>> ee98625 (Add SignCollect (Otterspeer et al., 2024) to Automating Annotation)
 
 ### Practice Deaf Collaboration
 
