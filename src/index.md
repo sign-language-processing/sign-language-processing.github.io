@@ -1117,6 +1117,8 @@ Research papers which do not necessarily contribute new theory or architectures 
 
 @imashev-etal-2024-retrospective presented a decade-long retrospective of the Kazakh-Russian Sign Language (K-RSL) corpus, describing the progressive collection of healthcare videos and images, six-emotion sentences, phonological minimal pairs, statements and polar and content questions, and the K-RSL-173 sentence subset.
 
+@hall-etal-2024-phonological digitized and phonologically transcribed the Canadian Dictionary of ASL using the Sign Language Phonetic Annotator-Analyzer software, producing a searchable resource that captured handshape, movement, location, and relation parameters for roughly 2000 signs to enable phonologically based queries that paper-based dictionaries cannot support.
+
 <!-- TODO: LSA-T aka dataset:dal2022lsa, they use AlphaPose "with the Halpe full-body keypoints format", a visualizer tool, and a baseline SLT model. Especially might be good to mention FiftyOne https://docs.voxel51.com/, "which
 provides useful features such as allowing to filter samples by label, video, playlist,
 or by the confidence score of the signer inference." -->
