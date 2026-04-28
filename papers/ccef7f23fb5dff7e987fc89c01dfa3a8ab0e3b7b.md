@@ -6,7 +6,7 @@ title: "A Review On Sign Language Recognition And Translation Systems"
 doi: null
 arxivId: null
 isSignLanguage: true
-expanded: false
+expanded: true
 topics: ["Computer Science", "Linguistics"]
 fullText: "none"
 fullTextSource: "none"
@@ -16,8 +16,8 @@ sources:
   abstract: none
   authors: semanticscholar
   topics: semanticscholar
-  references: none
-  citations: none
+  references: semanticscholar
+  citations: semanticscholar
   fullText: none
   bibtex: semanticscholar
 ---
@@ -49,7 +49,7 @@ This paper contains a comprehensive review of various systems built to make the 
 - abstract: none
 - authors: semanticscholar
 - topics: semanticscholar
-- references: none
-- citations: none
+- references: semanticscholar
+- citations: semanticscholar
 - fullText: none
 - bibtex: semanticscholar

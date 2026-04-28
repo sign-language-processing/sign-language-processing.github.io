@@ -6,7 +6,7 @@ title: "CNText2Sign and CNSign: Unified Chinese Sign Language Datasets for Bidir
 doi: "10.1145/3770854.3785676"
 arxivId: null
 isSignLanguage: true
-expanded: false
+expanded: true
 topics: ["Computer Science", "Linguistics"]
 fullText: "none"
 fullTextSource: "none"
@@ -16,8 +16,8 @@ sources:
   abstract: none
   authors: semanticscholar
   topics: semanticscholar
-  references: none
-  citations: none
+  references: semanticscholar
+  citations: semanticscholar
   fullText: none
   bibtex: semanticscholar
 ---
@@ -53,7 +53,7 @@ The AuraLLM model is proposed, which leverages a decoupled architecture with CNT
 - abstract: none
 - authors: semanticscholar
 - topics: semanticscholar
-- references: none
-- citations: none
+- references: semanticscholar
+- citations: semanticscholar
 - fullText: none
 - bibtex: semanticscholar
