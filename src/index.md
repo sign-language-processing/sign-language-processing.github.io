@@ -218,6 +218,8 @@ Do not compare to scores produced with a different or unknown evaluation procedu
 - Given that glossing is corpus-specific, process glosses in a corpus-specific way, informed by transcription conventions.
 - Optimize gloss translation baselines with methods shown to be effective for low-resource MT.
 
+@borstell-2024-approach surveyed methods for measuring lexical frequency and variation in gloss-annotated sign language corpora, illustrating with Swedish Sign Language (STS) Corpus data how raw counts, relative frequencies, weighted log odds, and signer coverage each reveal different aspects of sociolinguistic variation while being shaped by Zipfian skew, elicitation topics, and annotation conventions.
+
 
 The following table additionally exemplifies the various representations for more isolated signs.
 For this example, we use SignWriting as the notation system.
