@@ -23,6 +23,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from classify import is_sign_language
+from fulltext import get_cached as get_cached_fulltext
 
 ROOT = Path(__file__).resolve().parent.parent
 STATE = ROOT / "state"
@@ -143,6 +144,13 @@ def render_paper(meta: dict, paperid_to_bibkey: dict[str, str], bib_entries: dic
     tldr = (meta.get("tldr") or {}).get("text") or ""
     ext = meta.get("externalIds") or {}
 
+    cached_ft = get_cached_fulltext(pid)
+    if cached_ft and cached_ft[1].strip():
+        ft_source, ft_body = cached_ft
+        ft_status = "extracted"
+    else:
+        ft_source, ft_body, ft_status = "none", "", "none"
+
     fm = {
         "semanticScholarId": pid,
         "bibKey": bibkey,
@@ -153,8 +161,8 @@ def render_paper(meta: dict, paperid_to_bibkey: dict[str, str], bib_entries: dic
         "isSignLanguage": is_sl,
         "expanded": expanded,
         "topics": topics,
-        "fullText": "none",
-        "fullTextSource": "none",
+        "fullText": ft_status,
+        "fullTextSource": ft_source,
         "bibtexSource": btx_src,
     }
     sources = {
@@ -164,7 +172,7 @@ def render_paper(meta: dict, paperid_to_bibkey: dict[str, str], bib_entries: dic
         "topics": "semanticscholar" if topics else "none",
         "references": "semanticscholar" if expanded else "none",
         "citations": "semanticscholar" if expanded else "none",
-        "fullText": "none",
+        "fullText": ft_source,
         "bibtex": btx_src,
     }
 
@@ -209,6 +217,12 @@ def render_paper(meta: dict, paperid_to_bibkey: dict[str, str], bib_entries: dic
     parts.append(bibtex.strip())
     parts.append("```")
     parts.append("")
+
+    if ft_body:
+        parts.append("## Full Text")
+        parts.append("")
+        parts.append(ft_body.rstrip())
+        parts.append("")
 
     if expanded:
         edges = json.loads(edges_path.read_text())
@@ -259,10 +273,9 @@ def main() -> None:
             years.add(int(meta["year"]))
         for t in _topics(meta):
             topics_seen[_slugify(t)] = t
-    # Year stubs only — topics live as bare wikilinks (no stub files).
-    for y in sorted(years):
-        (PAPERS_DIR / f"{y}.md").write_text(f"# {y}\n")
-    print(f"Wrote {len(metas)} papers, {len(years)} year stubs, {len(topics_seen)} unique topics linked")
+    # No year/topic stubs — orphaned [[YYYY]] / [[topics/x]] wikilinks
+    # are fine in Obsidian.
+    print(f"Wrote {len(metas)} papers ({len(years)} years, {len(topics_seen)} topics linked)")
 
 
 if __name__ == "__main__":
