@@ -110,7 +110,7 @@ palm orientation, placement, contact, path movement, local movement,
 as well as non-manual features including eye aperture, head movement, and torso positioning [@liddell1989american;@johnson2011toward;@brentari2011sign;@sandler2012phonological].
 Not all possible phonemes are realized in both signed and spoken languages, and inventories of two languages' phonemes/features may not overlap completely.
 Different languages are also subject to rules for the allowed combinations of features.
-@sahin-gokgoz-2024-decoding introduce SL-FE, a framework that derives continuous phonological feature signals (finger selection, orientation, location, and movement) from pose estimation, enabling automated ELAN annotation as well as quantitative tests of theoretical claims such as feature dominance and symmetry on Turkish Sign Language (TID).
+@sahin-gokgoz-2024-decoding introduce SL-FE, a framework that derives continuous phonological feature signals from pose estimation, enabling automated ELAN annotation as well as quantitative tests of theoretical phonological claims on Turkish Sign Language (TID).
 
 ###### Simultaneity {-}
 Though an ASL sign takes about twice as long to produce than an English word,
