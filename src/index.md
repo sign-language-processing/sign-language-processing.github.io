@@ -1104,9 +1104,6 @@ Some special features are cross-level links, non-temporal objects, timepoint tra
 3D viewing of motion capture data and a project tool for managing whole corpora of annotation files.
 Anvil installation is [available](http://www.anvil-software.de/download/index.html) for Windows, macOS, and Linux.
 
-##### MY DGS -- ANNIS Query Wizard
-@isard-2024-building presented a web-based Query Wizard that guided users through the construction of valid ANNIS Query Language expressions over the Public DGS Corpus [@dataset:hanke-etal-2020-extending] by composing context-sensitive blocks for annotation tiers, metadata, and inter-tier connections, which could then be opened directly in the MY DGS -- ANNIS portal.
-
 ##### Other {-}
 @battisti-etal-2024-advancing presented a transcription and annotation scheme for continuous L1 and L2 data in Swiss German Sign Language (DSGS), introducing conventions for non-manual components and L2 learner errors, and outlined an initial inter-annotator agreement validation approach.
 
@@ -1123,6 +1120,8 @@ Research papers which do not necessarily contribute new theory or architectures 
 @imashev-etal-2024-retrospective presented a decade-long retrospective of the Kazakh-Russian Sign Language (K-RSL) corpus, describing the progressive collection of healthcare videos and images, six-emotion sentences, phonological minimal pairs, statements and polar and content questions, and the K-RSL-173 sentence subset.
 
 @hall-etal-2024-phonological digitized and phonologically transcribed the Canadian Dictionary of ASL using the Sign Language Phonetic Annotator-Analyzer software, producing a searchable resource that captured handshape, movement, location, and relation parameters for roughly 2000 signs to enable phonologically based queries that paper-based dictionaries cannot support.
+
+The Public DGS Corpus also saw multiple SignLang 2024 contributions: @konrad-etal-2024-corpus describe its fourth release, expanding it to 52.4 hours, adding a new iLex-based portal alongside MY DGS, MY DGS – annotated and MY DGS – ANNIS, and providing additional MediaPipe and Apple Vision Framework pose representations including 3D keypoint estimates; @isard-2024-building introduced a web-based Query Wizard that guided users through the construction of valid ANNIS Query Language expressions over the corpus by composing context-sensitive blocks for annotation tiers, metadata, and inter-tier connections.
 
 <!-- TODO: LSA-T aka dataset:dal2022lsa, they use AlphaPose "with the Halpe full-body keypoints format", a visualizer tool, and a baseline SLT model. Especially might be good to mention FiftyOne https://docs.voxel51.com/, "which
 provides useful features such as allowing to filter samples by label, video, playlist,
