@@ -1152,6 +1152,8 @@ The Public DGS Corpus also saw multiple SignLang 2024 contributions: @konrad-eta
 
 @de-quadros-etal-2024-signbank present Signbank 2.0, an open-source, corpus-linked sign documentation platform with linguistic and visual search (e.g., a handshape-similarity scroller) that links each sign entry to its EAF-aligned occurrences in the underlying corpus, currently deployed for Libras with planned support for IntSL, DGS, MJNY, and ÖGS.
 
+@ranum-etal-2024-3d introduce 3D-LEX v1.0, a 3D-motion-capture lexicon of 1,000 isolated signs each in ASL and NGT (combining Vicon body pose, StretchSense glove handshapes, and Live Link Face features) and use it to derive semi-automatic handshape annotations that match expert labels on a WLASL ISLR benchmark.
+
 <!-- TODO: LSA-T aka dataset:dal2022lsa, they use AlphaPose "with the Halpe full-body keypoints format", a visualizer tool, and a baseline SLT model. Especially might be good to mention FiftyOne https://docs.voxel51.com/, "which
 provides useful features such as allowing to filter samples by label, video, playlist,
 or by the confidence score of the signer inference." -->
