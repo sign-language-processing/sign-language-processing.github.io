@@ -1064,6 +1064,7 @@ An annotation can either be time-aligned to the media or refer to other existing
 The content of annotations consists of Unicode text, and annotation documents are stored in an XML format (EAF).
 ELAN is open source ([GPLv3](https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3)), and installation is [available](https://archive.mpi.nl/tla/elan/download) for Windows, macOS, and Linux.
 PyMPI [@pympi-1.69] allows for simple python interaction with Elan files.
+@bono-etal-2024-data extended ELAN-based transcription to videoconferencing dialogues by integrating per-participant latency tracks computed via cross-correlation of synchronised local recordings, enabling qualitative Conversation Analysis of greetings and turn-taking under network delay.
 
 ##### iLex
 [iLex](https://www.sign-lang.uni-hamburg.de/ilex/) [@hanke2002ilex] is a tool for sign language lexicography and corpus analysis, 
