@@ -569,7 +569,7 @@ they combine the phonological annotations in ASL-LEX 2.0 [@dataset:sehyr2021asl]
 Interestingly, @tavella-etal-2022-wlasl construct a similar dataset aiming just for phonological property recognition in American Sign Language (ASL).
 @inoue-etal-2024-enhancing trained a Video-Keypoint Network (VKNet) to classify the location, movement, and handshape syllabic components of the dominant hand in Japanese Sign Language (JSL), and demonstrated that pre-training on the WLASL American Sign Language (ASL) dataset improved classification of the movement and handshape components when JSL training data was limited.
 
-@roh-etal-2024-preprocessing focus on preprocessing MediaPipe keypoints for isolated SLR by introducing palm-anchor-based normalization to emphasize hand shape and bilinear interpolation to reconstruct undetected hand keypoints, achieving 83.26% accuracy on WLASL-100 with a Transformer encoder, the highest among pose-based approaches at the time.
+@roh-etal-2024-preprocessing focus on preprocessing MediaPipe keypoints for isolated SLR by introducing palm-anchor-based normalization to emphasize hand shape and bilinear interpolation to reconstruct undetected hand keypoints, achieving the highest accuracy on WLASL-100 with a Transformer encoder among pose-based approaches at the time.
 
 #### Gloss-to-Pose
 Gloss-to-Pose, subsumed under the task of sign language production, is the task of producing a sequence of poses that adequately represent
