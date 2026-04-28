@@ -308,6 +308,8 @@ encoding subtitles by BERT [@devlin-etal-2019-bert] and videos by CNN video repr
 
 @segmentation:moryossef-etal-2023-linguistically presented a method motivated by linguistic cues observed in sign language corpora, such as prosody (pauses, pace, etc) and handshape changes. They also find that using BIO, an annotation scheme that notes the beginning, inside and outside, makes a significant difference over previous ones that only note IO (inside or outside). They find that including optical flow and 3D hand normalization helps with out-of-domain generalization and other signed languages as well. 
 
+@borstell-2024-evaluating evaluated three approaches to segmenting the Swedish Sign Language (STS) Corpus into utterance units---prosodic, syntactic, and translation-based---and found low alignment between them as well as no clear correspondence between utterance boundaries and articulatory features of the hands and head extracted with MediaPipe.
+
 <!-- @segmentation:de-sisto-etal-2021-defining introduce a proposal for mapping segments to meaning in the form of an agglomerate of lexical and non-lexical information. -->
 
 
