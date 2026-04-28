@@ -1066,6 +1066,8 @@ The authors validate their pre-training method on isolated sign recognition (ISR
 Besides pose-to-gloss, they also experiment with video-to-gloss tasks via fusion with I3D [@carreira2017quo].
 Results on these datasets demonstrate state-of-the-art performance compared to previous methods and are comparable to those of SignBERT+ [@hu2023SignBertPlus].
 
+@malmberg-etal-2024-exploring train a VQ-VAE on pose-tracked Swedish Sign Language data to learn a codebook of motion primitives, comparing models trained on isolated signs, sentences, and a mixed set, and find that the sentence-trained model best reconstructs in-the-wild YouTube signing whose velocity profile is markedly faster than dictionary data.
+
 ## Annotation Tools
 
 ##### ELAN - EUDICO Linguistic Annotator
