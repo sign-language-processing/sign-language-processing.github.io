@@ -5,7 +5,7 @@ year: 2018
 title: "ImAc: Enabling Immersive, Accessible and Personalized Media Experiences"
 doi: "10.1145/3210825.3213570"
 arxivId: null
-isSignLanguage: true
+isSignLanguage: false
 expanded: false
 topics: ["Computer Science"]
 fullText: "none"

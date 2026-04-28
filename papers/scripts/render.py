@@ -259,14 +259,10 @@ def main() -> None:
             years.add(int(meta["year"]))
         for t in _topics(meta):
             topics_seen[_slugify(t)] = t
-    # Year stubs.
+    # Year stubs only — topics live as bare wikilinks (no stub files).
     for y in sorted(years):
         (PAPERS_DIR / f"{y}.md").write_text(f"# {y}\n")
-    # Topic stubs.
-    TOPICS_DIR.mkdir(exist_ok=True)
-    for slug, name in topics_seen.items():
-        (TOPICS_DIR / f"{slug}.md").write_text(f"# {name}\n")
-    print(f"Wrote {len(metas)} papers, {len(years)} years, {len(topics_seen)} topics")
+    print(f"Wrote {len(metas)} papers, {len(years)} year stubs, {len(topics_seen)} unique topics linked")
 
 
 if __name__ == "__main__":

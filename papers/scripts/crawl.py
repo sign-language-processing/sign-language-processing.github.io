@@ -159,6 +159,28 @@ def crawl(max_iterations: int | None = None) -> None:
     for pid in _expanded_ids():
         visited[pid] = "expanded"
 
+    bib_map = _load_json(SEED_BIB_PATH, {})
+    bib_paperids = {v for v in bib_map.values() if v}
+    classifier = CachedClassifier()
+
+    # Resume safety: any cached meta that *should* expand but doesn't
+    # yet have an edges file goes back into the expansion queue. This
+    # catches papers fetched in a killed iteration that never got
+    # expanded.
+    pending_expand: list[dict] = []
+    for pid in _known_meta_ids():
+        if pid in _expanded_ids():
+            continue
+        meta_path = META_DIR / f"{pid}.json"
+        try:
+            meta = json.loads(meta_path.read_text())
+        except Exception:
+            continue
+        if _should_expand(meta, classifier, bib_paperids):
+            pending_expand.append(meta)
+    if pending_expand:
+        print(f"Resume: {len(pending_expand)} cached papers awaiting expansion")
+
     frontier = _load_json(FRONTIER_PATH, None)
     if not frontier:
         frontier = _bootstrap_frontier(visited)
@@ -167,11 +189,50 @@ def crawl(max_iterations: int | None = None) -> None:
     # Drop any IDs we've already fetched (resume safety).
     frontier = [p for p in frontier if p not in visited]
 
-    bib_map = _load_json(SEED_BIB_PATH, {})
-    bib_paperids = {v for v in bib_map.values() if v}
-    classifier = CachedClassifier()
-
     client = SSClient()
+
+    def expand_papers(metas: list[dict], frontier: list[str], frontier_set: set[str], visited: dict[str, str]) -> None:
+        for j, meta in enumerate(metas):
+            pid = meta["paperId"]
+            if pid in _expanded_ids():
+                continue
+            try:
+                refs = list(client.paginate(f"/paper/{pid}/references", fields=EDGE_FIELDS))
+                cits = list(
+                    client.paginate(
+                        f"/paper/{pid}/citations",
+                        fields=EDGE_FIELDS,
+                        max_items=CITATION_CAP,
+                    )
+                )
+            except Exception as e:
+                print(f"  expand {pid} failed: {e}; skipping for this run")
+                continue
+            ref_papers = [r["citedPaper"] for r in refs if r.get("citedPaper")]
+            cit_papers = [c["citingPaper"] for c in cits if c.get("citingPaper")]
+            _save_edges(pid, ref_papers, cit_papers)
+            visited[pid] = "expanded"
+            new_added = 0
+            for neighbor in ref_papers + cit_papers:
+                nid = neighbor.get("paperId")
+                if not nid or nid in visited or nid in frontier_set:
+                    continue
+                if is_sign_language(neighbor) or nid in bib_paperids:
+                    frontier.append(nid)
+                    frontier_set.add(nid)
+                    new_added += 1
+            print(f"    [{j + 1}/{len(metas)}] {pid} "
+                  f"refs={len(ref_papers)} cits={len(cit_papers)} +{new_added} new")
+            if (j + 1) % CHECKPOINT_EVERY_PAPERS == 0:
+                classifier.save()
+                _atomic_write_json(VISITED_PATH, visited)
+                _atomic_write_json(FRONTIER_PATH, frontier)
+
+    if pending_expand:
+        expand_papers(pending_expand, frontier, frontier_set, visited)
+        classifier.save()
+        _atomic_write_json(VISITED_PATH, visited)
+        _atomic_write_json(FRONTIER_PATH, frontier)
 
     iteration = 0
     while frontier:
