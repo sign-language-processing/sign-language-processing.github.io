@@ -485,7 +485,8 @@ Additional improvements to PAULA focus on making the avatar more lifelike by rel
 refining hand shape transition, relaxation, and collision [@paula:baowidan2021improving], 
 implementing hierarchical phrase transitions [@paula:mcdonald2021natural], 
 creating more realistic facial muscle control [@paula:mcdonald2022novel], 
-and supporting geometric relocations [@paula:filhol2022representation].
+supporting geometric relocations [@paula:filhol2022representation], 
+and exploring multilingual synthesis by reusing AZee descriptions of classifier and depicting constructs across LSF, DGS, and GSL [@paula:mcdonald2024multilingual].
 
 ###### SiMAX [@SiMAX2020SignLanguage] {-}
 
