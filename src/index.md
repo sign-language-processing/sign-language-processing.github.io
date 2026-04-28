@@ -1147,6 +1147,8 @@ The Public DGS Corpus also saw multiple SignLang 2024 contributions: @konrad-eta
 
 @schulder-etal-2024-signs continue development of the Multilingual Sign Language Wordnet (MSL-WN), which links signs from eight sign languages (BSL, DGS, DSGS, GSL, LSF, NGT, PJM, STS) to Open Multilingual Wordnet synsets and introduces a synonymity-based annotation feature that leverages partial synonymy between signs to suggest cross-lingual sign-synset connections.
 
+@vazquez-enriquez-etal-2024-signamed present SignaMed, a domain-specific bilingual LSE-Spanish dictionary for healthcare that supports webcam-based sign lookup via an isolated sign recognition model and grows iteratively through curated Deaf-community sign donations.
+
 <!-- TODO: LSA-T aka dataset:dal2022lsa, they use AlphaPose "with the Halpe full-body keypoints format", a visualizer tool, and a baseline SLT model. Especially might be good to mention FiftyOne https://docs.voxel51.com/, "which
 provides useful features such as allowing to filter samples by label, video, playlist,
 or by the confidence score of the signer inference." -->
