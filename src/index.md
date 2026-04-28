@@ -1128,14 +1128,11 @@ Some special features are cross-level links, non-temporal objects, timepoint tra
 3D viewing of motion capture data and a project tool for managing whole corpora of annotation files.
 Anvil installation is [available](http://www.anvil-software.de/download/index.html) for Windows, macOS, and Linux.
 
-##### AZVD Editor
-@filhol-von-ascheberg-2024-software introduced a web-based software editor for AZVD diagrams that produces AZee output for avatar rendering.
-
-##### SignCollect
-@otterspeer-etal-2024-signcollect introduce SignCollect, a 'touchless' multi-view recording pipeline using MediaPipe gesture recognition to let a lone signer capture lexical entries and publish them to Global Signbank without assisting staff.
-
 ##### Other {-}
-@battisti-etal-2024-advancing presented a transcription and annotation scheme for continuous L1 and L2 data in Swiss German Sign Language (DSGS), introducing conventions for non-manual components and L2 learner errors, and outlined an initial inter-annotator agreement validation approach.
+
+- @filhol-von-ascheberg-2024-software introduced a web-based software editor for AZVD diagrams that produces AZee output for avatar rendering.
+- @otterspeer-etal-2024-signcollect introduce SignCollect, a "touchless" multi-view recording pipeline using MediaPipe gesture recognition to let a lone signer capture lexical entries and publish them to Global Signbank without assisting staff.
+- @battisti-etal-2024-advancing presented a transcription and annotation scheme for continuous L1 and L2 data in Swiss German Sign Language (DSGS), introducing conventions for non-manual components and L2 learner errors, and outlined an initial inter-annotator agreement validation approach.
 
 ## Resources
 
