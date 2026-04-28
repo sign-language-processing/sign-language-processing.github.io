@@ -877,6 +877,8 @@ Then, starting from a still frame they used an iterative non-autoregressive deco
 In each time step $t$ from $T$ to $1$, the model predicts the required change from step $t$ to step $t-1$. After $T$ steps, the pose generator outputs the final pose sequence.
 Their model outperformed previous methods like @saunders2020progressive, animating HamNoSys into more realistic sign language sequences.
 
+@uchida-etal-2024-hamnosys proposed a HamNoSys-based motion editing method for Japanese Sign Language that edits handshape, hand orientation, and location of pre-recorded motion-capture data via FABRIK inverse kinematics and a wrist-offset technique to reproduce contextual modifications such as classifier predicates without additional motion-capture recordings.
+
 #### Evaluation Metrics
 
 Methods for automatic evaluation of sign language processing are typically dependent only on the output and independent of the input.
