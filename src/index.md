@@ -802,6 +802,8 @@ SSVP-SLT achieves state-of-the-art performance on How2Sign [@dataset:duarte2020h
 They conclude that SLT models can be pretrained in a privacy-aware manner without sacrificing too much performance.
 Additionally, the authors release DailyMoth-70h, a new 70-hour ASL dataset from [The Daily Moth](https://www.dailymoth.com/).
 
+@tan-etal-2024-seda extend this sign language transformer with SEDA, a data augmentation framework that augments sign features through multiple sign embeddings and augments spoken text via lemmatization, achieving competitive WER, BLEU, and ROUGE on RWTH-PHOENIX-Weather-2014T.
+
 #### Text-to-Video
 Text-to-Video, also known as sign language production, is the task of producing a video that adequately represents
 a spoken language text in sign language.
