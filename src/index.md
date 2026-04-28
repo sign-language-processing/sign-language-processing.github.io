@@ -1075,6 +1075,12 @@ Results on these datasets demonstrate state-of-the-art performance compared to p
 
 @malmberg-etal-2024-exploring train a VQ-VAE on pose-tracked Swedish Sign Language data to learn a codebook of motion primitives, comparing models trained on isolated signs, sentences, and a mixed set, and find that the sentence-trained model best reconstructs in-the-wild YouTube signing whose velocity profile is markedly faster than dictionary data.
 
+### Linguistic Analysis
+
+This sub-area covers experimental studies of sign language structure that use computational tools (corpus mining, computer-vision-assisted measurement, statistical modelling) to characterize specific linguistic phenomena, rather than to introduce new SLP methods.
+
+@gavrilescu-etal-2024-content compared corpus, elicitation, and fieldwork methods across Greek, French, and Swedish Sign Languages to characterize the distribution of wh-signs and their non-manual markers.
+
 ## Annotation Tools
 
 ##### ELAN - EUDICO Linguistic Annotator
@@ -1090,7 +1096,6 @@ PyMPI [@pympi-1.69] allows for simple python interaction with Elan files.
 @esselink-etal-2024-evaluating evaluated inter-annotator agreement for non-manual markers in Sign Language of the Netherlands using complementary event-based and frame-based approaches on ELAN annotations, reporting low Cohen's kappa scores on several tiers and proposing concrete revisions to the annotation guidelines.
 @kimmelman-etal-2024-nonmanual combine ELAN annotations with OpenFace-based head pose estimation to show that Balinese homesigners and their hearing interlocutors consistently mark polar questions with downward head pitch and other question types with upward pitch, demonstrating how computer vision tools can quantitatively support linguistic analysis of non-manual markers.
 @martinod-filhol-2024-formal performed a corpus-based AZee analysis of French Sign Language (LSF) and found that chin advancement, rather than eyebrow position, is the consistent marker of information requests, challenging the widely reported open- vs. closed-question eyebrow contrast.
-@gavrilescu-etal-2024-content compared corpus, elicitation, and fieldwork methods across Greek, French, and Swedish Sign Languages to characterize the distribution of wh-signs and their non-manual markers.
 
 ##### iLex
 [iLex](https://www.sign-lang.uni-hamburg.de/ilex/) [@hanke2002ilex] is a tool for sign language lexicography and corpus analysis, 
