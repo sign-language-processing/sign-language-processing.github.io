@@ -1130,6 +1130,7 @@ Research papers which do not necessarily contribute new theory or architectures 
 
 @dataset:joshi-etal-2023-isltranslate introduce ISLTranslate, a large translation dataset for Indian Sign Language based on publicly available educational videos intended for hard-of-hearing children, which happen to contain both Indian Sign Language and English audio voiceover conveying the same content. They use a speech-to-text model to transcribe the audio content, which they later manually corrected with the help of accompanying books also containing the same content. They also use MediaPipe to extract pose features, and have a certified ISL signer validate a small portion of the sign-text pairs. They provide a baseline based on the architecture proposed in @camgoz2020sign, and provide code.
 
+<<<<<<< HEAD
 @dataset:halbout-etal-2024-matignon presented Matignon-LSF, an open 39-hour corpus of live-interpreted Langue des Signes Française (LSF) compiled from weekly French government Council of Ministers debriefings, comprising 67 videos with aligned French audio, subtitles, and pre-computed I3D features.
 
 @imashev-etal-2024-retrospective presented a decade-long retrospective of the Kazakh-Russian Sign Language (K-RSL) corpus, describing the progressive collection of healthcare videos and images, six-emotion sentences, phonological minimal pairs, statements and polar and content questions, and the K-RSL-173 sentence subset.
@@ -1137,6 +1138,8 @@ Research papers which do not necessarily contribute new theory or architectures 
 @hall-etal-2024-phonological digitized and phonologically transcribed the Canadian Dictionary of ASL using the Sign Language Phonetic Annotator-Analyzer software, producing a searchable resource that captured handshape, movement, location, and relation parameters for roughly 2000 signs to enable phonologically based queries that paper-based dictionaries cannot support.
 
 The Public DGS Corpus also saw multiple SignLang 2024 contributions: @konrad-etal-2024-corpus describe its fourth release, expanding it to 52.4 hours, adding a new iLex-based portal alongside MY DGS, MY DGS – annotated and MY DGS – ANNIS, and providing additional MediaPipe and Apple Vision Framework pose representations including 3D keypoint estimates; @isard-2024-building introduced a web-based Query Wizard that guided users through the construction of valid ANNIS Query Language expressions over the corpus by composing context-sensitive blocks for annotation tiers, metadata, and inter-tier connections.
+
+@klomp-etal-2024-extension describe an ongoing extension of the Sign Language of the Netherlands (NGT) dataset in Global Signbank, aiming to add approximately 11,000 new glosses, 3,000 example sentences, multi-angle videos with non-manual expressions, phonological annotations, and motion capture data to support both linguistic research and automatic recognition.
 
 <!-- TODO: LSA-T aka dataset:dal2022lsa, they use AlphaPose "with the Halpe full-body keypoints format", a visualizer tool, and a baseline SLT model. Especially might be good to mention FiftyOne https://docs.voxel51.com/, "which
 provides useful features such as allowing to filter samples by label, video, playlist,
