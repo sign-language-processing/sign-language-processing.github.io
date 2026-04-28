@@ -130,13 +130,14 @@ def _build_links(meta: dict) -> list[str]:
     return out
 
 
-def render_paper(meta: dict, paperid_to_bibkey: dict[str, str], bib_entries: dict[str, dict]) -> str:
+def render_paper(meta: dict, paperid_to_bibkey: dict[str, str], bib_entries: dict[str, dict], judge: dict[str, bool] | None = None) -> str:
     pid = meta["paperId"]
     bibkey = paperid_to_bibkey.get(pid)
     title = meta.get("title") or "Untitled"
     year = meta.get("year")
     topics = _topics(meta)
-    is_sl = is_sign_language(meta) or pid in {v for v in paperid_to_bibkey.keys()}
+    judge = judge or {}
+    is_sl = _is_sl(meta, judge, pid in paperid_to_bibkey)
     edges_path = EDGES_DIR / f"{pid}.json"
     expanded = edges_path.exists()
     bibtex, btx_src = _bibtex_for(meta, bibkey, bib_entries)
@@ -259,23 +260,94 @@ def render_paper(meta: dict, paperid_to_bibkey: dict[str, str], bib_entries: dic
     return "\n".join(parts)
 
 
+def _judge_cache() -> dict[str, bool]:
+    p = STATE / "judge_cache.json"
+    return json.loads(p.read_text()) if p.exists() else {}
+
+
+def _is_sl(meta: dict, judge: dict[str, bool], in_bib: bool) -> bool:
+    """Judge cache wins, then bib membership, then regex classifier."""
+    pid = meta["paperId"]
+    if pid in judge:
+        return judge[pid]
+    if in_bib:
+        return True
+    return is_sign_language(meta)
+
+
+def _sl_neighbor_counts(judge: dict[str, bool], paperid_to_bibkey: dict) -> dict[str, int]:
+    """For every paperId mentioned in any expanded SL paper's edges,
+    count how many distinct SL expanded papers reference/cite it. Lets
+    us keep foundational non-SL papers (e.g. pose-estimation) when the
+    SL community heavily cites them."""
+    counts: dict[str, int] = {}
+    if not EDGES_DIR.exists():
+        return counts
+    for ep in sorted(EDGES_DIR.glob("*.json")):
+        owner_pid = ep.stem
+        meta_path = META_DIR / f"{owner_pid}.json"
+        if not meta_path.exists():
+            continue
+        owner_meta = json.loads(meta_path.read_text())
+        if not _is_sl(owner_meta, judge, owner_pid in paperid_to_bibkey):
+            continue
+        edges = json.loads(ep.read_text())
+        seen_here: set[str] = set()
+        for n in edges.get("references", []) + edges.get("citations", []):
+            nid = n.get("paperId")
+            if nid and nid not in seen_here:
+                counts[nid] = counts.get(nid, 0) + 1
+                seen_here.add(nid)
+    return counts
+
+
 def main() -> None:
     paperid_to_bibkey, bib_entries = _load_bib()
+    judge = _judge_cache()
+    bib_pid_set = {pid for pid in paperid_to_bibkey}
     metas = sorted(META_DIR.glob("*.json"))
-    print(f"Rendering {len(metas)} papers")
+    print(f"Considering {len(metas)} cached papers (judge_cache: {len(judge)} entries)")
+
+    sl_neighbor_count = _sl_neighbor_counts(judge, paperid_to_bibkey)
+    print(f"Computed SL-neighbor counts for {len(sl_neighbor_count)} paperIds")
+
     years: set[int] = set()
     topics_seen: dict[str, str] = {}
+    written = 0
+    written_via_sl = 0
+    written_via_neighbors = 0
+    skipped = 0
+    removed = 0
     for path in metas:
         meta = json.loads(path.read_text())
-        out = render_paper(meta, paperid_to_bibkey, bib_entries)
-        (PAPERS_DIR / f"{meta['paperId']}.md").write_text(out)
+        pid = meta["paperId"]
+        is_sl = _is_sl(meta, judge, pid in bib_pid_set)
+        nbr = sl_neighbor_count.get(pid, 0)
+        keep = is_sl or nbr >= 10
+        target = PAPERS_DIR / f"{pid}.md"
+        if not keep:
+            if target.exists():
+                target.unlink()
+                removed += 1
+            skipped += 1
+            continue
+        out = render_paper(meta, paperid_to_bibkey, bib_entries, judge)
+        target.write_text(out)
+        written += 1
+        if is_sl:
+            written_via_sl += 1
+        else:
+            written_via_neighbors += 1
         if meta.get("year"):
             years.add(int(meta["year"]))
         for t in _topics(meta):
             topics_seen[_slugify(t)] = t
-    # No year/topic stubs — orphaned [[YYYY]] / [[topics/x]] wikilinks
-    # are fine in Obsidian.
-    print(f"Wrote {len(metas)} papers ({len(years)} years, {len(topics_seen)} topics linked)")
+    print(
+        f"Wrote {written} ({written_via_sl} SL + {written_via_neighbors} "
+        f"non-SL with >=10 SL neighbors); {len(years)} years, "
+        f"{len(topics_seen)} topics linked; skipped {skipped}; "
+        f"removed {removed} stale md"
+    )
 
 
 if __name__ == "__main__":

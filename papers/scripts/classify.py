@@ -20,7 +20,9 @@ import json
 import re
 from pathlib import Path
 
-CACHE_PATH = Path(__file__).resolve().parent.parent / "state" / "classifier_cache.json"
+STATE = Path(__file__).resolve().parent.parent / "state"
+CACHE_PATH = STATE / "classifier_cache.json"
+JUDGE_PATH = STATE / "judge_cache.json"
 
 # Match in TITLE: any of these is enough.
 TITLE_RE = re.compile(
@@ -84,14 +86,23 @@ def is_sign_language(meta: dict) -> bool:
 
 
 class CachedClassifier:
-    def __init__(self, path: Path = CACHE_PATH):
+    """Classifier with two layers of cache:
+       1. judge_cache.json — authoritative subagent decisions (override).
+       2. classifier_cache.json — memoized regex decisions.
+    judge_cache always wins when present.
+    """
+
+    def __init__(self, path: Path = CACHE_PATH, judge_path: Path = JUDGE_PATH):
         self.path = path
-        self.cache: dict[str, bool] = {}
-        if path.exists():
-            self.cache = json.loads(path.read_text())
+        self.cache: dict[str, bool] = json.loads(path.read_text()) if path.exists() else {}
+        self.judge: dict[str, bool] = (
+            json.loads(judge_path.read_text()) if judge_path.exists() else {}
+        )
 
     def classify(self, meta: dict) -> bool:
         pid = meta.get("paperId")
+        if pid and pid in self.judge:
+            return self.judge[pid]
         if pid and pid in self.cache:
             return self.cache[pid]
         result = is_sign_language(meta)
