@@ -1017,6 +1017,8 @@ This dataset includes both the "careful" and "rapid" forms of fingerspelling col
 They trained a baseline model to take a sequence of images cropped around the signing hand and either use an autoregressive decoder or a CTC.
 They found that the CTC outperformed the autoregressive decoder model, but both achieved poor recognition rates (35-41% character level accuracy) compared to human performance (around 82%).
 
+@khan-etal-2024-investigating investigated isolated Irish Sign Language (ISL) fingerspelling recognition by converting clips from the ISL-HS hand-shape dataset into Motion History Images and training several pretrained CNN architectures (DenseNet, ResNet, Xception, and Inception variants) on the resulting frames, with DenseNet-121 achieving the highest classification accuracy of 90.38%.
+
 In follow-up work, @dataset:fs18iccv collected nearly an order-of-magnitude larger dataset and designed a new recognition model.
 Instead of detecting the signing hand, they detected the face and cropped a large area around it. 
 Then, they performed an iterative process of zooming in to the hand using visual attention to retain sufficient information in high resolution of the hand.
