@@ -121,7 +121,7 @@ Similarly to tone in spoken languages, the face and torso can convey additional 
 Facial expressions can modify adjectives, adverbs, and verbs; a head shake can negate a phrase or sentence; eye direction can help indicate referents.
 @kimmelman-etal-2024-headshakes apply OpenFace to corpus data from Sign Language of the Netherlands, showing that the linguistic function of a headshake (lexical, morphological, or prosodic) systematically affects its phonetic properties such as amplitude and peak velocity.
 
-Non-manual markers such as furrowed eyebrows further serve as primary cues for sentence type, for example distinguishing content questions from declaratives, and @gavrilescu-etal-2024-content compared corpus, elicitation, and fieldwork methods across Greek, French, and Swedish Sign Languages to characterize the distribution of wh-signs and their associated non-manuals.
+@gavrilescu-etal-2024-content compared corpus, elicitation, and fieldwork methods across Greek, French, and Swedish Sign Languages to characterize the distribution of wh-signs and their non-manual markers.
 
 ###### Referencing {-}
 The signer can introduce referents in discourse either by pointing to their actual locations in space or by assigning a region in the signing space to a non-present referent and by pointing to this region to refer to it [@rathmann2011featural;@schembri2018indicating].
