@@ -440,7 +440,7 @@ then generated a photo-realistic sign language video of a novel appearance from 
 The authors proposed a novel style loss that ensures style consistency in the anonymized sign language videos. 
 Extending this line of work, @xia-etal-2024-diffusion proposed DiffSLVA, which leverages pre-trained large-scale text-guided latent diffusion models with ControlNet conditioned on Holistically-Nested Edge (HED) maps to circumvent the need for accurate pose estimation, and adds a dedicated facial expression enhancement module to preserve linguistically essential non-manual features.
 
-@battisti2024PersonIdentificationPose questioned the assumption that pose estimates yield anonymized data, conducting a perception study with Swiss German Sign Language (DSGS) users and showing that both human raters and an automatic SVM classifier could identify familiar signers and language levels from pose sequences alone (person identification F1=0.31; language level F1=0.64).
+@battisti2024PersonIdentificationPose questioned the assumption that pose estimates yield anonymized data, conducting a perception study with Swiss German Sign Language (DSGS) users and showing that both human raters and an automatic SVM classifier could identify familiar signers and language levels from pose sequences alone.
 
 ##### Sign Language Avatars
 
