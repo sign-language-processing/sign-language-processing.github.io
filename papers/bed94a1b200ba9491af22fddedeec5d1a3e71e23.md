@@ -6,7 +6,7 @@ title: "SkeFormer: Sign Language Segmentation Based on Skeleton Input Transforme
 doi: "10.1109/ICETCI57876.2023.10176896"
 arxivId: null
 isSignLanguage: true
-expanded: false
+expanded: true
 topics: ["Computer Science"]
 fullText: "none"
 fullTextSource: "none"
@@ -16,8 +16,8 @@ sources:
   abstract: semanticscholar
   authors: semanticscholar
   topics: semanticscholar
-  references: none
-  citations: none
+  references: semanticscholar
+  citations: semanticscholar
   fullText: none
   bibtex: semanticscholar
 ---
@@ -49,13 +49,17 @@ The work aimed to segment each gesture in the sign language video dataset collec
 }
 ```
 
+## Cited by
+
+- [[e166faa171351ff3c8c8f96280c504ea91ea949f]] — A Skeleton Coordinate-Based Temporal Action Segmentation Framework for Continuous Sign Language (2025)
+
 ## Sources
 
 - title: semanticscholar
 - abstract: semanticscholar
 - authors: semanticscholar
 - topics: semanticscholar
-- references: none
-- citations: none
+- references: semanticscholar
+- citations: semanticscholar
 - fullText: none
 - bibtex: semanticscholar
