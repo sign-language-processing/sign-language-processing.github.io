@@ -6,7 +6,7 @@ title: "Propuesta inicial de traducción del código de infancia y adolescencia 
 doi: "10.24142/RAJU.V12N25A2"
 arxivId: null
 isSignLanguage: true
-expanded: false
+expanded: true
 topics: ["Sociology", "Law", "Linguistics"]
 fullText: "none"
 fullTextSource: "none"
@@ -16,8 +16,8 @@ sources:
   abstract: semanticscholar
   authors: semanticscholar
   topics: semanticscholar
-  references: none
-  citations: none
+  references: semanticscholar
+  citations: semanticscholar
   fullText: none
   bibtex: semanticscholar
 ---
@@ -56,7 +56,7 @@ The population with hearing impairment in Colombia is continually forced to find
 - abstract: semanticscholar
 - authors: semanticscholar
 - topics: semanticscholar
-- references: none
-- citations: none
+- references: semanticscholar
+- citations: semanticscholar
 - fullText: none
 - bibtex: semanticscholar
