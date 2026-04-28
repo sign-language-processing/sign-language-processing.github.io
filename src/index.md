@@ -1150,6 +1150,8 @@ The Public DGS Corpus also saw multiple SignLang 2024 contributions: @konrad-eta
 
 @vazquez-enriquez-etal-2024-signamed present SignaMed, a domain-specific bilingual LSE-Spanish dictionary for healthcare that supports webcam-based sign lookup via an isolated sign recognition model and grows iteratively through curated Deaf-community sign donations.
 
+@de-quadros-etal-2024-signbank present Signbank 2.0, an open-source, corpus-linked sign documentation platform with linguistic and visual search (e.g., a handshape-similarity scroller) that links each sign entry to its EAF-aligned occurrences in the underlying corpus, currently deployed for Libras with planned support for IntSL, DGS, MJNY, and ÖGS.
+
 <!-- TODO: LSA-T aka dataset:dal2022lsa, they use AlphaPose "with the Halpe full-body keypoints format", a visualizer tool, and a baseline SLT model. Especially might be good to mention FiftyOne https://docs.voxel51.com/, "which
 provides useful features such as allowing to filter samples by label, video, playlist,
 or by the confidence score of the signer inference." -->
@@ -1157,7 +1159,6 @@ or by the confidence score of the signer inference." -->
 ###### Bilingual dictionaries {-}
 for signed language [@dataset:mesch2012meaning;@fenlon2015building;@crasborn2016ngt;@dataset:gutierrez2016lse] map a spoken language word or short phrase to a signed language video.
 One notable dictionary, SpreadTheSign\footnote{\url{https://www.spreadthesign.com/}} is a parallel dictionary containing around 25,000 words with up to 42 different spoken-signed language pairs and more than 600,000 videos in total. Unfortunately, while dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.
-@de-quadros-etal-2024-signbank present Signbank 2.0, an open-source, corpus-linked sign documentation platform with linguistic and visual search (e.g., a handshape-similarity scroller) that links each sign entry to its EAF-aligned occurrences in the underlying corpus, currently deployed for Libras with planned support for IntSL, DGS, MJNY, and ÖGS.
 
 ###### Fingerspelling corpora {-}
 usually consist of videos of words borrowed from spoken languages that are signed letter-by-letter. They can be synthetically created [@dataset:dreuw2006modeling] or mined from online resources [@dataset:fs18slt;@dataset:fs18iccv]. However, they only capture one aspect of signed languages.
