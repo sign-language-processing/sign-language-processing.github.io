@@ -110,7 +110,6 @@ palm orientation, placement, contact, path movement, local movement,
 as well as non-manual features including eye aperture, head movement, and torso positioning [@liddell1989american;@johnson2011toward;@brentari2011sign;@sandler2012phonological].
 Not all possible phonemes are realized in both signed and spoken languages, and inventories of two languages' phonemes/features may not overlap completely.
 Different languages are also subject to rules for the allowed combinations of features.
-Quantitative analyses of hand locations across BSL, NGT, and LSM further reveal that signers organize the signing space into a Zipfian spatial hierarchy, concentrating articulation in cohesive regions more systematically than non-linguistic gesturers [@martinez-guevara-curiel-2024-quantitative].
 
 ###### Simultaneity {-}
 Though an ASL sign takes about twice as long to produce than an English word,
@@ -1091,6 +1090,8 @@ Results on these datasets demonstrate state-of-the-art performance compared to p
 This sub-area covers experimental studies of sign language structure that use computational tools (corpus mining, computer-vision-assisted measurement, statistical modelling) to characterize specific linguistic phenomena, rather than to introduce new SLP methods.
 
 @gavrilescu-etal-2024-content compared corpus, elicitation, and fieldwork methods across Greek, French, and Swedish Sign Languages to characterize the distribution of wh-signs and their non-manual markers.
+
+@martinez-guevara-curiel-2024-quantitative analyse hand locations across BSL, NGT, and LSM and find that signers organize the signing space into a Zipfian spatial hierarchy, concentrating articulation in cohesive regions more systematically than non-linguistic gesturers.
 
 ## Annotation Tools
 
