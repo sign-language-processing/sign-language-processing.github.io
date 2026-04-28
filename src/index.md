@@ -1124,6 +1124,7 @@ or by the confidence score of the signer inference." -->
 ###### Bilingual dictionaries {-}
 for signed language [@dataset:mesch2012meaning;@fenlon2015building;@crasborn2016ngt;@dataset:gutierrez2016lse] map a spoken language word or short phrase to a signed language video.
 One notable dictionary, SpreadTheSign\footnote{\url{https://www.spreadthesign.com/}} is a parallel dictionary containing around 25,000 words with up to 42 different spoken-signed language pairs and more than 600,000 videos in total. Unfortunately, while dictionaries may help create lexical rules between languages, they do not demonstrate the grammar or the usage of signs in context.
+Going beyond gloss-based access, @hall-etal-2024-phonological digitized and phonologically transcribed the Canadian Dictionary of ASL using the Sign Language Phonetic Annotator-Analyzer software, producing a searchable resource that captured handshape, movement, location, and relation parameters for roughly 2000 signs to enable phonologically based queries that paper-based dictionaries cannot support.
 
 ###### Fingerspelling corpora {-}
 usually consist of videos of words borrowed from spoken languages that are signed letter-by-letter. They can be synthetically created [@dataset:dreuw2006modeling] or mined from online resources [@dataset:fs18slt;@dataset:fs18iccv]. However, they only capture one aspect of signed languages.
