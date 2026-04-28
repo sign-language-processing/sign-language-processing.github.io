@@ -1152,6 +1152,8 @@ The Public DGS Corpus also saw multiple SignLang 2024 contributions: @konrad-eta
 
 @de-quadros-etal-2024-signbank present Signbank 2.0, an open-source, corpus-linked sign documentation platform with linguistic and visual search (e.g., a handshape-similarity scroller) that links each sign entry to its EAF-aligned occurrences in the underlying corpus, currently deployed for Libras with planned support for IntSL, DGS, MJNY, and ÖGS.
 
+@ranum-etal-2024-3d introduce 3D-LEX v1.0, a 3D-motion-capture lexicon of 1,000 isolated signs each in ASL and NGT (combining Vicon body pose, StretchSense glove handshapes, and Live Link Face features) and use it to derive semi-automatic handshape annotations that match expert labels on a WLASL ISLR benchmark.
+
 <!-- TODO: LSA-T aka dataset:dal2022lsa, they use AlphaPose "with the Halpe full-body keypoints format", a visualizer tool, and a baseline SLT model. Especially might be good to mention FiftyOne https://docs.voxel51.com/, "which
 provides useful features such as allowing to filter samples by label, video, playlist,
 or by the confidence score of the signer inference." -->
@@ -1165,7 +1167,6 @@ usually consist of videos of words borrowed from spoken languages that are signe
 
 ###### Isolated sign corpora {-}
 are collections of annotated single signs. They are synthesized [@dataset:ebling2018smile;@dataset:huang2018video;@dataset:sincan2020autsl;@dataset:hassan-etal-2020-isolated] or mined from online resources [@dataset:joze2018ms;@dataset:li2020word], and can be used for isolated sign language recognition or contrastive analysis of minimal signing pairs [@dataset:imashev2020dataset]. However, like dictionaries, they do not describe relations between signs, nor do they capture coarticulation during the signing, and are often limited in vocabulary size (20-1000 signs).
-@ranum-etal-2024-3d introduce 3D-LEX v1.0, a 3D-motion-capture lexicon of 1,000 isolated signs each in ASL and NGT (combining Vicon body pose, StretchSense glove handshapes, and Live Link Face features) and use it to derive semi-automatic handshape annotations that match expert labels on a WLASL ISLR benchmark.
 
 ###### Continuous sign corpora {-}
 contain parallel sequences of signs and spoken language.
