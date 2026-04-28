@@ -489,6 +489,9 @@ creating more realistic facial muscle control [@paula:mcdonald2022novel],
 supporting geometric relocations [@paula:filhol2022representation], 
 and exploring multilingual synthesis by reusing AZee descriptions of classifier and depicting constructs across LSF, DGS, and GSL [@paula:mcdonald2024multilingual].
 
+and supporting geometric relocations [@paula:filhol2022representation].
+Complementing avatar-based approaches, @sharma-etal-2024-facial synthesise French Sign Language facial expressions by mapping AZee production rules to FACS action units via FACSHuman blendshapes, enabling reusable, template-based morph animations across avatars.
+
 ###### SiMAX [@SiMAX2020SignLanguage] {-}
 
 is a software application developed to transform textual input into 3D animated sign language representations.
@@ -1130,7 +1133,6 @@ Research papers which do not necessarily contribute new theory or architectures 
 
 @dataset:joshi-etal-2023-isltranslate introduce ISLTranslate, a large translation dataset for Indian Sign Language based on publicly available educational videos intended for hard-of-hearing children, which happen to contain both Indian Sign Language and English audio voiceover conveying the same content. They use a speech-to-text model to transcribe the audio content, which they later manually corrected with the help of accompanying books also containing the same content. They also use MediaPipe to extract pose features, and have a certified ISL signer validate a small portion of the sign-text pairs. They provide a baseline based on the architecture proposed in @camgoz2020sign, and provide code.
 
-<<<<<<< HEAD
 @dataset:halbout-etal-2024-matignon presented Matignon-LSF, an open 39-hour corpus of live-interpreted Langue des Signes Française (LSF) compiled from weekly French government Council of Ministers debriefings, comprising 67 videos with aligned French audio, subtitles, and pre-computed I3D features.
 
 @imashev-etal-2024-retrospective presented a decade-long retrospective of the Kazakh-Russian Sign Language (K-RSL) corpus, describing the progressive collection of healthcare videos and images, six-emotion sentences, phonological minimal pairs, statements and polar and content questions, and the K-RSL-173 sentence subset.
