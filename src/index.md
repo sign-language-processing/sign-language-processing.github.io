@@ -1097,6 +1097,9 @@ Anvil installation is [available](http://www.anvil-software.de/download/index.ht
 ##### MY DGS -- ANNIS Query Wizard
 @isard-2024-building presented a web-based Query Wizard that guided users through the construction of valid ANNIS Query Language expressions over the Public DGS Corpus [@dataset:hanke-etal-2020-extending] by composing context-sensitive blocks for annotation tiers, metadata, and inter-tier connections, which could then be opened directly in the MY DGS -- ANNIS portal.
 
+##### Other {-}
+@battisti-etal-2024-advancing presented a transcription and annotation scheme for continuous L1 and L2 data in Swiss German Sign Language (DSGS), introducing conventions for non-manual components and L2 learner errors, and outlined an initial inter-annotator agreement validation approach.
+
 ## Resources
 
 ###### Dataset Papers
