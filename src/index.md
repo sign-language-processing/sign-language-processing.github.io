@@ -1099,6 +1099,8 @@ Research papers which do not necessarily contribute new theory or architectures 
 
 @dataset:halbout-etal-2024-matignon presented Matignon-LSF, an open 39-hour corpus of live-interpreted Langue des Signes Française (LSF) compiled from weekly French government Council of Ministers debriefings, comprising 67 videos with aligned French audio, subtitles, and pre-computed I3D features.
 
+@imashev-etal-2024-retrospective presented a decade-long retrospective of the Kazakh-Russian Sign Language (K-RSL) corpus, describing the progressive collection of healthcare videos and images, six-emotion sentences, phonological minimal pairs, statements and polar and content questions, and the K-RSL-173 sentence subset.
+
 <!-- TODO: LSA-T aka dataset:dal2022lsa, they use AlphaPose "with the Halpe full-body keypoints format", a visualizer tool, and a baseline SLT model. Especially might be good to mention FiftyOne https://docs.voxel51.com/, "which
 provides useful features such as allowing to filter samples by label, video, playlist,
 or by the confidence score of the signer inference." -->
