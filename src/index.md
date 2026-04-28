@@ -1091,6 +1091,8 @@ This sub-area covers experimental studies of sign language structure that use co
 
 @gavrilescu-etal-2024-content compared corpus, elicitation, and fieldwork methods across Greek, French, and Swedish Sign Languages to characterize the distribution of wh-signs and their non-manual markers.
 
+@martinez-guevara-curiel-2024-quantitative analyse hand locations across BSL, NGT, and LSM and find that signers organize the signing space into a Zipfian spatial hierarchy, concentrating articulation in cohesive regions more systematically than non-linguistic gesturers.
+
 ## Annotation Tools
 
 ##### ELAN - EUDICO Linguistic Annotator
