@@ -553,6 +553,7 @@ Additionally, they propose a two-stream framework to fuse static and dynamic inf
 The model demonstrates competitive performance cpmpared to video-to-gloss methods on the RWTH-PHOENIX-Weather-2014 [@koller2015ContinuousSLR], RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:Zhou2021_SignBackTranslation_CSLDaily] datasets.
 
 @dafnis2022bidirectional work on the same modified WLASL dataset as @jiang2021sign, but do not require multimodal data input. Instead, they propose a bidirectional skeleton-based graph convolutional network framework with linguistically motivated parameters and attention to the start and end frames of signs. They cooperatively use forward and backward data streams, including various sub-streams, as input. They also use pre-training to leverage transfer learning.
+@zhou-etal-2024-multimodal extend this bidirectional ST-GCN approach with a per-channel Gating module that filters out non-informative frames and an auxiliary multimodal transformer branch fusing skeleton and handshape features for temporal localization of sign start and end frames, improving over prior bidirectional ST-GCN baselines on combined WLASL, ASLLVD, RIT, and DSP citation-form datasets.
 
 @selvaraj-etal-2022-openhands introduced an open-source [OpenHands](https://github.com/AI4Bharat/OpenHands) library, 
 which consists of standardized pose datasets for different existing sign language datasets and trained checkpoints 
