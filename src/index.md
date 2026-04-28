@@ -744,7 +744,7 @@ On this encoding, they use a Connectionist Temporal Classification (CTC) [@grave
 Using the same encoding, they use a transformer decoder to decode the spoken language text one token at a time.
 They show that adding gloss supervision improves the model over not using it and that it outperforms previous video-to-gloss-to-text pipeline approaches [@cihan2018neural].
 
-@tan-etal-2024-seda extend this sign language transformer with SEDA, a simple and effective data augmentation framework that augments sign features by passing the same frames through multiple sign embeddings (the original spatial embedding plus a frozen spatial-temporal embedding distilled from a self-mutual knowledge distillation model) and augments spoken text via lemmatization and alphabet normalization, then trains both views jointly with multi-task learning followed by task-specific fine-tuning to achieve competitive WER, BLEU, and ROUGE on RWTH-PHOENIX-Weather-2014T.
+@tan-etal-2024-seda extend this sign language transformer with SEDA, a data augmentation framework that augments sign features through multiple sign embeddings and augments spoken text via lemmatization, achieving competitive WER, BLEU, and ROUGE on RWTH-PHOENIX-Weather-2014T.
 
 Following up, @camgoz2020multi propose a new architecture that does not require the supervision of glosses, named "Multi-channel Transformers for Multi-articulatory Sign Language Translation".
 In this approach, they crop the signing hand and the face and perform 3D pose estimation to obtain three separate data channels.
