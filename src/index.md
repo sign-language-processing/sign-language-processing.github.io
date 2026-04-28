@@ -1075,6 +1075,12 @@ Results on these datasets demonstrate state-of-the-art performance compared to p
 
 @malmberg-etal-2024-exploring train a VQ-VAE on pose-tracked Swedish Sign Language data to learn a codebook of motion primitives, comparing models trained on isolated signs, sentences, and a mixed set, and find that the sentence-trained model best reconstructs in-the-wild YouTube signing whose velocity profile is markedly faster than dictionary data.
 
+### Linguistic Analysis
+
+This sub-area covers experimental studies of sign language structure that use computational tools (corpus mining, computer-vision-assisted measurement, statistical modelling) to characterize specific linguistic phenomena, rather than to introduce new SLP methods.
+
+@gavrilescu-etal-2024-content compared corpus, elicitation, and fieldwork methods across Greek, French, and Swedish Sign Languages to characterize the distribution of wh-signs and their non-manual markers.
+
 ## Annotation Tools
 
 ##### ELAN - EUDICO Linguistic Annotator
