@@ -1154,6 +1154,8 @@ The Public DGS Corpus also saw multiple SignLang 2024 contributions: @konrad-eta
 
 @ranum-etal-2024-3d introduce 3D-LEX v1.0, a 3D-motion-capture lexicon of 1,000 isolated signs each in ASL and NGT (combining Vicon body pose, StretchSense glove handshapes, and Live Link Face features) and use it to derive semi-automatic handshape annotations that match expert labels on a WLASL ISLR benchmark.
 
+@dataset:reverdy-etal-2024-stk introduce STK LSF, a one-hour bilingual French / French Sign Language (LSF) motion-capture corpus signed by a deaf signer covering targeted grammatical phenomena and three children's tales, used to drive a signing avatar for the SignToKids project.
+
 <!-- TODO: LSA-T aka dataset:dal2022lsa, they use AlphaPose "with the Halpe full-body keypoints format", a visualizer tool, and a baseline SLT model. Especially might be good to mention FiftyOne https://docs.voxel51.com/, "which
 provides useful features such as allowing to filter samples by label, video, playlist,
 or by the confidence score of the signer inference." -->
@@ -1173,7 +1175,6 @@ contain parallel sequences of signs and spoken language.
 Available continuous sign corpora are extremely limited, containing 4-6 orders of magnitude fewer sentence pairs than similar corpora for spoken language machine translation [@arivazhagan2019massively].
 Moreover, while automatic speech recognition (ASR) datasets contain up to 50,000 hours of recordings [@pratap2020mls], the most extensive continuous sign language corpus contains only 1,150 hours, and only 50 of them are publicly available [@dataset:hanke-etal-2020-extending].
 These datasets are usually synthesized [@dataset:databases2007volumes;@dataset:Crasborn2008TheCN;@dataset:ko2019neural;@dataset:hanke-etal-2020-extending] or recorded in studio conditions [@dataset:forster2014extensions;@cihan2018neural], which does not account for noise in real-life conditions. Moreover, some contain signed interpretations of spoken language rather than naturally-produced signs, which may not accurately represent native signing since translation is now a part of the discourse event.
-@dataset:reverdy-etal-2024-stk introduce STK LSF, a bilingual French/French Sign Language (LSF) motion capture corpus of approximately one hour signed by a deaf signer covering targeted grammatical phenomena and three children's tales, recorded with a 240 Hz Optitrack system and used to drive a signing avatar for educational tools in the SignToKids project.
 
 
 ###### Availability {-}
