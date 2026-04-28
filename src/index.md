@@ -489,8 +489,9 @@ creating more realistic facial muscle control [@paula:mcdonald2022novel],
 supporting geometric relocations [@paula:filhol2022representation], 
 and exploring multilingual synthesis by reusing AZee descriptions of classifier and depicting constructs across LSF, DGS, and GSL [@paula:mcdonald2024multilingual].
 
-and supporting geometric relocations [@paula:filhol2022representation].
 Complementing avatar-based approaches, @sharma-etal-2024-facial synthesise French Sign Language facial expressions by mapping AZee production rules to FACS action units via FACSHuman blendshapes, enabling reusable, template-based morph animations across avatars.
+
+To validate such avatar technologies with their target audience, @picron-etal-2024-easier describe the EASIER project's deaf-led end-user evaluation methodology, combining sign-language-accessible questionnaires with focus group discussions across five sign languages.
 
 ###### SiMAX [@SiMAX2020SignLanguage] {-}
 
