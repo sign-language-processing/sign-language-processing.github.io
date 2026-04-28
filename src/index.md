@@ -561,6 +561,7 @@ explicitly recognizes the role of phonology to achieve more accurate isolated si
 To allow additional predictions on phonological characteristics (such as handshape), 
 they combine the phonological annotations in ASL-LEX 2.0 [@dataset:sehyr2021asl] with signs in the WLASL 2000 ISLR benchmark [@dataset:li2020word]. 
 Interestingly, @tavella-etal-2022-wlasl construct a similar dataset aiming just for phonological property recognition in American Sign Language (ASL).
+@inoue-etal-2024-enhancing trained a Video-Keypoint Network (VKNet) to classify the location, movement, and handshape syllabic components of the dominant hand in Japanese Sign Language (JSL), and demonstrated that pre-training on the WLASL American Sign Language (ASL) dataset improved classification of the movement and handshape components when JSL training data was limited.
 
 #### Gloss-to-Pose
 Gloss-to-Pose, subsumed under the task of sign language production, is the task of producing a sequence of poses that adequately represent
