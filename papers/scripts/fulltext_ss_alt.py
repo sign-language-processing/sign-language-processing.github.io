@@ -112,16 +112,23 @@ def fetch_alt_links(paper_id: str, session: requests.Session) -> list[dict] | No
         print(f"  ss-alt {paper_id}: request failed: {e}")
         return None
     if resp.status_code == 429:
-        print(f"  ss-alt {paper_id}: 429, backing off 30s")
-        time.sleep(30)
+        print(f"  ss-alt {paper_id}: 429, backing off 60s")
+        time.sleep(60)
+        return None
+    # Permanent client errors → return [] so caller adds to neg cache.
+    if resp.status_code in (404, 410, 422):
+        return []
+    if resp.status_code >= 500:
+        print(f"  ss-alt {paper_id}: server error {resp.status_code}")
         return None
     if resp.status_code != 200:
-        print(f"  ss-alt {paper_id}: status {resp.status_code}")
-        return None
+        print(f"  ss-alt {paper_id}: unexpected status {resp.status_code}, treating as permanent")
+        return []
     try:
         d = resp.json()
-    except Exception:
-        return None
+    except Exception as e:
+        print(f"  ss-alt {paper_id}: json decode failed: {e}")
+        return []
     p = d.get("paper") or {}
     return p.get("alternatePaperLinks") or []
 

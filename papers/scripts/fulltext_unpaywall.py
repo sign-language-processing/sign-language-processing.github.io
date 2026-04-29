@@ -101,6 +101,12 @@ def _download_pdf(url: str, session: requests.Session, dest: Path) -> bool:
 
 
 def fetch_unpaywall(doi: str, session: requests.Session) -> dict | None:
+    """Returns:
+       - dict with paper data on 200
+       - dict with `_unpaywall_status` on permanent client errors (404, 422, 410)
+         (cached so we don't re-call)
+       - None on transient errors (5xx, 429, timeouts) so the caller retries
+    """
     elapsed = time.monotonic() - _last_ts[0]
     if elapsed < MIN_INTERVAL:
         time.sleep(MIN_INTERVAL - elapsed)
@@ -111,15 +117,24 @@ def fetch_unpaywall(doi: str, session: requests.Session) -> dict | None:
     except requests.RequestException as e:
         print(f"  unpaywall {doi}: request failed: {e}")
         return None
-    if resp.status_code == 404:
-        return {"_unpaywall_status": "not_found"}
-    if resp.status_code != 200:
-        print(f"  unpaywall {doi}: status {resp.status_code}")
+    # Permanent client errors → cache so we never retry.
+    if resp.status_code in (404, 410, 422):
+        return {"_unpaywall_status": f"http_{resp.status_code}"}
+    if resp.status_code == 429:
+        print(f"  unpaywall {doi}: 429 rate-limited, sleeping 60s")
+        time.sleep(60)
         return None
+    if resp.status_code >= 500:
+        print(f"  unpaywall {doi}: server error {resp.status_code}")
+        return None
+    if resp.status_code != 200:
+        print(f"  unpaywall {doi}: unexpected status {resp.status_code}, treating as permanent")
+        return {"_unpaywall_status": f"http_{resp.status_code}"}
     try:
         return resp.json()
-    except Exception:
-        return None
+    except Exception as e:
+        print(f"  unpaywall {doi}: json decode failed: {e}")
+        return {"_unpaywall_status": "bad_json"}
 
 
 def pick_pdf(unp: dict) -> str | None:
@@ -151,10 +166,17 @@ def candidates(judge: dict, bib_pids: set, cache: dict) -> list[tuple[str, str]]
         pid = p.stem
         if (FULLTEXT_DIR / f"{pid}.md").exists():
             continue
-        if pid in cache and cache[pid].get("_unpaywall_status") == "not_found":
-            continue  # tried, no luck
-        if pid in cache and cache[pid].get("_tried_pdf"):
-            continue  # tried fetching the PDF and failed
+        cached = cache.get(pid)
+        if cached:
+            # Permanent failures: don't retry.
+            if cached.get("_unpaywall_status"):
+                continue
+            if cached.get("_tried_pdf"):
+                continue
+            # Cached as is_oa=false (closed) — Unpaywall already told us
+            # there's no free PDF. Don't re-call.
+            if cached.get("is_oa") is False:
+                continue
         try:
             meta = json.loads(p.read_text())
         except Exception:
