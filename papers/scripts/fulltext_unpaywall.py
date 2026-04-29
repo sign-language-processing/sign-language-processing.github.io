@@ -77,6 +77,29 @@ def _is_sl(meta: dict, judge: dict, bib_pids: set) -> bool:
 _last_ts = [0.0]
 
 
+def _download_pdf(url: str, session: requests.Session, dest: Path) -> bool:
+    """Download PDF with strict timeout. Returns True on success."""
+    try:
+        with session.get(url, timeout=(10, 60), stream=True, allow_redirects=True) as r:
+            if r.status_code != 200:
+                return False
+            ct = r.headers.get("Content-Type", "").lower()
+            if "pdf" not in ct and not url.lower().endswith(".pdf"):
+                return False
+            written = 0
+            with open(dest, "wb") as f:
+                for chunk in r.iter_content(chunk_size=65536):
+                    if not chunk:
+                        continue
+                    f.write(chunk)
+                    written += len(chunk)
+                    if written > 50_000_000:
+                        return False
+        return True
+    except Exception:
+        return False
+
+
 def fetch_unpaywall(doi: str, session: requests.Session) -> dict | None:
     elapsed = time.monotonic() - _last_ts[0]
     if elapsed < MIN_INTERVAL:
@@ -176,12 +199,20 @@ def main(loop: bool = True, idle_sleep: int = 180) -> None:
                 if i % 30 == 0:
                     _atomic_write_json(UNPAYWALL_CACHE, cache)
                 continue
+            tmp_pdf = FULLTEXT_DIR / f"{pid}.pdf.tmp"
+            if not _download_pdf(pdf, session, tmp_pdf):
+                if tmp_pdf.exists():
+                    tmp_pdf.unlink()
+                cache[pid] = {**unp, "_tried_pdf": True}
+                continue
             try:
-                result = _get_converter().convert(pdf)
+                result = _get_converter().convert(str(tmp_pdf))
             except Exception as e:
                 print(f"[{i}/{len(todo)}] {pid}: docling failed on {pdf[:60]}: {e}")
                 cache[pid] = {**unp, "_tried_pdf": True}
+                tmp_pdf.unlink(missing_ok=True)
                 continue
+            tmp_pdf.unlink(missing_ok=True)
             text = result.document.export_to_markdown().strip() + "\n"
             if len(text) > MAX_CHARS:
                 text = text[:MAX_CHARS] + "\n\n*[truncated to 1 MB]*\n"

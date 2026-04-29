@@ -77,6 +77,29 @@ def _is_sl(meta: dict, judge: dict, bib_pids: set) -> bool:
 _last_ts = [0.0]
 
 
+def _download_pdf(url: str, session: requests.Session, dest: Path) -> bool:
+    """Download PDF to dest with a strict total timeout. Returns True on success."""
+    try:
+        with session.get(url, timeout=(10, 60), stream=True, allow_redirects=True) as r:
+            if r.status_code != 200:
+                return False
+            ct = r.headers.get("Content-Type", "").lower()
+            if "pdf" not in ct and not url.lower().endswith(".pdf"):
+                return False
+            written = 0
+            with open(dest, "wb") as f:
+                for chunk in r.iter_content(chunk_size=65536):
+                    if not chunk:
+                        continue
+                    f.write(chunk)
+                    written += len(chunk)
+                    if written > 50_000_000:  # 50 MB cap
+                        return False
+        return True
+    except Exception as e:
+        return False
+
+
 def fetch_alt_links(paper_id: str, session: requests.Session) -> list[dict] | None:
     elapsed = time.monotonic() - _last_ts[0]
     if elapsed < MIN_INTERVAL:
@@ -180,12 +203,22 @@ def main(loop: bool = True, idle_sleep: int = 120) -> None:
                     _atomic_write_json(SS_NEGATIVE_CACHE, sorted(neg_cache))
                     _atomic_write_json(ALT_LINKS_CACHE, alt_cache)
                 continue
+            # Download with strict timeout, then feed local file to docling
+            tmp_pdf = FULLTEXT_DIR / f"{pid}.pdf.tmp"
+            ok = _download_pdf(pdf_url, session, tmp_pdf)
+            if not ok:
+                if tmp_pdf.exists():
+                    tmp_pdf.unlink()
+                neg_cache.add(pid)
+                continue
             try:
-                result = _get_converter().convert(pdf_url)
+                result = _get_converter().convert(str(tmp_pdf))
             except Exception as e:
                 print(f"[{i}/{len(todo)}] {pid}: docling failed on {pdf_url}: {e}")
                 neg_cache.add(pid)
+                tmp_pdf.unlink(missing_ok=True)
                 continue
+            tmp_pdf.unlink(missing_ok=True)
             text = result.document.export_to_markdown().strip() + "\n"
             if len(text) > MAX_CHARS:
                 text = text[:MAX_CHARS] + "\n\n*[truncated to 1 MB]*\n"
