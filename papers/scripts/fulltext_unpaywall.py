@@ -34,7 +34,7 @@ SEED_PATH = STATE / "seed_bib.json"
 UNPAYWALL_CACHE = STATE / "unpaywall_cache.json"
 
 MAX_CHARS = 1_000_000
-MIN_INTERVAL = 0.3  # seconds between Unpaywall calls (their etiquette: 100k/day soft cap)
+MIN_INTERVAL = 10.0  # seconds between Unpaywall calls — be polite
 EMAIL = os.environ.get("UNPAYWALL_EMAIL", "papers-vault@example.com")
 
 _converter = None

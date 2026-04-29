@@ -34,7 +34,7 @@ ALT_LINKS_CACHE = STATE / "ss_alt_links.json"
 SS_NEGATIVE_CACHE = STATE / "ss_alt_negatives.json"  # papers with no PDF found
 
 MAX_CHARS = 1_000_000
-MIN_INTERVAL = 1.5  # seconds between SS internal API calls
+MIN_INTERVAL = 10.0  # seconds between SS internal API calls — be polite
 SS_BASE = "https://www.semanticscholar.org/api/1/paper"
 
 _converter = None
