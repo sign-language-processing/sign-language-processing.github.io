@@ -123,18 +123,23 @@ def fetch_unpaywall(doi: str, session: requests.Session) -> dict | None:
 
 
 def pick_pdf(unp: dict) -> str | None:
+    """Pick the best URL to try as a PDF source. Trusts Unpaywall's
+    `url_for_pdf` field (which often points at a DOI that redirects to
+    PDF) regardless of the URL string content."""
     if not unp or unp.get("_unpaywall_status") == "not_found":
+        return None
+    if not unp.get("is_oa"):
         return None
     best = unp.get("best_oa_location") or {}
     for key in ("url_for_pdf", "url"):
         u = best.get(key)
-        if u and (u.lower().endswith(".pdf") or "pdf" in u.lower()):
+        if u:
             return u
     # Fall back to scanning all locations.
     for loc in unp.get("oa_locations") or []:
         for key in ("url_for_pdf", "url"):
             u = loc.get(key)
-            if u and (u.lower().endswith(".pdf") or "pdf" in u.lower()):
+            if u:
                 return u
     return None
 
