@@ -159,13 +159,25 @@ def pick_pdf(unp: dict) -> str | None:
     return None
 
 
+def _scihub_tried_and_failed() -> set[str]:
+    """Papers Sci-Hub has examined and didn't produce a fulltext for.
+    Unpaywall only takes papers Sci-Hub has given up on."""
+    p = STATE / "scihub_cache.json"
+    cache = _load_json(p, {})
+    return {pid for pid, v in cache.items() if v.get("_status") != "ok"}
+
+
 def candidates(judge: dict, bib_pids: set, cache: dict) -> list[tuple[str, str]]:
-    """Returns list of (paperId, doi) for SL papers with DOI but no cached full text."""
+    """Returns list of (paperId, doi) for SL papers with DOI but no cached full text.
+    Pipelined: only papers Sci-Hub has tried and failed reach Unpaywall."""
+    upstream_failed = _scihub_tried_and_failed()
     out = []
     for p in sorted(META_DIR.glob("*.json")):
         pid = p.stem
         if (FULLTEXT_DIR / f"{pid}.md").exists():
             continue
+        if pid not in upstream_failed:
+            continue  # wait for Sci-Hub to give up on it first
         cached = cache.get(pid)
         if cached:
             # Permanent failures: don't retry.

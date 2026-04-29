@@ -146,7 +146,15 @@ def fetch_pdf_url(doi: str, session: requests.Session) -> str | None:
     return None
 
 
+def _ss_alt_tried_and_failed() -> set[str]:
+    """Papers SS-alt has examined and didn't produce a fulltext for.
+    Sci-Hub only takes papers SS-alt has given up on."""
+    p = STATE / "ss_alt_negatives.json"
+    return set(_load_json(p, []))
+
+
 def candidates(judge: dict, bib_pids: set, cache: dict) -> list[tuple[str, str]]:
+    upstream_failed = _ss_alt_tried_and_failed()
     out = []
     for p in sorted(META_DIR.glob("*.json")):
         pid = p.stem
@@ -154,6 +162,8 @@ def candidates(judge: dict, bib_pids: set, cache: dict) -> list[tuple[str, str]]
             continue
         if pid in cache:
             continue  # tried (success or permanent fail)
+        if pid not in upstream_failed:
+            continue  # wait for SS-alt to give up on it first
         try:
             meta = json.loads(p.read_text())
         except Exception:
