@@ -7,9 +7,9 @@ Reads:
   state/bib.json           — full bib entries (for rawBibtex preference)
 
 Writes:
-  papers/<id>.md
-  papers/<YYYY>.md         — year stub
-  papers/topics/<slug>.md  — topic stub
+  papers/graph/<id>.md     — one file per SL or ≥10-SL-neighbor paper
+                             (papers/graph/ is gitignored — we ship a
+                             tarball or LFS, not in-tree)
 
 Idempotent — safe to rerun. Always wikilinks every reference/citation,
 even when no node exists yet (we'll filter unresolved later).
@@ -29,7 +29,7 @@ ROOT = Path(__file__).resolve().parent.parent
 STATE = ROOT / "state"
 META_DIR = STATE / "meta"
 EDGES_DIR = STATE / "edges"
-PAPERS_DIR = ROOT
+PAPERS_DIR = ROOT / "graph"
 TOPICS_DIR = ROOT / "topics"
 
 
@@ -302,6 +302,7 @@ def _sl_neighbor_counts(judge: dict[str, bool], paperid_to_bibkey: dict) -> dict
 
 
 def main() -> None:
+    PAPERS_DIR.mkdir(parents=True, exist_ok=True)
     paperid_to_bibkey, bib_entries = _load_bib()
     judge = _judge_cache()
     bib_pid_set = {pid for pid in paperid_to_bibkey}
