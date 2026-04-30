@@ -1,20 +1,26 @@
 """ACL Anthology full-text extractor.
 
-Sibling to fulltext.py — runs only over SL papers that have an ACL
-Anthology id and don't yet have a cached full text. URL pattern:
+For modern ACL/EMNLP/NAACL papers, the PDF lives at
     https://aclanthology.org/<acl-id>.pdf
 
-Writes the same state/fulltext/<paperId>.md format as fulltext.py
-(<!--source:acl--> prefix).
+For older LREC papers (L04..L14), aclanthology.org redirects to the
+HTML page at /<acl-id>/, and the PDF link points at the original
+lrec-conf.org host. We scrape <meta name="citation_pdf_url"> from the
+HTML page and follow.
+
+Browser-like User-Agent throughout — some publishers block bare requests.
 """
 
 from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 import time
 from pathlib import Path
+
+import requests
 
 ROOT = Path(__file__).resolve().parent.parent
 STATE = ROOT / "state"
@@ -25,7 +31,30 @@ SEED_PATH = STATE / "seed_bib.json"
 
 MAX_CHARS = 1_000_000
 
+BROWSER_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept": "application/pdf,text/html;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
+_META_RE = re.compile(r"<meta\b([^>]+)>", re.IGNORECASE)
+_ATTR_RE = re.compile(r'(\w+)=(?:"([^"]*)"|\'([^\']*)\'|([^\s">]+))')
+
+
+def _parse_meta_pdf_url(html: str) -> str | None:
+    """Permissive parser: handles ACL's unquoted attributes + content-first ordering."""
+    for m in _META_RE.finditer(html):
+        attrs = {a[0].lower(): (a[1] or a[2] or a[3])
+                 for a in _ATTR_RE.findall(m.group(1))}
+        if attrs.get("name", "").lower() == "citation_pdf_url":
+            return attrs.get("content")
+    return None
+
 _converter = None
+_session = None
 
 
 def _get_converter():
@@ -36,25 +65,79 @@ def _get_converter():
     return _converter
 
 
+def _get_session() -> requests.Session:
+    global _session
+    if _session is None:
+        _session = requests.Session()
+        _session.headers.update(BROWSER_HEADERS)
+    return _session
+
+
 def _is_sl(meta: dict, judge: dict, bib_pids: set) -> bool:
     pid = meta.get("paperId")
     if pid in judge:
         return judge[pid]
     if pid in bib_pids:
         return True
-    # Fallback to regex if not yet judged.
     sys.path.insert(0, str(ROOT / "scripts"))
     from classify import is_sign_language
     return is_sign_language(meta)
 
 
+def _download_pdf(url: str, dest: Path) -> bool:
+    try:
+        with _get_session().get(url, timeout=(10, 60), stream=True, allow_redirects=True) as r:
+            if r.status_code != 200:
+                return False
+            ct = r.headers.get("Content-Type", "").lower()
+            if "pdf" not in ct and not url.lower().endswith(".pdf"):
+                return False
+            written = 0
+            with open(dest, "wb") as f:
+                for chunk in r.iter_content(chunk_size=65536):
+                    if not chunk:
+                        continue
+                    f.write(chunk)
+                    written += len(chunk)
+                    if written > 50_000_000:
+                        return False
+        return True
+    except Exception:
+        return False
+
+
+def _resolve_pdf_url(acl_id: str) -> str | None:
+    """Try direct .pdf URL first; on 404 fetch HTML page and parse citation_pdf_url."""
+    direct = f"https://aclanthology.org/{acl_id}.pdf"
+    try:
+        r = _get_session().head(direct, timeout=15, allow_redirects=True)
+    except Exception:
+        r = None
+    if r is not None and r.status_code == 200:
+        return direct
+    # Fall back: HTML page
+    page_url = f"https://aclanthology.org/{acl_id}/"
+    try:
+        r = _get_session().get(page_url, timeout=15, allow_redirects=True)
+    except Exception:
+        return None
+    if r.status_code != 200:
+        return None
+    pdf_url = _parse_meta_pdf_url(r.text)
+    if not pdf_url:
+        return None
+    if pdf_url.startswith("//"):
+        return "https:" + pdf_url
+    if pdf_url.startswith("/"):
+        return "https://aclanthology.org" + pdf_url
+    return pdf_url
+
+
 def candidates() -> list[tuple[str, str]]:
-    """Returns list of (paperId, acl_id) for SL papers with ACL id but no cached full text."""
     judge = json.loads(JUDGE_PATH.read_text()) if JUDGE_PATH.exists() else {}
     bib_pids = set()
     if SEED_PATH.exists():
         bib_pids = {v for v in json.loads(SEED_PATH.read_text()).values() if v}
-
     out = []
     for p in sorted(META_DIR.glob("*.json")):
         pid = p.stem
@@ -75,12 +158,23 @@ def candidates() -> list[tuple[str, str]]:
 
 
 def extract_acl(paper_id: str, acl_id: str) -> str | None:
-    url = f"https://aclanthology.org/{acl_id}.pdf"
-    try:
-        result = _get_converter().convert(url)
-    except Exception as e:
-        print(f"  acl {acl_id}: convert failed: {e}")
+    pdf_url = _resolve_pdf_url(acl_id)
+    if not pdf_url:
+        print(f"  acl {acl_id}: no PDF URL discoverable")
         return None
+    tmp_pdf = FULLTEXT_DIR / f"_dl_{paper_id}.pdf.tmp"
+    if not _download_pdf(pdf_url, tmp_pdf):
+        if tmp_pdf.exists():
+            tmp_pdf.unlink()
+        print(f"  acl {acl_id}: download failed: {pdf_url[:80]}")
+        return None
+    try:
+        result = _get_converter().convert(str(tmp_pdf))
+    except Exception as e:
+        print(f"  acl {acl_id}: docling failed: {e}")
+        tmp_pdf.unlink(missing_ok=True)
+        return None
+    tmp_pdf.unlink(missing_ok=True)
     return result.document.export_to_markdown().strip() + "\n"
 
 
@@ -94,7 +188,6 @@ def main(loop: bool = True, idle_sleep: int = 120) -> None:
         if not todo:
             if not loop:
                 break
-            print(f"sleeping {idle_sleep}s")
             time.sleep(idle_sleep)
             continue
         t0 = time.time()

@@ -14,10 +14,13 @@ skip when the cached file already exists.
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
 from pathlib import Path
 from typing import Tuple
+
+import requests
 
 ROOT = Path(__file__).resolve().parent.parent
 STATE = ROOT / "state"
@@ -25,6 +28,52 @@ META_DIR = STATE / "meta"
 FULLTEXT_DIR = STATE / "fulltext"
 
 MAX_CHARS = 1_000_000  # 1 MB cap (PLAN.md)
+
+# Browser-like headers — many publishers (T&F, MDPI, OUP, IndJST, ACM)
+# refuse direct PDF downloads from non-browser User-Agents.
+BROWSER_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept": "application/pdf,text/html;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
+_session = None
+
+
+def _get_session() -> requests.Session:
+    global _session
+    if _session is None:
+        _session = requests.Session()
+        _session.headers.update(BROWSER_HEADERS)
+    return _session
+
+
+def _download_pdf(url: str, dest: Path) -> bool:
+    """Download PDF with browser headers + strict timeout. Returns True on success."""
+    try:
+        with _get_session().get(
+            url, timeout=(10, 60), stream=True, allow_redirects=True
+        ) as r:
+            if r.status_code != 200:
+                return False
+            ct = r.headers.get("Content-Type", "").lower()
+            if "pdf" not in ct and not url.lower().endswith(".pdf"):
+                return False
+            written = 0
+            with open(dest, "wb") as f:
+                for chunk in r.iter_content(chunk_size=65536):
+                    if not chunk:
+                        continue
+                    f.write(chunk)
+                    written += len(chunk)
+                    if written > 50_000_000:
+                        return False
+        return True
+    except Exception:
+        return False
 
 
 def _load_meta(paper_id: str) -> dict | None:
@@ -74,11 +123,20 @@ def from_ar5iv(arxiv_id: str) -> str | None:
 
 
 def from_pdf(pdf_url: str) -> str | None:
-    try:
-        result = _get_converter().convert(pdf_url)
-    except Exception as e:
-        print(f"  pdf {pdf_url}: convert failed: {e}")
+    FULLTEXT_DIR.mkdir(parents=True, exist_ok=True)
+    tmp_pdf = FULLTEXT_DIR / f"_dl_{os.getpid()}.pdf.tmp"
+    if not _download_pdf(pdf_url, tmp_pdf):
+        if tmp_pdf.exists():
+            tmp_pdf.unlink()
+        print(f"  pdf {pdf_url}: download failed (403/404/timeout/non-pdf)")
         return None
+    try:
+        result = _get_converter().convert(str(tmp_pdf))
+    except Exception as e:
+        print(f"  pdf {pdf_url}: docling failed: {e}")
+        tmp_pdf.unlink(missing_ok=True)
+        return None
+    tmp_pdf.unlink(missing_ok=True)
     return result.document.export_to_markdown().strip() + "\n"
 
 
