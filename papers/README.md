@@ -1,98 +1,93 @@
 # Sign-language papers vault
 
-An Obsidian-style vault that tries to capture every sign-language
-processing paper as a single markdown node, with references and
-citations resolved to internal `[[ssid]]` wikilinks. See
+An Obsidian-style vault that captures every sign-language processing
+paper as a single markdown node, with references and citations
+resolved to internal `[[ssid]]` wikilinks. See
 [`PLAN.md`](PLAN.md) for the design.
 
-The actual md files and the API-fetched cache are **not in git** —
-they're shipped as release tarballs (`graph.tar.gz` + `state.tar.gz`).
-Only the scripts, the plan, and this README live in-tree.
+The repo ships **only the source-of-truth state** as a Git-LFS-tracked
+`state.tar.gz`. Users build their own `papers/graph/` (the rendered
+markdown vault) by unpacking the tarball and running the renderer.
+This means the repo stays small, the vault is always built from the
+latest scripts, and contributors who extend the crawl push back a
+fresh `state.tar.gz` on top of the existing one.
 
-## What's in this directory
+## What's in the repo
 
 ```
 papers/
 ├── README.md            ← you are here
 ├── PLAN.md              ← design / data-model / rules
 ├── scripts/             ← build pipeline (committed)
-├── graph/               ← rendered .md vault (gitignored, distributed via tarball)
-└── state/               ← API cache + crawl checkpoints (gitignored, distributed via tarball)
+├── state.tar.gz         ← LFS-tracked snapshot of the API cache
+├── graph/               ← rendered .md vault (gitignored — built locally)
+└── state/               ← unpacked cache (gitignored — built locally)
 ```
 
-`scripts/` is the source of truth — given a fresh `state/`, running
-the pipeline regenerates `graph/` deterministically.
+`state.tar.gz` contains the `meta/` (raw Semantic Scholar metadata),
+`edges/` (refs + citations per expanded paper), `fulltext/` (extracted
+paper bodies), `judge_cache.json` (subagent SL classifications),
+`api_log.jsonl`, and crawl checkpoints (`visited.json`, `frontier.json`).
 
-## Download the vault
+## Quick start
 
-Releases live on the GitHub Releases page for this repo:
-
-> https://github.com/sign-language-processing/sign-language-processing.github.io/releases
-
-Two artifacts per release:
-
-| File | Contents | Approx size |
-|---|---|---|
-| `graph.tar.gz` | rendered md vault (`papers/graph/<ssid>.md`) | ~60 MB |
-| `state.tar.gz` | API cache + checkpoints (lets you resume the crawl) | ~200 MB |
-
-You only need `graph.tar.gz` to read the vault. You need `state.tar.gz`
-*as well* if you want to extend the crawl further.
-
-## Unpacking
-
-From the repo root:
+You need Git LFS, Python 3.10+, and the `requests` + `docling` packages
+(only docling for re-running full-text extraction).
 
 ```bash
-# Read-only: just the rendered vault
-curl -L -o /tmp/graph.tar.gz https://github.com/sign-language-processing/sign-language-processing.github.io/releases/latest/download/graph.tar.gz
-tar -xzf /tmp/graph.tar.gz -C papers/    # writes papers/graph/
+# Clone (LFS pulls state.tar.gz automatically if you have git-lfs).
+git clone https://github.com/sign-language-processing/sign-language-processing.github.io
+cd sign-language-processing.github.io
 
-# Plus the cache (only if you want to continue the crawl)
-curl -L -o /tmp/state.tar.gz https://github.com/sign-language-processing/sign-language-processing.github.io/releases/latest/download/state.tar.gz
-tar -xzf /tmp/state.tar.gz -C papers/    # writes papers/state/
+# If LFS didn't auto-pull:
+git lfs pull
+
+# Unpack the cache (~250 MB compressed, ~800 MB unpacked).
+tar -xzf papers/state.tar.gz -C papers/      # creates papers/state/
+
+# Build the vault (deterministic — pure transform of state/).
+pip install requests docling
+python3 papers/scripts/render.py             # writes papers/graph/<ssid>.md
+
+# Open papers/graph/ in Obsidian: "Open folder as vault".
 ```
-
-After unpacking, `papers/graph/` is the Obsidian vault — point
-Obsidian at it (or any markdown viewer that supports `[[wikilinks]]`).
 
 ## Using the vault in Obsidian
 
-1. Open Obsidian → "Open folder as vault" → select `papers/graph/`.
-2. Each `<ssid>.md` is one paper. Frontmatter holds title / year / doi
-   / arxivId / topics / `isSignLanguage` / `expanded` /
-   `fullTextSource` / `bibtexSource`.
-3. References and citations are rendered as `[[ssid]]` wikilinks.
-   Many will be unresolved (no node) — those are papers we know
-   exist but haven't fetched. Filter or hide unresolved links in
-   Obsidian settings if they bother you.
-4. `[[YYYY]]` per-year tags and `[[topics/<slug>]]` per-topic tags
-   give you free backlink-based indexes without dedicated stub files.
+- Each `<ssid>.md` is one paper. Frontmatter holds title / year / doi /
+  arxivId / topics / `isSignLanguage` / `expanded` / `fullTextSource` /
+  `bibtexSource`.
+- References and citations are rendered as `[[ssid]]` wikilinks. Many
+  will be unresolved (no node) — those are papers we know exist but
+  haven't fetched. Hide unresolved links in Obsidian if they bother you.
+- `[[YYYY]]` per-year tags and `[[topics/<slug>]]` per-topic tags give
+  you free backlink-based indexes without dedicated stub files.
 
 ## Continuing the crawl
 
-Requires Python 3.10+, `requests`, and (for full text) `docling`.
+The crawl is fault-tolerant: kill any script anytime, restart, it picks
+up from `state/visited.json` + the on-disk `meta/` and `edges/`
+directories. State writes are atomic (`.tmp` + rename).
 
 ```bash
-pip install requests docling
 # Optional: free Semantic Scholar API key, raises throttle headroom.
 export SEMANTIC_SCHOLAR_API_KEY=<your key>
 
-# Resume the BFS where it left off. Reads state/, writes state/.
+# Resume the BFS where it left off (drains `frontier.json` until empty).
 python3 papers/scripts/crawl.py
 
-# Bulk full-text extraction — auto-loops, picks up new SL papers
-# discovered by the crawler.
-python3 papers/scripts/run_fulltext_all.py     # ar5iv / openAccessPdf
-python3 papers/scripts/fulltext_acl.py         # ACL Anthology PDFs
+# Bulk full-text extraction — auto-loops, picks up new SL papers as
+# the crawler discovers them. Run them all in parallel; they share
+# the same state/fulltext/ output and don't conflict.
+python3 papers/scripts/run_fulltext_all.py    # ar5iv + openAccessPdf
+python3 papers/scripts/fulltext_acl.py        # ACL Anthology PDFs
+python3 papers/scripts/fulltext_ss_alt.py     # SS internal-API alt links
+python3 papers/scripts/fulltext_scihub.py     # Sci-Hub fallback (DOI)
+UNPAYWALL_EMAIL=you@example.com python3 papers/scripts/fulltext_unpaywall.py
 
 # Re-render after new data arrives.
-python3 papers/scripts/render.py               # writes papers/graph/<ssid>.md
+python3 papers/scripts/render.py              # writes papers/graph/<ssid>.md
 ```
-
-The crawler is fault-tolerant: kill it any time, restart it, it picks
-up from `state/visited.json` + the on-disk `meta/` and `edges/`
-directories. State writes are atomic (`.tmp` + rename).
 
 ## Re-running the SL judge
 
@@ -124,17 +119,19 @@ print(f'wrote {len(out)} candidates')
 "
 ```
 
-Then dispatch a Claude subagent with the prompt described in
-`PLAN.md` over `papers_to_judge.json` to update `judge_cache.json`.
+Then dispatch a Claude / Anthropic subagent with the prompt described
+in `PLAN.md` over `papers_to_judge.json` to update `judge_cache.json`.
 
-## Building a new release artifact
+## Pushing back a refreshed snapshot
 
-After a fresh crawl + render:
+After running the crawl + fetchers + judge to your satisfaction:
 
 ```bash
-tar -czf graph.tar.gz -C papers graph
-tar -czf state.tar.gz -C papers state
-gh release create vYYYY-MM-DD graph.tar.gz state.tar.gz \
-    --title "Vault snapshot YYYY-MM-DD" \
-    --notes "<short description of what's new>"
+tar -czf papers/state.tar.gz -C papers state
+git add papers/state.tar.gz
+git commit -m "papers/state: refresh snapshot YYYY-MM-DD"
+git push
 ```
+
+Git-LFS handles the upload (configured in `.gitattributes` to track
+`papers/state.tar.gz`). Bandwidth/storage uses your account's LFS quota.
