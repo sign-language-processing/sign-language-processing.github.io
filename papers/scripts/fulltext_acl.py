@@ -28,6 +28,7 @@ META_DIR = STATE / "meta"
 FULLTEXT_DIR = STATE / "fulltext"
 JUDGE_PATH = STATE / "judge_cache.json"
 SEED_PATH = STATE / "seed_bib.json"
+ACL_NEG_PATH = STATE / "acl_negatives.json"
 
 MAX_CHARS = 1_000_000
 
@@ -138,11 +139,14 @@ def candidates() -> list[tuple[str, str]]:
     bib_pids = set()
     if SEED_PATH.exists():
         bib_pids = {v for v in json.loads(SEED_PATH.read_text()).values() if v}
+    neg = set(json.loads(ACL_NEG_PATH.read_text())) if ACL_NEG_PATH.exists() else set()
     out = []
     for p in sorted(META_DIR.glob("*.json")):
         pid = p.stem
         if (FULLTEXT_DIR / f"{pid}.md").exists():
             continue
+        if pid in neg:
+            continue  # tried, no PDF discoverable
         try:
             meta = json.loads(p.read_text())
         except Exception:
@@ -180,6 +184,7 @@ def extract_acl(paper_id: str, acl_id: str) -> str | None:
 
 def main(loop: bool = True, idle_sleep: int = 120) -> None:
     FULLTEXT_DIR.mkdir(parents=True, exist_ok=True)
+    neg = set(json.loads(ACL_NEG_PATH.read_text())) if ACL_NEG_PATH.exists() else set()
     rd = 0
     while True:
         rd += 1
@@ -199,6 +204,11 @@ def main(loop: bool = True, idle_sleep: int = 120) -> None:
                 continue
             if not text:
                 print(f"[{i}/{len(todo)}] {pid}: no full text (acl)")
+                neg.add(pid)
+                if i % 5 == 0:
+                    tmp = ACL_NEG_PATH.with_suffix(".tmp")
+                    tmp.write_text(json.dumps(sorted(neg)))
+                    os.replace(tmp, ACL_NEG_PATH)
                 continue
             if len(text) > MAX_CHARS:
                 text = text[:MAX_CHARS] + "\n\n*[truncated to 1 MB]*\n"
@@ -207,6 +217,10 @@ def main(loop: bool = True, idle_sleep: int = 120) -> None:
             os.replace(tmp, FULLTEXT_DIR / f"{pid}.md")
             print(f"[{i}/{len(todo)}] {pid}: wrote {len(text)} chars from acl")
             time.sleep(0.3)
+        # checkpoint negatives at end of each round too
+        tmp = ACL_NEG_PATH.with_suffix(".tmp")
+        tmp.write_text(json.dumps(sorted(neg)))
+        os.replace(tmp, ACL_NEG_PATH)
         print(f"round {rd} done in {time.time() - t0:.1f}s")
         if not loop:
             break
