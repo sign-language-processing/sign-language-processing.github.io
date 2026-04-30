@@ -312,6 +312,14 @@ def main() -> None:
     sl_neighbor_count = _sl_neighbor_counts(judge, paperid_to_bibkey)
     print(f"Computed SL-neighbor counts for {len(sl_neighbor_count)} paperIds")
 
+    # Foundational-paper threshold scales with the SL community size:
+    # a paper survives if it's referenced by >= 0.1% of SL papers.
+    sl_total = sum(1 for path in metas
+                   if _is_sl(json.loads(path.read_text()), judge,
+                             path.stem in bib_pid_set))
+    threshold = max(2, sl_total // 1000)
+    print(f"SL total: {sl_total}; foundational-paper threshold: >= {threshold}")
+
     years: set[int] = set()
     topics_seen: dict[str, str] = {}
     written = 0
@@ -324,7 +332,7 @@ def main() -> None:
         pid = meta["paperId"]
         is_sl = _is_sl(meta, judge, pid in bib_pid_set)
         nbr = sl_neighbor_count.get(pid, 0)
-        keep = is_sl or nbr >= 10
+        keep = is_sl or nbr >= threshold
         target = PAPERS_DIR / f"{pid}.md"
         if not keep:
             if target.exists():
@@ -345,7 +353,7 @@ def main() -> None:
             topics_seen[_slugify(t)] = t
     print(
         f"Wrote {written} ({written_via_sl} SL + {written_via_neighbors} "
-        f"non-SL with >=10 SL neighbors); {len(years)} years, "
+        f"non-SL with >={threshold} SL neighbors); {len(years)} years, "
         f"{len(topics_seen)} topics linked; skipped {skipped}; "
         f"removed {removed} stale md"
     )
