@@ -34,7 +34,7 @@ SEED_PATH = STATE / "seed_bib.json"
 SCIHUB_CACHE = STATE / "scihub_cache.json"
 
 MAX_CHARS = 1_000_000
-MIN_INTERVAL = 10.0  # seconds between sci-hub calls — slow + polite
+MIN_INTERVAL = 1.0  # seconds between sci-hub calls — fast; existing 429 path backs off
 
 # Mirror list, tried in order.
 MIRRORS = [
@@ -119,30 +119,48 @@ def _download_pdf(url: str, session: requests.Session, dest: Path) -> bool:
 
 
 def fetch_pdf_url(doi: str, session: requests.Session) -> str | None:
-    """Try sci-hub mirrors. Returns absolute PDF URL or None."""
+    """Try sci-hub mirrors. Returns absolute PDF URL or None.
+    On 429 / 5xx / DDoS-guard challenge, backs off (60 / 120 / 300s)."""
     for mirror in MIRRORS:
-        _wait()
-        url = f"{mirror}/{doi}"
-        try:
-            resp = session.get(url, timeout=20, allow_redirects=True)
-        except requests.RequestException:
-            continue
-        if resp.status_code in (404, 410):
-            continue  # this mirror doesn't have it
-        if resp.status_code != 200:
-            continue
-        text = resp.text
-        m = PDF_META_RE.search(text)
-        if not m:
-            continue
-        pdf_path = m.group(1)
-        if pdf_path.startswith("//"):
-            return "https:" + pdf_path
-        if pdf_path.startswith("/"):
-            return mirror + pdf_path
-        if pdf_path.startswith("http"):
-            return pdf_path
-        return f"{mirror}/{pdf_path}"
+        for attempt in range(3):
+            _wait()
+            url = f"{mirror}/{doi}"
+            try:
+                resp = session.get(url, timeout=20, allow_redirects=True)
+            except requests.RequestException:
+                break  # try next mirror
+            if resp.status_code == 429:
+                wait = 60 * (attempt + 1)
+                print(f"  scihub 429 from {mirror}, sleeping {wait}s")
+                time.sleep(wait)
+                continue
+            if resp.status_code >= 500:
+                wait = 30 * (attempt + 1)
+                print(f"  scihub {resp.status_code} from {mirror}, sleeping {wait}s")
+                time.sleep(wait)
+                continue
+            if resp.status_code in (404, 410):
+                break  # mirror doesn't have it; try next mirror
+            if resp.status_code != 200:
+                break
+            text = resp.text
+            # DDoS-guard challenge page (no PDF meta tag yet)
+            if "challenge" in text[:500].lower() or "DDoS" in text[:500]:
+                wait = 60 * (attempt + 1)
+                print(f"  scihub DDoS-guard challenge from {mirror}, sleeping {wait}s")
+                time.sleep(wait)
+                continue
+            m = PDF_META_RE.search(text)
+            if not m:
+                break  # parsable page but no PDF link; mirror gave up, try next
+            pdf_path = m.group(1)
+            if pdf_path.startswith("//"):
+                return "https:" + pdf_path
+            if pdf_path.startswith("/"):
+                return mirror + pdf_path
+            if pdf_path.startswith("http"):
+                return pdf_path
+            return f"{mirror}/{pdf_path}"
     return None
 
 
