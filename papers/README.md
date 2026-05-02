@@ -42,7 +42,7 @@ cd sign-language-processing.github.io
 # If LFS didn't auto-pull:
 git lfs pull
 
-# Unpack the cache (~250 MB compressed, ~800 MB unpacked).
+# Unpack the cache (~404 MB compressed, ~1.6 GB unpacked).
 tar -xzf papers/state.tar.gz -C papers/      # creates papers/state/
 
 # Build the vault (deterministic — pure transform of state/).
