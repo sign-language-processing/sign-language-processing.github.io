@@ -1,0 +1,4 @@
+state/
+graph/
+__pycache__/
+papers_to_judge.json
