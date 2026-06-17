@@ -7,8 +7,8 @@
     --rylo-orange: #ff8b2b;
     --rylo-orange-shade: #e07826;
     --rylo-sky: #a9c2d7;
-    --rylo-card: #eee7e1;
-    --rylo-border: rgba(25, 20, 18, 0.1);
+    --rylo-dark-rgb: 25, 20, 18;
+    --rylo-border: rgba(var(--rylo-dark-rgb), 0.1);
     --rylo-radius: 16px;
 
     --bs-body-bg: var(--rylo-cream);
@@ -23,14 +23,7 @@
     --bs-nav-pills-link-active-color: #fff;
 }
 
-body {
-    background-color: var(--rylo-cream);
-    color: var(--rylo-dark);
-    font-family: var(--bs-body-font-family);
-}
-
 h1, h2, h3, h4, h5, h6, .rylo-navbar-title {
-    font-family: var(--bs-body-font-family);
     letter-spacing: -0.02em;
 }
 
@@ -168,7 +161,7 @@ iframe {
 }
 
 #navbar .nav-link {
-    color: rgba(25, 20, 18, 0.7);
+    color: rgba(var(--rylo-dark-rgb), 0.7);
     border-radius: 8px;
 }
 
