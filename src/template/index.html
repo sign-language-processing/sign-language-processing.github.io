@@ -5,9 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Served behind the rylo.com reverse proxy at /sign/research/; the base
+         keeps every relative asset and link resolving under that prefix
+         regardless of trailing slash. -->
+    <base href="/sign/research/">
     <meta name="generator" content="pandoc">
 
     <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+
+    <link rel="canonical" href="https://rylo.com/sign/research/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Rylo">
+    <meta property="og:title" content="$pagetitle$">
+    <meta property="og:url" content="https://rylo.com/sign/research/">
+    <meta property="og:description" content="Sign Language Processing (SLP) is a field of artificial intelligence concerned with the automatic processing and analysis of sign language content. This project organizes the sign language processing literature, datasets, and tasks.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="$pagetitle$">
+    <meta name="twitter:description" content="An organized overview of the sign language processing literature, datasets, and tasks.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     $for(author-meta)$
     <meta name="author" content="$author-meta$">
@@ -42,9 +61,15 @@
 
 <body>
     $for(include-before)$$include-before$$endfor$
-    <header class="navbar sticky-top navbar-dark bg-dark bd-navbar">
+    <header class="navbar sticky-top rylo-navbar">
         <div class="container-fluid">
-            <a class="navbar-brand mb-0 h1" href="#">$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</a>
+            <span class="rylo-navbar-brand">
+                <a class="rylo-logo" href="https://rylo.com" aria-label="Rylo">
+                    <img src="assets/rylo-logo.svg" alt="Rylo" height="22">
+                </a>
+                <span class="rylo-navbar-divider" aria-hidden="true"></span>
+                <a class="rylo-navbar-title" href="#">$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</a>
+            </span>
 
             <span class="navbar-text">
                 <a class="github-button" href="https://github.com/sign-language-processing/sign-language-processing.github.io" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star sign-language-processing/sign-language-processing.github.io on GitHub">Star</a>
