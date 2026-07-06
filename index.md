@@ -21,8 +21,8 @@ abstract: |
 
 ```{=html}
 <p style="text-align: center;overflow:visible">
-<iframe src="https://sign.mt/?embed=&spl=en&sil=ase&text=Hello%20world!" allow="camera;microphone" title="sign.mt translation demo"></iframe>
-Try <a href="https://sign.mt">sign translate</a> to experience state-of-the art-sign language translation technology.
+<iframe src="https://rylo.com/sign/translate/?embed=&spl=en&sil=ase&text=Hello%20world!" allow="camera;microphone" title="Rylo sign language translation demo"></iframe>
+Try <a href="https://rylo.com/sign/translate/">sign translate</a> to experience state-of-the art-sign language translation technology.
 </p>
 ```
 
@@ -119,6 +119,7 @@ Signed languages use multiple visual cues to convey different information simult
 For example, the signer may produce the sign for "cup" on one hand while simultaneously pointing to the actual cup with the other to express "that cup."
 Similarly to tone in spoken languages, the face and torso can convey additional affective information [@liddell2003grammar;@johnston2007australian].
 Facial expressions can modify adjectives, adverbs, and verbs; a head shake can negate a phrase or sentence; eye direction can help indicate referents.
+@kimmelman-etal-2024-headshakes apply OpenFace to corpus data from Sign Language of the Netherlands, showing that the linguistic function of a headshake (lexical, morphological, or prosodic) systematically affects its phonetic properties such as amplitude and peak velocity.
 
 ###### Referencing {-}
 The signer can introduce referents in discourse either by pointing to their actual locations in space or by assigning a region in the signing space to a non-present referent and by pointing to this region to refer to it [@rathmann2011featural;@schembri2018indicating].
@@ -191,10 +192,15 @@ As a result, estimating pose from videos has become the preferred method in rece
 Compared to video representations, accurate skeletal poses have a lower complexity and provide a semi-anonymized representation of the human body, while observing relatively low information loss. 
 However, they remain a continuous, multidimensional representation that is not adapted to most NLP models.
 
+###### Radar Sensing {-}
+captures 3D articulator motion through electromagnetic returns rather than visual frames, recording only kinematic parameters and thus inherently protecting signer identity.
+@malaia-etal-2024-capturing argue that radar can capture sign language motion at high spatial and temporal resolution, preserving depth information lost in 2D video as a non-intrusive alternative to motion capture.
+
 ###### Written notation systems {-}
 represent signs as discrete visual features. Some systems are written linearly, and others use graphemes in two dimensions.
 While various universal [@writing:sutton1990lessons;@writing:prillwitz1990hamburg] and language-specific notation systems [@writing:stokoe1960sign;@writing:kakumasu1968urubu;@writing:bergman1977tecknad] have been proposed,
 no writing system has been adopted widely by any sign language community, and the lack of standards hinders the exchange and unification of resources and applications between projects.
+AZVD [@filhol-von-ascheberg-2024-software] is a graphical sign language representation system that combines 2D symbols based on observed spontaneous productions with AZee expression mappings to keep diagrams synthesizable through avatar rendering.
 The figure above depicts two universal notation systems:
 SignWriting [@writing:sutton1990lessons], a two-dimensional pictographic system,
 and HamNoSys [@writing:prillwitz1990hamburg], a linear stream of graphemes designed to be machine-readable.
@@ -217,6 +223,8 @@ If BLEU [@papineni-etal-2002-bleu] is used, compute it with SacreBLEU [@post-201
 Do not compare to scores produced with a different or unknown evaluation procedure.
 - Given that glossing is corpus-specific, process glosses in a corpus-specific way, informed by transcription conventions.
 - Optimize gloss translation baselines with methods shown to be effective for low-resource MT.
+
+@borstell-2024-approach surveyed methods for measuring lexical frequency and variation in gloss-annotated sign language corpora, illustrating with Swedish Sign Language (STS) Corpus data how raw counts, relative frequencies, weighted log odds, and signer coverage each reveal different aspects of sociolinguistic variation while being shaped by Zipfian skew, elicitation topics, and annotation conventions.
 
 
 The following table additionally exemplifies the various representations for more isolated signs.
@@ -311,6 +319,8 @@ leveraging a spatio-temporal graph convolutional network (ST-GCN; @Yu2017SpatioT
 encoding subtitles by BERT [@devlin-etal-2019-bert] and videos by CNN video representations.
 
 @segmentation:moryossef-etal-2023-linguistically presented a method motivated by linguistic cues observed in sign language corpora, such as prosody (pauses, pace, etc) and handshape changes. They also find that using BIO, an annotation scheme that notes the beginning, inside and outside, makes a significant difference over previous ones that only note IO (inside or outside). They find that including optical flow and 3D hand normalization helps with out-of-domain generalization and other signed languages as well. 
+
+@borstell-2024-evaluating evaluated three approaches to segmenting the Swedish Sign Language (STS) Corpus into utterance units---prosodic, syntactic, and translation-based---and found low alignment between them as well as no clear correspondence between utterance boundaries and articulatory features of the hands and head extracted with MediaPipe.
 
 <!-- @segmentation:de-sisto-etal-2021-defining introduce a proposal for mapping segments to meaning in the form of an agglomerate of lexical and non-lexical information. -->
 
@@ -437,6 +447,9 @@ retaining the original sign language content.
 Using a conditional variational autoencoder framework, they first extracted pose information from the source video to remove the original signer appearance,
 then generated a photo-realistic sign language video of a novel appearance from the pose sequence. 
 The authors proposed a novel style loss that ensures style consistency in the anonymized sign language videos. 
+Extending this line of work, @xia-etal-2024-diffusion proposed DiffSLVA, which leverages pre-trained large-scale text-guided latent diffusion models with ControlNet conditioned on Holistically-Nested Edge (HED) maps to circumvent the need for accurate pose estimation, and adds a dedicated facial expression enhancement module to preserve linguistically essential non-manual features.
+
+@battisti2024PersonIdentificationPose questioned the assumption that pose estimates yield anonymized data, conducting a perception study with Swiss German Sign Language (DSGS) users and showing that both human raters and an automatic SVM classifier could identify familiar signers and language levels from pose sequences alone.
 
 ##### Sign Language Avatars
 
@@ -481,7 +494,12 @@ Additional improvements to PAULA focus on making the avatar more lifelike by rel
 refining hand shape transition, relaxation, and collision [@paula:baowidan2021improving], 
 implementing hierarchical phrase transitions [@paula:mcdonald2021natural], 
 creating more realistic facial muscle control [@paula:mcdonald2022novel], 
-and supporting geometric relocations [@paula:filhol2022representation].
+supporting geometric relocations [@paula:filhol2022representation], 
+and exploring multilingual synthesis by reusing AZee descriptions of classifier and depicting constructs across LSF, DGS, and GSL [@paula:mcdonald2024multilingual].
+
+Complementing avatar-based approaches, @sharma-etal-2024-facial synthesise French Sign Language facial expressions by mapping AZee production rules to FACS action units via FACSHuman blendshapes, enabling reusable, template-based morph animations across avatars.
+
+To validate such avatar technologies with their target audience, @picron-etal-2024-easier describe the EASIER project's deaf-led end-user evaluation methodology, combining sign-language-accessible questionnaires with focus group discussions across five sign languages.
 
 ###### SiMAX [@SiMAX2020SignLanguage] {-}
 
@@ -548,6 +566,7 @@ Additionally, they propose a two-stream framework to fuse static and dynamic inf
 The model demonstrates competitive performance cpmpared to video-to-gloss methods on the RWTH-PHOENIX-Weather-2014 [@koller2015ContinuousSLR], RWTH-PHOENIX-Weather-2014T [@cihan2018neural] and CSL-Daily [@dataset:Zhou2021_SignBackTranslation_CSLDaily] datasets.
 
 @dafnis2022bidirectional work on the same modified WLASL dataset as @jiang2021sign, but do not require multimodal data input. Instead, they propose a bidirectional skeleton-based graph convolutional network framework with linguistically motivated parameters and attention to the start and end frames of signs. They cooperatively use forward and backward data streams, including various sub-streams, as input. They also use pre-training to leverage transfer learning.
+@zhou-etal-2024-multimodal extend this bidirectional ST-GCN approach with a per-channel Gating module that filters out non-informative frames and an auxiliary multimodal transformer branch fusing skeleton and handshape features for temporal localization of sign start and end frames, improving over prior bidirectional ST-GCN baselines on combined WLASL, ASLLVD, RIT, and DSP citation-form datasets.
 
 @selvaraj-etal-2022-openhands introduced an open-source [OpenHands](https://github.com/AI4Bharat/OpenHands) library, 
 which consists of standardized pose datasets for different existing sign language datasets and trained checkpoints 
@@ -561,6 +580,9 @@ explicitly recognizes the role of phonology to achieve more accurate isolated si
 To allow additional predictions on phonological characteristics (such as handshape), 
 they combine the phonological annotations in ASL-LEX 2.0 [@dataset:sehyr2021asl] with signs in the WLASL 2000 ISLR benchmark [@dataset:li2020word]. 
 Interestingly, @tavella-etal-2022-wlasl construct a similar dataset aiming just for phonological property recognition in American Sign Language (ASL).
+@inoue-etal-2024-enhancing trained a Video-Keypoint Network (VKNet) to classify the location, movement, and handshape syllabic components of the dominant hand in Japanese Sign Language (JSL), and demonstrated that pre-training on the WLASL American Sign Language (ASL) dataset improved classification of the movement and handshape components when JSL training data was limited.
+
+@roh-etal-2024-preprocessing focus on preprocessing MediaPipe keypoints for isolated SLR by introducing palm-anchor-based normalization to emphasize hand shape and bilinear interpolation to reconstruct undetected hand keypoints, achieving the highest accuracy on WLASL-100 with a Transformer encoder among pose-based approaches at the time.
 
 #### Gloss-to-Pose
 Gloss-to-Pose, subsumed under the task of sign language production, is the task of producing a sequence of poses that adequately represent
@@ -716,6 +738,8 @@ complexity of the model.
 Testing their model on the RWTH-PHOENIX-Weather-2014T [@cihan2018neural], 
 they demonstrated that injecting this additional information results in better translation quality. 
 
+@miyazaki-etal-2024-sign propose Gloss Pair Encoding (GPE), a BPE-inspired tokenization that merges frequent gloss pairs into single tokens to better match granularity between spoken and signed languages, and show that combining GPE-augmented data with the original training data improves text-to-gloss translation on a Japanese-JSL corpus.
+
 ---
 
 #### Video-to-Text
@@ -785,6 +809,8 @@ They find that while pretraining with blurring hurts performance, some can be re
 SSVP-SLT achieves state-of-the-art performance on How2Sign [@dataset:duarte2020how2sign].
 They conclude that SLT models can be pretrained in a privacy-aware manner without sacrificing too much performance.
 Additionally, the authors release DailyMoth-70h, a new 70-hour ASL dataset from [The Daily Moth](https://www.dailymoth.com/).
+
+@tan-etal-2024-seda extend this sign language transformer with SEDA, a data augmentation framework that augments sign features through multiple sign embeddings and augments spoken text via lemmatization, achieving competitive WER, BLEU, and ROUGE on RWTH-PHOENIX-Weather-2014T.
 
 #### Text-to-Video
 Text-to-Video, also known as sign language production, is the task of producing a video that adequately represents
@@ -874,6 +900,8 @@ and use it to predict the length of the pose sequence to be generated.
 Then, starting from a still frame they used an iterative non-autoregressive decoder to gradually refine the sign over $T$ steps,
 In each time step $t$ from $T$ to $1$, the model predicts the required change from step $t$ to step $t-1$. After $T$ steps, the pose generator outputs the final pose sequence.
 Their model outperformed previous methods like @saunders2020progressive, animating HamNoSys into more realistic sign language sequences.
+
+@uchida-etal-2024-hamnosys proposed a HamNoSys-based motion editing method for Japanese Sign Language that edits handshape, hand orientation, and location of pre-recorded motion-capture data via FABRIK inverse kinematics and a wrist-offset technique to reproduce contextual modifications such as classifier predicates without additional motion-capture recordings.
 
 #### Evaluation Metrics
 
@@ -1019,6 +1047,8 @@ Looking through this dataset, we note that the videos in the dataset were taken 
 This context relates to language modeling, where at first, one fingerspells a word carefully, and when repeating it, might fingerspell it rapidly, 
 but the interlocutors can infer they are fingerspelling the same word.
 
+@khan-etal-2024-investigating investigated isolated Irish Sign Language (ISL) fingerspelling recognition by converting clips from the ISL-HS hand-shape dataset into Motion History Images and training several pretrained CNN architectures (DenseNet, ResNet, Xception, and Inception variants) on the resulting frames, with DenseNet-121 achieving the highest classification accuracy of 90.38%.
+
 #### Production
 
 Fingerspelling production, a sub-task of sign language production, is the task of producing a fingerspelling video for words.
@@ -1057,6 +1087,18 @@ The authors validate their pre-training method on isolated sign recognition (ISR
 Besides pose-to-gloss, they also experiment with video-to-gloss tasks via fusion with I3D [@carreira2017quo].
 Results on these datasets demonstrate state-of-the-art performance compared to previous methods and are comparable to those of SignBERT+ [@hu2023SignBertPlus].
 
+@malmberg-etal-2024-exploring train a VQ-VAE on pose-tracked Swedish Sign Language data to learn a codebook of motion primitives, comparing models trained on isolated signs, sentences, and a mixed set, and find that the sentence-trained model best reconstructs in-the-wild YouTube signing whose velocity profile is markedly faster than dictionary data.
+
+### Linguistic Analysis
+
+This sub-area covers experimental studies of sign language structure that use computational tools (corpus mining, computer-vision-assisted measurement, statistical modelling) to characterize specific linguistic phenomena, rather than to introduce new SLP methods.
+
+@gavrilescu-etal-2024-content compared corpus, elicitation, and fieldwork methods across Greek, French, and Swedish Sign Languages to characterize the distribution of wh-signs and their non-manual markers.
+
+@martinez-guevara-curiel-2024-quantitative analyse hand locations across BSL, NGT, and LSM and find that signers organize the signing space into a Zipfian spatial hierarchy, concentrating articulation in cohesive regions more systematically than non-linguistic gesturers.
+
+@sahin-gokgoz-2024-decoding introduce SL-FE, a framework that derives continuous phonological feature signals from pose estimation, enabling automated ELAN annotation as well as quantitative tests of theoretical phonological claims on Turkish Sign Language (TID).
+
 ## Annotation Tools
 
 ##### ELAN - EUDICO Linguistic Annotator
@@ -1068,6 +1110,10 @@ An annotation can either be time-aligned to the media or refer to other existing
 The content of annotations consists of Unicode text, and annotation documents are stored in an XML format (EAF).
 ELAN is open source ([GPLv3](https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3)), and installation is [available](https://archive.mpi.nl/tla/elan/download) for Windows, macOS, and Linux.
 PyMPI [@pympi-1.69] allows for simple python interaction with Elan files.
+@bono-etal-2024-data extended ELAN-based transcription to videoconferencing dialogues by integrating per-participant latency tracks computed via cross-correlation of synchronised local recordings, enabling qualitative Conversation Analysis of greetings and turn-taking under network delay.
+@esselink-etal-2024-evaluating evaluated inter-annotator agreement for non-manual markers in Sign Language of the Netherlands using complementary event-based and frame-based approaches on ELAN annotations, reporting low Cohen's kappa scores on several tiers and proposing concrete revisions to the annotation guidelines.
+@kimmelman-etal-2024-nonmanual combine ELAN annotations with OpenFace-based head pose estimation to show that Balinese homesigners and their hearing interlocutors consistently mark polar questions with downward head pitch and other question types with upward pitch, demonstrating how computer vision tools can quantitatively support linguistic analysis of non-manual markers.
+@martinod-filhol-2024-formal performed a corpus-based AZee analysis of French Sign Language (LSF) and found that chin advancement, rather than eyebrow position, is the consistent marker of information requests, challenging the widely reported open- vs. closed-question eyebrow contrast.
 
 ##### iLex
 [iLex](https://www.sign-lang.uni-hamburg.de/ilex/) [@hanke2002ilex] is a tool for sign language lexicography and corpus analysis, 
@@ -1088,6 +1134,12 @@ Some special features are cross-level links, non-temporal objects, timepoint tra
 3D viewing of motion capture data and a project tool for managing whole corpora of annotation files.
 Anvil installation is [available](http://www.anvil-software.de/download/index.html) for Windows, macOS, and Linux.
 
+##### Other {-}
+
+- @filhol-von-ascheberg-2024-software introduced a web-based software editor for AZVD diagrams that produces AZee output for avatar rendering.
+- @otterspeer-etal-2024-signcollect introduce SignCollect, a "touchless" multi-view recording pipeline using MediaPipe gesture recognition to let a lone signer capture lexical entries and publish them to Global Signbank without assisting staff.
+- @battisti-etal-2024-advancing presented a transcription and annotation scheme for continuous L1 and L2 data in Swiss German Sign Language (DSGS), introducing conventions for non-manual components and L2 learner errors, and outlined an initial inter-annotator agreement validation approach.
+
 ## Resources
 
 ###### Dataset Papers
@@ -1095,6 +1147,30 @@ Anvil installation is [available](http://www.anvil-software.de/download/index.ht
 Research papers which do not necessarily contribute new theory or architectures are actually important and useful enablers of other research. Furthermore, the advancement of the dataset creation process itself is important, and the pipeline of creation and curation is a potential target for improvements and advancements.
 
 @dataset:joshi-etal-2023-isltranslate introduce ISLTranslate, a large translation dataset for Indian Sign Language based on publicly available educational videos intended for hard-of-hearing children, which happen to contain both Indian Sign Language and English audio voiceover conveying the same content. They use a speech-to-text model to transcribe the audio content, which they later manually corrected with the help of accompanying books also containing the same content. They also use MediaPipe to extract pose features, and have a certified ISL signer validate a small portion of the sign-text pairs. They provide a baseline based on the architecture proposed in @camgoz2020sign, and provide code.
+
+@dataset:halbout-etal-2024-matignon presented Matignon-LSF, an open 39-hour corpus of live-interpreted Langue des Signes Française (LSF) compiled from weekly French government Council of Ministers debriefings, comprising 67 videos with aligned French audio, subtitles, and pre-computed I3D features.
+
+@imashev-etal-2024-retrospective presented a decade-long retrospective of the Kazakh-Russian Sign Language (K-RSL) corpus, describing the progressive collection of healthcare videos and images, six-emotion sentences, phonological minimal pairs, statements and polar and content questions, and the K-RSL-173 sentence subset.
+
+@hall-etal-2024-phonological digitized and phonologically transcribed the Canadian Dictionary of ASL using the Sign Language Phonetic Annotator-Analyzer software, producing a searchable resource that captured handshape, movement, location, and relation parameters for roughly 2000 signs to enable phonologically based queries that paper-based dictionaries cannot support.
+
+The Public DGS Corpus also saw multiple SignLang 2024 contributions: @konrad-etal-2024-corpus describe its fourth release, expanding it to 52.4 hours, adding a new iLex-based portal alongside MY DGS, MY DGS – annotated and MY DGS – ANNIS, and providing additional MediaPipe and Apple Vision Framework pose representations including 3D keypoint estimates; @isard-2024-building introduced a web-based Query Wizard that guided users through the construction of valid ANNIS Query Language expressions over the corpus by composing context-sensitive blocks for annotation tiers, metadata, and inter-tier connections; and @langer-etal-2024-introducing introduce the DW-DGS, the first corpus-based digital dictionary of German Sign Language, providing 1876 entries grounded in the DGS Corpus with senses, authentic example clips, regional distribution maps, and synonym/antonym cross-references via thumbnail "micons" instead of glosses.
+
+@klomp-etal-2024-extension describe an ongoing extension of the Sign Language of the Netherlands (NGT) dataset in Global Signbank, aiming to add approximately 11,000 new glosses, 3,000 example sentences, multi-angle videos with non-manual expressions, phonological annotations, and motion capture data to support both linguistic research and automatic recognition.
+
+@mesch-etal-2024-swedish surveyed 249 users of the Swedish Sign Language Dictionary and STS-korpus, finding that while the dictionary is widely used, most users are unaware of the reciprocal links between the dictionary and the corpus, highlighting the importance of evaluating such resources from a user's perspective.
+
+@schulder-etal-2024-signs continue development of the Multilingual Sign Language Wordnet (MSL-WN), which links signs from eight sign languages (BSL, DGS, DSGS, GSL, LSF, NGT, PJM, STS) to Open Multilingual Wordnet synsets and introduces a synonymity-based annotation feature that leverages partial synonymy between signs to suggest cross-lingual sign-synset connections.
+
+@vazquez-enriquez-etal-2024-signamed present SignaMed, a domain-specific bilingual LSE-Spanish dictionary for healthcare that supports webcam-based sign lookup via an isolated sign recognition model and grows iteratively through curated Deaf-community sign donations.
+
+@de-quadros-etal-2024-signbank present Signbank 2.0, an open-source, corpus-linked sign documentation platform with linguistic and visual search (e.g., a handshape-similarity scroller) that links each sign entry to its EAF-aligned occurrences in the underlying corpus, currently deployed for Libras with planned support for IntSL, DGS, MJNY, and ÖGS.
+
+@ranum-etal-2024-3d introduce 3D-LEX v1.0, a 3D-motion-capture lexicon of 1,000 isolated signs each in ASL and NGT (combining Vicon body pose, StretchSense glove handshapes, and Live Link Face features) and use it to derive semi-automatic handshape annotations that match expert labels on a WLASL ISLR benchmark.
+
+@dataset:reverdy-etal-2024-stk introduce STK LSF, a one-hour bilingual French / French Sign Language (LSF) motion-capture corpus signed by a deaf signer covering targeted grammatical phenomena and three children's tales, used to drive a signing avatar for the SignToKids project.
+
+@lascar-etal-2024-annotation build a bilingual LSF/French lexicon from the subtitled Mediapi-RGB corpus without any pre-existing dictionary, combining weakly-supervised sign spotting with expert review and a supervised MLP classifier on Video Swin Transformer features to automatically annotate lexical units in continuous video.
 
 <!-- <span style="background-color: red; color: white; padding: 0 2px !important;">**TODO**</span>: LSA-T aka dataset:dal2022lsa, they use AlphaPose "with the Halpe full-body keypoints format", a visualizer tool, and a baseline SLT model. Especially might be good to mention FiftyOne https://docs.voxel51.com/, "which
 provides useful features such as allowing to filter samples by label, video, playlist,
@@ -1147,6 +1223,7 @@ Therefore, data collection often requires significant efforts and costs of on-si
 
 ###### Automating Annotation {-}
 One helpful research direction for collecting more data that enables the development of deployable SLP models is creating tools that can simplify or automate parts of the collection and annotation process. One of the most significant bottlenecks in obtaining more adequate signed language data is the time and scarcity of experts required to perform annotation. Therefore, tools that perform automatic parsing, detection of frame boundaries, extraction of articulatory features, suggestions for lexical annotations, and allow parts of the annotation process to be crowdsourced to non-experts, to name a few, have a high potential to facilitate and accelerate the availability of good data.
+Targeting prosodic non-manual annotation specifically, @susman-kimmelman-2024-eye trained a CNN classifier of eye openness (open, in-between, closed) on French Sign Language data and combined it with rule-based temporal aggregation to detect linguistically defined eye blinks, outperforming an Eye Aspect Ratio (EAR) baseline computed from MediaPipe landmarks.
 
 ### Practice Deaf Collaboration
 
@@ -1156,11 +1233,12 @@ Researchers in SLP should acknowledge that signed languages belong to the Deaf c
 ###### Solving Real Needs {-}
 
 Many efforts in SLP have developed intrusive methods (e.g., requiring signers to wear special gloves), which are often rejected by signing communities and therefore have limited real-world value.
-Such efforts are often marketed to perform "sign language translation" when they, in fact, only identify fingerspelling or recognize a minimal set of isolated signs at best. These approaches oversimplify the rich grammar of signed languages, promote the misconception that signs are solely expressed through the hands, and are considered by the Deaf community as a manifestation of audism, where it is the signers who must make the extra effort to wear additional sensors to be understood by non-signers [@erard2017sign]. To avoid such mistakes, we encourage close Deaf involvement throughout the research process to ensure that we direct our efforts toward applications that will be adopted by signers and do not make false assumptions about signed languages or the needs of signing communities.
+Such efforts are often marketed to perform "sign language translation" when they, in fact, only identify fingerspelling or recognize a minimal set of isolated signs at best. These approaches oversimplify the rich grammar of signed languages, promote the misconception that signs are solely expressed through the hands, and are considered by the Deaf community as a manifestation of audism, where it is the signers who must make the extra effort to wear additional sensors to be understood by non-signers [@erard2017sign]. Reviewing a decade of deep-learning sign language papers, @kim-etal-2024-shedding similarly argue that linguistically important phenomena such as role-shifting, depicting signs, topicalization, rhythm, and pragmatics remain underexplored, leaving a disconnect between research outputs and the actual sign language used by signers. To avoid such mistakes, we encourage close Deaf involvement throughout the research process to ensure that we direct our efforts toward applications that will be adopted by signers and do not make false assumptions about signed languages or the needs of signing communities.
 
 ###### Building Collaboration {-}
 Deaf collaborations and leadership are essential for developing signed language technologies to ensure they address the community's needs and will be adopted, not relying on misconceptions or inaccuracies about signed language [@harris2009research;@kusters2017innovations].
-Hearing researchers cannot relate to the deaf experience or fully understand the context in which the tools being developed would be used, nor can they speak for the deaf. Therefore, we encourage creating a long-term collaborative environment between signed language researchers and users so that deaf users can identify meaningful challenges and provide insights on the considerations to take while researchers cater to the signers' needs as the field evolves. We also recommend reaching out to signing communities for reviewing papers on signed languages to ensure an adequate evaluation of this type of research results published at academic venues. There are several ways to connect with Deaf communities for collaboration: one can seek deaf students in their local community, reach out to schools for the deaf, contact deaf linguists, join a network of researchers of sign-related technologies\footnote{\url{https://www.crest-network.com/}}, and/or participate in deaf-led projects.
+Hearing researchers cannot relate to the deaf experience or fully understand the context in which the tools being developed would be used, nor can they speak for the deaf. Therefore, we encourage creating a long-term collaborative environment between signed language researchers and users so that deaf users can identify meaningful challenges and provide insights on the considerations to take while researchers cater to the signers' needs as the field evolves. We also recommend reaching out to signing communities for reviewing papers on signed languages to ensure an adequate evaluation of this type of research results published at academic venues.
+@desai-etal-2024-systemic systematically reviewed 101 recent sign language artificial intelligence (AI) papers and argued that the field lacks intentionality, calling for hearing researchers to transition from setting research agendas to supporting Deaf-led leadership, adopting positionality statements, and re-centering work around problems prioritized by Deaf stakeholders. There are several ways to connect with Deaf communities for collaboration: one can seek deaf students in their local community, reach out to schools for the deaf, contact deaf linguists, join a network of researchers of sign-related technologies\footnote{\url{https://www.crest-network.com/}}, and/or participate in deaf-led projects.
 
 
 ### Downloading
@@ -1300,6 +1378,7 @@ Emailed Eleni and Evita; I need to make sure data is available.
 ## Other Resources
 
 - iReviews had compiled a list of [Top Resources for Learning (American) Sign Language](https://www.ireviews.com/sign-language-resources)
+- @rathmann-etal-2024-visuolab present [VisuoLab](https://visuolab.levantelab.com.br/), an open-source multilingual, multimodal, and multifunctional platform built around sign-language-first interfaces for producing video-books and didactic materials, indexing sign language content, and supporting collaborative learning, assessment, and translation/interpretation training.
 
 ## Citation
 
