@@ -1,0 +1,16 @@
+{
+    "pub": {
+      "name": "CSL-Daily",
+      "year": 2021,
+      "publication":"dataset:Zhou2021_SignBackTranslation_CSLDaily",
+      "url": "https://ustc-slr.github.io/datasets/2021_csl_daily/"
+    },
+    "#loader": null,
+    "#items": 2000, 
+    "#samples": "20654 Sentences",
+    "#signers": 10,
+    "features":["video","text:Chinese","gloss"],
+    "language": "Chinese",
+    "license": "Authorized Academics",
+    "licenseUrl": "https://ustc-slr.github.io/datasets/2021_csl_daily/Release-Agreement-CSL-Daily.pdf"
+  }
