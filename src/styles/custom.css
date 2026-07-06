@@ -1,3 +1,74 @@
+/* Rylo brand layer — values mirror the live rylo.com swatches
+   (--swatch--light, --swatch--dark, --swatch--brand-primary, radii) so this
+   page reads as part of the main site. Inter Tight matches rylo.com/sign/translate. */
+:root {
+    --rylo-cream: #faf5f2;
+    --rylo-dark: #191412;
+    --rylo-orange: #ff8b2b;
+    --rylo-orange-shade: #e07826;
+    --rylo-sky: #a9c2d7;
+    --rylo-dark-rgb: 25, 20, 18;
+    --rylo-border: rgba(var(--rylo-dark-rgb), 0.1);
+    --rylo-radius: 16px;
+
+    --bs-body-bg: var(--rylo-cream);
+    --bs-body-color: var(--rylo-dark);
+    --bs-body-font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
+    --bs-emphasis-color: var(--rylo-dark);
+    --bs-link-color: var(--rylo-orange-shade);
+    --bs-link-hover-color: var(--rylo-dark);
+    --bs-border-radius: var(--rylo-radius);
+    --bs-border-radius-lg: 24px;
+    --bs-nav-pills-link-active-bg: var(--rylo-orange);
+    --bs-nav-pills-link-active-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6, .rylo-navbar-title {
+    letter-spacing: -0.02em;
+}
+
+::selection {
+    background: var(--rylo-sky);
+    color: var(--rylo-dark);
+}
+
+.rylo-navbar {
+    background-color: rgba(250, 245, 242, 0.85);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--rylo-border);
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+}
+
+.rylo-navbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-height: 44px;
+}
+
+.rylo-logo {
+    display: inline-flex;
+    color: var(--rylo-dark);
+}
+
+.rylo-navbar-divider {
+    width: 1px;
+    height: 22px;
+    background: var(--rylo-border);
+}
+
+.rylo-navbar-title {
+    color: var(--rylo-dark);
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-decoration: none;
+}
+
+.rylo-navbar-title:hover {
+    color: var(--rylo-orange-shade);
+}
+
 #container {
     max-width: 1800px;
     margin: 1em auto;
@@ -87,6 +158,15 @@ iframe {
 
 .nav-link {
     padding: 0.1em 0.2em;
+}
+
+#navbar .nav-link {
+    color: rgba(var(--rylo-dark-rgb), 0.7);
+    border-radius: 8px;
+}
+
+#navbar .nav-link:hover {
+    color: var(--rylo-orange-shade);
 }
 
 #refs div[id] {

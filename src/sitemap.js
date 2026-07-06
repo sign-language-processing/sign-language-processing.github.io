@@ -9,7 +9,7 @@ console.log(`
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 <url>
-  <loc>https://sign-language-processing.github.io/</loc>
+  <loc>https://rylo.com/sign/research/</loc>
   <lastmod>${date}</lastmod>
 </url>
 
