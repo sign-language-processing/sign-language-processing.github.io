@@ -13,5 +13,15 @@ console.log(`
   <lastmod>${date}</lastmod>
 </url>
 
+<url>
+  <loc>https://rylo.com/sign/research/signmaker</loc>
+  <lastmod>${date}</lastmod>
+</url>
+
+<url>
+  <loc>https://rylo.com/sign/research/lessons-in-signwriting</loc>
+  <lastmod>${date}</lastmod>
+</url>
+
 
 </urlset>`)
