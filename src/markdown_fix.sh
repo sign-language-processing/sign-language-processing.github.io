@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if type gsed >/dev/null
+if which gsed >/dev/null
 then
   echo "Using gsed"
   function ssed { gsed "$@" ;}
