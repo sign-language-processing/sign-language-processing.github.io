@@ -1,0 +1,16 @@
+{
+    "pub": {
+      "name": "SLR500",
+      "year": 2019,
+      "publication": "huang2019attention3DCNNsSLR",
+      "url": "https://ustc-slr.github.io/datasets/2015_csl/"
+    },
+    "#loader": null,
+    "#items": 500,
+    "#samples":"50x5/sign=125,000",
+    "#signers": 50,
+    "features": ["video:RGBD","gloss", "pose:Kinect"],
+    "language": "Chinese",
+    "license": "Research Attribution",
+    "licenseUrl": "https://ustc-slr.github.io/datasets/2015_csl/Release-Agreement-csl2015.pdf"
+  }
